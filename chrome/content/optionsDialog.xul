@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://twitterbar/locale/overlay.dtd" >
+<dialog
+	id="twitterOptionsDialog"
+	title="&twitter.options.dialog;"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+	onload="TWITTERBAR.optionsInit();"
+	width="310"
+	height="270"
+	ondialogaccept="return TWITTERBAR.optionsAccept();"
+	buttons="accept,cancel">
+	<script type="application/x-javascript" src="chrome://twitterbar/content/overlay.js" />
+	<vbox flex="1">
+		<groupbox>
+			<radiogroup id="twitter-options-radiogroup" orient="horizontal" onclick="TWITTERBAR.optionsSelect(this);">
+				<radio id="twitter-secure" label="&twitter.secure;" tooltiptext="&twitter.secure.tooltip;" selected="true" />
+				<radio id="twitter-safe" label="&twitter.safe;" tooltiptext="&twitter.safe.tooltip;"/>
+			</radiogroup>
+			<groupbox>
+				<vbox>
+					<hbox>
+						<label value="&twitter.username;"/>
+						<textbox flex="1" id="twitter-username" disabled="true"/>
+					</hbox>
+					<hbox>
+						<label value="&twitter.password;"/>
+						<textbox flex="1" id="twitter-password" disabled="true" type="password"/>
+					</hbox>
+				</vbox>
+			</groupbox>
+		</groupbox>
+		<spacer height="5"/>
+		<hbox>
+			<label value="&twitter.web;"/>
+			<textbox flex="1" id="twitter-web" value=""/>
+		</hbox>
+		<spacer height="5"/>
+		<checkbox id="twitter-tab" label="&twitter.tab;" checked="false"/>
+		<checkbox id="twitter-button" label="&twitter.button;" checked="false"/>
+	</vbox>
+</dialog>

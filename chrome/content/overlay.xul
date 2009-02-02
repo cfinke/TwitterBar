@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://twitterbar/skin/twitter.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://twitterbar/locale/overlay.dtd">
+<overlay
+	id="twitteroverlay"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="application/x-javascript" src="chrome://twitterbar/content/overlay.js"/>
+	<script type="application/x-javascript">
+		<![CDATA[
+		
+		window.addEventListener('load', function (x) { TWITTERBAR.load(); }, false);
+		
+		]]>
+	</script>
+
+	<toolbarpalette id="BrowserToolbarPalette">
+		<toolbarbutton
+			id="twitter-toolbar-button"
+			label="Twitterbar"
+			tooltiptext="&twitter.post;"
+			oncommand="TWITTERBAR.post()"
+			/>
+		<toolbaritem id="twittercountcon">
+			<vbox>
+				<spacer flex="1"/>
+				<label id="twitter-toolbar-count" value="140" />
+				<spacer flex="1"/>
+			</vbox>
+		</toolbaritem>
+	</toolbarpalette>
+
+	<hbox id="twitterBox" insertbefore="urlbar-icons" onmouseover="TWITTERBAR.count();" onmouseout="TWITTERBAR.countClear();" class="textbox-input-box">
+		<vbox id="twitter-count-vbox">
+			<spacer flex="1"/>
+			<label style="font-size: 10px; color: green;" id="twitter-count" value="140 Left" hidden="true"/>
+			<spacer flex="1"/>
+		</vbox>
+		<vbox flex="1">
+			<spacer flex="1" />
+			<image id="twitter-statusbarbutton"
+				onclick="TWITTERBAR.post();"
+				tooltiptext="&twitter.post;"
+				src="chrome://twitterbar/skin/bullet.png"
+				/>
+			<spacer flex="1" />
+		</vbox>
+	</hbox>
+
+	<textbox id="urlbar">
+		<hbox id="twitterBox" />
+	</textbox>
+
+	<textbox id="urlbar-edit">
+		<hbox id="twitterBox" />
+	</textbox>
+</overlay>

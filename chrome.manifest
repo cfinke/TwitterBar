@@ -1,0 +1,8 @@
+content     twitterbar                    jar:chrome/twitterbar.jar!/content/
+skin        twitterbar      classic       jar:chrome/twitterbar.jar!/skin/
+
+overlay     chrome://browser/content/browser.xul           chrome://twitterbar/content/overlay.xul
+style       chrome://global/content/customizeToolbar.xul   chrome://twitterbar/skin/twitterbar.css
+
+locale      twitterbar    en-US    jar:chrome/twitterbar.jar!/locale/en-US/
+locale      twitterbar    sk-SK    jar:chrome/twitterbar.jar!/locale/sk-SK/
