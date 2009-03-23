@@ -2,14 +2,12 @@
 <RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 	<Description about="urn:mozilla:install-manifest">
 		<em:id>{1a0c9ebe-ddf9-4b76-b8a3-675c77874d37}</em:id>
-		<em:version>1.1</em:version>
 		
 		<!-- Front End MetaData -->
 		<em:name>TwitterBar</em:name>
-		<em:description>Post to Twitter from your address bar</em:description>
-		<em:creator>Tony Farndon</em:creator>
+		<em:version>2.0pre2</em:version>
+		<em:description>Post to Twitter from your address bar.</em:description>
 		<em:creator>Christopher Finke</em:creator>
-		<em:translator>SlovakSoft (sk-SK)</em:translator>
 		<em:iconURL>chrome://twitterbar/skin/twitter_logo.png</em:iconURL>
 		<em:optionsURL>chrome://twitterbar/content/optionsDialog.xul</em:optionsURL>    
 		
@@ -29,9 +27,11 @@
 			<Description>
 				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
 				<em:minVersion>2.0</em:minVersion>
-				<em:maxVersion>3.1b2pre</em:maxVersion>
+				<em:maxVersion>3.5b4pre</em:maxVersion>
 			</Description>
 		</em:targetApplication>
+		
+		<!-- Fennec -->
 		
 		<em:targetApplication>
 			<Description>

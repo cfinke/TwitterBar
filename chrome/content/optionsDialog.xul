@@ -1,42 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <!DOCTYPE overlay SYSTEM "chrome://twitterbar/locale/overlay.dtd" >
-<dialog
-	id="twitterOptionsDialog"
+<prefwindow
+    id="twitterbar-preference-window"
 	title="&twitter.options.dialog;"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
-	onload="TWITTERBAR.optionsInit();"
-	width="310"
-	height="270"
-	ondialogaccept="return TWITTERBAR.optionsAccept();"
-	buttons="accept,cancel">
-	<script type="application/x-javascript" src="chrome://twitterbar/content/overlay.js" />
-	<vbox flex="1">
-		<groupbox>
-			<radiogroup id="twitter-options-radiogroup" orient="horizontal" onclick="TWITTERBAR.optionsSelect(this);">
-				<radio id="twitter-secure" label="&twitter.secure;" tooltiptext="&twitter.secure.tooltip;" selected="true" />
-				<radio id="twitter-safe" label="&twitter.safe;" tooltiptext="&twitter.safe.tooltip;"/>
-			</radiogroup>
-			<groupbox>
-				<vbox>
-					<hbox>
-						<label value="&twitter.username;"/>
-						<textbox flex="1" id="twitter-username" disabled="true"/>
-					</hbox>
-					<hbox>
-						<label value="&twitter.password;"/>
-						<textbox flex="1" id="twitter-password" disabled="true" type="password"/>
-					</hbox>
-				</vbox>
-			</groupbox>
-		</groupbox>
-		<spacer height="5"/>
+	onload="TWITTERBAR_OPTIONS.init();"
+	ondialogaccept="return TWITTERBAR_OPTIONS.accept();"
+	type="prefwindow">
+	<script type="application/x-javascript" src="chrome://twitterbar/content/options.js" />
+	
+	<stringbundleset id="stringbundleset">
+		<stringbundle id="twitterbar-strings" src="chrome://twitterbar/locale/overlay.properties" />
+	</stringbundleset>
+	
+	<prefpane flex="1" label="&twitter.generalTab;">
+    	<preferences>
+    	    <preference id="pref-prefix" name="extensions.twitter.web" type="string" />
+    	    <preference id="pref-open-after" name="extensions.twitter.tab" type="bool" />
+    	    <preference id="pref-hide-button" name="extensions.twitter.button" type="bool" />
+    	</preferences>
 		<hbox>
-			<label value="&twitter.web;"/>
-			<textbox flex="1" id="twitter-web" value=""/>
+			<label value="&twitter.web;" control="twitter-web" />
+			<textbox flex="1" id="twitter-web" preference="pref-prefix" />
 		</hbox>
-		<spacer height="5"/>
-		<checkbox id="twitter-tab" label="&twitter.tab;" checked="false"/>
-		<checkbox id="twitter-button" label="&twitter.button;" checked="false"/>
-	</vbox>
-</dialog>
+		<spacer />
+		<checkbox id="twitter-tab" label="&twitter.tab;" preference="pref-open-after" />
+		<checkbox id="twitter-button" label="&twitter.button;" preference="pref-hide-button"/>
+		<groupbox>
+		    <description id="auth-summary"></description>
+		    <button oncommand="TWITTERBAR_OPTIONS.clearAuth();" label="Reset Authorization Settings" />
+		</groupbox>
+	</prefpane>
+</prefwindow>

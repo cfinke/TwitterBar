@@ -1,11 +1,6 @@
 <!ENTITY twitter.post "Post to Twitter">
-<!ENTITY twitter.safe "Safe Mode">
-<!ENTITY twitter.secure "Secure Mode">
-<!ENTITY twitter.secure.tooltip "Prompt for username, password at start of each session">
-<!ENTITY twitter.safe.tooltip "Automatically use username, password details from below">
-<!ENTITY twitter.username "Username:">
-<!ENTITY twitter.password "Password:">
 <!ENTITY twitter.tab "Open Twitter in new tab after posting">
 <!ENTITY twitter.web "Before URL:">
-<!ENTITY twitter.button "Hide addressbar button (requires browser restart)">
+<!ENTITY twitter.button "Hide addressbar button">
 <!ENTITY twitter.options.dialog "Twitter Options Dialog">
+<!ENTITY twitter.generalTab "General">
