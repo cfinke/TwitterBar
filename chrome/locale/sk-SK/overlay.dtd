@@ -1,11 +1,5 @@
-<!ENTITY  twitter.post "Odoslať na Twitter">
-<!ENTITY  twitter.safe "Normálny režim">
-<!ENTITY  twitter.secure "Zabezpečený režim">
-<!ENTITY  twitter.secure.tooltip "Pri každej relácii vyzvať na zadanie mena používateľa a hesla">
-<!ENTITY  twitter.safe.tooltip "Automaticky použiť tu zadané meno používateľa a heslo">
-<!ENTITY  twitter.username "Meno používateľa:">
-<!ENTITY  twitter.password "Heslo:">
-<!ENTITY  twitter.tab "Otvoriť po odoslaní správy na novej karte Twitter">
-<!ENTITY  twitter.web "Pred adresou:">
-<!ENTITY  twitter.button "Skryť tlačidlo panela s adresou (vyžaduje reštart prehliadača)">
+<!ENTITY twitter.post "Odoslať na Twitter">
+<!ENTITY twitter.tab "Otvoriť po odoslaní správy na novej karte Twitter">
+<!ENTITY twitter.web "Pred adresou:">
+<!ENTITY twitter.button "Skryť tlačidlo panela s adresou (vyžaduje reštart prehliadača)">
 <!ENTITY twitter.options.dialog "Možnosti rozšírenia Twitterbar">
