@@ -4,3 +4,4 @@
 <!ENTITY twitter.button "Hide addressbar button">
 <!ENTITY twitter.options.dialog "Twitter Options Dialog">
 <!ENTITY twitter.generalTab "General">
+<!ENTITY twitter.confirm "Always confirm before posting a URL to Twitter.">

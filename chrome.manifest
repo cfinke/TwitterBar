@@ -6,5 +6,9 @@ style       chrome://global/content/customizeToolbar.xul   chrome://twitterbar/s
 
 locale      twitterbar    en-US    jar:chrome/twitterbar.jar!/locale/en-US/
 locale      twitterbar    de-DE    jar:chrome/twitterbar.jar!/locale/de-DE/
+locale      twitterbar    it-IT    jar:chrome/twitterbar.jar!/locale/it-IT/
 locale      twitterbar    nl-NL    jar:chrome/twitterbar.jar!/locale/nl-NL/
+locale      twitterbar    pl-PL    jar:chrome/twitterbar.jar!/locale/pl-PL/
+locale      twitterbar    pt-BR    jar:chrome/twitterbar.jar!/locale/pt-BR/
 locale      twitterbar    sk-SK    jar:chrome/twitterbar.jar!/locale/sk-SK/
+locale      twitterbar    tr-TR    jar:chrome/twitterbar.jar!/locale/tr-TR/
