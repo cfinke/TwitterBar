@@ -2,10 +2,8 @@
 <RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 	<Description about="urn:mozilla:install-manifest">
 		<em:id>{1a0c9ebe-ddf9-4b76-b8a3-675c77874d37}</em:id>
-		
-		<!-- Front End MetaData -->
 		<em:name>TwitterBar</em:name>
-		<em:version>2.0</em:version>
+		<em:version>2.1</em:version>
 		<em:description>Post to Twitter from your address bar.</em:description>
 		<em:creator>Christopher Finke</em:creator>
 		<em:iconURL>chrome://twitterbar/skin/twitter_logo.png</em:iconURL>
