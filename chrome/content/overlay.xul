@@ -45,7 +45,7 @@
 		<vbox flex="1">
 			<spacer flex="1" />
 			<image id="twitter-statusbarbutton"
-				onclick="TWITTERBAR.post();"
+				onclick="TWITTERBAR.post(true);"
 				tooltiptext="&twitter.post;"
 				src="chrome://twitterbar/skin/twitter.ico"
 				/>

@@ -20,6 +20,7 @@ var TWITTERBAR_OPTIONS = {
 	
 	accept : function () {
 	    if (!document.getElementById("twitterbar-preference-window").instantApply) {
+		    this.prefs.setBoolPref("confirm", document.getElementById("pref-confirm").value);
 		    this.prefs.setCharPref("web", document.getElementById("pref-prefix").value);
 		    this.prefs.setBoolPref("pref-open-after", document.getElementById("pref-open-after").value);
 		    this.prefs.setBoolPref("pref-hide-button", document.getElementById("pref-hide-button").value);
