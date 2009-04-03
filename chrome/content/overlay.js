@@ -342,7 +342,11 @@ var TWITTERBAR = {
 		req.onreadystatechange = function () {
 			if (req.readyState == 4) {
 			    if (req.status == 401) {
-			        TWITTERBAR.reAuthorize();
+			        TWITTERBAR.alert("Twitter responded with an error (401):\n\n" + req.responseText);
+			        
+			        // TWITTERBAR.reAuthorize();
+			        // I think TwitterBar sends a 401 when you've hit your rate limit.
+			        // This is the reason so many people complained about being asked to reauthorize.
 		        }
 				else if (req.status == 200) {
 					var urlbar = (document.getElementById("urlbar") || document.getElementById("urlbar-edit"));
