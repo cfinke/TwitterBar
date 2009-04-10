@@ -220,7 +220,21 @@ var TWITTERBAR = {
             var doc = event.originalTarget;
             
             if (doc.location.href.match(/chrisfinke.com\/oauth\/twitterbar/i)) {
-                var token = doc.location.href.split("?")[1].split("=")[1];
+                var urlArgs = doc.location.href.split("?")[1].split("&");
+                
+                var token = "";
+                var username = "";
+                
+                for (var i = 0; i < urlArgs.length; i++) {
+                    var argParts = urlArgs[i].split("=");
+                    
+                    if (argParts[0] == "oauth_token"){
+                        token = argParts[1];
+                    }
+                    else if (argParts[0] == "screen_name") {
+                        username = argParts[1];
+                    }
+                }
                 
                 var accessor = {
         	        consumerSecret : TWITTERBAR.oauth.consumer_secret,
@@ -261,8 +275,7 @@ var TWITTERBAR = {
                                 TWITTERBAR.prefs.setCharPref("access_token.oauth_token_secret", parts[1].split("=")[1]);
 
                                 TWITTERBAR.prefs.setCharPref("oauth_timestamp", (new Date().getTime()));
-                        
-                                TWITTERBAR.verifyAuth();
+            				    TWITTERBAR.prefs.setCharPref("oauth_username", username);
                             } catch (e) {
                 	            TWITTERBAR.alert(TWITTERBAR.strings.getFormattedString("twitterbar.otherError", [ e, req.responseText ]));
                             }
@@ -379,63 +392,6 @@ var TWITTERBAR = {
 		
 		req.send(argstring);
 	},
-	
-	verifyAuth : function () {
-	    var accessor = {
-	        consumerSecret : TWITTERBAR.oauth.consumer_secret,
-	        tokenSecret : TWITTERBAR.prefs.getCharPref("access_token.oauth_token_secret")
-	    };
-
-	    var message = {
-	        action : "http://twitter.com/account/verify_credentials.xml",
-	        method : "GET",
-	        parameters : [
-    	        ["oauth_consumer_key",TWITTERBAR.oauth.consumer_key],
-    	        ["oauth_token", TWITTERBAR.prefs.getCharPref("access_token.oauth_token")],
-    	        ["oauth_signature_method",TWITTERBAR.oauth.serviceProvider.signatureMethod],
-    	        ["oauth_version","1.0"]
-	        ]
-	    };
-        
-        var OAuth = TWITTERBAR_OAUTH();
-        
-	    OAuth.setTimestampAndNonce(message);
-	    OAuth.SignatureMethod.sign(message, accessor);
-        
-	    var oAuthArgs = OAuth.getParameterMap(message.parameters);
-	    var authHeader = OAuth.getAuthorizationHeader("http://twitter.com/", oAuthArgs);
-        
-	    var req = new XMLHttpRequest();
-	    req.mozBackgroundRequest = true;
-	    req.open(message.method, message.action, true);
-	    req.setRequestHeader("Authorization", authHeader);
-		
-		req.onreadystatechange = function () {
-			if (req.readyState == 4) {
-			    if (req.status == 200) {
-				    var username = req.responseXML.getElementsByTagName("screen_name")[0].textContent;
-				    TWITTERBAR.prefs.setCharPref("oauth_username", username);
-				}
-		        else if (req.status >= 500) {
-		            TWITTERBAR.alert(TWITTERBAR.strings.getString("twitterbar.failWhale"));
-	            }
-				else {
-    	            TWITTERBAR.alert(TWITTERBAR.strings.getFormattedString("twitterbar.otherError", [ req.status, req.responseText ]));
-				    
-				    TWITTERBAR.prefs.setCharPref("oauth_username", "");
-                    TWITTERBAR.prefs.setCharPref("access_token.oauth_token", "");
-                    TWITTERBAR.prefs.setCharPref("access_token.oauth_token_secret", "");
-                    TWITTERBAR.prefs.setCharPref("oauth_timestamp", "");
-                    
-				    if (TWITTERBAR.confirm(TWITTERBAR.strings.getString("twitterbar.oauthError2") + "\n\n" + TWITTERBAR.strings.getString("twitterbar.oauthRetry"))) {
-				        TWITTERBAR.oAuthorize();
-			        }
-				}
-			}
-		};
-		
-		req.send(null);
-    },
 	
 	afterPost : function () {
 		var urlbar = (document.getElementById("urlbar") || document.getElementById("urlbar-edit"));
