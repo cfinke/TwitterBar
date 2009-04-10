@@ -3,5 +3,3 @@
 <!ENTITY twitter.web "Pred adresou:">
 <!ENTITY twitter.button "Skryť tlačidlo panela s adresou (vyžaduje reštart prehliadača)">
 <!ENTITY twitter.options.dialog "Možnosti rozšírenia Twitterbar">
-<!ENTITY twitter.generalTab "General">
-<!ENTITY twitter.confirm "Always confirm before posting a URL to Twitter.">
