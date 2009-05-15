@@ -25,3 +25,14 @@ toolbar[iconsize="small"] #twitter-toolbar-button {
 toolbar[iconsize="small"] #twitter-toolbar-button:hover {
 	list-style-image: url("chrome://twitterbar/skin/add.png");
 }
+
+#twitter-searchbutton {
+    -moz-appearance: none;
+	padding: 1px !important;
+	margin: 2px 3px 2px 0px;
+	background-color: transparent;
+	-moz-user-focus: none;
+	cursor: pointer;
+	height: 16px;
+	width: 16px;
+}

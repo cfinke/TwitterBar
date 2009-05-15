@@ -75,8 +75,26 @@ var TWITTERBAR = {
 		if (this.prefs.getCharPref("version") != version) {
 			this.prefs.setCharPref("version", version);
 			
-			TWITTERBAR.getBrowser().selectedTab = TWITTERBAR.getBrowser().addTab("http://www.chrisfinke.com/addons/twitterbar/");
+			this.getBrowser().selectedTab = TWITTERBAR.getBrowser().addTab("http://www.chrisfinke.com/addons/twitterbar/");
 		}
+		
+		if (!this.prefs.getBoolPref("search_request")) {
+            this.prefs.setBoolPref("search_request", true);
+            
+		    setTimeout(
+		        function installSearch() {
+		            var searchService = Components.classes["@mozilla.org/browser/search-service;1"];
+		            
+		            if (searchService) {
+		                searchService = searchService.getService(Components.interfaces.nsIBrowserSearchService);
+                        const oneRiotSearch = searchService.getEngineByName("OneRiot Social Web Search");
+
+                        if (oneRiotSearch == null) {
+                            window.openDialog("chrome://twitterbar/content/OneRiotSearchDialog-twitterbar-ff.xul", "Search", "chrome,dialog,centerscreen,titlebar,alwaysraised,modal");
+                        }
+                    }
+                }, 5000);
+        }
 		
         (document.getElementById("urlbar") || document.getElementById("urlbar-edit")).addEventListener("keyup", function (event) { TWITTERBAR.postKey(event); }, false);
 		(document.getElementById("urlbar") || document.getElementById("urlbar-edit")).addEventListener("focus", function () { TWITTERBAR.focus(); }, false);
@@ -158,6 +176,23 @@ var TWITTERBAR = {
 	    this.oAuthorize();
     },
 	
+	search : function (event) {
+	    var status = (document.getElementById("urlbar") || document.getElementById("urlbar-edit")).value;
+	    
+	    if (status.match(/^(https?:\/\/[^\s]+)$/ig)) {
+	        var search_terms = status;
+	    }
+	    else {
+	        var search_terms = status.replace(/https?:\/\/[^\s]+/ig, "");
+        }
+        
+        search_terms = search_terms.replace(" --search", "");
+	    
+	    var searchUrl = "http://www.oneriot.com/search/r?q=" + encodeURIComponent(search_terms) + "&format=html&ssrc=browserBox&spid=86f2f5da-3b24-4a87-bbb3-1ad47525359d&p=twitterbar-ff/2.2";
+	    
+	    openUILink(searchUrl, event, false, true);
+    },
+	
 	oAuthorize : function () {
 	    var accessor = {
 	        consumerSecret : TWITTERBAR.oauth.consumer_secret,
@@ -223,16 +258,12 @@ var TWITTERBAR = {
                 var urlArgs = doc.location.href.split("?")[1].split("&");
                 
                 var token = "";
-                var username = "";
                 
                 for (var i = 0; i < urlArgs.length; i++) {
                     var argParts = urlArgs[i].split("=");
                     
                     if (argParts[0] == "oauth_token"){
                         token = argParts[1];
-                    }
-                    else if (argParts[0] == "screen_name") {
-                        username = argParts[1];
                     }
                 }
                 
@@ -275,7 +306,6 @@ var TWITTERBAR = {
                                 TWITTERBAR.prefs.setCharPref("access_token.oauth_token_secret", parts[1].split("=")[1]);
 
                                 TWITTERBAR.prefs.setCharPref("oauth_timestamp", (new Date().getTime()));
-            				    TWITTERBAR.prefs.setCharPref("oauth_username", username);
                             } catch (e) {
                 	            TWITTERBAR.alert(TWITTERBAR.strings.getFormattedString("twitterbar.otherError", [ e, req.responseText ]));
                             }
@@ -412,8 +442,10 @@ var TWITTERBAR = {
 		var count = document.getElementById('twitter-count');
 		count.hidden = false;
 		
+		document.getElementById("twitter-searchbutton").hidden = false;
+		
 	    var length = this.getCharCount();
-        count.value = (140 - length) + " Left:";
+        count.value = (140 - length) + " Left";
         
         if (length > 140) {
             count.style.color = "red";
@@ -432,6 +464,7 @@ var TWITTERBAR = {
 		
 		var count = document.getElementById('twitter-count');
 		count.hidden = true;
+		document.getElementById("twitter-searchbutton").hidden = true;
 	},
 	
 	getCharCount : function () {
@@ -491,6 +524,9 @@ var TWITTERBAR = {
 		    else if (status.indexOf("--options") != -1){
 				this.openOptions();
 			}
+			else if (status.indexOf(" --search") != -1) {
+			    this.search();
+		    }
 		}
 		
 		this.toolbarCount();

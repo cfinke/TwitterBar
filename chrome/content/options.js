@@ -5,13 +5,12 @@ var TWITTERBAR_OPTIONS = {
 	
 	init : function () {
 	    var authDate = this.prefs.getCharPref("oauth_timestamp");
-	    var authUser = this.prefs.getCharPref("oauth_username");
 	    
-	    if (authDate && authUser) {
+	    if (authDate) {
 	        var niceDate = new Date();
 	        niceDate.setTime(authDate);
 	        
-	        document.getElementById("auth-summary").textContent = this.strings.getFormattedString("twitterbar.authString", [ authUser, niceDate.toLocaleString() ]);
+	        document.getElementById("auth-summary").textContent = this.strings.getFormattedString("twitterbar.authString", [ "", niceDate.toLocaleString() ]);
         }
         else {
             document.getElementById("auth-summary").textContent = this.strings.getString("twitterbar.noAuth");
@@ -30,7 +29,6 @@ var TWITTERBAR_OPTIONS = {
 	},
 	
 	clearAuth : function () {
-	    this.prefs.setCharPref("oauth_username", "");
         this.prefs.setCharPref("access_token.oauth_token", "");
         this.prefs.setCharPref("access_token.oauth_token_secret", "");
         this.prefs.setCharPref("oauth_timestamp", "");
