@@ -188,7 +188,7 @@ var TWITTERBAR = {
         
         search_terms = search_terms.replace(" --search", "");
 	    
-	    var searchUrl = "http://www.oneriot.com/search/r?q=" + encodeURIComponent(search_terms) + "&format=html&ssrc=browserBox&spid=86f2f5da-3b24-4a87-bbb3-1ad47525359d&p=twitterbar-ff/2.2";
+	    var searchUrl = "http://www.oneriot.com/search/r?q=" + encodeURIComponent(search_terms).replace(" ", "+") + "&format=html&ssrc=browserBox&spid=86f2f5da-3b24-4a87-bbb3-1ad47525359d&p=twitterbar-ff/2.2";
 	    
 	    openUILink(searchUrl, event, false, true);
     },
