@@ -21,9 +21,12 @@
     	    <preference id="pref-hide-button" name="extensions.twitter.button" type="bool" />
     	    <preference id="pref-confirm" name="extensions.twitter.confirm" type="bool" />
     	</preferences>
-		<hbox>
-			<label value="&twitter.web;" control="twitter-web" />
-			<textbox flex="1" id="twitter-web" preference="pref-prefix" />
+		<vbox align="center">
+		    <hbox align="center">
+			    <label value="&twitter.web;" control="twitter-web" />
+			    <textbox flex="1" id="twitter-web" preference="pref-prefix" />
+			</hbox>
+			<description style="max-width: 300px;">&twitter.prefixDescription;</description>
 		</hbox>
 		<spacer />
 		<checkbox id="twitter-tab" label="&twitter.tab;" preference="pref-open-after" />

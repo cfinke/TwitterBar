@@ -47,7 +47,7 @@
 		        <spacer flex="1" />
 		        <image id="twitter-searchbutton"
 			        hidden="true"
-				    onclick="TWITTERBAR.search(event);"
+				    onclick="TWITTERBAR.search(event, 'addressBarIcon');"
 				    tooltiptext="Search the social web for the text you've entered."
 				    src="http://www.oneriot.com/images/favicon.ico"
 				    />

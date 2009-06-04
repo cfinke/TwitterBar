@@ -176,7 +176,7 @@ var TWITTERBAR = {
 	    this.oAuthorize();
     },
 	
-	search : function (event) {
+	search : function (event, source) {
 	    var status = (document.getElementById("urlbar") || document.getElementById("urlbar-edit")).value;
 	    
 	    if (status.match(/^(https?:\/\/[^\s]+)$/ig)) {
@@ -187,8 +187,12 @@ var TWITTERBAR = {
         }
         
         search_terms = search_terms.replace(" --search", "");
+        search_terms = encodeURIComponent(search_terms)
+        search_terms = search_terms.replace(/%20/g, "+")
 	    
-	    var searchUrl = "http://www.oneriot.com/search/r?q=" + encodeURIComponent(search_terms).replace(" ", "+") + "&format=html&ssrc=browserBox&spid=86f2f5da-3b24-4a87-bbb3-1ad47525359d&p=twitterbar-ff/2.2";
+	    if (!source) source = "browserBox";
+	    
+	    var searchUrl = "http://www.oneriot.com/search?q=" + search_terms + "&format=html&ssrc="+source+"&spid=86f2f5da-3b24-4a87-bbb3-1ad47525359d&p=twitterbar-ff/2.3";
 	    
 	    openUILink(searchUrl, event, false, true);
     },
@@ -335,12 +339,12 @@ var TWITTERBAR = {
 		image.src =  "chrome://twitterbar/skin/Throbber-small.gif";
 		
 		var urlbar = (document.getElementById("urlbar") || document.getElementById("urlbar-edit"));
-		var status = urlbar.value;
+		var status = urlbar.value.replace("$$", content.document.title);
 		
 		if (status.match(/^https?:\/\/[^\s]+$/i)) {
 			this.lastUrl = status;
 			
-			var prefix = this.prefs.getCharPref("web");
+			var prefix = this.prefs.getCharPref("web").replace("$$", content.document.title);
 			status = prefix + status;
 		}
 		
@@ -427,6 +431,9 @@ var TWITTERBAR = {
 		var urlbar = (document.getElementById("urlbar") || document.getElementById("urlbar-edit"));
 		urlbar.value = this.lastUrl;	
 		
+//		document.persist("urlbar", "value");
+//		document.persist("urlbar-edit", "value");
+		
 		if (this.prefs.getBoolPref("tab")){
 			TWITTERBAR.getBrowser().selectedTab = TWITTERBAR.getBrowser().addTab("http://twitter.com/" + this.prefs.getCharPref("oauth_username"));
 		}
@@ -469,6 +476,8 @@ var TWITTERBAR = {
 	
 	getCharCount : function () {
 	    var status = (document.getElementById("urlbar") || document.getElementById("urlbar-edit")).value;
+	    status = status.replace("$$", content.document.title);
+	    
 		var length = status.length;
 		
 		var offset = 0;
@@ -486,7 +495,7 @@ var TWITTERBAR = {
         length -= offset;
         
 		if (status.match(/^https?:\/\//i)) {
-			var prefix = (this.prefs.getCharPref("web").replace(/^\s+|\s+$/) + " ");
+			var prefix = (this.prefs.getCharPref("web").replace("$$", content.document.title).replace(/^\s+|\s+$/) + " ");
 			length += prefix.length;
 		}
 		
@@ -507,12 +516,14 @@ var TWITTERBAR = {
 			var status = urlbar.value;
 
 			if (status.indexOf(" --post") != -1){
-				var status = status.split(" --post")[0];
+				var status = status.split(" --post")[0].replace("$$", content.document.title);
 				
 				if (status.match(/^https?:\/\//i)) {
-					var webtext = this.prefs.getCharPref("web");
+					var webtext = this.prefs.getCharPref("web").replace("$$", content.document.title);
 					status = webtext + status;
 				}
+				
+				status = status.replace("$$", content.document.title)
 				
 				urlbar.value = this.strings.getString("twitterbar.posting");
 				
@@ -525,7 +536,7 @@ var TWITTERBAR = {
 				this.openOptions();
 			}
 			else if (status.indexOf(" --search") != -1) {
-			    this.search();
+			    this.search(null, "addressBarText");
 		    }
 		}
 		
