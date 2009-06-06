@@ -1,0 +1,7 @@
+<!ENTITY twitter.post "发布到 Twitter">
+<!ENTITY twitter.tab "发布后在新标签页中打开 Twitter">
+<!ENTITY twitter.web "在地址前：">
+<!ENTITY twitter.button "隐藏地址栏按钮">
+<!ENTITY twitter.options.dialog "Twitter 选项对话框">
+<!ENTITY twitter.generalTab "一般">
+<!ENTITY twitter.confirm "每次发布到 Twitter 都需要确认。">
