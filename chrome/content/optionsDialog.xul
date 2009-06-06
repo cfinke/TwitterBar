@@ -7,7 +7,8 @@
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
 	onload="TWITTERBAR_OPTIONS.init();"
 	ondialogaccept="return TWITTERBAR_OPTIONS.accept();"
-	type="prefwindow">
+	type="prefwindow"
+	style="width: 450px;">
 	<script type="application/x-javascript" src="chrome://twitterbar/content/options.js" />
 	
 	<stringbundleset id="stringbundleset">
@@ -21,19 +22,19 @@
     	    <preference id="pref-hide-button" name="extensions.twitter.button" type="bool" />
     	    <preference id="pref-confirm" name="extensions.twitter.confirm" type="bool" />
     	</preferences>
-		<vbox align="center">
-		    <hbox align="center">
-			    <label value="&twitter.web;" control="twitter-web" />
-			    <textbox flex="1" id="twitter-web" preference="pref-prefix" />
-			</hbox>
-			<description style="max-width: 300px;">&twitter.prefixDescription;</description>
-		</hbox>
-		<spacer />
 		<checkbox id="twitter-tab" label="&twitter.tab;" preference="pref-open-after" />
 		<checkbox id="twitter-button" label="&twitter.button;" preference="pref-hide-button"/>
 		<checkbox id="twitter-confirm" label="&twitter.confirm;" preference="pref-confirm" />
 		<groupbox>
-		    <description id="auth-summary"></description>
+		    <description style="max-width: 400px;" control="twitter-web">&twitter.prefixExplanation;</description>
+		    <hbox align="center">
+			    <textbox flex="1" id="twitter-web" preference="pref-prefix" />
+			</hbox>
+			<description style="max-width: 400px;" control="twitter-web">&twitter.prefixDescription;</description>
+		</groupbox>
+		<spacer />
+		<groupbox style="height: 8em;">
+		    <description id="auth-summary" style="height: 2em;"></description>
 		    <button oncommand="TWITTERBAR_OPTIONS.clearAuth();" label="Reset Authorization Settings" />
 		</groupbox>
 	</prefpane>

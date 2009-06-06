@@ -1,7 +1,10 @@
 <!ENTITY twitter.post "Post to Twitter">
-<!ENTITY twitter.tab "Open Twitter in new tab after posting">
+<!ENTITY twitter.tab "Open my Twitter page in a new tab after I post">
 <!ENTITY twitter.web "Before URL:">
-<!ENTITY twitter.button "Hide addressbar button">
+<!ENTITY twitter.button "Hide the Twitter icon in the address bar">
 <!ENTITY twitter.options.dialog "Twitter Options Dialog">
 <!ENTITY twitter.generalTab "General">
-<!ENTITY twitter.confirm "Always confirm before posting a URL to Twitter.">
+<!ENTITY twitter.confirm "Always confirm with me before posting a URL to Twitter.">
+
+<!ENTITY twitter.prefixExplanation "You can share a link to a page you're reading by clicking the Twitter icon in the address bar.  The following text will automatically be added before the URL:">
+<!ENTITY twitter.prefixDescription "(You can use $$ as a placeholder for the page's title.)">

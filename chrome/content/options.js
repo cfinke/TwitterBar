@@ -15,6 +15,8 @@ var TWITTERBAR_OPTIONS = {
         else {
             document.getElementById("auth-summary").textContent = this.strings.getString("twitterbar.noAuth");
         }
+        
+        sizeToContent();
     },
 	
 	accept : function () {

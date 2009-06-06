@@ -22,11 +22,11 @@ var TWITTERBAR = {
     },
     
     getBrowser: function () {
-        if (typeof Browser != 'undefined') {
-            return Browser;
+        if (typeof getBrowser != 'undefined') {
+            return getBrowser();
         }
         else {
-            return getBrowser();
+            return Browser;
         }
     },
     
@@ -75,7 +75,11 @@ var TWITTERBAR = {
 		if (this.prefs.getCharPref("version") != version) {
 			this.prefs.setCharPref("version", version);
 			
-			this.getBrowser().selectedTab = TWITTERBAR.getBrowser().addTab("http://www.chrisfinke.com/addons/twitterbar/");
+			try {
+			    this.getBrowser().selectedTab = TWITTERBAR.getBrowser().addTab("http://www.chrisfinke.com/addons/twitterbar/");
+			} catch (fennec) {
+			    Browser.addTab("http://www.chrisfinke.com/addons/twitterbar/");
+			}
 		}
 		
 		if (!this.prefs.getBoolPref("search_request")) {
@@ -96,19 +100,28 @@ var TWITTERBAR = {
                 }, 5000);
         }
 		
-        (document.getElementById("urlbar") || document.getElementById("urlbar-edit")).addEventListener("keyup", function (event) { TWITTERBAR.postKey(event); }, false);
-		(document.getElementById("urlbar") || document.getElementById("urlbar-edit")).addEventListener("focus", function () { TWITTERBAR.focus(); }, false);
+		if (document.getElementById("urlbar-edit")) {
+		    var oldsearchcomplete = document.getElementById("urlbar-edit").getAttribute("onsearchcomplete");
+		    
+            document.getElementById("urlbar-edit").setAttribute("onsearchcomplete", "if (!TWITTERBAR.postKey()) { " + oldsearchcomplete + "}");
+            document.getElementById("urlbar-edit").addEventListener("focus", function () { TWITTERBAR.focus(); }, false);
+	    }
+	    
+	    if (document.getElementById("urlbar")) {
+            document.getElementById("urlbar").addEventListener("keyup", function (event) { TWITTERBAR.postKey(event); }, false);
+    		document.getElementById("urlbar").addEventListener("focus", function () { TWITTERBAR.focus(); }, false);
+        }
 		
 		this.buttonCheck();
 		
+        try {
+            var browsers = document.getElementById("browsers");
+            browsers.addEventListener("load", TWITTERBAR.getAccessToken, true);
+        } catch (notFennec) {
+    	    getBrowser().addEventListener("load", TWITTERBAR.getAccessToken, true);
+        }
+        
 		if (this.prefs.getCharPref("access_token.oauth_token") == "" || this.prefs.getCharPref("access_token.oauth_token_secret") == "") {
-            try {
-                var browsers = document.getElementById("browsers");
-                browsers.addEventListener("load", TWITTERBAR.getAccessToken, true);
-            } catch (notFennec) {
-        	    getBrowser().addEventListener("load", TWITTERBAR.getAccessToken, true);
-            }
-            
 		    setTimeout(function () { TWITTERBAR.oAuthorize(); }, 3000);
 		}
 	},
@@ -236,7 +249,11 @@ var TWITTERBAR = {
     		            TWITTERBAR.oauth.request_token.oauth_token_secret = parts[1].split("=")[1];
 	                
     	                if (TWITTERBAR.confirm(TWITTERBAR.strings.getString("twitterbar.oauthRequest1") + "\n\n" + TWITTERBAR.strings.getString("twitterbar.oauthRequest2"))) {
-    		                TWITTERBAR.getBrowser().selectedTab = TWITTERBAR.getBrowser().addTab("http://twitter.com/oauth/authorize?oauth_token="+TWITTERBAR.oauth.request_token.oauth_token);
+    	                    try {
+    		                    TWITTERBAR.getBrowser().selectedTab = TWITTERBAR.getBrowser().addTab("http://twitter.com/oauth/authorize?oauth_token="+TWITTERBAR.oauth.request_token.oauth_token);
+    		                } catch (fennec) {
+    		                    Browser.addTab("http://twitter.com/oauth/authorize?oauth_token="+TWITTERBAR.oauth.request_token.oauth_token);
+    		                }
     		            }
     		        } catch (e) {
                         TWITTERBAR.alert(TWITTERBAR.strings.getString("twitterbar.oauthError1") + "\n\n" + e + "\n\n" + req.responseText);
@@ -344,7 +361,7 @@ var TWITTERBAR = {
 		if (status.match(/^https?:\/\/[^\s]+$/i)) {
 			this.lastUrl = status;
 			
-			var prefix = this.prefs.getCharPref("web").replace("$$", content.document.title);
+			var prefix = (this.prefs.getCharPref("web").replace("$$", content.document.title).replace(/^\s+|\s+$/) + " ");
 			status = prefix + status;
 		}
 		
@@ -429,13 +446,20 @@ var TWITTERBAR = {
 	
 	afterPost : function () {
 		var urlbar = (document.getElementById("urlbar") || document.getElementById("urlbar-edit"));
-		urlbar.value = this.lastUrl;	
 		
-//		document.persist("urlbar", "value");
-//		document.persist("urlbar-edit", "value");
+		urlbar.value = this.lastUrl;
+		
+		try {
+		    gBrowser.selectedBrowser.userTypedValue = this.lastUrl;
+		} catch (fennec) {
+	    }
 		
 		if (this.prefs.getBoolPref("tab")){
-			TWITTERBAR.getBrowser().selectedTab = TWITTERBAR.getBrowser().addTab("http://twitter.com/" + this.prefs.getCharPref("oauth_username"));
+		    try {
+			    TWITTERBAR.getBrowser().selectedTab = TWITTERBAR.getBrowser().addTab("http://twitter.com/" + this.prefs.getCharPref("oauth_username"));
+			} catch (fennec) {
+			    Browser.addTab("http://twitter.com/" + this.prefs.getCharPref("oauth_username"));
+			}
 		}
 		
 		var image = document.getElementById('twitter-statusbarbutton');
@@ -511,7 +535,7 @@ var TWITTERBAR = {
 	},
 	
 	postKey : function (e) {
-		if (e.keyCode != e.DOM_VK_RETURN && e.keyCode != 117 && e.keyCode != 76 && e.keyCode != 68 && e.keyCode != 17 && e.keyCode != 18){
+	    if (!e || (e.keyCode != e.DOM_VK_RETURN && e.keyCode != 117 && e.keyCode != 76 && e.keyCode != 68 && e.keyCode != 17 && e.keyCode != 18)){
 			var urlbar = (document.getElementById("urlbar") || document.getElementById("urlbar-edit"));
 			var status = urlbar.value;
 
@@ -519,7 +543,7 @@ var TWITTERBAR = {
 				var status = status.split(" --post")[0].replace("$$", content.document.title);
 				
 				if (status.match(/^https?:\/\//i)) {
-					var webtext = this.prefs.getCharPref("web").replace("$$", content.document.title);
+					var webtext = (this.prefs.getCharPref("web").replace("$$", content.document.title).replace(/^\s+|\s+$/) + " ");
 					status = webtext + status;
 				}
 				
@@ -533,6 +557,13 @@ var TWITTERBAR = {
 				imagest.src = "chrome://twitterbar/skin/Throbber-small.gif";
 			}
 		    else if (status.indexOf("--options") != -1){
+		        urlbar.value = this.lastUrl;
+		        
+        		try {
+        		    gBrowser.selectedBrowser.userTypedValue = this.lastUrl;
+        		} catch (fennec) {
+        	    }
+        		
 				this.openOptions();
 			}
 			else if (status.indexOf(" --search") != -1) {
