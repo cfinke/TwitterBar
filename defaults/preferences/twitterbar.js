@@ -11,3 +11,4 @@ pref("extensions.twitter.access_token.oauth_token_secret", "");
 
 pref("extensions.twitter.oauth_timestamp", "");
 
+pref("extensions.twitter.shortener", "tk");

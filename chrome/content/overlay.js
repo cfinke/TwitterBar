@@ -21,6 +21,15 @@ var TWITTERBAR = {
         }
     },
     
+    getUrlLength : function () {
+        if (this.prefs.getCharPref("shortener") == "is.gd") {
+            return 18;
+        }
+        else {
+            return 15;
+        }
+    },
+    
     getBrowser: function () {
         if (typeof getBrowser != 'undefined') {
             return getBrowser();
@@ -367,7 +376,7 @@ var TWITTERBAR = {
 		
 		urlbar.value = TWITTERBAR.strings.getString("twitterbar.posting");
 		
-		this.shortenUrls(status, function (status) { TWITTERBAR.postRequest(status); });
+        this.shortenUrls(status, function (status) { TWITTERBAR.postRequest(status); });
 	},
 	
 	postRequest : function (status) {
@@ -509,9 +518,11 @@ var TWITTERBAR = {
 		var urls = status.match(/(https?:\/\/[^\s]+)/ig);
 	    
 	    if (urls) {
+	        var urlLength = this.getUrlLength();
+	        
 	        for (var i = 0; i < urls.length; i++) {
-	            if (urls[i].length > 18) {
-	                offset += (urls[i].length - 18);
+	            if (urls[i].length > urlLength) {
+	                offset += (urls[i].length - urlLength);
                 }
             }
         }
@@ -579,6 +590,59 @@ var TWITTERBAR = {
 	},
 	
 	shortenUrls : function (status, callback) {
+	    if (this.prefs.getCharPref("shortener") == "is.gd") {
+	        this.shortenUrlsIsGd(status, callback);
+        }
+        else {
+            this.shortenUrlsTk(status, callback);
+        }
+    },
+	
+	shortenUrlsTk : function (status, callback) {
+	    status = status + " ";
+	    
+	    var urlsToShorten = [];
+	    
+	    function shortenNextUrl() {
+	        if (urlsToShorten.length == 0) {
+                callback(status.replace(/^\s+|\s+$/g, ""));
+            }
+            else {
+                var nextUrl = urlsToShorten.shift();
+
+                var req = new XMLHttpRequest();
+                req.open("GET", "http://api.dot.tk/tweak/shorten?_registrantnr=7682501&long=" + encodeURIComponent(nextUrl), true);
+
+                req.onreadystatechange = function () {
+                    if (req.readyState == 4) {
+                        if (req.status == 200) {
+                            try {
+                                var shortUrl = req.responseText.split("\n")[0];
+                            
+                                status = status.replace(nextUrl + " ", shortUrl + " ");
+                            } catch (e) {
+                            }
+                        }
+
+                        shortenNextUrl();
+                    }
+                };
+
+                req.send(null);
+            }
+        }
+	    
+	    var urlRE = /(https?:\/\/[\S]+)\s/ig;
+	    var url;
+	    
+	    while ((url = urlRE.exec(status)) != null) {
+	        urlsToShorten.push(url[1]);
+	    }
+        
+        shortenNextUrl();
+    },
+	
+	shortenUrlsIsGd : function (status, callback) {
 	    status = status + " ";
 	    
 	    var urlsToShorten = [];
