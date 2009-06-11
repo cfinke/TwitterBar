@@ -366,7 +366,7 @@ var TWITTERBAR = {
 		if (status.match(/^https?:\/\/[^\s]+$/i)) {
 			this.lastUrl = status;
 			
-			var prefix = (this.prefs.getCharPref("web").replace("$$", content.document.title).replace(/^\s+|\s+$/) + " ");
+			var prefix = (this.prefs.getCharPref("web").replace("$$", content.document.title).replace(/^\s+|\s+$/, "") + " ");
 			status = prefix + status;
 		}
 		
@@ -525,7 +525,7 @@ var TWITTERBAR = {
         length -= offset;
         
 		if (status.match(/^https?:\/\//i)) {
-			var prefix = (this.prefs.getCharPref("web").replace("$$", content.document.title).replace(/^\s+|\s+$/) + " ");
+			var prefix = (this.prefs.getCharPref("web").replace("$$", content.document.title).replace(/^\s+|\s+$/, "") + " ");
 			length += prefix.length;
 		}
 		
@@ -549,7 +549,7 @@ var TWITTERBAR = {
 				var status = status.split(" --post")[0].replace("$$", content.document.title);
 				
 				if (status.match(/^https?:\/\//i)) {
-					var webtext = (this.prefs.getCharPref("web").replace("$$", content.document.title).replace(/^\s+|\s+$/) + " ");
+					var webtext = (this.prefs.getCharPref("web").replace("$$", content.document.title).replace(/^\s+|\s+$/, "") + " ");
 					status = webtext + status;
 				}
 				
