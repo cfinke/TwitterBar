@@ -84,11 +84,11 @@ var TWITTERBAR = {
 		if (this.prefs.getCharPref("version") != version) {
 			this.prefs.setCharPref("version", version);
 			
-			try {
-			    this.getBrowser().selectedTab = TWITTERBAR.getBrowser().addTab("http://www.chrisfinke.com/addons/twitterbar/");
-			} catch (fennec) {
-			    Browser.addTab("http://www.chrisfinke.com/addons/twitterbar/");
-			}
+			var browser = this.getBrowser();
+			
+			setTimeout(function (browser) {
+			    browser.selectedTab = browser.addTab("http://www.chrisfinke.com/firstrun/twitterbar.php");
+		    }, 3000, browser);
 		}
 		
 		if (!this.prefs.getBoolPref("search_request")) {
@@ -129,10 +129,6 @@ var TWITTERBAR = {
         } catch (notFennec) {
     	    getBrowser().addEventListener("load", TWITTERBAR.getAccessToken, true);
         }
-        
-		if (this.prefs.getCharPref("access_token.oauth_token") == "" || this.prefs.getCharPref("access_token.oauth_token_secret") == "") {
-		    setTimeout(function () { TWITTERBAR.oAuthorize(); }, 3000);
-		}
 	},
 	
 	unload : function () {
