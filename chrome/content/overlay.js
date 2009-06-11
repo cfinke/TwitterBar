@@ -415,7 +415,6 @@ var TWITTERBAR = {
 			if (req.readyState == 4) {
 			    if (req.status == 401) {
 			        if (req.responseText.indexOf("expired") != -1) {
-			            TWITTERBAR.alert(TWITTERBAR.strings.getString("twitterbar.oauthExpired"));
 			            TWITTERBAR.reAuthorize();
 		            }
 		            else {
