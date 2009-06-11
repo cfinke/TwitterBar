@@ -5,3 +5,5 @@
 <!ENTITY twitter.options.dialog "Twitter opties">
 <!ENTITY twitter.generalTab "Algemeen">
 <!ENTITY twitter.confirm "Altijd om een bevestiging vragen voor het versturen van een webadres naar Twitter.">
+<!ENTITY twitter.prefixExplanation "Een koppeling naar een pagina die gelezen wordt, kan gedeeld worden door op het Twitter pictogram in de locatiewerkbalk te klikken. De volgende tekst zal automatisch voorafgaand aan het webadres toegevoegd worden:">
+<!ENTITY twitter.prefixDescription "($$ kan gebruikt worden om de plaat te bepalen voor de paginatitel.)">

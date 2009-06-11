@@ -1,0 +1,9 @@
+<!ENTITY twitter.post "Отправить в Twitter">
+<!ENTITY twitter.tab "Открыть мою Twitter-страницу в новой вкладке после отправления">
+<!ENTITY twitter.web "Перед URL:">
+<!ENTITY twitter.button "Скрыть иконку Twitter-а в адресной строке">
+<!ENTITY twitter.options.dialog "Настройки Twitter">
+<!ENTITY twitter.generalTab "Общие">
+<!ENTITY twitter.confirm "Всегда запрашивать подтверждение, перед отправкой URL в Twitter">
+<!ENTITY twitter.prefixExplanation "Вы можете разделять ссылку на страницу, которую вы читаете, кликнув по иконке Twitter в адресной строке. Следующий текст будет автоматически добавлен перед URL:">
+<!ENTITY twitter.prefixDescription "(Вы можете использовать $$ как заполнитель для заголовка страницы.)">

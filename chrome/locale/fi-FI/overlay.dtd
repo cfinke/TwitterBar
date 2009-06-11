@@ -5,3 +5,5 @@
 <!ENTITY twitter.options.dialog "TwitterBar-asetukset">
 <!ENTITY twitter.generalTab "Yleiset">
 <!ENTITY twitter.confirm "Varmista aina ennen osoitteen lähettämistä Twitteriin.">
+<!ENTITY twitter.prefixExplanation "Voit jakaa linkin sivulle, jota luet, napsauttamalla Twitter-kuvaketta osoitepalkissa. Seuraava teksti lisätään automaattisesti linkin eteen:">
+<!ENTITY twitter.prefixDescription "(Voit kirjoittaa $$ joka korvataan sivun otsikolla.)">

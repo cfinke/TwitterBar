@@ -5,3 +5,5 @@
 <!ENTITY twitter.options.dialog "Diálogo de Opções do Twitter">
 <!ENTITY twitter.generalTab "Geral">
 <!ENTITY twitter.confirm "Sempre confirmar antes de mandar uma URL para o Twitter.">
+<!ENTITY twitter.prefixExplanation "Você pode compartilhar um link para a página que está lendo, clicando no ícone do Twitter na barra de endereço. O seguinte texto será adicionado automaticamente antes da URL:">
+<!ENTITY twitter.prefixDescription "(Você pode usar $$ como variável a ser substituída pelo título da página)">

@@ -5,3 +5,5 @@
 <!ENTITY twitter.options.dialog "Opzioni di TwitterBar">
 <!ENTITY twitter.generalTab "Generali">
 <!ENTITY twitter.confirm "Chiedi prima di inviare un URL a Twitter">
+<!ENTITY twitter.prefixExplanation "Inserire qui sotto la descrizione da visualizzare prima dell&apos;URL visitato attualmente che verrà condiviso facendo clic sull&apos;icona di Twitter nella barra degli indirizzi">
+<!ENTITY twitter.prefixDescription "Per aggiungere il titolo della relativa pagina web utilizzare la variabile $$">

@@ -1,0 +1,9 @@
+<!ENTITY twitter.post "Odeslat na Twitter">
+<!ENTITY twitter.tab "Po odeslání otevřít moji Twitter stránku v novém okně">
+<!ENTITY twitter.web "Před URL">
+<!ENTITY twitter.button "Skrýt ikonu Twitteru na liště">
+<!ENTITY twitter.options.dialog "Nastavení">
+<!ENTITY twitter.generalTab "Hlavní">
+<!ENTITY twitter.confirm "Vždy se zeptat na potvrzení před odesláním URL na Twitter">
+<!ENTITY twitter.prefixExplanation "Sdílej link na stránky kterou čteš kliknutím na ikonku Twitteru v liště.  Následující text bude automaticky přidán před URL:">
+<!ENTITY twitter.prefixDescription "(Můžeš použít $$ jako náhradu názvu stránky)">

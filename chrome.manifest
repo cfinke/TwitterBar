@@ -5,6 +5,8 @@ overlay     chrome://browser/content/browser.xul           chrome://twitterbar/c
 
 style       chrome://global/content/customizeToolbar.xul   chrome://twitterbar/skin/twitter.css
 
+locale      twitterbar    cs       jar:chrome/twitterbar.jar!/locale/cs/
+locale      twitterbar    cs-CZ    jar:chrome/twitterbar.jar!/locale/cs-CZ/
 locale      twitterbar    en-US    jar:chrome/twitterbar.jar!/locale/en-US/
 locale      twitterbar    de-DE    jar:chrome/twitterbar.jar!/locale/de-DE/
 locale      twitterbar    fi-FI    jar:chrome/twitterbar.jar!/locale/fi-FI
@@ -14,6 +16,7 @@ locale      twitterbar    nl-NL    jar:chrome/twitterbar.jar!/locale/nl-NL/
 locale      twitterbar    pl-PL    jar:chrome/twitterbar.jar!/locale/pl-PL/
 locale      twitterbar    pt-BR    jar:chrome/twitterbar.jar!/locale/pt-BR/
 locale      twitterbar    pt-PT    jar:chrome/twitterbar.jar!/locale/pt-PT/
+locale      twitterbar    ru-RU    jar:chrome/twitterbar.jar!/locale/ru-RU/
 locale      twitterbar    sk-SK    jar:chrome/twitterbar.jar!/locale/sk-SK/
 locale      twitterbar    tr-TR    jar:chrome/twitterbar.jar!/locale/tr-TR/
 locale      twitterbar    zh-CN    jar:chrome/twitterbar.jar!/locale/zh-CN/
