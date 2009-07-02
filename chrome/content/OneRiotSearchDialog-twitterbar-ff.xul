@@ -1,17 +1,22 @@
 <?xml version="1.0"?>
-<!DOCTYPE dialog>
+<!DOCTYPE overlay SYSTEM "chrome://twitterbar/locale/overlay.dtd" >
 <?xml-stylesheet type="text/css" href="chrome://global/skin/global.css"?>
 <dialog title="Social Web Search for TwitterBar"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
     buttons="accept,cancel"
     ondialogaccept="return addSearchProvider();"> 
+    
+    <stringbundleset id="stringbundleset">
+		<stringbundle id="twitterbar-strings" src="chrome://twitterbar/locale/overlay.properties" />
+	</stringbundleset>
+	
     <script type="application/x-javascript">
         <![CDATA[
             var addSearchProvider = function(forceDefault) {
                 forceDefault = true;
-                var engineLabel = "OneRiot Social Web Search";
+                var engineLabel = document.getElementById("twitterbar-strings").getString("twitter.search.name");
                 const searchService = Components.classes[ "@mozilla.org/browser/search-service;1"].getService(Components.interfaces.nsIBrowserSearchService);
-                searchService.addEngineWithDetails(engineLabel, "http://www.oneriot.com/images/favicon.ico", null, "OneRiot is a real-time search engine that indexes the social web: the news, blogs and videos that people are sharing and looking at right now. Type a term into the search box, and OneRiot will return the hottest pages online right now.", "get", "http://www.oneriot.com/search?q={searchTerms}&format=html&ssrc=browserBox&spid=86f2f5da-3b24-4a87-bbb3-1ad47525359d&p=twitterbar-ff/2.3");
+                searchService.addEngineWithDetails(engineLabel, "http://www.oneriot.com/images/favicon.ico", null, document.getElementById("twitterbar-strings").getString("twitter.search.description"), "get", "http://www.oneriot.com/search?q={searchTerms}&format=html&ssrc=browserBox&spid=86f2f5da-3b24-4a87-bbb3-1ad47525359d&p=twitterbar-ff/2.3");
                 
                 if (forceDefault) {
                     // Make OneRiot the default
@@ -33,9 +38,9 @@
             <image src="chrome://twitterbar/skin/search-trio.png" style="padding: 20px;"/>
         </vbox>
         <vbox style="width: 350px; padding-left: 20px;" align="center" pack="center">
-            <description>TwitterBar wants to know if you'd like to search the latest trends on Twitter, Digg, and the rest of the social Web from your search bar.</description>
+            <description>&twitter.search.p1;</description>
             <image src="chrome://twitterbar/skin/search-example.png" style="padding-top: 5px; padding-bottom: 5px;" />
-            <description>Click OK to enable OneRiot's Real-Time Social Web Search. You won't lose your current search engine, but you will gain an awesome real-time view of what's hot on Twitter.</description>
+            <description>&twitter.search.p2;</description>
         </vbox>
     </hbox>
 </dialog>

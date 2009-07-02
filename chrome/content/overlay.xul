@@ -23,7 +23,7 @@
 	<toolbarpalette id="BrowserToolbarPalette">
 		<toolbarbutton
 			id="twitter-toolbar-button"
-			label="Twitterbar"
+			label="TwitterBar"
 			tooltiptext="&twitter.post;"
 			oncommand="TWITTERBAR.post()"
 			/>
@@ -48,7 +48,7 @@
 		        <image id="twitter-searchbutton"
 			        hidden="true"
 				    onclick="TWITTERBAR.search(event, 'addressBarIcon');"
-				    tooltiptext="Search the social web for the text you've entered."
+				    tooltiptext="&twitter.searchSocial;"
 				    src="http://www.oneriot.com/images/favicon.ico"
 				    />
 				<spacer flex="1" />
