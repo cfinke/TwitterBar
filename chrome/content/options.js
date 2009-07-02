@@ -10,7 +10,7 @@ var TWITTERBAR_OPTIONS = {
 	        var niceDate = new Date();
 	        niceDate.setTime(authDate);
 	        
-	        document.getElementById("auth-summary").textContent = this.strings.getFormattedString("twitterbar.authString", [ "", niceDate.toLocaleString() ]);
+	        document.getElementById("auth-summary").textContent = this.strings.getFormattedString("twitterbar.newAuthString", [ niceDate.toLocaleString() ]);
         }
         else {
             document.getElementById("auth-summary").textContent = this.strings.getString("twitterbar.noAuth");
@@ -25,6 +25,7 @@ var TWITTERBAR_OPTIONS = {
 		    this.prefs.setCharPref("web", document.getElementById("pref-prefix").value);
 		    this.prefs.setBoolPref("pref-open-after", document.getElementById("pref-open-after").value);
 		    this.prefs.setBoolPref("pref-hide-button", document.getElementById("pref-hide-button").value);
+		    this.prefs.setCharPref("shortener", document.getElementById("pref-shortener").value);
 		}
 		
 		return true;

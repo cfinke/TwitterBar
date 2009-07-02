@@ -22,10 +22,20 @@ var TWITTERBAR = {
     },
     
     getUrlLength : function () {
-        if (this.prefs.getCharPref("shortener") == "is.gd") {
+		var shortener = this.prefs.getCharPref("shortener");
+		
+        if (shortener == "is.gd") {
             return 18;
         }
-        else {
+		else if (shortener == "tinyurl") {
+			return 25;
+		}
+		else if (shortener == "") {
+			// Twitter uses bit.ly.
+			return 20;
+		}
+		else {
+			// tk
             return 15;
         }
     },
@@ -100,10 +110,10 @@ var TWITTERBAR = {
 		            
 		            if (searchService) {
 		                searchService = searchService.getService(Components.interfaces.nsIBrowserSearchService);
-                        const oneRiotSearch = searchService.getEngineByName("OneRiot Social Web Search");
+                        const oneRiotSearch = searchService.getEngineByName(TWITTERBAR.strings.getString("twitter.search.name"));
 
                         if (oneRiotSearch == null) {
-                            window.openDialog("chrome://twitterbar/content/OneRiotSearchDialog-twitterbar-ff.xul", "Search", "chrome,dialog,centerscreen,titlebar,alwaysraised,modal");
+                            window.openDialog("chrome://twitterbar/content/OneRiotSearchDialog-twitterbar-ff.xul", "search", "chrome,dialog,centerscreen,titlebar,alwaysraised,modal");
                         }
                     }
                 }, 5000);
@@ -585,13 +595,65 @@ var TWITTERBAR = {
 	},
 	
 	shortenUrls : function (status, callback) {
-	    if (this.prefs.getCharPref("shortener") == "is.gd") {
+		var shortener = this.prefs.getCharPref("shortener");
+		
+	    if (shortener == "is.gd") {
 	        this.shortenUrlsIsGd(status, callback);
         }
+		else if (shortener == "") {
+			callback(status);
+		}
+		else if (shortener == "tinyurl") {
+			this.shortenUrlsTiny(status, callback);
+		}
         else {
             this.shortenUrlsTk(status, callback);
         }
     },
+	
+	shortenUrlsTiny : function (status, callback) {
+		status = status + " ";
+	    
+	    var urlsToShorten = [];
+	    
+	    function shortenNextUrl() {
+	        if (urlsToShorten.length == 0) {
+                callback(status.replace(/^\s+|\s+$/g, ""));
+            }
+            else {
+                var nextUrl = urlsToShorten.shift();
+
+                var req = new XMLHttpRequest();
+                req.open("GET", "http://tinyurl.com/api-create.php?url=" + nextUrl, true);
+
+                req.onreadystatechange = function () {
+                    if (req.readyState == 4) {
+                        if (req.status == 200) {
+                            try {
+                                var shortUrl = req.responseText;
+                            
+                                status = status.replace(nextUrl + " ", shortUrl + " ");
+                            } catch (e) {
+                            }
+                        }
+
+                        shortenNextUrl();
+                    }
+                };
+
+                req.send(null);
+            }
+        }
+	    
+	    var urlRE = /(https?:\/\/[\S]+)\s/ig;
+	    var url;
+	    
+	    while ((url = urlRE.exec(status)) != null) {
+	        urlsToShorten.push(url[1]);
+	    }
+        
+        shortenNextUrl();	    
+	},
 	
 	shortenUrlsTk : function (status, callback) {
 	    status = status + " ";
