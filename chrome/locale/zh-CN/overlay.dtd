@@ -1,7 +1,9 @@
-<!ENTITY twitter.post "发布到 Twitter">
-<!ENTITY twitter.tab "发布后在新标签页中打开 Twitter">
+<!ENTITY twitter.post "发送到 Twitter">
+<!ENTITY twitter.tab "发送后在新标签页中打开 Twitter">
 <!ENTITY twitter.web "在地址前：">
 <!ENTITY twitter.button "隐藏地址栏按钮">
 <!ENTITY twitter.options.dialog "Twitter 选项对话框">
 <!ENTITY twitter.generalTab "一般">
-<!ENTITY twitter.confirm "每次发布到 Twitter 都需要确认。">
+<!ENTITY twitter.confirm "每次发送到 Twitter 都需要确认。">
+<!ENTITY twitter.prefixExplanation "可以通过地址栏里的 Twitter 按钮分享正在阅读的链接。以下文字将会自动添加到地址前面：">
+<!ENTITY twitter.prefixDescription "（可以使用 $$ 作为页面标题的占位符。）">

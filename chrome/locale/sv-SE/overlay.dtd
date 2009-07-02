@@ -1,0 +1,9 @@
+<!ENTITY twitter.post "Posta till Twitter">
+<!ENTITY twitter.tab "Öppna min Twitter-sida i en ny flik efter att jag postat">
+<!ENTITY twitter.web "Före URL&apos;en:">
+<!ENTITY twitter.button "Göm Twitter-ikonen i adressfältet">
+<!ENTITY twitter.options.dialog "Twitter-inställningar">
+<!ENTITY twitter.generalTab "Generellt">
+<!ENTITY twitter.confirm "Bekräfta alltid innan postning av URL görs till Twitter.">
+<!ENTITY twitter.prefixExplanation "Du kan dela en länk till en sida du läser genom att klicka på Twitter-ikonen i adressfältet. Följande text kommer automatiskt att läggas till före URL&apos;en:">
+<!ENTITY twitter.prefixDescription "(Du kan använda $$ som en platshållare för sidrubriken.)">
