@@ -7,3 +7,9 @@
 <!ENTITY twitter.confirm "Altijd om een bevestiging vragen voor het versturen van een webadres naar Twitter.">
 <!ENTITY twitter.prefixExplanation "Een koppeling naar een pagina die gelezen wordt, kan gedeeld worden door op het Twitter pictogram in de locatiewerkbalk te klikken. De volgende tekst zal automatisch voorafgaand aan het webadres toegevoegd worden:">
 <!ENTITY twitter.prefixDescription "($$ kan gebruikt worden om de plaat te bepalen voor de paginatitel.)">
+<!ENTITY twitter.noShortener "geen (laat Twitter sorteren)">
+<!ENTITY twitter.shortestURLs "(Korste webadressen)">
+<!ENTITY twitter.resetAuth "Autorisatie instellingen herstellen">
+<!ENTITY twitter.searchSocial "Het sociale web doorzoeken op de ingevoerde tekst.">
+<!ENTITY twitter.search.p1 "De laatste trends op Twitter, Digg, en de overige sociale websites op de zoekwerkbalk doorzoeken?">
+<!ENTITY twitter.search.p2 "Klik op OK om OneRiot&apos;s Real-Time sociale websites zoeken in te schakelen. De huidige zoekmachine zal niet verloren gaan, maar er komt een geweldig real-time overzicht beschikbaar over wat actueel is op Twitter.">

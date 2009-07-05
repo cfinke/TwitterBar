@@ -7,3 +7,6 @@
 <!ENTITY twitter.confirm "Immer nach einer Bestätigung fragen bevor eine URL in Twitter eingetragen wird.">
 <!ENTITY twitter.prefixExplanation "Sie können einen Link der aktuell angezeigten Seite Anderen mitteilen, indem Sie auf das Twitter-Symbol in der Adressleiste klicken. Dabei wird der folgende Text der Adresse vorangestellt:">
 <!ENTITY twitter.prefixDescription "(Sie können $$ als Platzhalter für den Seitentitel nutzen.)">
+<!ENTITY twitter.shortestURLs "(kürzeste URLs)">
+<!ENTITY twitter.resetAuth "Autorisierung jetzt zurückziehen">
+<!ENTITY twitter.searchSocial "Das soziale Netzwerk nach eingegebenen Text durchsuchen.">

@@ -5,5 +5,11 @@
 <!ENTITY twitter.options.dialog "Opzioni di TwitterBar">
 <!ENTITY twitter.generalTab "Generali">
 <!ENTITY twitter.confirm "Chiedi prima di inviare un URL a Twitter">
-<!ENTITY twitter.prefixExplanation "Inserire qui sotto la descrizione da visualizzare prima dell&apos;URL visitato attualmente che verrà condiviso facendo clic sull&apos;icona di Twitter nella barra degli indirizzi">
+<!ENTITY twitter.prefixExplanation "Inserire la descrizione da visualizzare prima dell&apos;URL visitato attualmente, condiviso facendo clic sull&apos;icona di Twitter nella barra degli indirizzi">
 <!ENTITY twitter.prefixDescription "Per aggiungere il titolo della relativa pagina web utilizzare la variabile $$">
+<!ENTITY twitter.noShortener "impostato da Twitter">
+<!ENTITY twitter.shortestURLs "(URL più breve)">
+<!ENTITY twitter.resetAuth "Resetta le impostazioni d&apos;accesso">
+<!ENTITY twitter.searchSocial "Cerca il testo inserito sul social web">
+<!ENTITY twitter.search.p1 "È possibile effettuare la ricerca delle ultime tendenze su Twitter, Digg ed il resto del social web tramite la barra di ricerca del browser">
+<!ENTITY twitter.search.p2 "Fare clic su OK per aggiungere il motore di ricerca OneRiot Search, che permetterà di visualizzare cosa accade su Twitter in tempo reale. Nessun motore di ricerca installato andrà perso">

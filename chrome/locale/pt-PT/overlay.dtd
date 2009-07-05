@@ -7,3 +7,6 @@
 <!ENTITY twitter.confirm "Confirmar sempre antes de postar um URL no Twitter">
 <!ENTITY twitter.prefixExplanation "Pode partilhar uma ligação de uma página que está a ler clicando no ícone do Twitter na barra de endereço. O seguinte texto será adicionado automaticamente antes do URL:">
 <!ENTITY twitter.prefixDescription "(Pode usar $$ como um local de localização do título de páginas.]">
+<!ENTITY twitter.noShortener "Nenhum (Deixar o Twitter ordenar)">
+<!ENTITY twitter.shortestURLs "(URLs mais pequenos)">
+<!ENTITY twitter.resetAuth "Reiniciar definições de autorização">
