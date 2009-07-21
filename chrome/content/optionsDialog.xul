@@ -22,11 +22,13 @@
     	    <preference id="pref-open-after" name="extensions.twitter.tab" type="bool" />
     	    <preference id="pref-hide-button" name="extensions.twitter.button" type="bool" />
     	    <preference id="pref-confirm" name="extensions.twitter.confirm" type="bool" />
+    	    <preference id="pref-show-trends" name="extensions.twitter.showTrends" type="bool" />
     	    <preference id="pref-shortener" name="extensions.twitter.shortener" type="string" />
     	</preferences>
 		<checkbox id="twitter-tab" label="&twitter.tab;" preference="pref-open-after" />
 		<checkbox id="twitter-button" label="&twitter.button;" preference="pref-hide-button"/>
 		<checkbox id="twitter-confirm" label="&twitter.confirm;" preference="pref-confirm" />
+		<checkbox id="twitter-show-trends" label="&twitter.showTrends;" preference="pref-show-trends" />
 		<groupbox>
 		    <description style="max-width: 400px;" control="twitter-web">&twitter.prefixExplanation;</description>
 		    <hbox align="center">

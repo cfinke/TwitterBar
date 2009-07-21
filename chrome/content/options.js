@@ -26,6 +26,7 @@ var TWITTERBAR_OPTIONS = {
 		    this.prefs.setBoolPref("pref-open-after", document.getElementById("pref-open-after").value);
 		    this.prefs.setBoolPref("pref-hide-button", document.getElementById("pref-hide-button").value);
 		    this.prefs.setCharPref("shortener", document.getElementById("pref-shortener").value);
+		    this.prefs.setBoolPref("showTrends", document.getElementById("pref-show-trends").value);
 		}
 		
 		return true;

@@ -1,5 +1,6 @@
 var TWITTERBAR = {
 	get strings() { return document.getElementById("twitterbar-strings"); },
+	version : null,
 	
 	lastUrl : null,
 	
@@ -85,6 +86,8 @@ var TWITTERBAR = {
     },
 	
 	load : function () {
+		this.version = Components.classes["@mozilla.org/extensions/manager;1"].getService(Components.interfaces.nsIExtensionManager).getItemForID("{1a0c9ebe-ddf9-4b76-b8a3-675c77874d37}").version;
+		
 	    this.prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("extensions.twitter.");	
 		this.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
 		this.prefs.addObserver("", this, false);
@@ -139,6 +142,17 @@ var TWITTERBAR = {
         } catch (notFennec) {
     	    getBrowser().addEventListener("load", TWITTERBAR.getAccessToken, true);
         }
+
+		var appcontent = document.getElementById("content");
+		
+		if (appcontent) {
+			appcontent.addEventListener("DOMContentLoaded", TWITTERBAR.DOMContentLoaded, true);
+		}
+		
+		// Get new trends every 2 hours.
+		setInterval(function () { TWITTERBAR.getTrends(); }, 1000 * 60 * 60 * 3);
+		
+		setTimeout(function() { TWITTERBAR.getTrends(); }, 1000 * 10);
 	},
 	
 	unload : function () {
@@ -149,6 +163,12 @@ var TWITTERBAR = {
 	    } catch (notFennec) {
 	        getBrowser().removeEventListener("load", TWITTERBAR.getAccessToken, true);
         }
+
+		var appcontent = document.getElementById("content");
+		
+		if (appcontent) {
+			appcontent.removeEventListener("DOMContentLoaded", TWITTERBAR.DOMContentLoaded, true);
+		}
     },
 	
 	observe : function(subject, topic, data) {
@@ -173,6 +193,43 @@ var TWITTERBAR = {
             		} catch (e) { }
                 }
 			break;
+		}
+	},
+	
+	DOMContentLoaded : function (event) {
+		if (TWITTERBAR.prefs.getBoolPref("showTrends")) {
+			var page = event.target;
+		
+			try {
+				if (!page.location.host.match(/^twitter\.com$/)) {
+					return;
+				}
+			} catch (e) {
+				return;
+			}
+		
+			// Check for the trending topics.
+			var trends = page.getElementById("trends");
+		
+			if (trends) {
+				var topics = TWITTERBAR.prefs.getCharPref("trends").split("\t");
+			
+				if (topics) {
+					var str = '<h2 id="twitterbar-trends" class="sidebar-title" style="background: transparent;"><span title="'+TWITTERBAR.strings.getString("twitterbar.trends.byline")+'">'+TWITTERBAR.strings.getString("twitterbar.trends.title")+'</span></h2>';
+					str += '<ul class="sidebar-menu more-trends-links">';
+				
+					var limit = Math.min(10, topics.length);
+				
+					for (var i = 0; i < topics.length; i++) {
+						str += '<li class="link-title"><a target="_blank" title="'+topics[i]+'" href="'+TWITTERBAR.getSearchURL(topics[i], "trends-sidebar")+'"><span>'+topics[i]+'</span></a></li>';
+					}
+			
+					str += '</ul>';
+					str += '<hr />';
+
+					trends.innerHTML += str;
+				}
+			}
 		}
 	},
 	
@@ -204,6 +261,17 @@ var TWITTERBAR = {
 	    this.oAuthorize();
     },
 	
+	getSearchURL : function (search_terms, source) {
+        search_terms = encodeURIComponent(search_terms);
+        search_terms = search_terms.replace(/%20/g, "+");
+        
+		if (!source) { 
+			source = "browserBox";
+		}
+		
+		return "http://www.oneriot.com/search?q=" + search_terms + "&format=html&ssrc="+source+"&spid=86f2f5da-3b24-4a87-bbb3-1ad47525359d&p=twitterbar-ff/"+TWITTERBAR.version;
+	},
+	
 	search : function (event, source) {
 	    var status = (document.getElementById("urlbar") || document.getElementById("urlbar-edit")).value;
 	    
@@ -213,16 +281,10 @@ var TWITTERBAR = {
 	    else {
 	        var search_terms = status.replace(/https?:\/\/[^\s]+/ig, "");
         }
-        
+
         search_terms = search_terms.replace(" --search", "");
-        search_terms = encodeURIComponent(search_terms)
-        search_terms = search_terms.replace(/%20/g, "+")
 	    
-	    if (!source) source = "browserBox";
-	    
-	    var searchUrl = "http://www.oneriot.com/search?q=" + search_terms + "&format=html&ssrc="+source+"&spid=86f2f5da-3b24-4a87-bbb3-1ad47525359d&p=twitterbar-ff/2.3";
-	    
-	    openUILink(searchUrl, event, false, true);
+	    openUILink(TWITTERBAR.getSearchURL(search_terms, source), event, false, true);
     },
 	
 	oAuthorize : function () {
@@ -736,5 +798,75 @@ var TWITTERBAR = {
 	    }
         
         shortenNextUrl();
-    }
+    },
+
+	getTrends : function () {
+		var lastUpdate = TWITTERBAR.prefs.getCharPref("trends.update");
+		var trends = TWITTERBAR.prefs.getCharPref("trends");
+		
+		if (trends == "" || (new Date().getTime()) - lastUpdate > (1000 * 60 * 60 * 1.8)) {
+			var feedUrl = "http://www.oneriot.com/rss/trendingtopics";
+		
+			var req = new XMLHttpRequest();
+			req.open("GET", feedUrl, true);
+		
+			req.onreadystatechange = function () {
+				if (req.readyState == 4) {
+					if (req.status == 200) {
+						var ioService = Components.classes["@mozilla.org/network/io-service;1"]
+										.getService(Components.interfaces.nsIIOService);
+						var data = req.responseText;
+						var uri = ioService.newURI(feedUrl, null, null);
+					
+						if (data.length) {
+							var parser = Components.classes["@mozilla.org/feed-processor;1"]
+											.createInstance(Components.interfaces.nsIFeedProcessor);
+							var listener = TWITTERBAR;
+						
+							try {
+								parser.listener = listener;
+								parser.parseFromString(data, uri);
+							} catch (e) {
+							}
+						}
+					}
+				}
+			};
+		
+			req.send(null);
+		}
+	},
+
+	handleResult: function(result) {
+		TWITTERBAR.prefs.setCharPref("trends.update", new Date().getTime());
+		
+		if (result.bozo) {
+			return;
+		}
+
+		var feed = result.doc;
+
+		if (!feed) {
+			return;
+		}
+
+		try {
+			feed.QueryInterface(Components.interfaces.nsIFeed);
+		} catch (e) {
+			return;
+		}
+		
+		var numItems = Math.min(10, feed.items.length);
+		
+		var trends = [];
+		
+		for (var i = 0; i < numItems; i++) {
+			var item = feed.items.queryElementAt(i, Components.interfaces.nsIFeedEntry);
+			trends.push(item.title.plainText());
+		}
+		
+		delete result;
+		
+		TWITTERBAR.prefs.setCharPref("trends", trends.join("\t"));
+	}
 };

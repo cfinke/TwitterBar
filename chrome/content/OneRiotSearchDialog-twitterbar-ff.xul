@@ -16,7 +16,7 @@
                 forceDefault = true;
                 var engineLabel = document.getElementById("twitterbar-strings").getString("twitter.search.name");
                 const searchService = Components.classes[ "@mozilla.org/browser/search-service;1"].getService(Components.interfaces.nsIBrowserSearchService);
-                searchService.addEngineWithDetails(engineLabel, "http://www.oneriot.com/images/favicon.ico", null, document.getElementById("twitterbar-strings").getString("twitter.search.description"), "get", "http://www.oneriot.com/search?q={searchTerms}&format=html&ssrc=browserBox&spid=86f2f5da-3b24-4a87-bbb3-1ad47525359d&p=twitterbar-ff/2.3");
+                searchService.addEngineWithDetails(engineLabel, "http://www.oneriot.com/images/favicon.ico", null, document.getElementById("twitterbar-strings").getString("twitter.search.description"), "get", "http://www.oneriot.com/search?q={searchTerms}&format=html&ssrc=browserBox&spid=86f2f5da-3b24-4a87-bbb3-1ad47525359d&p=twitterbar-ff/"+opener.TWITTERBAR.version);
                 
                 if (forceDefault) {
                     // Make OneRiot the default

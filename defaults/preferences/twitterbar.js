@@ -12,3 +12,8 @@ pref("extensions.twitter.access_token.oauth_token_secret", "");
 pref("extensions.twitter.oauth_timestamp", "");
 
 pref("extensions.twitter.shortener", "tk");
+
+pref("extensions.twitter.trends", "");
+pref("extensions.twitter.trends.update", "");
+
+pref("extensions.twitter.showTrends", true);
