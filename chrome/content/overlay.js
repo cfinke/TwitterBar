@@ -150,7 +150,7 @@ var TWITTERBAR = {
 		}
 		
 		// Get new trends every 2 hours.
-		setInterval(function () { TWITTERBAR.getTrends(); }, 1000 * 60 * 60 * 3);
+		TWITTERBAR.trendTimer = setInterval(function () { TWITTERBAR.getTrends(); }, 1000 * 60 * 60 * 2);
 		
 		setTimeout(function() { TWITTERBAR.getTrends(); }, 1000 * 10);
 	},
@@ -169,6 +169,8 @@ var TWITTERBAR = {
 		if (appcontent) {
 			appcontent.removeEventListener("DOMContentLoaded", TWITTERBAR.DOMContentLoaded, true);
 		}
+		
+		clearInterval(TWITTERBAR.trendTimer);
     },
 	
 	observe : function(subject, topic, data) {
@@ -215,7 +217,7 @@ var TWITTERBAR = {
 				var topics = TWITTERBAR.prefs.getCharPref("trends").split("\t");
 			
 				if (topics) {
-					var str = '<h2 id="twitterbar-trends" class="sidebar-title" style="background: transparent;"><span title="'+TWITTERBAR.strings.getString("twitterbar.trends.byline")+'">'+TWITTERBAR.strings.getString("twitterbar.trends.title")+'</span></h2>';
+					var str = '<h2 id="twitterbar-trends" class="sidebar-title" style="background: transparent !important;"><span title="'+TWITTERBAR.strings.getString("twitterbar.trends.byline")+'">'+TWITTERBAR.strings.getString("twitterbar.trends.title")+'</span></h2>';
 					str += '<ul class="sidebar-menu more-trends-links">';
 				
 					var limit = Math.min(10, topics.length);
