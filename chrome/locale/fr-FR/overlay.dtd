@@ -13,3 +13,4 @@
 <!ENTITY twitter.searchSocial "Rechercher le texte que vous avez saisi sur le Web social.">
 <!ENTITY twitter.search.p1 "TwitterBar veut savoir si vous souhaitez rechercher les dernières tendances sur Twitter, Digg et les autres sites du réseau social de votre barre de recherche.">
 <!ENTITY twitter.search.p2 "Cliquez sur OK pour activer la recherche en temps réel de OneRiot sur le Web social. Vous ne perdrez pas votre moteur de recherche courant mais vous gagnerez une vue stupéfiante en temps réel des sujets de dernière minute sur Twitter.">
+<!ENTITY twitter.showTrends "Afficher des sujets « tendances » dans le panneau latéral de Twitter">

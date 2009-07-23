@@ -13,3 +13,4 @@
 <!ENTITY twitter.searchSocial "Cerca il testo inserito sul social web">
 <!ENTITY twitter.search.p1 "È possibile effettuare la ricerca delle ultime tendenze su Twitter, Digg ed il resto del social web tramite la barra di ricerca del browser">
 <!ENTITY twitter.search.p2 "Fare clic su OK per aggiungere il motore di ricerca OneRiot Search, che permetterà di visualizzare cosa accade su Twitter in tempo reale. Nessun motore di ricerca installato andrà perso">
+<!ENTITY twitter.showTrends "Mostra &apos;Ulteriori argomenti di tendenza&apos; nella barra laterale di Twitter">

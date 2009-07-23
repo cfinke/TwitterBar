@@ -13,3 +13,4 @@
 <!ENTITY twitter.searchSocial "Przeszukaj sieć pod kątem wpisanego tekstu">
 <!ENTITY twitter.search.p1 "TwitterBar chce wiedzieć, czy chcesz przeszukiwać najnowsze tredny Twittera, Digga, oraz reszty społecznościowej sieci z poziomu paska wyszukiwania.">
 <!ENTITY twitter.search.p2 "Kliknij OK, aby włączyć wyszukiwarkę OneRiot. Nie stracisz aktualnie ustawionej wyszukiwarki, lecz zyskasz podgląd na żywo ciekawostek z Twittera.">
+<!ENTITY twitter.showTrends "Wyświetl popularne tematy w panelu bocznym Twittera">
