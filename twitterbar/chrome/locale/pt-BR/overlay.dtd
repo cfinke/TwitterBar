@@ -1,0 +1,16 @@
+<!ENTITY twitter.post "Enviar para o Twitter">
+<!ENTITY twitter.tab "Abrir o Twitter em nova aba após enviar">
+<!ENTITY twitter.web "Antes do endereço:">
+<!ENTITY twitter.button "Ocultar botão da barra de endereços">
+<!ENTITY twitter.options.dialog "Diálogo de Opções do Twitter">
+<!ENTITY twitter.generalTab "Geral">
+<!ENTITY twitter.confirm "Sempre confirmar antes de mandar uma URL para o Twitter.">
+<!ENTITY twitter.prefixExplanation "Você pode compartilhar um link para a página que está lendo, clicando no ícone do Twitter na barra de endereço. O seguinte texto será adicionado automaticamente antes da URL:">
+<!ENTITY twitter.prefixDescription "(Você pode usar $$ como variável a ser substituída pelo título da página)">
+<!ENTITY twitter.noShortener "Nenhum (deixa o Twitter ordenar)">
+<!ENTITY twitter.shortestURLs "(URLs mais curtas)">
+<!ENTITY twitter.resetAuth "Restaurar Configurações de Autorização">
+<!ENTITY twitter.searchSocial "Buscar na rede social o texto que você digitou.">
+<!ENTITY twitter.search.p1 "TwitterBar quer saber se você gostaria de buscar as últimas tendências no Twitter, Digg e o resto da rede social usando sua barra de buscas.">
+<!ENTITY twitter.search.p2 "Clique em OK para habilitar a Busca em Tempo-Real na Rede Social do OneRiot. Você não perderá seu mecanismo de busca atual, mas ganhará uma admirável vista em tempo-real do que está bombando no Twitter.">
+<!ENTITY twitter.showTrends "Exibir tópicos adicionais de tendências no painel Twitter.">

@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay SYSTEM "chrome://twitterbar/locale/overlay.dtd" >
+<?xml-stylesheet type="text/css" href="chrome://global/skin/global.css"?>
+<dialog title="Social Web Search for TwitterBar"
+	id="twitterbar-one-riot-dialog"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	buttons="accept,cancel"
+	defaultButton="cancel"
+	buttondisabledaccept="true"
+	ondialogaccept="return addSearchProvider();"
+	ondialogcancel="return cancelSearchProvider();"> 
+	
+	<stringbundleset id="stringbundleset">
+		<stringbundle id="twitterbar-strings" src="chrome://twitterbar/locale/overlay.properties" />
+	</stringbundleset>
+	
+	<script type="application/x-javascript">
+		<![CDATA[
+			var addSearchProvider = function () {
+				if (document.getElementById("understand").checked) {
+					var engineLabel = document.getElementById("twitterbar-strings").getString("twitter.search.name");
+					const searchService = Components.classes[ "@mozilla.org/browser/search-service;1"].getService(Components.interfaces.nsIBrowserSearchService);
+					searchService.addEngineWithDetails(engineLabel, "http://www.oneriot.com/images/favicon.ico", null, document.getElementById("twitterbar-strings").getString("twitter.search.description"), "get", "http://www.oneriot.com/search?q={searchTerms}&format=html&ssrc=browserBox&spid=86f2f5da-3b24-4a87-bbb3-1ad47525359d&p=twitterbar-ff");
+				
+					// Make OneRiot the default
+					const prefService = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
+					const preferences = prefService.getBranch("browser.");
+					preferences.setCharPref("search.selectedEngine", engineLabel);
+				
+					// Make OneRiot the current engine
+					var engine = searchService.getEngineByName(engineLabel);
+					searchService.currentEngine = engine;
+				}
+
+				return true;
+			}
+			
+			var cancelSearchProvider = function () {
+				if (document.getElementById("understand").checked) {
+					document.getElementById("understand").checked = false;
+					document.getElementById('twitterbar-one-riot-dialog').setAttribute('buttondisabledaccept', true);
+					return false;
+				}
+
+				return true;
+			}
+
+		]]>
+	</script>
+	<hbox>
+		<vbox>
+			<image src="chrome://twitterbar/skin/search-trio.png" style="padding: 20px;"/>
+		</vbox>
+		<vbox style="width: 350px; padding-left: 20px;" align="center" pack="center">
+			<description>&twitter.search.p1;</description>
+			<image src="chrome://twitterbar/skin/search-example.png" style="padding-top: 5px; padding-bottom: 5px;" />
+			<description>&twitter.search.p2;</description>
+			<hbox align="center">
+				<checkbox id="understand" label="&twitter.search.checkbox;" oncommand="document.getElementById('twitterbar-one-riot-dialog').setAttribute('buttondisabledaccept', !this.checked);" />
+			</hbox>
+		</vbox>
+	</hbox>
+</dialog>

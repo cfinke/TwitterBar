@@ -1,0 +1,21 @@
+<!ENTITY twitter.post "Post to Twitter">
+<!ENTITY twitter.tab "Open my Twitter page in a new tab after I post">
+<!ENTITY twitter.web "Before URL:">
+<!ENTITY twitter.button "Hide the Twitter icon in the address bar">
+<!ENTITY twitter.options.dialog "Twitter Options Dialog">
+<!ENTITY twitter.generalTab "General">
+<!ENTITY twitter.confirm "Always confirm with me before posting a URL to Twitter.">
+
+<!ENTITY twitter.prefixExplanation "You can share a link to a page you're reading by clicking the Twitter icon in the address bar.  The following text will automatically be added before the URL:">
+<!ENTITY twitter.prefixDescription "(You can use $$ as a placeholder for the page's title.)">
+
+<!ENTITY twitter.noShortener "None (Let Twitter sort it out)">
+<!ENTITY twitter.shortestURLs "(Shortest URLs)">
+<!ENTITY twitter.resetAuth "Reset Authorization Settings">
+<!ENTITY twitter.searchSocial "Search the social web for the text you've entered.">
+
+<!ENTITY twitter.search.p1 "TwitterBar wants to know if you'd like to search the latest trends on Twitter, Digg, and the rest of the social Web from your search bar.">
+<!ENTITY twitter.search.p2 "Check the checkbox below and click OK to enable OneRiot's Real-Time Social Web Search. You won't lose your current search engine (it will still be available from the drop-down list), but you will gain an awesome real-time view of what's hot on Twitter.">
+<!ENTITY twitter.search.checkbox "Yes, I want to install OneRiot Search and make it my default search engine.">
+
+<!ENTITY twitter.showTrends "Show additional trending topics in the Twitter sidebar.">
