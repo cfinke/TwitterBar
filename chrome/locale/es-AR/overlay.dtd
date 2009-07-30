@@ -1,9 +1,0 @@
-<!ENTITY twitter.post "Postear a Twitter">
-<!ENTITY twitter.tab "Abrir mi página de Twitter en una nueva pesta&ntilde;a luego de postear">
-<!ENTITY twitter.web "Antes de la URL:">
-<!ENTITY twitter.button "Esconder el icono de Twitter de la barra de direcciones">
-<!ENTITY twitter.options.dialog "Opciones de Twitter">
-<!ENTITY twitter.generalTab "General">
-<!ENTITY twitter.confirm "Siempre confirmar antes enviar una URL a Twitter.">
-<!ENTITY twitter.prefixExplanation "Puedes compartir el enlace de la pagina que estas viendo actualmente haciendo click en el icono de Twitter en la barra de direcciones.  El siguiente texto será agregado automaticamente antes de la URL:">
-<!ENTITY twitter.prefixDescription "(Puedes usar $$ como un marcador para el titulo de la pagina.)">

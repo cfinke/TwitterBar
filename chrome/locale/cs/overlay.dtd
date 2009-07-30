@@ -1,9 +1,0 @@
-<!ENTITY twitter.post "Poslat na Twitter">
-<!ENTITY twitter.tab "Otevři moji Twitter stránku po odeslání.">
-<!ENTITY twitter.web "Před URL:">
-<!ENTITY twitter.button "Skrýt ikonu v addressbaru.">
-<!ENTITY twitter.options.dialog "Nastavení.">
-<!ENTITY twitter.generalTab "Hlavní">
-<!ENTITY twitter.confirm "Potvrdit před odesláním na Twitter.">
-<!ENTITY twitter.prefixExplanation "Sdílej stránku kterou čteš kliknutím na ikonu Twitteru v adressbaru. Tento text bude přidán před URL:">
-<!ENTITY twitter.prefixDescription "(Můžeš použít $$ místo názvu stránky.)">
