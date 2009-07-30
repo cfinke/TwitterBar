@@ -3,6 +3,7 @@ pref("extensions.twitter.button", false);
 pref("extensions.twitter.web", "Currently Browsing: ");
 pref("extensions.twitter.version", "");
 pref("extensions.twitter.search_request", false);
+pref("extensions.twitter.search_fixed", false);
 
 pref("extensions.twitter.confirm", true);
 

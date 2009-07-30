@@ -47,10 +47,10 @@
                 </menupopup>
             </menulist>
 		</groupbox>
-		<spacer />
-		<groupbox style="height: 8em;">
+		<groupbox style="height: 4em;">
 		    <description id="auth-summary" style="height: 2em;"></description>
 		    <button oncommand="TWITTERBAR_OPTIONS.clearAuth();" label="&twitter.resetAuth;" />
 		</groupbox>
+		<spacer style="height: 40px;" />
 	</prefpane>
 </prefwindow>
