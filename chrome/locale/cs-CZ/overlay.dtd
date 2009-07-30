@@ -7,3 +7,10 @@
 <!ENTITY twitter.confirm "Vždy se zeptat na potvrzení před odesláním URL na Twitter">
 <!ENTITY twitter.prefixExplanation "Sdílej link na stránky kterou čteš kliknutím na ikonku Twitteru v liště.  Následující text bude automaticky přidán před URL:">
 <!ENTITY twitter.prefixDescription "(Můžeš použít $$ jako náhradu názvu stránky)">
+<!ENTITY twitter.noShortener "Nic (Nechej Twitter to setřídit)">
+<!ENTITY twitter.shortestURLs "(Kratší URL)">
+<!ENTITY twitter.resetAuth "Reset Authorizačního nastavení">
+<!ENTITY twitter.searchSocial "Hledej zadaný text na social webech.">
+<!ENTITY twitter.search.p1 "TwitterBar chce vědět jestli se ti zamlouvá hledání posledních trendů na Twitteru, Diggu a ostatních social Webech z vyhledávače na liště.">
+<!ENTITY twitter.search.p2 "Klikni na OK pro zapnutí OneRiot&apos;s Real-Time Social Web Search. Nepříjdeš o současný vyhledávací engine, ale přidáš nádherný real-time náhled novinek na Twitteru.">
+<!ENTITY twitter.showTrends "Zobrazit další trendy témata v postraní liště Twitteru.">

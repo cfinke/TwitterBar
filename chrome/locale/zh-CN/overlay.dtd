@@ -7,3 +7,10 @@
 <!ENTITY twitter.confirm "每次发送到 Twitter 都需要确认。">
 <!ENTITY twitter.prefixExplanation "可以通过地址栏里的 Twitter 按钮分享正在阅读的链接。以下文字将会自动添加到地址前面：">
 <!ENTITY twitter.prefixDescription "（可以使用 $$ 作为页面标题的占位符。）">
+<!ENTITY twitter.noShortener "无（让 Twitter 决定）">
+<!ENTITY twitter.shortestURLs "(最短的地址)">
+<!ENTITY twitter.resetAuth "重置权限设置">
+<!ENTITY twitter.searchSocial "在社会网络中查找输入的文字。">
+<!ENTITY twitter.search.p1 "TwitterBar 希望知道是否从搜索栏中查找 Twitter、Digg 以及其它社会网络中查找最新的动态。">
+<!ENTITY twitter.search.p2 "点击确定将会启用OneRiot社会网络搜索。当前搜索引擎依然存在，只是您将获得 Twitter 中发生事情的实时动态。">
+<!ENTITY twitter.showTrends "在 Twitter 侧边栏中显示附加热门话题。">
