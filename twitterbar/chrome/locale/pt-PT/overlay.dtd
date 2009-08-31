@@ -13,4 +13,5 @@
 <!ENTITY twitter.searchSocial "Pesquisar na web social o texto que escreveu">
 <!ENTITY twitter.search.p1 "TwitterBar wants to know if you&apos;d like to search the latest trends on Twitter, Digg, and the rest of the social Web from your search bar.">
 <!ENTITY twitter.search.p2 "Click OK to enable OneRiot&apos;s Real-Time Social Web Search. You won&apos;t lose your current search engine, but you will gain an awesome real-time view of what&apos;s hot on Twitter.">
+<!ENTITY twitter.search.checkbox "Sim, desejo instalar a pesquisa OneRiot e torna-lo o meu motor de pesquisa pré-definido.">
 <!ENTITY twitter.showTrends "Mostrar mais tópicos interessantes na barra lateral do Twitter.">

@@ -13,4 +13,5 @@
 <!ENTITY twitter.searchSocial "Buscar na rede social o texto que você digitou.">
 <!ENTITY twitter.search.p1 "TwitterBar quer saber se você gostaria de buscar as últimas tendências no Twitter, Digg e o resto da rede social usando sua barra de buscas.">
 <!ENTITY twitter.search.p2 "Clique em OK para habilitar a Busca em Tempo-Real na Rede Social do OneRiot. Você não perderá seu mecanismo de busca atual, mas ganhará uma admirável vista em tempo-real do que está bombando no Twitter.">
+<!ENTITY twitter.search.checkbox "Sim, quero instalar o OneRiot e torná-lo meu mecanismo de busca padrão.">
 <!ENTITY twitter.showTrends "Exibir tópicos adicionais de tendências no painel Twitter.">

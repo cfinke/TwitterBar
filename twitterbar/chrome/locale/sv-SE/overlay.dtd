@@ -12,5 +12,6 @@
 <!ENTITY twitter.resetAuth "Återställ Behörighetsinställningarna">
 <!ENTITY twitter.searchSocial "Sök i den sociala webben efter den text du angivit.">
 <!ENTITY twitter.search.p1 "TwitterBar vill veta om du vill söka efter de senaste trenderna på Twitter, Digg och resten av den sociala webben från din sökrad.">
-<!ENTITY twitter.search.p2 "Klicka på OK för att aktivera OneRiot&apos;s Real-Time Social Web Search. Du kommer inte att förlora din nuvarande sökmotor, men du kommer att vinna en fantastisk realtidsvy på vad som är inne på Twitter.">
+<!ENTITY twitter.search.p2 "Klicka på OK för att aktivera OneRiot's Real-Time Social Web Search. Du kommer inte att förlora din nuvarande sökmotor, men du kommer att vinna en fantastisk realtidsvy på vad som är inne på Twitter.">
+<!ENTITY twitter.search.checkbox "Ja, jag will installera OneRiot och göra den till min standardsökmotor.">
 <!ENTITY twitter.showTrends "Visa ytterligare trendiga ämnen i Twittersidramen.">

@@ -1,0 +1,17 @@
+<!ENTITY twitter.post "트위터에 올리기">
+<!ENTITY twitter.tab "올린 후 새 탭에 내 트위터 페이지 열기">
+<!ENTITY twitter.web "URL 전:">
+<!ENTITY twitter.button "주소 표시줄의 트위터 아이콘 숨기기">
+<!ENTITY twitter.options.dialog "트위터 옵션 대화상자">
+<!ENTITY twitter.generalTab "일반">
+<!ENTITY twitter.confirm "URL을 트위터에 올리기 전 항상 내 허가를 받으십시오.">
+<!ENTITY twitter.prefixExplanation "주소 표시줄의 트위터 아이콘을 클릭해서 사용자가 읽고 있는 페이지의 링크를 공유할 수 있습니다. 다음 텍스트가 자동으로 URL 전에 추가됩니다:">
+<!ENTITY twitter.prefixDescription "(페이지 제목이 들어갈 자리를 남겨두기 위해 $$를 사용할 수 있습니다.)">
+<!ENTITY twitter.noShortener "없음 (트위터가 정렬하도록 놔두기)">
+<!ENTITY twitter.shortestURLs "(가장 짧은 URL)">
+<!ENTITY twitter.resetAuth "승인 설정 초기화">
+<!ENTITY twitter.searchSocial "입력한 텍스트에 대한 소셜 웹을 검색합니다.">
+<!ENTITY twitter.search.p1 "TwitterBar가 사용자의 검색 표시줄에서 Twitter, Digg를 비롯한 소셜 웹의 최신 경향을 검색하기를 원하는지 알고 싶어합니다.">
+<!ENTITY twitter.search.p2 "OneRiot의 실시간 소셜 웹 검색을 하려면 아래의 체크상자에 체크하고 OK를 눌러 활성화 하십시오. 현재 사용중인 검색 엔진을 포기하지 않아도 (드롭다운 목록에 계속 남아있음), 트위터에서 뭐가 유행하고 있는지 실시간으로 볼 수 있게 됩니다.">
+<!ENTITY twitter.search.checkbox "예, OneRiot 검색을 설치하고 기본 검색 엔진으로 사용하기를 원합니다.">
+<!ENTITY twitter.showTrends "Twitter 사이드바에 추가적인 유행 주제를 표시합니다.">
