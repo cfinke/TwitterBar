@@ -267,6 +267,7 @@ var TWITTERBAR = {
 						str += '<li class="link-title"><a target="_blank" title="'+topics[i]+'" href="'+TWITTERBAR.getSearchURL(topics[i], "trends-sidebar")+'"><span>'+topics[i]+'</span></a></li>';
 					}
 			
+					str += '<li><small style="display: block; padding: 5px 14px 5px 14px;">'+TWITTERBAR.strings.getString("twitterbar.trends.explanation")+'</small></li>';
 					str += '</ul>';
 					str += '<hr />';
 
