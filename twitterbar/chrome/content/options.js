@@ -17,7 +17,7 @@ var TWITTERBAR_OPTIONS = {
             label = this.strings.getString("twitterbar.noAuth");
         }
         
-		if (TWITTERBAR_IS_FENNEC) {
+		if (typeof(TWITTERBAR_IS_FENNEC) != 'undefined') {
 			document.getElementById("twitterbar-auth-summary").setAttribute("title", label);
 		}
 		else {
@@ -51,7 +51,7 @@ var TWITTERBAR_OPTIONS = {
         
 		var label = this.strings.getString("twitterbar.noAuth");
 		
-		if (TWITTERBAR_IS_FENNEC) {
+		if (typeof(TWITTERBAR_IS_FENNEC) != 'undefined') {
 			document.getElementById("twitterbar-auth-summary").setAttribute("title", label);
 		}
 		else {
