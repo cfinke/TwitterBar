@@ -1,5 +1,6 @@
 pref("extensions.twitter.tab", false);
 pref("extensions.twitter.button", false);
+pref("extensions.twitter.oneriotButton", false);
 pref("extensions.twitter.web", "Currently Browsing: ");
 pref("extensions.twitter.version", "");
 pref("extensions.twitter.search_request", false);
@@ -12,7 +13,7 @@ pref("extensions.twitter.access_token.oauth_token_secret", "");
 
 pref("extensions.twitter.oauth_timestamp", "");
 
-pref("extensions.twitter.shortener", "tk");
+pref("extensions.twitter.shortener", "is.gd");
 
 pref("extensions.twitter.trends", "");
 pref("extensions.twitter.trends.update", "");

@@ -25,10 +25,7 @@ var TWITTERBAR = {
 	getUrlLength : function () {
 		var shortener = this.prefs.getCharPref("shortener");
 		
-		if (shortener == "is.gd") {
-			return 18;
-		}
-		else if (shortener == "tinyurl") {
+		if (shortener == "tinyurl") {
 			return 25;
 		}
 		else if (shortener == "") {
@@ -36,8 +33,8 @@ var TWITTERBAR = {
 			return 20;
 		}
 		else {
-			// tk
-			return 15;
+			// is.gd
+			return 18;
 		}
 	},
 	
@@ -236,6 +233,22 @@ var TWITTERBAR = {
 					} catch (e) { }
 				}
 			break;
+			case "oneriotButton":
+				// Iterate over all the windows and show/hide the button based on pref-hide-button
+				var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+								   .getService(Components.interfaces.nsIWindowMediator);
+				var enumerator = wm.getEnumerator(null);
+
+				var buttonMode = this.prefs.getBoolPref("oneriotButton").toString();
+
+				while(enumerator.hasMoreElements()) {
+					var win = enumerator.getNext();
+
+					try {
+						win.document.getElementById("twitter-oneriot-box").setAttribute("hidden", buttonMode);
+					} catch (e) { }
+				}
+			break;
 		}
 	},
 	
@@ -281,6 +294,13 @@ var TWITTERBAR = {
 		try {
 			var mode = this.prefs.getBoolPref("button");
 			var button = document.getElementById("twitterBox");
+			
+			button.setAttribute("hidden", mode.toString());
+		} catch (e) { }
+		
+		try {
+			var mode = this.prefs.getBoolPref("oneriotButton");
+			var button = document.getElementById("twitter-oneriot-box");
 			
 			button.setAttribute("hidden", mode.toString());
 		} catch (e) { }
@@ -703,17 +723,14 @@ var TWITTERBAR = {
 	shortenUrls : function (status, callback) {
 		var shortener = this.prefs.getCharPref("shortener");
 		
-		if (shortener == "is.gd") {
-			this.shortenUrlsIsGd(status, callback);
-		}
-		else if (shortener == "") {
+		if (shortener == "") {
 			callback(status);
 		}
 		else if (shortener == "tinyurl") {
 			this.shortenUrlsTiny(status, callback);
 		}
 		else {
-			this.shortenUrlsTk(status, callback);
+			this.shortenUrlsIsGd(status, callback);
 		}
 	},
 	
@@ -759,50 +776,6 @@ var TWITTERBAR = {
 		}
 		
 		shortenNextUrl();		
-	},
-	
-	shortenUrlsTk : function (status, callback) {
-		status = status + " ";
-		
-		var urlsToShorten = [];
-		
-		function shortenNextUrl() {
-			if (urlsToShorten.length == 0) {
-				callback(status.replace(/^\s+|\s+$/g, ""));
-			}
-			else {
-				var nextUrl = urlsToShorten.shift();
-
-				var req = new XMLHttpRequest();
-				req.open("GET", "http://api.dot.tk/tweak/shorten?_registrantnr=7682501&long=" + encodeURIComponent(nextUrl), true);
-
-				req.onreadystatechange = function () {
-					if (req.readyState == 4) {
-						if (req.status == 200) {
-							try {
-								var shortUrl = req.responseText.split("\n")[0];
-							
-								status = status.replace(nextUrl + " ", shortUrl + " ");
-							} catch (e) {
-							}
-						}
-
-						shortenNextUrl();
-					}
-				};
-
-				req.send(null);
-			}
-		}
-		
-		var urlRE = /(https?:\/\/[\S]+)\s/ig;
-		var url;
-		
-		while ((url = urlRE.exec(status)) != null) {
-			urlsToShorten.push(url[1]);
-		}
-		
-		shortenNextUrl();
 	},
 	
 	shortenUrlsIsGd : function (status, callback) {

@@ -43,7 +43,7 @@
 		        <label style="font-size: 10px; color: green;" id="twitter-count" value="" hidden="true"/>
 		        <spacer flex="1"/>
 		    </vbox>
-		    <vbox>
+		    <vbox id="twitter-oneriot-box">
 		        <spacer flex="1" />
 		        <image id="twitter-searchbutton"
 			        hidden="true"

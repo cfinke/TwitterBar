@@ -24,9 +24,11 @@
     	    <preference id="pref-confirm" name="extensions.twitter.confirm" type="bool" />
     	    <preference id="pref-show-trends" name="extensions.twitter.showTrends" type="bool" />
     	    <preference id="pref-shortener" name="extensions.twitter.shortener" type="string" />
+    	    <preference id="pref-hide-oneriot" name="extensions.twitter.oneriotButton" type="bool" />
     	</preferences>
 		<checkbox id="twitter-tab" label="&twitter.tab;" preference="pref-open-after" />
 		<checkbox id="twitter-button" label="&twitter.button;" preference="pref-hide-button"/>
+		<checkbox id="oneriot-button" label="&twitter.oneriotButton;" preference="pref-hide-oneriot"/>
 		<checkbox id="twitter-confirm" label="&twitter.confirm;" preference="pref-confirm" />
 		<checkbox id="twitter-show-trends" label="&twitter.showTrends;" preference="pref-show-trends" />
 		<groupbox>
@@ -40,7 +42,6 @@
 		    <label control="shortener">URL Shortener:</label>
 		    <menulist preference="pref-shortener" flex="1">
 		        <menupopup>
-    		        <menuitem value="tk" label="TweaK.tk &twitter.shortestURLs;" />
     		        <menuitem value="is.gd" label="is.gd" />
                     <menuitem value="tinyurl" label="TinyURL" />
                     <menuitem value="" label="&twitter.noShortener;" />

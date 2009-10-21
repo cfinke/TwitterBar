@@ -23,8 +23,9 @@ var TWITTERBAR_OPTIONS = {
 	    if (!document.getElementById("twitterbar-preference-window").instantApply) {
 		    this.prefs.setBoolPref("confirm", document.getElementById("pref-confirm").value);
 		    this.prefs.setCharPref("web", document.getElementById("pref-prefix").value);
-		    this.prefs.setBoolPref("pref-open-after", document.getElementById("pref-open-after").value);
-		    this.prefs.setBoolPref("pref-hide-button", document.getElementById("pref-hide-button").value);
+		    this.prefs.setBoolPref("tab", document.getElementById("pref-open-after").value);
+		    this.prefs.setBoolPref("button", document.getElementById("pref-hide-button").value);
+		    this.prefs.setBoolPref("oneriotButton", document.getElementById("pref-hide-oneriot").value);
 		    this.prefs.setCharPref("shortener", document.getElementById("pref-shortener").value);
 		    this.prefs.setBoolPref("showTrends", document.getElementById("pref-show-trends").value);
 		}
