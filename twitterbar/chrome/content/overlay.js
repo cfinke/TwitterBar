@@ -393,7 +393,7 @@ var TWITTERBAR = {
 							try {
 								TWITTERBAR.getBrowser().selectedTab = TWITTERBAR.getBrowser().addTab("http://twitter.com/oauth/authorize?oauth_token="+TWITTERBAR.oauth.request_token.oauth_token);
 							} catch (fennec) {
-								Browser.addTab("http://twitter.com/oauth/authorize?oauth_token="+TWITTERBAR.oauth.request_token.oauth_token);
+								content.location.href = "http://twitter.com/oauth/authorize?oauth_token="+TWITTERBAR.oauth.request_token.oauth_token;
 							}
 						}
 					} catch (e) {
