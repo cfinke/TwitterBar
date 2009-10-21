@@ -13,6 +13,8 @@ locale      twitterbar    de-DE    jar:chrome/twitterbar.jar!/locale/de-DE/
 locale      twitterbar    fa-IR    jar:chrome/twitterbar.jar!/locale/fa-IR/
 locale      twitterbar    fi-FI    jar:chrome/twitterbar.jar!/locale/fi-FI/
 locale      twitterbar    fr-FR    jar:chrome/twitterbar.jar!/locale/fr-FR/
+locale      twitterbar    hu-HU    jar:chrome/twitterbar.jar!/locale/hu-HU/
+locale      twitterbar    id-ID    jar:chrome/twitterbar.jar!/locale/id-ID/
 locale      twitterbar    it-IT    jar:chrome/twitterbar.jar!/locale/it-IT/
 locale      twitterbar    ko-KR    jar:chrome/twitterbar.jar!/locale/ko-KR/
 locale      twitterbar    nl       jar:chrome/twitterbar.jar!/locale/nl/
