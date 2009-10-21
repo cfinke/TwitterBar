@@ -5,19 +5,30 @@ var TWITTERBAR_OPTIONS = {
 	
 	init : function () {
 	    var authDate = this.prefs.getCharPref("oauth_timestamp");
-	    
+	    var label = "";
+	
 	    if (authDate) {
 	        var niceDate = new Date();
 	        niceDate.setTime(authDate);
 	        
-	        document.getElementById("auth-summary").textContent = this.strings.getFormattedString("twitterbar.newAuthString", [ niceDate.toLocaleString() ]);
+	        label = this.strings.getFormattedString("twitterbar.newAuthString", [ niceDate.toLocaleString() ]);
         }
         else {
-            document.getElementById("auth-summary").textContent = this.strings.getString("twitterbar.noAuth");
+            label = this.strings.getString("twitterbar.noAuth");
         }
         
-        sizeToContent();
+		if (TWITTERBAR_IS_FENNEC) {
+			document.getElementById("twitterbar-auth-summary").setAttribute("title", label);
+		}
+		else {
+			document.getElementById("auth-summary").textContent = label;
+        	sizeToContent();
+		}
     },
+
+	setShortener : function () {
+		this.prefs.setCharPref("shortener", document.getElementById("twitterbar-shortener-menu").selectedItem.getAttribute("value"));
+	},
 	
 	accept : function () {
 	    if (!document.getElementById("twitterbar-preference-window").instantApply) {
@@ -38,6 +49,13 @@ var TWITTERBAR_OPTIONS = {
         this.prefs.setCharPref("access_token.oauth_token_secret", "");
         this.prefs.setCharPref("oauth_timestamp", "");
         
-        document.getElementById("auth-summary").textContent = this.strings.getString("twitterbar.noAuth");
+		var label = this.strings.getString("twitterbar.noAuth");
+		
+		if (TWITTERBAR_IS_FENNEC) {
+			document.getElementById("twitterbar-auth-summary").setAttribute("title", label);
+		}
+		else {
+			document.getElementById("auth-summary").textContent = label;
+		}
     }
 };
