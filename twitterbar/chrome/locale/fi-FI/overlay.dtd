@@ -8,7 +8,6 @@
 <!ENTITY twitter.prefixExplanation "Voit jakaa linkin sivulle, jota luet, napsauttamalla Twitter-kuvaketta osoitepalkissa. Seuraava teksti lisätään automaattisesti linkin eteen:">
 <!ENTITY twitter.prefixDescription "(Voit kirjoittaa $$ joka korvataan sivun otsikolla.)">
 <!ENTITY twitter.noShortener "Ei mitään (Anna Twitterin hoitaa asia)">
-<!ENTITY twitter.shortestURLs "(Lyhyimmät osoitteet)">
 <!ENTITY twitter.resetAuth "Nollaa tunnistusasetukset">
 <!ENTITY twitter.searchSocial "Etsi sosiaalisesta verkosta antamallasi tekstillä.">
 <!ENTITY twitter.search.p1 "TwitterBar haluaa tietää, haluatko etsiä viimeisimpiä trendejä Twitteristä, Diggistä tai muista sosiaalisista verkkopalveluista hakupalkistasi.">

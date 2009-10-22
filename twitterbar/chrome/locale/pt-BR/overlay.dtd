@@ -8,7 +8,6 @@
 <!ENTITY twitter.prefixExplanation "Você pode compartilhar um link para a página que está lendo, clicando no ícone do Twitter na barra de endereço. O seguinte texto será adicionado automaticamente antes da URL:">
 <!ENTITY twitter.prefixDescription "(Você pode usar $$ como variável a ser substituída pelo título da página)">
 <!ENTITY twitter.noShortener "Nenhum (deixa o Twitter ordenar)">
-<!ENTITY twitter.shortestURLs "(URLs mais curtas)">
 <!ENTITY twitter.resetAuth "Restaurar Configurações de Autorização">
 <!ENTITY twitter.searchSocial "Buscar na rede social o texto que você digitou.">
 <!ENTITY twitter.search.p1 "TwitterBar quer saber se você gostaria de buscar as últimas tendências no Twitter, Digg e o resto da rede social usando sua barra de buscas.">

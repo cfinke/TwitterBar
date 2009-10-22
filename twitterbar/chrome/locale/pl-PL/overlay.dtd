@@ -8,7 +8,6 @@
 <!ENTITY twitter.prefixExplanation "Poniższy tekst zostanie dodany przed odnośnikiem do strony aktualnie przeglądanej">
 <!ENTITY twitter.prefixDescription "(Użycie zmiennej $$ spowoduje dodanie tytułu strony)">
 <!ENTITY twitter.noShortener "Brak (pozwól Twitterowi skracać)">
-<!ENTITY twitter.shortestURLs "(Krótsze adresy)">
 <!ENTITY twitter.resetAuth "Resetuj ustawienia autoryzacji">
 <!ENTITY twitter.searchSocial "Przeszukaj sieć pod kątem wpisanego tekstu">
 <!ENTITY twitter.search.p1 "TwitterBar chce wiedzieć, czy chcesz przeszukiwać najnowsze tredny Twittera, Digga, oraz reszty społecznościowej sieci z poziomu paska wyszukiwania.">
