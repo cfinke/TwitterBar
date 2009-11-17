@@ -9,7 +9,6 @@
 
     <setting id="pref-hide-button" pref="extensions.twitter.button" type="bool" title="&twitter.button;" />
 
-    <setting id="pref-hide-oneriot" pref="extensions.twitter.oneriotButton" type="bool" title="&twitter.oneriotButton;"/>
     <setting id="pref-show-trends" pref="extensions.twitter.showTrends" type="bool" title="&twitter.showTrends;" />
 
     <setting id="pref-open-after" pref="extensions.twitter.tab" type="bool" title="&twitter.tab;" />

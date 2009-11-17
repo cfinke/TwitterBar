@@ -1,0 +1,10 @@
+#twitter-statusbarbutton {
+	-moz-appearance: none;
+	list-style-image: url('chrome://twitterbar/skin/twitter-bird-44.png');
+	background: transparent !important;
+	-moz-box-orient: vertical;
+}
+
+#twitter-statusbutton[busy="true"] {
+	list-style-image: url('chrome://twitterbar/skin/throbber-44.gif');
+}

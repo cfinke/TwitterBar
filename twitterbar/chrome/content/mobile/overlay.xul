@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://twitterbar/skin/twitter-mobile.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://twitterbar/locale/overlay.dtd">
+<overlay
+	id="twitteroverlay"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="application/x-javascript" src="chrome://twitterbar/content/oauth.js"/>
+	<script type="application/x-javascript" src="chrome://twitterbar/content/sha1.js"/>
+	<script type="application/x-javascript" src="chrome://twitterbar/content/mobile/overlay.js"/>
+	<script type="application/x-javascript" src="chrome://twitterbar/content/options.js" />
+	<script type="application/x-javascript">
+		<![CDATA[
+		
+		var TWITTERBAR_IS_FENNEC = true;
+		
+		addEventListener("load", function () { TWITTERBAR_OPTIONS.init(); }, false);
+		addEventListener("load", function () { TWITTERBAR.load(); }, false);
+		addEventListener("unload", function () { TWITTERBAR.unload(); }, false);
+		
+		]]>
+	</script>
+
+	<stringbundleset id="stringbundleset">
+		<stringbundle id="twitterbar-strings" src="chrome://twitterbar/locale/overlay.properties" />
+	</stringbundleset>
+	
+	<textbox id="urlbar-edit">
+		<hbox id="twitterBox">
+			<toolbarbutton
+				id="twitter-statusbarbutton"
+				oncommand="TWITTERBAR.post(true);"
+				class="button-image"
+				/>
+		</hbox>
+	</textbox>
+</overlay>
+
+
+<!--
+
+<hbox id="twitterBox" onclick="TWITTERBAR.toggle();" class="textbox-input-box">
+    <hbox id="twitter-count-vbox">
+        <vbox>
+	        <spacer flex="1"/>
+	        <label style="color: green;" id="twitter-count" value="" hidden="true"/>
+	        <spacer flex="1"/>
+	    </vbox>
+	    <vbox id="twitter-oneriot-box">
+	        <spacer flex="1" />
+	        <image id="twitter-searchbutton"
+		        hidden="true"
+			    onclick="TWITTERBAR.search(event, 'addressBarIcon');"
+			    tooltiptext="&twitter.searchSocial;"
+			    src="http://www.oneriot.com/images/favicon.ico"
+			    />
+			<spacer flex="1" />
+		</vbox>
+	</hbox>
+	<vbox flex="1">
+		<spacer flex="1" />
+		<image id="twitter-statusbarbutton"
+			onclick="TWITTERBAR.post(true);"
+			tooltiptext="&twitter.post;"
+			src="chrome://twitterbar/skin/twitter.ico"
+			/>
+		<spacer flex="1" />
+	</vbox>
+</hbox>
+
+-->
