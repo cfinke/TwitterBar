@@ -1,0 +1,18 @@
+<!ENTITY twitter.post "Publicar en Twitter">
+<!ENTITY twitter.tab "Abrir mi página de Twitter en una nueva pestaña después de publicar">
+<!ENTITY twitter.web "Antes de la URL:">
+<!ENTITY twitter.button "Ocultar el icono de Twitter en la barra de direcciones">
+<!ENTITY twitter.oneriotButton "Ocultar el icono de búsqueda de OneRiot en la barra de direcciones">
+<!ENTITY twitter.options.dialog "Dialogo de opciones de Twitter">
+<!ENTITY twitter.generalTab "General">
+<!ENTITY twitter.confirm "Confirmar siempre antes de publicar una URL en Twitter">
+<!ENTITY twitter.prefixExplanation "Puedes compartir un enlace a una página que estás leyendo pulsando sobre el icono de Twitter en la barra de direcciones. El texto siguiente será automáticamente añadido antes de la URL:">
+<!ENTITY twitter.prefixDescription "(Puedes usar $$ como un marcador el título de la página.)">
+<!ENTITY twitter.shortener "Simplificador de URL:">
+<!ENTITY twitter.noShortener "Ninguno (Dejar a Twitter ordenarlo, probablemente con bit.ly)">
+<!ENTITY twitter.resetAuth "Resetear opciones de autorización">
+<!ENTITY twitter.searchSocial "Buscar la web social para el texto que has introducido.">
+<!ENTITY twitter.search.p1 "TwitterBar quiere saber si quieres buscar las últimas tendencias en Twitter, Digg, y el resto de redes sociales desde tu barra de búsqueda.">
+<!ENTITY twitter.search.p2 "Marcar el cuadro de selección a continuación y pulse OK para activar el buscador de OneRiot de redes sociales. No perderás tu actual motor de búsqueda (estará disponible en la lista desplegable), pero ganarás un increíble visión en tiempo real de lo más actual en Twitter">
+<!ENTITY twitter.search.checkbox "Si, queiro instalar el buscador de OneRiot y hacerlo mi motor de busqueda predeterminado.">
+<!ENTITY twitter.showTrends "Mostrar temas actuales adicionales en la barra lateral de Twitter.">

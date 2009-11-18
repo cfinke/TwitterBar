@@ -2,12 +2,14 @@
 <!ENTITY twitter.tab "Avaa Twitter uuteen välilehteen lähettämisen jälkeen">
 <!ENTITY twitter.web "Ennen osoitetta:">
 <!ENTITY twitter.button "Piilota osoitepalkin painike">
+<!ENTITY twitter.oneriotButton "Piilota OneRiot-hakukuvake osoitepalkista">
 <!ENTITY twitter.options.dialog "TwitterBar-asetukset">
 <!ENTITY twitter.generalTab "Yleiset">
 <!ENTITY twitter.confirm "Varmista aina ennen osoitteen lähettämistä Twitteriin.">
 <!ENTITY twitter.prefixExplanation "Voit jakaa linkin sivulle, jota luet, napsauttamalla Twitter-kuvaketta osoitepalkissa. Seuraava teksti lisätään automaattisesti linkin eteen:">
 <!ENTITY twitter.prefixDescription "(Voit kirjoittaa $$ joka korvataan sivun otsikolla.)">
-<!ENTITY twitter.noShortener "Ei mitään (Anna Twitterin hoitaa asia)">
+<!ENTITY twitter.shortener "URL-lyhentäjä:">
+<!ENTITY twitter.noShortener "Ei mitään (anna Twitterin hoitaa asia)">
 <!ENTITY twitter.resetAuth "Nollaa tunnistusasetukset">
 <!ENTITY twitter.searchSocial "Etsi sosiaalisesta verkosta antamallasi tekstillä.">
 <!ENTITY twitter.search.p1 "TwitterBar haluaa tietää, haluatko etsiä viimeisimpiä trendejä Twitteristä, Diggistä tai muista sosiaalisista verkkopalveluista hakupalkistasi.">

@@ -8,7 +8,8 @@
 <!ENTITY twitter.confirm "Chiedi prima di inviare un URL a Twitter">
 <!ENTITY twitter.prefixExplanation "Inserire la descrizione da visualizzare prima dell&apos;URL visitato attualmente, condiviso facendo clic sull&apos;icona di Twitter nella barra degli indirizzi">
 <!ENTITY twitter.prefixDescription "Per aggiungere il titolo della relativa pagina web utilizzare la variabile $$">
-<!ENTITY twitter.noShortener "impostato da Twitter">
+<!ENTITY twitter.shortener "Abbrevia URL usando:">
+<!ENTITY twitter.noShortener "Twitter (probabilmente bit.ly)">
 <!ENTITY twitter.resetAuth "Resetta le impostazioni d'accesso">
 <!ENTITY twitter.searchSocial "Cerca il testo inserito nelle reti sociali">
 <!ENTITY twitter.search.p1 "È possibile effettuare la ricerca delle ultime tendenze su Twitter, Digg ed il resto delle reti sociali tramite la barra di ricerca del browser">
