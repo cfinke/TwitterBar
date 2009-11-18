@@ -5,6 +5,11 @@
 	-moz-box-orient: vertical;
 }
 
-#twitter-statusbutton[busy="true"] {
-	list-style-image: url('chrome://twitterbar/skin/throbber-44.gif');
+#twitter-statusbarbutton[toolong="true"] {
+	list-style-image: url('chrome://twitterbar/skin/twitter-bird-angry-44.png');
+}
+
+#twitter-statusbarbutton[busy="true"] {
+	list-style-image: url('chrome://browser/skin/images/throbber.png');
+	margin: 6px;
 }

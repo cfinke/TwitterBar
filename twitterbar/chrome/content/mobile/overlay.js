@@ -76,6 +76,8 @@ var TWITTERBAR = {
 	},
 	
 	load : function () {
+		document.getElementById("twitter-statusbarbutton").style.display = 'none';
+		
 		this.version = Components.classes["@mozilla.org/extensions/manager;1"].getService(Components.interfaces.nsIExtensionManager).getItemForID("{1a0c9ebe-ddf9-4b76-b8a3-675c77874d37}").version;
 		
 		this.prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("extensions.twitter.");	
@@ -94,8 +96,9 @@ var TWITTERBAR = {
 		
 		var oldsearchcomplete = document.getElementById("urlbar-edit").getAttribute("onsearchcomplete");
 		
-		document.getElementById("urlbar-edit").setAttribute("onsearchcomplete", "if (!TWITTERBAR.postKey()) { " + oldsearchcomplete + "}");
-		document.getElementById("urlbar-edit").addEventListener("focus", function () { TWITTERBAR.focus(); }, false);
+		document.getElementById("urlbar-edit").setAttribute("onsearchcomplete", "TWITTERBAR.count(); if (!TWITTERBAR.postKey()) { " + oldsearchcomplete + "}");
+		document.getElementById("urlbar-edit").addEventListener("blur", TWITTERBAR.blur, true);
+		document.getElementById("urlbar-edit").addEventListener("focus", TWITTERBAR.focus, true);
 		
 		this.buttonCheck();
 		
@@ -111,6 +114,8 @@ var TWITTERBAR = {
 		this.prefs.removeObserver("", this);
 		
 		document.getElementById("browsers").removeEventListener("load", TWITTERBAR.DOMContentLoaded, true);
+		document.getElementById("urlbar-edit").removeEventListener("blur", TWITTERBAR.blur, true);
+		document.getElementById("urlbar-edit").removeEventListener("focus", TWITTERBAR.focus, true);
 		
 		clearInterval(TWITTERBAR.trendTimer);
 	},
@@ -253,11 +258,27 @@ var TWITTERBAR = {
 	},
 	
 	focus : function () {
-		// @todo Show count.
 		var status = document.getElementById("urlbar-edit").value;
 		
 		if (status.match(/^https?:\/\//i)) {
-			this.lastUrl = status;
+			TWITTERBAR.lastUrl = status;
+		}
+		
+		document.getElementById("twitter-statusbarbutton").style.display = '';
+	},
+	
+	blur : function () {
+		document.getElementById("twitter-statusbarbutton").style.display = 'none';
+	},
+	
+	count : function () {
+		var length = this.getCharCount();
+		
+		if (length > 140) {
+			document.getElementById("twitter-statusbarbutton").setAttribute("toolong", "true");
+		}
+		else {
+			document.getElementById("twitter-statusbarbutton").removeAttribute("toolong");
 		}
 	},
 	
@@ -349,7 +370,7 @@ var TWITTERBAR = {
 		
 		urlbar.value = TWITTERBAR.strings.getString("twitterbar.posting");
 		
-		this.shortenUrls(status, function (status) { TWITTERBAR.postRequest(status); });
+		TWITTERBAR_SHORTENERS.shortenUrls(status, function (status) { TWITTERBAR.postRequest(status); });
 	},
 	
 	postRequest : function (status) {
@@ -426,11 +447,12 @@ var TWITTERBAR = {
 		
 		if (this.prefs.getBoolPref("tab")){
 			Browser.addTab("http://twitter.com/" + this.prefs.getCharPref("oauth_username"), true);
+			BrowserUI.activeDialog.close();
 		}
 	},
 	
 	getCharCount : function () {
-		var status = (document.getElementById("urlbar") || document.getElementById("urlbar-edit")).value;
+		var status = document.getElementById("urlbar-edit").value;
 		status = status.replace("$$", content.document.title);
 		
 		var length = status.length;
@@ -478,107 +500,11 @@ var TWITTERBAR = {
 				
 				document.getElementById('twitter-statusbarbutton').setAttribute("busy", "true");
 				
-				this.shortenUrls(status, function (status) { TWITTERBAR.postRequest(status); });
+				TWITTERBAR_SHORTENERS.shortenUrls(status, function (status) { TWITTERBAR.postRequest(status); });
 			}
 		}
 	},
 	
-	shortenUrls : function (status, callback) {
-		var shortener = this.prefs.getCharPref("shortener");
-		
-		if (shortener == "") {
-			callback(status);
-		}
-		else if (shortener == "tinyurl") {
-			this.shortenUrlsTiny(status, callback);
-		}
-		else {
-			this.shortenUrlsIsGd(status, callback);
-		}
-	},
-	
-	shortenUrlsTiny : function (status, callback) {
-		status = status + " ";
-		
-		var urlsToShorten = [];
-		
-		function shortenNextUrl() {
-			if (urlsToShorten.length == 0) {
-				callback(status.replace(/^\s+|\s+$/g, ""));
-			}
-			else {
-				var nextUrl = urlsToShorten.shift();
-
-				var req = new XMLHttpRequest();
-				req.open("GET", "http://tinyurl.com/api-create.php?url=" + nextUrl, true);
-
-				req.onreadystatechange = function () {
-					if (req.readyState == 4) {
-						if (req.status == 200) {
-							try {
-								var shortUrl = req.responseText;
-							
-								status = status.replace(nextUrl + " ", shortUrl + " ");
-							} catch (e) {
-							}
-						}
-
-						shortenNextUrl();
-					}
-				};
-
-				req.send(null);
-			}
-		}
-		
-		var urlRE = /(https?:\/\/[\S]+)\s/ig;
-		var url;
-		
-		while ((url = urlRE.exec(status)) != null) {
-			urlsToShorten.push(url[1]);
-		}
-		
-		shortenNextUrl();		
-	},
-	
-	shortenUrlsIsGd : function (status, callback) {
-		status = status + " ";
-		
-		var urlsToShorten = [];
-		
-		function shortenNextUrl() {
-			if (urlsToShorten.length == 0) {
-				callback(status.replace(/^\s+|\s+$/g, ""));
-			}
-			else {
-				var nextUrl = urlsToShorten.shift();
-
-				var req = new XMLHttpRequest();
-				req.open("GET", "http://is.gd/api.php?longurl=" + nextUrl, true);
-
-				req.onreadystatechange = function () {
-					if (req.readyState == 4) {
-						if (req.status == 200) {
-							status = status.replace(nextUrl + " ", req.responseText + " ");
-						}
-
-						shortenNextUrl();
-					}
-				};
-
-				req.send(null);
-			}
-		}
-		
-		var urlRE = /(https?:\/\/[\S]+)\s/ig;
-		var url;
-		
-		while ((url = urlRE.exec(status)) != null) {
-			urlsToShorten.push(url[1]);
-		}
-		
-		shortenNextUrl();
-	},
 	
 	getTrends : function () {
 		var lastUpdate = TWITTERBAR.prefs.getCharPref("trends.update");
