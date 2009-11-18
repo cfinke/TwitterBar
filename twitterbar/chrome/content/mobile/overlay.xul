@@ -34,37 +34,3 @@
 		</hbox>
 	</textbox>
 </overlay>
-
-
-<!--
-
-<hbox id="twitterBox" onclick="TWITTERBAR.toggle();" class="textbox-input-box">
-    <hbox id="twitter-count-vbox">
-        <vbox>
-	        <spacer flex="1"/>
-	        <label style="color: green;" id="twitter-count" value="" hidden="true"/>
-	        <spacer flex="1"/>
-	    </vbox>
-	    <vbox id="twitter-oneriot-box">
-	        <spacer flex="1" />
-	        <image id="twitter-searchbutton"
-		        hidden="true"
-			    onclick="TWITTERBAR.search(event, 'addressBarIcon');"
-			    tooltiptext="&twitter.searchSocial;"
-			    src="http://www.oneriot.com/images/favicon.ico"
-			    />
-			<spacer flex="1" />
-		</vbox>
-	</hbox>
-	<vbox flex="1">
-		<spacer flex="1" />
-		<image id="twitter-statusbarbutton"
-			onclick="TWITTERBAR.post(true);"
-			tooltiptext="&twitter.post;"
-			src="chrome://twitterbar/skin/twitter.ico"
-			/>
-		<spacer flex="1" />
-	</vbox>
-</hbox>
-
--->

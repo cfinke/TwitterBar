@@ -1,4 +1,7 @@
 var TWITTERBAR = {
+	lastTweet : null,
+	covertMode : false,
+	
 	version : null,
 	
 	lastUrl : null,
@@ -200,11 +203,16 @@ var TWITTERBAR = {
 						if (req.status == 200) {
 							try {
 								var parts = req.responseText.split("&");
-						
+								
 								TWITTERBAR.prefs.setCharPref("access_token.oauth_token", parts[0].split("=")[1]);
 								TWITTERBAR.prefs.setCharPref("access_token.oauth_token_secret", parts[1].split("=")[1]);
-
+								
 								TWITTERBAR.prefs.setCharPref("oauth_timestamp", (new Date().getTime()));
+								
+								if (TWITTERBAR.lastTweet) {
+									TWITTERBAR.covertMode = true;
+									TWITTERBAR.postRequest(TWITTERBAR.lastTweet);
+								}
 							} catch (e) {
 								TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.otherError", [ e, req.responseText ]));
 							}
@@ -321,7 +329,9 @@ var TWITTERBAR = {
 					try {
 						TWITTERBAR_COMMON.oauth.request_token.oauth_token = parts[0].split("=")[1];
 						TWITTERBAR_COMMON.oauth.request_token.oauth_token_secret = parts[1].split("=")[1];
-					
+						
+						gBrowser.selectedBrowser.userTypedValue = TWITTERBAR.lastUrl;
+						
 						if (TWITTERBAR_COMMON.confirm(TWITTERBAR_COMMON.strings.getString("twitterbar.oauthRequest1") + "\n\n" + TWITTERBAR_COMMON.strings.getString("twitterbar.oauthRequest2"))) {
 							getBrowser().selectedTab = getBrowser().addTab("http://twitter.com/oauth/authorize?oauth_token="+TWITTERBAR_COMMON.oauth.request_token.oauth_token);
 						}
@@ -367,6 +377,8 @@ var TWITTERBAR = {
 	},
 	
 	postRequest : function (status) {
+		TWITTERBAR.lastTweet = status;
+		
 		var accessor = {
 			consumerSecret : TWITTERBAR_COMMON.oauth.consumer_secret,
 			tokenSecret : TWITTERBAR.prefs.getCharPref("access_token.oauth_token_secret")
@@ -419,12 +431,16 @@ var TWITTERBAR = {
 					TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getString("twitterbar.failWhale"));
 				}
 				else if (req.status == 200) {
-					document.getElementById("urlbar").value = TWITTERBAR_COMMON.strings.getString("twitterbar.success");
+					TWITTERBAR.lastTweet = null;
 					
-					var image = document.getElementById("twitter-statusbarbutton");
-					image.src =  "chrome://twitterbar/skin/accept.png";
-					
-					setTimeout(function () { TWITTERBAR.afterPost(); }, 1000);
+					if (!TWITTERBAR.covertMode) {
+						document.getElementById("urlbar").value = TWITTERBAR_COMMON.strings.getString("twitterbar.success");
+						
+						var image = document.getElementById("twitter-statusbarbutton");
+						image.src =  "chrome://twitterbar/skin/accept.png";
+						
+						setTimeout(function () { TWITTERBAR.afterPost(); }, 1000);
+					}
 				}
 				else {
 					var image = document.getElementById('twitter-statusbarbutton');
@@ -432,6 +448,8 @@ var TWITTERBAR = {
 					
 					TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.otherError", [ req.status, req.responseText ]));
 				}
+				
+				TWITTERBAR.covertMode = false;
 			}
 		};
 		

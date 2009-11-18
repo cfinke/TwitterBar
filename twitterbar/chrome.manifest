@@ -4,7 +4,6 @@ skin        twitterbar      classic       jar:chrome/twitterbar.jar!/skin/
 override    chrome://twitterbar/content/overlay.xul               chrome://twitterbar/content/mobile/overlay.xul   application={a23983c0-fd0e-11dc-95ff-0800200c9a66}
 override    chrome://twitterbar/content/optionsDialog.xul         chrome://twitterbar/content/mobile/options.xul   application={a23983c0-fd0e-11dc-95ff-0800200c9a66}
 
-override    chrome://twitterbar/skin/twitter.ico         chrome://twitterbar/skin/twitter-bird-64.png application={a23983c0-fd0e-11dc-95ff-0800200c9a66}
 override    chrome://twitterbar/skin/twitter.css         chrome://twitterbar/skin/twitter-mobile.css application={a23983c0-fd0e-11dc-95ff-0800200c9a66}
 
 overlay     chrome://browser/content/browser.xul           chrome://twitterbar/content/overlay.xul
