@@ -11,6 +11,7 @@
 	buttons="accept,cancel"
 	style="width: 450px;">
 	<script type="application/x-javascript" src="chrome://twitterbar/content/options.js" />
+	<script type="application/x-javascript" src="chrome://twitterbar/content/common.js" />
 	
 	<stringbundleset id="stringbundleset">
 		<stringbundle id="twitterbar-strings" src="chrome://twitterbar/locale/overlay.properties" />

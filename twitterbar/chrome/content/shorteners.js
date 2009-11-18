@@ -2,7 +2,7 @@ var TWITTERBAR_SHORTENERS = {
 	prefs : Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("extensions.twitter."),
 	
 	shortenUrls : function (status, callback) {
-		var shortener = this.prefs.getCharPref("shortener");
+		var shortener = TWITTERBAR_SHORTENERS.prefs.getCharPref("shortener");
 		
 		if (shortener == "") {
 			callback(status);
@@ -12,6 +12,22 @@ var TWITTERBAR_SHORTENERS = {
 		}
 		else {
 			this.shortenUrlsIsGd(status, callback);
+		}
+	},
+	
+	getUrlLength : function () {
+		var shortener = TWITTERBAR_SHORTENERS.prefs.getCharPref("shortener");
+		
+		if (shortener == "tinyurl") {
+			return 25;
+		}
+		else if (shortener == "") {
+			// Twitter uses bit.ly.
+			return 20;
+		}
+		else {
+			// is.gd
+			return 18;
 		}
 	},
 	

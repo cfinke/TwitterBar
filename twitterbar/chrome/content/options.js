@@ -11,10 +11,10 @@ var TWITTERBAR_OPTIONS = {
 	        var niceDate = new Date();
 	        niceDate.setTime(authDate);
 	        
-	        label = this.strings.getFormattedString("twitterbar.newAuthString", [ niceDate.toLocaleString() ]);
+	        label = TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.newAuthString", [ niceDate.toLocaleString() ]);
         }
         else {
-            label = this.strings.getString("twitterbar.noAuth");
+            label = TWITTERBAR_COMMON.strings.getString("twitterbar.noAuth");
         }
         
 		if (document.getElementById("twitterbar-auth-summary")) {
@@ -49,7 +49,7 @@ var TWITTERBAR_OPTIONS = {
         this.prefs.setCharPref("access_token.oauth_token_secret", "");
         this.prefs.setCharPref("oauth_timestamp", "");
         
-		var label = this.strings.getString("twitterbar.noAuth");
+		var label = TWITTERBAR_COMMON.strings.getString("twitterbar.noAuth");
 		
 		if (document.getElementById("twitterbar-auth-summary")) {
 			document.getElementById("twitterbar-auth-summary").setAttribute("title", label);
