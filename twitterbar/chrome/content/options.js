@@ -20,7 +20,7 @@ var TWITTERBAR_OPTIONS = {
 		if (document.getElementById("twitterbar-auth-summary")) {
 			document.getElementById("twitterbar-auth-summary").setAttribute("title", label);
 		}
-		else {
+		else if (document.getElementById("auth-summary")) {
 			document.getElementById("auth-summary").textContent = label;
         	sizeToContent();
 		}
