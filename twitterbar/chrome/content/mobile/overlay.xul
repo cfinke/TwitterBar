@@ -5,7 +5,6 @@
 	id="twitteroverlay"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 	<script type="application/x-javascript" src="chrome://twitterbar/content/oauth.js"/>
-	<script type="application/x-javascript" src="chrome://twitterbar/content/sha1.js"/>
 	<script type="application/x-javascript" src="chrome://twitterbar/content/mobile/overlay.js"/>
 	<script type="application/x-javascript" src="chrome://twitterbar/content/options.js" />
 	<script type="application/x-javascript" src="chrome://twitterbar/content/shorteners.js" />
