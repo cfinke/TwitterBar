@@ -17,10 +17,7 @@ var TWITTERBAR_OPTIONS = {
             label = TWITTERBAR_COMMON.strings.getString("twitterbar.noAuth");
         }
         
-		if (document.getElementById("twitterbar-auth-summary")) {
-			document.getElementById("twitterbar-auth-summary").setAttribute("title", label);
-		}
-		else if (document.getElementById("auth-summary")) {
+		if (document.getElementById("auth-summary")) {
 			document.getElementById("auth-summary").textContent = label;
         	sizeToContent();
 		}
