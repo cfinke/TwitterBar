@@ -19,3 +19,6 @@ pref("extensions.twitter.trends", "");
 pref("extensions.twitter.trends.update", "");
 
 pref("extensions.twitter.showTrends", true);
+
+pref("extensions.twitter.bitlyLogin", "");
+pref("extensions.twitter.bitlyApiKey", "");

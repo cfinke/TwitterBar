@@ -10,12 +10,12 @@
 }
 
 #twitter-toolbar-button {
-	list-style-image: url("chrome://twitterbar/skin/twbtn_small.png");
+	list-style-image: url("chrome://twitterbar/skin/bird-24.png");
 	cursor: pointer;
 }
 
 toolbar[iconsize="small"] #twitter-toolbar-button {
-	list-style-image: url("chrome://twitterbar/skin/twbtn_small.png");
+	list-style-image: url("chrome://twitterbar/skin/bird-16.png");
 }
 
 #twitter-toolbar-button:hover {

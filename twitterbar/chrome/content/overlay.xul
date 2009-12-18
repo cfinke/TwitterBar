@@ -60,7 +60,7 @@
 			<image id="twitter-statusbarbutton"
 				onclick="TWITTERBAR.post(true);"
 				tooltiptext="&twitter.post;"
-				src="chrome://twitterbar/skin/twitter.ico"
+				src="chrome://twitterbar/skin/bird-16.png"
 				/>
 			<spacer flex="1" />
 		</vbox>

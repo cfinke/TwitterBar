@@ -16,6 +16,7 @@
 		<menulist onchange="TWITTERBAR_OPTIONS.setShortener();" id="twitterbar-shortener-menu">
 			<menupopup>
 				<menuitem value="is.gd" label="is.gd" />
+				<menuitem value="bitly" label="bit.ly" />
 				<menuitem value="tinyurl" label="TinyURL" />
 				<menuitem value="" label="&twitter.noShortener;" />
 			</menupopup>

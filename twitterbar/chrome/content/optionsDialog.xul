@@ -26,6 +26,8 @@
     	    <preference id="pref-show-trends" name="extensions.twitter.showTrends" type="bool" />
     	    <preference id="pref-shortener" name="extensions.twitter.shortener" type="string" />
     	    <preference id="pref-hide-oneriot" name="extensions.twitter.oneriotButton" type="bool" />
+    	    <preference id="pref-bitly-login" name="extensions.twitter.bitlyLogin" type="string" />
+    	    <preference id="pref-bitly-api-key" name="extensions.twitter.bitlyApiKey" type="string" />
     	</preferences>
 		<checkbox id="twitter-tab" label="&twitter.tab;" preference="pref-open-after" />
 		<checkbox id="twitter-button" label="&twitter.button;" preference="pref-hide-button"/>
@@ -39,15 +41,38 @@
 			</hbox>
 			<description style="max-width: 400px;" control="twitter-web">&twitter.prefixDescription;</description>
 		</groupbox>
-		<groupbox orient="horizontal" align="center">
-		    <label control="shortener">URL Shortener:</label>
-		    <menulist preference="pref-shortener" flex="1">
-		        <menupopup>
-    		        <menuitem value="is.gd" label="is.gd" />
-                    <menuitem value="tinyurl" label="TinyURL" />
-                    <menuitem value="" label="&twitter.noShortener;" />
-                </menupopup>
-            </menulist>
+		<groupbox orient="vertical">
+			<hbox align="center">
+			    <label control="shortener">&twitter.shortener;</label>
+			    <menulist preference="pref-shortener" flex="1" oncommand="TWITTERBAR_OPTIONS.shortenerChange();" id="twitterbar-shortener-menu">
+			        <menupopup>
+	    		        <menuitem value="is.gd" label="is.gd" />
+	    		        <menuitem value="bitly" label="bit.ly" />
+	                    <menuitem value="tinyurl" label="TinyURL" />
+	                    <menuitem value="" label="&twitter.noShortener;" />
+	                </menupopup>
+	            </menulist>
+			</hbox>
+			
+			<vbox id="bitly-options" style="display: none;">
+				<description>&twitter.bitlyInstructions;</description>
+				<grid>
+					<columns>
+						<column/>
+						<column flex="1"/>
+					</columns>
+					<rows>
+						<row align="center">
+							<label control="bitly-login">&twitter.bitlyLogin;</label>
+							<textbox preference="pref-bitly-login" flex="1" />
+						</row>
+						<row align="center">
+							<label control="bitly-api-key">&twitter.bitlyApiKey;</label>
+							<textbox preference="pref-bitly-api-key" flex="1" />
+						</row>
+					</rows>
+				</grid>
+			</vbox>
 		</groupbox>
 		<groupbox style="height: 4em;">
 		    <description id="auth-summary" style="height: 2em;"></description>

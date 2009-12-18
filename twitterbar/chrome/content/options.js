@@ -17,6 +17,8 @@ var TWITTERBAR_OPTIONS = {
             label = TWITTERBAR_COMMON.strings.getString("twitterbar.noAuth");
         }
         
+		this.shortenerChange();
+
 		if (document.getElementById("auth-summary")) {
 			document.getElementById("auth-summary").textContent = label;
         	sizeToContent();
@@ -25,6 +27,15 @@ var TWITTERBAR_OPTIONS = {
 
 	setShortener : function () {
 		this.prefs.setCharPref("shortener", document.getElementById("twitterbar-shortener-menu").selectedItem.getAttribute("value"));
+	},
+	
+	shortenerChange : function () {
+		if (document.getElementById("twitterbar-shortener-menu").selectedItem.getAttribute("value") == "bitly") {
+			document.getElementById("bitly-options").style.display = '';
+		}
+		else {
+			document.getElementById("bitly-options").style.display = 'none';
+		}
 	},
 	
 	accept : function () {
