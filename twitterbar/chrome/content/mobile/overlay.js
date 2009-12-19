@@ -39,6 +39,8 @@ var TWITTERBAR = {
 		TWITTERBAR.trendTimer = setInterval(function () { TWITTERBAR_COMMON.getTrends(); }, 1000 * 60 * 60 * 2);
 		
 		setTimeout(function() { TWITTERBAR_COMMON.getTrends(); }, 1000 * 10);
+		
+		document.getElementById("addons-list").addEventListener("AddonOptionsLoad", TWITTERBAR_OPTIONS.mobileInit, false);
 	},
 	
 	unload : function () {
@@ -47,6 +49,8 @@ var TWITTERBAR = {
 		document.getElementById("browsers").removeEventListener("load", TWITTERBAR.DOMContentLoaded, true);
 		document.getElementById("urlbar-edit").removeEventListener("blur", TWITTERBAR.blur, true);
 		document.getElementById("urlbar-edit").removeEventListener("focus", TWITTERBAR.focus, true);
+		
+		document.getElementById("addons-list").removeEventListener("AddonOptionsLoad", TWITTERBAR_OPTIONS.mobileInit, false);
 		
 		clearInterval(TWITTERBAR.trendTimer);
 	},

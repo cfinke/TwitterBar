@@ -25,16 +25,44 @@ var TWITTERBAR_OPTIONS = {
 		}
     },
 
+	mobileInit : function (e) {
+		if (document.getElementById("twitterbar-shortener-menu")) {
+			document.getElementById("twitterbar-shortener-menu").value = TWITTERBAR_OPTIONS.prefs.getCharPref("shortener");
+			
+			TWITTERBAR_OPTIONS.init();
+		}
+	},
+
 	setShortener : function () {
 		this.prefs.setCharPref("shortener", document.getElementById("twitterbar-shortener-menu").selectedItem.getAttribute("value"));
+		
+		this.shortenerChange();
 	},
 	
 	shortenerChange : function () {
-		if (document.getElementById("twitterbar-shortener-menu").selectedItem.getAttribute("value") == "bitly") {
-			document.getElementById("bitly-options").style.display = '';
-		}
-		else {
-			document.getElementById("bitly-options").style.display = 'none';
+		if (document.getElementById("twitterbar-shortener-menu")) {
+			if (document.getElementById("twitterbar-shortener-menu").selectedItem.getAttribute("value") == "bitly") {
+				if (document.getElementById("bitly-options")) {
+					document.getElementById("bitly-options").style.display = '';
+				}
+				if (document.getElementById("twitter-bitly-login")) {
+					document.getElementById("twitter-bitly-login").style.display = '';
+				}
+				if (document.getElementById("twitter-bitly-api-key")) {
+					document.getElementById("twitter-bitly-api-key").style.display = '';
+				}
+			}
+			else {
+				if (document.getElementById("bitly-options")) {
+					document.getElementById("bitly-options").style.display = 'none';
+				}
+				if (document.getElementById("twitter-bitly-login")) {
+					document.getElementById("twitter-bitly-login").style.display = 'none';
+				}
+				if (document.getElementById("twitter-bitly-api-key")) {
+					document.getElementById("twitter-bitly-api-key").style.display = 'none';
+				}
+			}
 		}
 	},
 	
