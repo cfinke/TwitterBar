@@ -440,6 +440,11 @@ var TWITTERBAR = {
 					TWITTERBAR.log("Post ("+req.status+"): " + req.responseText);
 				}
 				
+				if (req.status != 200 || TWITTERBAR.covertMode) {
+					var image = document.getElementById('twitter-statusbarbutton');
+					image.src =  "chrome://twitterbar/skin/bird-16.png";
+				}
+				
 				if (req.status == 401) {
 					if (req.responseText.indexOf("expired") != -1) {
 						TWITTERBAR.reAuthorize();
@@ -467,9 +472,6 @@ var TWITTERBAR = {
 					}
 				}
 				else {
-					var image = document.getElementById('twitter-statusbarbutton');
-					image.src =  "chrome://twitterbar/skin/bird-16.png";
-					
 					TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.otherError", [ req.status, req.responseText ]));
 				}
 				
