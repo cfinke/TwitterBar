@@ -396,7 +396,6 @@ var TWITTERBAR = {
 			TWITTERBAR.log("postRequest: " + status);
 		}
 		
-		
 		TWITTERBAR.lastTweet = status;
 		
 		var accessor = {
@@ -416,6 +415,14 @@ var TWITTERBAR = {
 				["status", status]
 			]
 		};
+		
+		if (status.length > 140) {
+			if (!TWITTERBAR_COMMON.confirm(
+				TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.tooLong", [status.length]))) {
+				TWITTERBAR.afterPost(true);
+				return;
+			}
+		}
 		
 		var OAuth = TWITTERBAR_OAUTH();
 		
@@ -482,14 +489,14 @@ var TWITTERBAR = {
 		req.send(argstring);
 	},
 	
-	afterPost : function () {
+	afterPost : function (noSuccess) {
 		var urlbar = document.getElementById("urlbar");
 		
 		urlbar.value = this.lastUrl;
 		
 		gBrowser.selectedBrowser.userTypedValue = this.lastUrl;
 		
-		if (TWITTERBAR.prefs.getBoolPref("tab")){
+		if (!noSuccess && TWITTERBAR.prefs.getBoolPref("tab")){
 			getBrowser().selectedTab = getBrowser().addTab("http://twitter.com/" + TWITTERBAR.prefs.getCharPref("oauth_username"));
 		}
 		
