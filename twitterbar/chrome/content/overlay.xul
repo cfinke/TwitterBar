@@ -50,7 +50,7 @@
 			        hidden="true"
 				    onclick="TWITTERBAR.search(event, 'addressBarIcon');"
 				    tooltiptext="&twitter.searchSocial;"
-				    src="http://www.oneriot.com/images/favicon.ico"
+				    src="chrome://twitterbar/skin/oneriot.ico"
 				    />
 				<spacer flex="1" />
 			</vbox>
@@ -60,7 +60,7 @@
 			<image id="twitter-statusbarbutton"
 				onclick="TWITTERBAR.post(true);"
 				tooltiptext="&twitter.post;"
-				src="chrome://twitterbar/skin/bird-16.png"
+				src="chrome://twitterbar/skin/bird-16-full.png"
 				/>
 			<spacer flex="1" />
 		</vbox>

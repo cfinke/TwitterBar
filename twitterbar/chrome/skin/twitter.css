@@ -15,7 +15,7 @@
 }
 
 toolbar[iconsize="small"] #twitter-toolbar-button {
-	list-style-image: url("chrome://twitterbar/skin/bird-16.png");
+	list-style-image: url("chrome://twitterbar/skin/bird-16-full.png");
 }
 
 #twitter-toolbar-button:hover {

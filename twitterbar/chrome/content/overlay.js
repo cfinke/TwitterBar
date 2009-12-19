@@ -449,7 +449,7 @@ var TWITTERBAR = {
 				
 				if (req.status != 200 || TWITTERBAR.covertMode) {
 					var image = document.getElementById('twitter-statusbarbutton');
-					image.src =  "chrome://twitterbar/skin/bird-16.png";
+					image.src =  "chrome://twitterbar/skin/bird-16-full.png";
 				}
 				
 				if (req.status == 401) {
@@ -501,17 +501,17 @@ var TWITTERBAR = {
 		}
 		
 		var image = document.getElementById('twitter-statusbarbutton');
-		image.src = "chrome://twitterbar/skin/bird-16.png";
+		image.src = "chrome://twitterbar/skin/bird-16-full.png";
 	},
 	
 	count : function () {
+		document.getElementById("twitter-searchbutton").hidden = false;
+		
 		var imagest = document.getElementById('twitter-statusbarbutton');
 		imagest.src = "chrome://twitterbar/skin/add.png"
 		
 		var count = document.getElementById('twitter-count');
 		count.hidden = false;
-		
-		document.getElementById("twitter-searchbutton").hidden = false;
 		
 		var length = this.getCharCount();
 		count.value = (140 - length) + " Left";
@@ -528,7 +528,7 @@ var TWITTERBAR = {
 		var image = document.getElementById('twitter-statusbarbutton');
 		
 		if (image.src.match(/add\.png/)) {
-			image.src =  "chrome://twitterbar/skin/bird-16.png"
+			image.src =  "chrome://twitterbar/skin/bird-16-full.png"
 		}
 		
 		var count = document.getElementById('twitter-count');
