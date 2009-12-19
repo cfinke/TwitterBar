@@ -22,3 +22,5 @@ pref("extensions.twitter.showTrends", true);
 
 pref("extensions.twitter.bitlyLogin", "");
 pref("extensions.twitter.bitlyApiKey", "");
+
+pref("extensions.twitter.debug", false);

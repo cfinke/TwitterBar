@@ -11,7 +11,7 @@
 <!ENTITY twitter.prefixDescription "(You can use $$ as a placeholder for the page's title.)">
 
 <!ENTITY twitter.shortener "URL Shortener:">
-<!ENTITY twitter.noShortener "None (Let Twitter sort it out, probably with bit.ly)">
+<!ENTITY twitter.noShortener "None">
 <!ENTITY twitter.resetAuth "Reset Authorization Settings">
 <!ENTITY twitter.searchSocial "Search the social web for the text you've entered.">
 

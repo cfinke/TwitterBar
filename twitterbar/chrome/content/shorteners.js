@@ -18,7 +18,7 @@ var TWITTERBAR_SHORTENERS = {
 		}
 	},
 	
-	getUrlLength : function () {
+	getUrlLength : function (url) {
 		var shortener = TWITTERBAR_SHORTENERS.prefs.getCharPref("shortener");
 		
 		if (shortener == "tinyurl") {
@@ -28,8 +28,7 @@ var TWITTERBAR_SHORTENERS = {
 			return 20;
 		}
 		else if (shortener == "") {
-			// Twitter uses bit.ly.
-			return 20;
+			return url.length;
 		}
 		else {
 			// is.gd

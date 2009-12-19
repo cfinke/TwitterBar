@@ -1,4 +1,6 @@
 var TWITTERBAR = {
+	debug : false,
+	
 	lastTweet : null,
 	covertMode : false,
 	
@@ -12,6 +14,8 @@ var TWITTERBAR = {
 		TWITTERBAR.prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("extensions.twitter.");	
 		TWITTERBAR.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
 		TWITTERBAR.prefs.addObserver("", this, false);
+		
+		TWITTERBAR.debug = TWITTERBAR.prefs.getBoolPref("debug");
 		
 		if (TWITTERBAR.prefs.getCharPref("version") != this.version) {
 			TWITTERBAR.prefs.setCharPref("version", this.version);
@@ -149,6 +153,9 @@ var TWITTERBAR = {
 					} catch (e) { }
 				}
 			break;
+			case "debug":
+				TWITTERBAR.debug = TWITTERBAR.prefs.getBoolPref("debug");
+			break;
 		}
 	},
 	
@@ -200,6 +207,10 @@ var TWITTERBAR = {
 				
 				req.onreadystatechange = function () {
 					if (req.readyState == 4) {
+						if (TWITTERBAR.debug) {
+							TWITTERBAR.log("Auth (DOM) ("+req.status+"): " + req.responseText);
+						}
+						
 						if (req.status == 200) {
 							try {
 								var parts = req.responseText.split("&");
@@ -323,6 +334,10 @@ var TWITTERBAR = {
 		
 		req.onreadystatechange = function () {
 			if (req.readyState == 4) {
+				if (TWITTERBAR.debug) {
+					TWITTERBAR.log("Auth ("+req.status+"): " + req.responseText);
+				}
+				
 				if (req.status == 200) {
 					var parts = req.responseText.split("&");
 				
@@ -377,6 +392,11 @@ var TWITTERBAR = {
 	},
 	
 	postRequest : function (status) {
+		if (TWITTERBAR.debug) {
+			TWITTERBAR.log("postRequest: " + status);
+		}
+		
+		
 		TWITTERBAR.lastTweet = status;
 		
 		var accessor = {
@@ -416,6 +436,10 @@ var TWITTERBAR = {
 		
 		req.onreadystatechange = function () {
 			if (req.readyState == 4) {
+				if (TWITTERBAR.debug) {
+					TWITTERBAR.log("Post ("+req.status+"): " + req.responseText);
+				}
+				
 				if (req.status == 401) {
 					if (req.responseText.indexOf("expired") != -1) {
 						TWITTERBAR.reAuthorize();
@@ -514,9 +538,9 @@ var TWITTERBAR = {
 		var urls = status.match(/(https?:\/\/[^\s]+)/ig);
 		
 		if (urls) {
-			var urlLength = TWITTERBAR_SHORTENERS.getUrlLength();
-			
 			for (var i = 0; i < urls.length; i++) {
+				var urlLength = TWITTERBAR_SHORTENERS.getUrlLength(urls[i]);
+				
 				if (urls[i].length > urlLength) {
 					offset += (urls[i].length - urlLength);
 				}
@@ -580,5 +604,10 @@ var TWITTERBAR = {
 	
 	openOptions : function () {
 		openDialog('chrome://twitterbar/content/optionsDialog.xul', 'options', 'modal,centerscreen');
+	},
+
+	log : function (message) {
+		var consoleService = Components.classes["@mozilla.org/consoleservice;1"].getService(Components.interfaces.nsIConsoleService);
+		consoleService.logStringMessage("TWITTERBAR: " + message);
 	}
 };
