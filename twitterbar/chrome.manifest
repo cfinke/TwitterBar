@@ -28,4 +28,5 @@ locale      twitterbar    pt-PT    jar:chrome/twitterbar.jar!/locale/pt-PT/
 locale      twitterbar    ru-RU    jar:chrome/twitterbar.jar!/locale/ru-RU/
 locale      twitterbar    sk-SK    jar:chrome/twitterbar.jar!/locale/sk-SK/
 locale      twitterbar    sv-SE    jar:chrome/twitterbar.jar!/locale/sv-SE/
+locale      twitterbar    vi-VN    jar:chrome/twitterbar.jar!/locale/vi-VN/
 locale      twitterbar    zh-CN    jar:chrome/twitterbar.jar!/locale/zh-CN/
