@@ -16,3 +16,6 @@
 <!ENTITY twitter.search.p2 "Klicken Sie auf OK um eine Suchmaschine des Echtzeit-Suchdienstes &quot;OnRiot&quot; für das Soziale Netzwerk hinzuzufügen. Ihre aktuelle Suchmaschine geht dabei nicht verloren, Sie erhalten jedoch einen hervorragenden Echtzeit-Überblick auf die neuesten Nachrichten auf Twitter.">
 <!ENTITY twitter.search.checkbox "Ja, ich möchte die OneRiot Suche installieren und sie zu meiner Standardsuchmaschine machen.">
 <!ENTITY twitter.showTrends "Laufend weitere Themen in der Twitter-Sidebar anzeigen">
+<!ENTITY twitter.bitlyInstructions "Bitte geben Sie ihr bit.ly login und API key ein, falls Sie einen besitzen.">
+<!ENTITY twitter.bitlyLogin "Bit.ly login:">
+<!ENTITY twitter.bitlyApiKey "Bit.ly API key:">

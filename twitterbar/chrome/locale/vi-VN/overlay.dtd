@@ -16,3 +16,6 @@
 <!ENTITY twitter.search.p2 "Đánh dấu vào hộp kiểm dưới đây và click nút OK để bật tính năng tìm kiếm theo thời gian thực của OneRiot. Bạn sẽ không mất công cụ tìm kiếm hiện tại (nó vẫn sẽ có sẵn trong danh sách), mà còn có một công cụ tìm kiếm trực tiếp những gì nóng hổi đang diễn ra trên Twitter.">
 <!ENTITY twitter.search.checkbox "Có, tôi muốn cài đặt công cụ tìm kiếm OneRiot và đặt nó là công cụ tìm kiếm mặc định.">
 <!ENTITY twitter.showTrends "Hiển thị các chủ đề đang diễn ra trên thanh Twitter bên cạnh.">
+<!ENTITY twitter.bitlyInstructions "Hãy điền thông tin đăng nhập trang bit.ly và khóa API (nếu có).">
+<!ENTITY twitter.bitlyLogin "Đăng nhập bit.ly:">
+<!ENTITY twitter.bitlyApiKey "Khóa API tại Bit.ly:">
