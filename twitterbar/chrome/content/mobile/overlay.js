@@ -21,11 +21,29 @@ var TWITTERBAR = {
 		
 		TWITTERBAR.debug = TWITTERBAR.prefs.getBoolPref("debug");
 		
-		if (TWITTERBAR.prefs.getCharPref("version") != this.version) {
-			TWITTERBAR.prefs.setCharPref("version", this.version);
-			
+		var showFirstRun = false;
+		var oldVersion = TWITTERBAR.prefs.getCharPref("version");
+		var newVersion = this.version;
+		
+		if (oldVersion != newVersion) {
+			TWITTERBAR.prefs.setCharPref("version", newVersion);
+		}
+		
+		if (!oldVersion) {
+			showFirstRun = true;
+		}
+		else {
+			var oldParts = oldVersion.split(".");
+			var newParts = newVersion.split(".");
+		
+			if (newParts[0] != oldParts[0] || newParts[1] != oldParts[1]) {
+				showFirstRun = true;
+			}
+		}
+		
+		if (showFirstRun) {
 			setTimeout(function () {
-				Browser.addTab("http://www.chrisfinke.com/firstrun/twitterbar.php", true);
+				Browser.addTab("http://www.chrisfinke.com/firstrun/twitterbar.php?v=" + newVersion, true);
 			}, 3000);
 		}
 		
@@ -45,6 +63,9 @@ var TWITTERBAR = {
 		setTimeout(function() { TWITTERBAR_COMMON.getTrends(); }, 1000 * 10);
 		
 		document.getElementById("addons-list").addEventListener("AddonOptionsLoad", TWITTERBAR_OPTIONS.mobileInit, false);
+	},
+	
+	showFirstRun : function () {
 	},
 	
 	unload : function () {

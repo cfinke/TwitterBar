@@ -17,13 +17,31 @@ var TWITTERBAR = {
 		
 		TWITTERBAR.debug = TWITTERBAR.prefs.getBoolPref("debug");
 		
-		if (TWITTERBAR.prefs.getCharPref("version") != this.version) {
-			TWITTERBAR.prefs.setCharPref("version", this.version);
-			
+		var showFirstRun = false;
+		var oldVersion = TWITTERBAR.prefs.getCharPref("version");
+		var newVersion = this.version;
+		
+		if (oldVersion != newVersion) {
+			TWITTERBAR.prefs.setCharPref("version", newVersion);
+		}
+		
+		if (!oldVersion) {
+			showFirstRun = true;
+		}
+		else {
+			var oldParts = oldVersion.split(".");
+			var newParts = newVersion.split(".");
+		
+			if (newParts[0] != oldParts[0] || newParts[1] != oldParts[1]) {
+				showFirstRun = true;
+			}
+		}
+		
+		if (showFirstRun) {
 			var browser = getBrowser();
 			
 			setTimeout(function (browser) {
-				browser.selectedTab = browser.addTab("http://www.chrisfinke.com/firstrun/twitterbar.php");
+				browser.selectedTab = browser.addTab("http://www.chrisfinke.com/firstrun/twitterbar.php?v=" + newVersion);
 			}, 3000, browser);
 		}
 		
