@@ -21,12 +21,19 @@
 		<stringbundle id="twitterbar-strings" src="chrome://twitterbar/locale/overlay.properties" />
 	</stringbundleset>
 	
+	<popupset id="mainPopupSet">
+		<popup id="twitterbarContextMenu">
+			<menuitem label="&twitter.options;" oncommand="TWITTERBAR.openOptions();" />
+		</popup>
+	</popupset>
+	
 	<toolbarpalette id="BrowserToolbarPalette">
 		<toolbarbutton
 			id="twitter-toolbar-button"
 			label="TwitterBar"
 			tooltiptext="&twitter.post;"
 			oncommand="TWITTERBAR.post()"
+			context="twitterbarContextMenu"
 			/>
 		<toolbaritem id="twittercountcon">
 			<vbox>
@@ -58,9 +65,10 @@
 		<vbox flex="1">
 			<spacer flex="1" />
 			<image id="twitter-statusbarbutton"
-				onclick="TWITTERBAR.post(true);"
+				onclick="TWITTERBAR.onButtonClick(event);"
 				tooltiptext="&twitter.post;"
 				src="chrome://twitterbar/skin/bird-16-full.png"
+				context="twitterbarContextMenu"
 				/>
 			<spacer flex="1" />
 		</vbox>

@@ -18,14 +18,6 @@ toolbar[iconsize="small"] #twitter-toolbar-button {
 	list-style-image: url("chrome://twitterbar/skin/bird-16-full.png");
 }
 
-#twitter-toolbar-button:hover {
-	list-style-image: url("chrome://twitterbar/skin/add.png");
-}
-
-toolbar[iconsize="small"] #twitter-toolbar-button:hover {
-	list-style-image: url("chrome://twitterbar/skin/add.png");
-}
-
 #twitter-searchbutton {
     -moz-appearance: none;
 	padding: 1px !important;

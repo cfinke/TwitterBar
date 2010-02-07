@@ -629,6 +629,12 @@ var TWITTERBAR = {
 		this.toolbarCount();
 	},
 	
+	onButtonClick : function (e) {
+		if (e.button != 2){ 
+			TWITTERBAR.post(true);
+		}
+	},
+	
 	openOptions : function () {
 		openDialog('chrome://twitterbar/content/optionsDialog.xul', 'options', 'modal,centerscreen');
 	},
