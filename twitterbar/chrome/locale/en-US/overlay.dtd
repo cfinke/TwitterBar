@@ -12,7 +12,6 @@
 
 <!ENTITY twitter.shortener "URL Shortener:">
 <!ENTITY twitter.noShortener "None">
-<!ENTITY twitter.resetAuth "Reset Authorization Settings">
 <!ENTITY twitter.searchSocial "Search the social web for the text you've entered.">
 
 <!ENTITY twitter.search.p1 "TwitterBar wants to know if you'd like to search the latest trends on Twitter, Digg, and the rest of the social Web from your search bar.">
@@ -26,3 +25,22 @@
 <!ENTITY twitter.bitlyApiKey "Bit.ly API key:">
 
 <!ENTITY twitter.options "Options...">
+
+<!ENTITY twitter.chooseAccountTitle "Choose an Account...">
+<!ENTITY twitter.chooseAccount "Which account do you want to post to?">
+<!ENTITY twitter.newAccount "New:">
+
+<!ENTITY twitter.addAccount "Add Account">
+<!ENTITY twitter.multiAccountInstructions "To post to a specific account, just type --@account_name at the end of your tweet (but before --post).">
+<!ENTITY twitter.account "Account">
+<!ENTITY twitter.authorizedOn "Authorized On...">
+
+<!ENTITY twitter.followTitle "Will you be my friend?">
+<!ENTITY twitter.followMessage "Would you like to follow @twtrbar to get the latest news and updates about TwitterBar?">
+<!ENTITY twitter.followOK "Sure!">
+<!ENTITY twitter.followNo "No Thanks">
+
+<!ENTITY twitter.didYouKnow "Did you know...">
+<!ENTITY twitter.multipleHowTo1 "Did you know that you can manage multiple Twitter accounts with TwitterBar? It's true!">
+<!ENTITY twitter.multipleHowTo2 "To add a new account, just type '--account' in the URL bar.  You'll be prompted to sign into Twitter with the new account.">
+<!ENTITY twitter.multipleHowTo3 "To post to a specific account, just type --@account_name at the end of your tweet (but before typing --post). e.g., 'Tweeting from my personal account. --@jimmy2424 --post'.">

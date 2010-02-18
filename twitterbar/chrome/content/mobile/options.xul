@@ -25,8 +25,4 @@
 	
 	<setting id="twitter-bitly-login" title="&twitter.bitlyLogin;" type="string" pref="extensions.twitter.bitlyLogin" style="display: none;" />
 	<setting id="twitter-bitly-api-key" title="&twitter.bitlyApiKey;" type="string" pref="extensions.twitter.bitlyApiKey" style="display: none;" />
-    
-	<setting type="button" id="twitterbar-auth-summary" title="">
-		<button label="&twitter.resetAuth;" id="twittebar-auto-button" oncommand="TWITTERBAR_OPTIONS.clearAuth();" />
-	</setting>
 </vbox>

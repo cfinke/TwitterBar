@@ -63,9 +63,8 @@ var TWITTERBAR = {
 		setTimeout(function() { TWITTERBAR_COMMON.getTrends(); }, 1000 * 10);
 		
 		document.getElementById("addons-list").addEventListener("AddonOptionsLoad", TWITTERBAR_OPTIONS.mobileInit, false);
-	},
-	
-	showFirstRun : function () {
+		
+		TWITTERBAR_COMMON.load();
 	},
 	
 	unload : function () {
@@ -114,68 +113,47 @@ var TWITTERBAR = {
 					}
 				}
 				
-				var accessor = {
-					consumerSecret : TWITTERBAR_COMMON.oauth.consumer_secret,
-					tokenSecret : TWITTERBAR_COMMON.oauth.request_token.oauth_token_secret
-				};
-
-				var message = {
-					action : TWITTERBAR_COMMON.oauth.serviceProvider.accessTokenURL,
-					method : "GET",
-					parameters : [
-						["oauth_consumer_key",TWITTERBAR_COMMON.oauth.consumer_key],
-						["oauth_token", token],
-						["oauth_signature_method",TWITTERBAR_COMMON.oauth.serviceProvider.signatureMethod],
-						["oauth_version","1.0"]
-					]
-				};
-				
-				var OAuth = TWITTERBAR_OAUTH();
-				
-				OAuth.setTimestampAndNonce(message);
-				OAuth.SignatureMethod.sign(message, accessor);
-				
-				var oAuthArgs = OAuth.getParameterMap(message.parameters);
-				var authHeader = OAuth.getAuthorizationHeader("http://twitter.com/", oAuthArgs);
-				
-				var req = new XMLHttpRequest();
-				req.mozBackgroundRequest = true;
-				req.open(message.method, message.action, true);
-				req.setRequestHeader("Authorization", authHeader);
-				
-				req.onreadystatechange = function () {
-					if (req.readyState == 4) {
-						if (TWITTERBAR.debug) {
-							TWITTERBAR.log("Auth (DOM) ("+req.status+"): " + req.responseText);
-						}
-						
-						if (req.status == 200) {
-							try {
-								var parts = req.responseText.split("&");
-						
-								TWITTERBAR.prefs.setCharPref("access_token.oauth_token", parts[0].split("=")[1]);
-								TWITTERBAR.prefs.setCharPref("access_token.oauth_token_secret", parts[1].split("=")[1]);
-
-								TWITTERBAR.prefs.setCharPref("oauth_timestamp", (new Date().getTime()));
+				function callback(req) {
+					if (req.status == 200) {
+						try {
+							var parts = req.responseText.split("&");
+							
+							var token = parts[0].split("=")[1];
+							var token_secret = parts[1].split("=")[1];
+							
+							TWITTERBAR_COMMON.accounts["_twitterbar"] = {"token" : token, "token_secret" : token_secret};
+							TWITTERBAR_COMMON.currentAccount = "_twitterbar";
+							
+							function callback(req) {
+								var json = JSON.parse(req.responseText);
+								var username = json.screen_name;
+								
+								TWITTERBAR_COMMON.setAccount(username, token_secret, token);
+								TWITTERBAR_COMMON.currentAccount = username;
 								
 								if (TWITTERBAR.lastTweet) {
 									TWITTERBAR.covertMode = true;
 									TWITTERBAR.postRequest(TWITTERBAR.lastTweet);
 								}
-							} catch (e) {
-								TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.otherError", [ e, req.responseText ]));
 							}
-						}
-						else if (req.status >= 500) {
-							TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getString("twitterbar.failWhale"));
-						}
-						else {
-							TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.otherError", [ req.status, req.responseText ]));
+							
+							TWITTERBAR_COMMON.apiRequest("http://twitter.com/account/verify_credentials.json", callback);
+						} catch (e) {
+							TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.otherError", [ e, req.responseText ]));
 						}
 					}
-				};
-
-				req.send(null);
+					else if (req.status >= 500) {
+						TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getString("twitterbar.failWhale"));
+					}
+					else {
+						TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.otherError", [ req.status, req.responseText ]));
+					}
+				}
+				
+				TWITTERBAR_COMMON.accounts["_twitterbar"] = {"token" : token, "token_secret" : ""};
+				TWITTERBAR_COMMON.currentAccount = "_twitterbar";
+				
+				TWITTERBAR_COMMON.apiRequest(TWITTERBAR_COMMON.oauth.serviceProvider.accessTokenURL, callback);
 			}
 			else if (TWITTERBAR.prefs.getBoolPref("showTrends")){
 				try {
@@ -233,74 +211,59 @@ var TWITTERBAR = {
 	},
 	
 	reAuthorize : function () {
-		TWITTERBAR.prefs.setCharPref("oauth_username", "");
-		TWITTERBAR.prefs.setCharPref("access_token.oauth_token", "");
-		TWITTERBAR.prefs.setCharPref("access_token.oauth_token_secret", "");
-		TWITTERBAR.prefs.setCharPref("oauth_timestamp", "");
-		
-		this.oAuthorize();
+		this.addAccount();
 	},
 	
-	oAuthorize : function () {
-		var accessor = {
-			consumerSecret : TWITTERBAR_COMMON.oauth.consumer_secret,
-			tokenSecret : ""
-		};
+	addAccount : function (hidePrompt) {
+		var lastAccount = TWITTERBAR_COMMON.currentAccount;
 		
-		var message = {
-			action : TWITTERBAR_COMMON.oauth.serviceProvider.requestTokenURL,
-			method : "GET",
-			parameters : [
-				["oauth_consumer_key",TWITTERBAR_COMMON.oauth.consumer_key],
-				["oauth_signature_method",TWITTERBAR_COMMON.oauth.serviceProvider.signatureMethod],
-				["oauth_version","1.0"]
-			]
-		};
+		TWITTERBAR_COMMON.accounts["_twitterbar"] = {"token" : "", "token_secret" : ""};
+		TWITTERBAR_COMMON.currentAccount = "_twitterbar";
 		
-		var OAuth = TWITTERBAR_OAUTH();
-		
-		OAuth.setTimestampAndNonce(message);
-		OAuth.SignatureMethod.sign(message, accessor);
-		
-		var oAuthArgs = OAuth.getParameterMap(message.parameters);
-		var authHeader = OAuth.getAuthorizationHeader("http://twitter.com/", oAuthArgs);
-		
-		var req = new XMLHttpRequest();
-		req.mozBackgroundRequest = true;
-		req.open(message.method, message.action, true);
-		req.setRequestHeader("Authorization", authHeader);
-		
-		req.onreadystatechange = function () {
-			if (req.readyState == 4) {
-				if (TWITTERBAR.debug) {
-					TWITTERBAR.log("Auth ("+req.status+"): " + req.responseText);
-				}
-				
-				if (req.status == 200) {
-					var parts = req.responseText.split("&");
-				
-					try {
-						TWITTERBAR_COMMON.oauth.request_token.oauth_token = parts[0].split("=")[1];
-						TWITTERBAR_COMMON.oauth.request_token.oauth_token_secret = parts[1].split("=")[1];
+		this.oAuthorize(hidePrompt, lastAccount);
+	},
+	
+	oAuthorize : function (hidePrompt, lastAccount) {
+		function callback(req) {
+			if (req.status == 200) {
+				var parts = req.responseText.split("&");
+			
+				try {
+					TWITTERBAR_COMMON.oauth.request_token.oauth_token = parts[0].split("=")[1];
+					TWITTERBAR_COMMON.oauth.request_token.oauth_token_secret = parts[1].split("=")[1];
 					
-						if (TWITTERBAR_COMMON.confirm(TWITTERBAR_COMMON.strings.getString("twitterbar.oauthRequest1") + "\n\n" + TWITTERBAR_COMMON.strings.getString("twitterbar.oauthRequest2"))) {
-							Browser.addTab("http://twitter.com/oauth/authorize?oauth_token="+TWITTERBAR_COMMON.oauth.request_token.oauth_token, true);
-							BrowserUI.activeDialog.close();
-						}
-					} catch (e) {
-						TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getString("twitterbar.oauthError1") + "\n\n" + e + "\n\n" + req.responseText);
+					var message = "";
+					
+					if (!lastAccount || lastAccount == "_twitterbar") {
+						message = TWITTERBAR_COMMON.strings.getString("twitterbar.oauthRequest1");
 					}
-				}
-				else if (req.status >= 500) {
-					TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getString("twitterbar.failWhale"));
-				}
-				else {
-					TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.otherError", [ req.status, req.responseText ]));
+					else {
+						message = TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.oauthRequest1a", [ lastAccount ]);
+					}
+					
+					message += "\n\n";
+					message += TWITTERBAR_COMMON.strings.getString("twitterbar.oauthRequest2");
+				
+					if (hidePrompt || (TWITTERBAR_COMMON.confirm(message))) {
+						Browser.addTab("http://twitter.com/oauth/authorize?oauth_token="+TWITTERBAR_COMMON.oauth.request_token.oauth_token, true);
+						BrowserUI.activeDialog.close();
+					}
+					else if (!hidePrompt) {
+						TWITTERBAR.afterPost(true);
+					}
+				} catch (e) {
+					TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getString("twitterbar.oauthError1") + "\n\n" + e + "\n\n" + req.responseText);
 				}
 			}
-		};
+			else if (req.status >= 500) {
+				TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getString("twitterbar.failWhale"));
+			}
+			else {
+				TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.otherError", [ req.status, req.responseText ]));
+			}
+		}
 		
-		req.send(null);
+		TWITTERBAR_COMMON.apiRequest(TWITTERBAR_COMMON.oauth.serviceProvider.requestTokenURL, callback);
 	},
 	
 	post : function (clickedOnButton) {
@@ -310,21 +273,10 @@ var TWITTERBAR = {
 			}
 		}
 		
-		document.getElementById("twitter-statusbarbutton").setAttribute("busy","true");
-		
 		var urlbar = document.getElementById("urlbar-edit");
-		var status = urlbar.value.replace("$$", content.document.title);
+		var status = urlbar.value;
 		
-		if (status.match(/^https?:\/\/[^\s]+$/i)) {
-			this.lastUrl = status;
-			
-			var prefix = (TWITTERBAR.prefs.getCharPref("web").replace("$$", content.document.title).replace(/^\s+|\s+$/, "") + " ");
-			status = prefix + status;
-		}
-		
-		urlbar.value = TWITTERBAR_COMMON.strings.getString("twitterbar.posting");
-		
-		TWITTERBAR_SHORTENERS.shortenUrls(status, function (status) { TWITTERBAR.postRequest(status); });
+		TWITTERBAR.startPost(status);
 	},
 	
 	postRequest : function (status) {
@@ -334,91 +286,80 @@ var TWITTERBAR = {
 		
 		TWITTERBAR.lastTweet = status;
 		
-		var accessor = {
-			consumerSecret : TWITTERBAR_COMMON.oauth.consumer_secret,
-			tokenSecret : TWITTERBAR.prefs.getCharPref("access_token.oauth_token_secret")
-		};
-
-		var message = {
-			action : "http://twitter.com/statuses/update.xml",
-			method : "POST",
-			parameters : [
-				["oauth_consumer_key",TWITTERBAR_COMMON.oauth.consumer_key],
-				["oauth_token", TWITTERBAR.prefs.getCharPref("access_token.oauth_token")],
-				["oauth_signature_method",TWITTERBAR_COMMON.oauth.serviceProvider.signatureMethod],
-				["oauth_version","1.0"],
-				["source","twitterbar"],
-				["status", status]
-			]
-		};
+		if (!TWITTERBAR_COMMON.oauth_token || !TWITTERBAR_COMMON.oauth_token_secret) {
+			TWITTERBAR.afterPost(true);
+			
+			TWITTERBAR.reAuthorize();
+			return;
+		}
 		
-		var OAuth = TWITTERBAR_OAUTH();
+		if (status.length > 140) {
+			if (!TWITTERBAR_COMMON.confirm(
+				TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.tooLong", [status.length]))) {
+				TWITTERBAR.afterPost(true);
+				return;
+			}
+		}
 		
-		OAuth.setTimestampAndNonce(message);
-		OAuth.SignatureMethod.sign(message, accessor);
-		
-		var argstring = "source=twitterbar&status=" + encodeURIComponent(status);
-
-		var oAuthArgs = OAuth.getParameterMap(message.parameters);
-		var authHeader = OAuth.getAuthorizationHeader("http://twitter.com/", oAuthArgs);
-		
-		var req = new XMLHttpRequest();
-		req.mozBackgroundRequest = true;
-		req.open(message.method, message.action, true);
-		req.setRequestHeader("Authorization", authHeader);
-		req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		req.setRequestHeader("Content-Length", argstring.length);
-		
-		req.onreadystatechange = function () {
-			if (req.readyState == 4) {
-				if (TWITTERBAR.debug) {
-					TWITTERBAR.log("Post ("+req.status+"): " + req.responseText);
-				}
-				
-				document.getElementById("twitter-statusbarbutton").removeAttribute("busy");
-				
-				if (req.status == 401) {
-					if (req.responseText.indexOf("expired") != -1) {
-						TWITTERBAR.reAuthorize();
-					}
-					else {
-						TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.twitterError", [ req.status, req.responseText ]));
-					}
-					
-					// I think TwitterBar sends a 401 when you've hit your rate limit.
-					// This is the reason so many people complained about being asked to reauthorize.
-				}
-				else if (req.status >= 500) {
-					TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getString("twitterbar.failWhale"));
-				}
-				else if (req.status == 200) {
-					TWITTERBAR.lastTweet = null;
-					
-					if (!TWITTERBAR.covertMode) {
-						document.getElementById("urlbar-edit").value = TWITTERBAR_COMMON.strings.getString("twitterbar.success");
-
-						setTimeout(function () { TWITTERBAR.afterPost(); }, 1000);
-					}
+		function callback(req) {
+			document.getElementById("twitter-statusbarbutton").removeAttribute("busy");
+			
+			if (req.status == 401) {
+				if (req.responseText.indexOf("expired") != -1) {
+					TWITTERBAR.reAuthorize();
 				}
 				else {
-					TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.otherError", [ req.status, req.responseText ]));
+					TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.twitterError", [ req.status, req.responseText ]));
 				}
 				
-				TWITTERBAR.covertMode = false;
+				// I think Twitter sends a 401 when you've hit your rate limit.
+				// This is the reason so many people complained about being asked to reauthorize.
 			}
-		};
+			else if (req.status >= 500) {
+				TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getString("twitterbar.failWhale"));
+			}
+			else if (req.status == 200) {
+				TWITTERBAR.lastTweet = null;
+				
+				if (!TWITTERBAR.covertMode) {
+					document.getElementById("urlbar-edit").value = TWITTERBAR_COMMON.strings.getString("twitterbar.success");
+					
+					var json = JSON.parse(req.responseText);
+					
+					setTimeout(function () { TWITTERBAR.afterPost(false, json.status.user.screen_name); }, 1000);
+				}
+			}
+			else {
+				TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.otherError", [ req.status, req.responseText ]));
+			}
+			
+			TWITTERBAR.covertMode = false;
+		}
 		
-		req.send(argstring);
+		var args = [
+				["source","twitterbar"],
+				["status", status]
+			];
+		
+		TWITTERBAR_COMMON.apiRequest("http://twitter.com/statuses/update.json", callback, args, "POST");
 	},
 	
-	afterPost : function () {
+	afterPost : function (noSuccess, screenname) {
 		var urlbar = document.getElementById("urlbar-edit");
 		urlbar.value = this.lastUrl;
 		
-		if (TWITTERBAR.prefs.getBoolPref("tab")){
-			Browser.addTab("http://twitter.com/" + TWITTERBAR.prefs.getCharPref("oauth_username"), true);
+		if (!noSuccess && TWITTERBAR.prefs.getBoolPref("tab")){
+			var url = "http://twitter.com/";
+			
+			if (screenname) {
+				url += screenname;
+			}
+			
+			Browser.addTab(url, true);
 			BrowserUI.activeDialog.close();
 		}
+		
+		document.getElementById("twitter-statusbarbutton").removeAttribute("busy");
 	},
 	
 	getCharCount : function () {
@@ -457,22 +398,73 @@ var TWITTERBAR = {
 			var status = urlbar.value;
 
 			if (status.indexOf(" --post") != -1){
-				var status = status.split(" --post")[0].replace("$$", content.document.title);
+				var status = status.split(" --post")[0];
 				
-				if (status.match(/^https?:\/\//i)) {
-					var webtext = (TWITTERBAR.prefs.getCharPref("web").replace("$$", content.document.title).replace(/^\s+|\s+$/, "") + " ");
-					status = webtext + status;
-				}
+				TWITTERBAR.startPost(status);
+			}
+			else if (status.indexOf("--account") != -1) {
+				TWITTERBAR_COMMON.currentAccount = "";
 				
-				status = status.replace("$$", content.document.title)
-				
-				urlbar.value = TWITTERBAR_COMMON.strings.getString("twitterbar.posting");
-				
-				document.getElementById('twitter-statusbarbutton').setAttribute("busy", "true");
-				
-				TWITTERBAR_SHORTENERS.shortenUrls(status, function (status) { TWITTERBAR.postRequest(status); });
+				this.addAccount();
 			}
 		}
+	},
+	
+	startPost : function (status) {
+		status = status.replace("$$", content.document.title);
+
+		document.getElementById("twitter-statusbarbutton").setAttribute("busy","true");
+		
+		var account = "";
+		
+		if (status.indexOf(" --@") != -1) {
+			account = status.split(" --@")[1].replace(/^\s+|\s+$/g, "");
+			TWITTERBAR_COMMON.currentAccount = account;
+			status = status.split(" --@")[0];
+		}
+		
+		if (status.match(/^https?:\/\/[^\s]+$/i)) {
+			this.lastUrl = status;
+			
+			var prefix = (TWITTERBAR.prefs.getCharPref("web").replace("$$", content.document.title).replace(/^\s+|\s+$/, "") + " ");
+			status = prefix + status;
+		}
+		
+		var urlbar = document.getElementById("urlbar-edit");
+		
+		if (!account) {
+			var accounts = TWITTERBAR_COMMON.accounts;
+			var lastAccount = "";
+			
+			var j = 0;
+			
+			for (var i in accounts) {
+				lastAccount = i;
+				j++;
+			}
+			
+			if (j == 1) {
+				account = lastAccount;
+			}
+			else {
+				var rv = [];
+				
+				window.openDialog('chrome://twitterbar/content/accountPrompt.xul','twitterbar-prompt','chrome,modal', accounts, rv);
+				
+				if (!rv[0]) {
+					urlbar.value = status;
+					return;
+				}
+				else {
+					account = rv[0];
+				}
+			}
+		}
+		
+		
+		urlbar.value = TWITTERBAR_COMMON.strings.getString("twitterbar.posting");
+		
+		TWITTERBAR_SHORTENERS.shortenUrls(status, function (status) { TWITTERBAR.postRequest(status); });
 	},
 	
 	log : function (message) {

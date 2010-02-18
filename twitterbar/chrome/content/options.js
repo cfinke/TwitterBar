@@ -1,29 +1,83 @@
 var TWITTERBAR_OPTIONS = {
-	get prefs() { return Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).QueryInterface(Components.interfaces.nsIPrefBranch).getBranch("extensions.twitter."); },
+	prefs : null,
 	
 	get strings() { return document.getElementById("twitterbar-strings"); },
 	
 	init : function () {
-	    var authDate = this.prefs.getCharPref("oauth_timestamp");
-	    var label = "";
+		addEventListener("unload", TWITTERBAR_OPTIONS.unload, false);
+		
+		TWITTERBAR_OPTIONS.prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).QueryInterface(Components.interfaces.nsIPrefBranch).getBranch("extensions.twitter.");
+		TWITTERBAR_OPTIONS.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
+		TWITTERBAR_OPTIONS.prefs.addObserver("", TWITTERBAR_OPTIONS, false);
+		
+		TWITTERBAR_OPTIONS.shortenerChange();
+		TWITTERBAR_OPTIONS.showAccounts();
+		
+		sizeToContent();
+	},
 	
-	    if (authDate) {
-	        var niceDate = new Date();
-	        niceDate.setTime(authDate);
-	        
-	        label = TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.newAuthString", [ niceDate.toLocaleString() ]);
-        }
-        else {
-            label = TWITTERBAR_COMMON.strings.getString("twitterbar.noAuth");
-        }
-        
-		this.shortenerChange();
-
-		if (document.getElementById("auth-summary")) {
-			document.getElementById("auth-summary").textContent = label;
-        	sizeToContent();
+	unload : function () {
+		removeEventListener("unload", TWITTERBAR_OPTIONS.unload, false);
+		
+		TWITTERBAR_OPTIONS.prefs.removeObserver("", TWITTERBAR_OPTIONS);
+	},
+	
+	showAccounts : function () {
+		TWITTERBAR_COMMON.setUpAccount();
+		
+		var container = document.getElementById("auth-rows");
+		
+		var children = container.childNodes;
+		var len = children.length;
+		
+		for (var i = len - 1; i >= 1; i--) {
+			container.removeChild(container.lastChild);
 		}
-    },
+		
+		// List the authorized accounts, a remove button for each, and a button to add a new account.
+		var accounts = TWITTERBAR_COMMON.accounts;
+		
+		for (var i in accounts) {
+			if (i != "_twitterbar" && accounts[i].token) {
+				var oDate = new Date();
+				oDate.setTime(accounts[i].timestamp);
+			
+				var row = document.createElement("row");
+				row.setAttribute("align", "center");
+				
+				var name = document.createElement("label");
+				name.setAttribute("value", i);
+			
+				var date = document.createElement("label");
+				date.setAttribute("value", oDate.toDateString());
+			
+				var button = document.createElement("button");
+				button.setAttribute("label", "Remove");
+				button.account = i;
+				button.setAttribute("oncommand", "TWITTERBAR_COMMON.unsetAccount(this.account);");
+			
+				row.appendChild(name);
+				row.appendChild(date);
+				row.appendChild(button);
+			
+				container.appendChild(row);
+			}
+		}
+		
+		sizeToContent();
+	},
+	
+	observe : function(subject, topic, data) {
+		if (topic != "nsPref:changed") {
+			return;
+		}
+		
+		switch(data) {
+			case "accounts":
+				TWITTERBAR_OPTIONS.showAccounts();
+			break;
+		}
+	},
 
 	mobileInit : function (e) {
 		if (document.getElementById("twitterbar-shortener-menu")) {
@@ -34,9 +88,9 @@ var TWITTERBAR_OPTIONS = {
 	},
 
 	setShortener : function () {
-		this.prefs.setCharPref("shortener", document.getElementById("twitterbar-shortener-menu").selectedItem.getAttribute("value"));
+		TWITTERBAR_OPTIONS.prefs.setCharPref("shortener", document.getElementById("twitterbar-shortener-menu").selectedItem.getAttribute("value"));
 		
-		this.shortenerChange();
+		TWITTERBAR_OPTIONS.shortenerChange();
 	},
 	
 	shortenerChange : function () {
@@ -68,30 +122,19 @@ var TWITTERBAR_OPTIONS = {
 	
 	accept : function () {
 	    if (!document.getElementById("twitterbar-preference-window").instantApply) {
-		    this.prefs.setBoolPref("confirm", document.getElementById("pref-confirm").value);
-		    this.prefs.setCharPref("web", document.getElementById("pref-prefix").value);
-		    this.prefs.setBoolPref("tab", document.getElementById("pref-open-after").value);
-		    this.prefs.setBoolPref("button", document.getElementById("pref-hide-button").value);
-		    this.prefs.setBoolPref("oneriotButton", document.getElementById("pref-hide-oneriot").value);
-		    this.prefs.setCharPref("shortener", document.getElementById("pref-shortener").value);
-		    this.prefs.setBoolPref("showTrends", document.getElementById("pref-show-trends").value);
+		    TWITTERBAR_OPTIONS.prefs.setBoolPref("confirm", document.getElementById("pref-confirm").value);
+		    TWITTERBAR_OPTIONS.prefs.setCharPref("web", document.getElementById("pref-prefix").value);
+		    TWITTERBAR_OPTIONS.prefs.setBoolPref("tab", document.getElementById("pref-open-after").value);
+		    TWITTERBAR_OPTIONS.prefs.setBoolPref("button", document.getElementById("pref-hide-button").value);
+		    TWITTERBAR_OPTIONS.prefs.setBoolPref("oneriotButton", document.getElementById("pref-hide-oneriot").value);
+		    TWITTERBAR_OPTIONS.prefs.setCharPref("shortener", document.getElementById("pref-shortener").value);
+		    TWITTERBAR_OPTIONS.prefs.setBoolPref("showTrends", document.getElementById("pref-show-trends").value);
 		}
 		
 		return true;
 	},
 	
 	clearAuth : function () {
-        this.prefs.setCharPref("access_token.oauth_token", "");
-        this.prefs.setCharPref("access_token.oauth_token_secret", "");
-        this.prefs.setCharPref("oauth_timestamp", "");
-        
-		var label = TWITTERBAR_COMMON.strings.getString("twitterbar.noAuth");
-		
-		if (document.getElementById("twitterbar-auth-summary")) {
-			document.getElementById("twitterbar-auth-summary").setAttribute("title", label);
-		}
-		else {
-			document.getElementById("auth-summary").textContent = label;
-		}
+		/* todo */
     }
 };

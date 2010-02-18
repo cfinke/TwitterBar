@@ -23,6 +23,7 @@
 	
 	<popupset id="mainPopupSet">
 		<popup id="twitterbarContextMenu">
+			<menuitem label="&twitter.addAccount;" oncommand="TWITTERBAR.addAccount(true);" />
 			<menuitem label="&twitter.options;" oncommand="TWITTERBAR.openOptions();" />
 		</popup>
 	</popupset>
