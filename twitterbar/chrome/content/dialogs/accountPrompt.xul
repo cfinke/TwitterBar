@@ -7,8 +7,7 @@
 	buttons="accept,cancel"
 	style="min-height: 200px;"
 	onload="sizeToContent(); TWITTERBAR_PROMPT.load();"
-	ondialogaccept="return TWITTERBAR_PROMPT.accept();"
-	ondialogcancel="return TWITTERBAR_PROMPT.cancel();">
+	ondialogaccept="return TWITTERBAR_PROMPT.accept();">
 	<script type="application/x-javascript">
 		<![CDATA[
 		
@@ -18,27 +17,19 @@
 				var re = window.arguments[1];
 				var selected = false;
 				
-				var container = document.getElementById("account-rows");
+				var container = document.getElementById("account-group");
 				
 				for (var i in accounts) {
 					if (i != "_twitterbar" && accounts[i].token) {
-						var row = document.createElement("row");
-						row.setAttribute("align", "center");
-					
 						var radio = document.createElement("radio");
-						var label = document.createElement("label");
-					
 						radio.setAttribute("value", i);
-						label.setAttribute("value", i);
-						row.appendChild(radio);
-						row.appendChild(label);
+						radio.setAttribute("label", i);
 					
-						container.insertBefore(row, container.firstChild);
+						container.insertBefore(radio, container.firstChild);
 					}
 				}
 				
-				var rg = document.getElementById("account-group");
-				rg.selectedIndex = 0;
+				container.selectedIndex = 0;
 			},
 			
 			accept : function () {
@@ -53,39 +44,24 @@
 				rv[0] = account;
 				
 				return true;
-			},
-			
-			cancel : function () {
-				return true;
 			}
 		};
 		
 		]]>
 	</script>
-	<vbox>
-		<vbox>
+	<hbox>
+		<vbox align="center" pack="center">
 			<image src="chrome://twitterbar/skin/bird-64.png" style="padding: 20px;"/>
 		</vbox>
-		<vbox style="width: 350px; padding-left: 20px;" align="center" pack="center">
+		<vbox style="width: 300px;" align="center" pack="center">
 			<label>&twitter.chooseAccount;</label>
 			<spacer style="height: 10px;" />
 			<radiogroup id="account-group">
-				<grid>
-					<columns>
-						<column />
-						<column flex="1" />
-					</columns>
-					<rows id="account-rows">
-						<row>
-							<radio value="" />
-							<hbox align="center">
-								<label value="&twitter.newAccount;" />
-								<textbox id="new-account-name" flex="1" />
-							</hbox>
-						</row>
-					</rows>
-				</grid>
+				<hbox align="center">
+					<radio value="" label="&twitter.newAccount;" />
+					<textbox id="new-account-name" flex="1" />
+				</hbox>
 			</radiogroup>
 		</vbox>
-	</vbox>
+	</hbox>
 </dialog>
