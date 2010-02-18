@@ -19,3 +19,4 @@
 <!ENTITY twitter.bitlyInstructions "Bitte geben Sie ihr bit.ly login und API key ein, falls Sie einen besitzen.">
 <!ENTITY twitter.bitlyLogin "Bit.ly login:">
 <!ENTITY twitter.bitlyApiKey "Bit.ly API key:">
+<!ENTITY twitter.options "Einstellungen...">

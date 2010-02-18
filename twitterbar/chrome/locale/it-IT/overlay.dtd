@@ -19,3 +19,4 @@
 <!ENTITY twitter.bitlyInstructions "Inserire il nome utente e la chiave API di Bit.ly se disponibile">
 <!ENTITY twitter.bitlyLogin "Nome utente:">
 <!ENTITY twitter.bitlyApiKey "Chiave API:">
+<!ENTITY twitter.options "Opzioni...">

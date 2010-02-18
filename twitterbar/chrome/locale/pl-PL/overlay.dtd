@@ -19,3 +19,4 @@
 <!ENTITY twitter.bitlyInstructions "Wprowadź login oraz klucz API do serwisu bit.ly">
 <!ENTITY twitter.bitlyLogin "Login">
 <!ENTITY twitter.bitlyApiKey "Klucz API">
+<!ENTITY twitter.options "Opcje...">
