@@ -247,6 +247,9 @@ var TWITTERBAR_COMMON = {
 			if (TWITTERBAR.debug) {
 				TWITTERBAR.log("Doing it.");
 			}
+			
+			TWITTERBAR_COMMON.accounts["_twitterbar"] = {"token" : TWITTERBAR_COMMON.prefs.getCharPref("access_token.oauth_token"), "token_secret" : TWITTERBAR_COMMON.prefs.getCharPref("access_token.oauth_token_secret")};
+			TWITTERBAR_COMMON.currentAccount = "_twitterbar";
 				
 			TWITTERBAR_COMMON.apiRequest("http://twitter.com/account/verify_credentials.json", callback);
 			
