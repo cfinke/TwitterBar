@@ -63,24 +63,29 @@
 		]]>
 	</script>
 	<vbox>
-		<label>&twitter.chooseAccount;</label>
-		<spacer style="height: 10px;" />
-		<radiogroup id="account-group">
-			<grid>
-				<columns>
-					<column />
-					<column flex="1" />
-				</columns>
-				<rows id="account-rows">
-					<row>
-						<radio value="" />
-						<hbox align="center">
-							<label value="&twitter.newAccount;" />
-							<textbox id="new-account-name" flex="1" />
-						</hbox>
-					</row>
-				</rows>
-			</grid>
-		</radiogroup>
+		<vbox>
+			<image src="chrome://twitterbar/skin/bird-64.png" style="padding: 20px;"/>
+		</vbox>
+		<vbox style="width: 350px; padding-left: 20px;" align="center" pack="center">
+			<label>&twitter.chooseAccount;</label>
+			<spacer style="height: 10px;" />
+			<radiogroup id="account-group">
+				<grid>
+					<columns>
+						<column />
+						<column flex="1" />
+					</columns>
+					<rows id="account-rows">
+						<row>
+							<radio value="" />
+							<hbox align="center">
+								<label value="&twitter.newAccount;" />
+								<textbox id="new-account-name" flex="1" />
+							</hbox>
+						</row>
+					</rows>
+				</grid>
+			</radiogroup>
+		</vbox>
 	</vbox>
 </dialog>
