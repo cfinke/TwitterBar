@@ -223,17 +223,6 @@ var TWITTERBAR_COMMON = {
 				
 				var accounts_string = JSON.stringify(accounts);
 				TWITTERBAR_COMMON.prefs.setCharPref("accounts", accounts_string);
-				
-				TWITTERBAR_COMMON.prefs.setCharPref("access_token.oauth_token", "");
-				TWITTERBAR_COMMON.prefs.setCharPref("access_token.oauth_token_secret", "");
-				TWITTERBAR_COMMON.prefs.setCharPref("oauth_timestamp", "");
-			}
-			else {
-				if (req.status == 401) {
-					TWITTERBAR_COMMON.prefs.setCharPref("access_token.oauth_token", "");
-					TWITTERBAR_COMMON.prefs.setCharPref("access_token.oauth_token_secret", "");
-					TWITTERBAR_COMMON.prefs.setCharPref("oauth_timestamp", "");
-				}
 			}
 			
 			TWITTERBAR_COMMON.setUpAccount();
@@ -244,14 +233,14 @@ var TWITTERBAR_COMMON = {
 				TWITTERBAR_COMMON.prefs.getCharPref("access_token.oauth_token_secret") || 
 				TWITTERBAR_COMMON.prefs.getCharPref("oauth_timestamp")
 			) {
-			if (TWITTERBAR.debug) {
-				TWITTERBAR.log("Doing it.");
-			}
-			
 			TWITTERBAR_COMMON.accounts["_twitterbar"] = {"token" : TWITTERBAR_COMMON.prefs.getCharPref("access_token.oauth_token"), "token_secret" : TWITTERBAR_COMMON.prefs.getCharPref("access_token.oauth_token_secret")};
 			TWITTERBAR_COMMON.currentAccount = "_twitterbar";
 				
 			TWITTERBAR_COMMON.apiRequest("http://twitter.com/account/verify_credentials.json", callback);
+			
+			TWITTERBAR_COMMON.prefs.setCharPref("access_token.oauth_token", "");
+			TWITTERBAR_COMMON.prefs.setCharPref("access_token.oauth_token_secret", "");
+			TWITTERBAR_COMMON.prefs.setCharPref("oauth_timestamp", "");
 			
 			return false;
 		}
