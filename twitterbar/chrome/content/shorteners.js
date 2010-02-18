@@ -56,8 +56,10 @@ var TWITTERBAR_SHORTENERS = {
 						if (req.status == 200) {
 							try {
 								var shortUrl = req.responseText;
-							
-								status = status.replace(nextUrl + " ", shortUrl + " ");
+								
+								if (shortUrl.length < nextUrl.length) {
+									status = status.replace(nextUrl + " ", shortUrl + " ");
+								}
 							} catch (e) {
 							}
 						}
@@ -115,8 +117,10 @@ var TWITTERBAR_SHORTENERS = {
 								
 								if (json.errorCode == 0) {
 									var shortUrl = json.results[nextUrl].shortUrl;
-							
-									status = status.replace(nextUrl + " ", shortUrl + " ");
+									
+									if (shortUrl.length < nextUrl.length) {
+										status = status.replace(nextUrl + " ", shortUrl + " ");
+									}
 								}
 							} catch (e) {
 							}
@@ -158,7 +162,11 @@ var TWITTERBAR_SHORTENERS = {
 				req.onreadystatechange = function () {
 					if (req.readyState == 4) {
 						if (req.status == 200) {
-							status = status.replace(nextUrl + " ", req.responseText + " ");
+							var shortUrl = req.responseText;
+							
+							if (shortUrl.length < nextUrl.length) {
+								status = status.replace(nextUrl + " ", req.responseText + " ");
+							}
 						}
 
 						shortenNextUrl();
