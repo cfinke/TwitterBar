@@ -523,10 +523,12 @@ var TWITTERBAR = {
 		document.getElementById("twitter-searchbutton").hidden = true;
 	},
 	
-	getCharCount : function () {
-		var status = document.getElementById("urlbar").value;
-		status = status.replace("$$", content.document.title);
-		status = status.split(" --@")[0];
+	getCharCount : function (status) {
+		if (!status) {
+			var status = document.getElementById("urlbar").value;
+			status = status.replace("$$", content.document.title);
+			status = status.split(" --@")[0];
+		}
 		
 		var length = status.length;
 		
@@ -578,7 +580,7 @@ var TWITTERBAR = {
 
 				TWITTERBAR_COMMON.currentAccount = "";
 				
-				this.addAccount();
+				this.addAccount(true);
 			}
 			else if (status.indexOf("--options") != -1){
 				urlbar.value = this.lastUrl;
@@ -605,11 +607,37 @@ var TWITTERBAR = {
 		}
 		
 		if (status.match(/^https?:\/\//i)) {
-			var webtext = (TWITTERBAR.prefs.getCharPref("web").replace("$$", content.document.title).replace(/^\s+|\s+$/, "") + " ");
+			var webtext = (TWITTERBAR.prefs.getCharPref("web").replace(/^\s+|\s+$/, "") + " ");
 			status = webtext + status;
 		}
 		
-		status = status.replace("$$", content.document.title)
+		if (status.indexOf("$$") != -1) {
+			var currentLength = TWITTERBAR.getCharCount(status);
+			
+			var pageTitle = content.document.title;
+			
+			currentLength += pageTitle.length;
+			
+			if (currentLength > 140 && pageTitle.indexOf(" ") != -1) {
+				// Truncate the page title to make it fit.
+				var charactersToLose = currentLength - 140;
+				charactersToLose += 3; // ...
+				charactersToLose -= 2; // $$
+				
+				pageTitle = pageTitle.substring(0, pageTitle.length - charactersToLose);
+				
+				if (pageTitle.indexOf(" ") != -1) {
+					pageTitle = pageTitle.split(" ");
+					pageTitle.pop();
+					pageTitle = pageTitle.join(" ") + "...";
+				}
+				else {
+					pageTitle = content.document.title;
+				}
+			}
+			
+			status = status.replace(/\$\$/g, pageTitle);
+		}
 		
 		var urlbar = document.getElementById("urlbar");
 		urlbar.value = TWITTERBAR_COMMON.strings.getString("twitterbar.posting");
