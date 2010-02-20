@@ -34,6 +34,9 @@
 <!ENTITY twitter.multiAccountInstructions "To post to a specific account, just type --@account_name at the end of your tweet (but before --post).">
 <!ENTITY twitter.account "Account">
 <!ENTITY twitter.authorizedOn "Authorized On...">
+<!ENTITY twitter.remove "Remove">
+
+<!ENTITY twitter.noAccounts "You haven't authorized any accounts yet.">
 
 <!ENTITY twitter.followTitle "Will you be my friend?">
 <!ENTITY twitter.followMessage "Would you like to follow @twtrbar to get the latest news and updates about TwitterBar?">
