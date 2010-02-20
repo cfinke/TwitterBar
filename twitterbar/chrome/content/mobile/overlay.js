@@ -405,7 +405,7 @@ var TWITTERBAR = {
 			else if (status.indexOf("--account") != -1) {
 				TWITTERBAR_COMMON.currentAccount = "";
 				
-				this.addAccount();
+				this.addAccount(true);
 			}
 		}
 	},
