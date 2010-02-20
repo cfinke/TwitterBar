@@ -4,7 +4,7 @@ var TWITTERBAR_OPTIONS = {
 	get strings() { return document.getElementById("twitterbar-strings"); },
 	
 	init : function () {
-		addEventListener("unload", TWITTERBAR_OPTIONS.unload, false);
+		removeEventListener("load", TWITTERBAR_OPTIONS.load, false);
 		
 		TWITTERBAR_OPTIONS.prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).QueryInterface(Components.interfaces.nsIPrefBranch).getBranch("extensions.twitter.");
 		TWITTERBAR_OPTIONS.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
@@ -13,7 +13,7 @@ var TWITTERBAR_OPTIONS = {
 		TWITTERBAR_OPTIONS.shortenerChange();
 		TWITTERBAR_OPTIONS.showAccounts();
 		
-		sizeToContent();
+		addEventListener("unload", TWITTERBAR_OPTIONS.unload, false);
 	},
 	
 	unload : function () {
@@ -23,48 +23,37 @@ var TWITTERBAR_OPTIONS = {
 	},
 	
 	showAccounts : function () {
+		document.getElementById("accounts-deck").selectedIndex = 1;
+		
 		TWITTERBAR_COMMON.setUpAccount();
 		
-		var container = document.getElementById("auth-rows");
+		var list = document.getElementById("accounts-list");
+		list.removeAllItems();
+		list.selectedIndex = -1;
 		
-		var children = container.childNodes;
-		var len = children.length;
-		
-		for (var i = len - 1; i >= 1; i--) {
-			container.removeChild(container.lastChild);
-		}
-		
-		// List the authorized accounts, a remove button for each, and a button to add a new account.
 		var accounts = TWITTERBAR_COMMON.accounts;
 		
 		for (var i in accounts) {
 			if (i != "_twitterbar" && accounts[i].token) {
-				var oDate = new Date();
-				oDate.setTime(accounts[i].timestamp);
-			
-				var row = document.createElement("row");
-				row.setAttribute("align", "center");
+				list.appendItem(i, i);
 				
-				var name = document.createElement("label");
-				name.setAttribute("value", i);
-			
-				var date = document.createElement("label");
-				date.setAttribute("value", oDate.toDateString());
-			
-				var button = document.createElement("button");
-				button.setAttribute("label", "Remove");
-				button.account = i;
-				button.setAttribute("oncommand", "TWITTERBAR_COMMON.unsetAccount(this.account);");
-			
-				row.appendChild(name);
-				row.appendChild(date);
-				row.appendChild(button);
-			
-				container.appendChild(row);
+				list.selectedIndex = Math.max(0, list.selectedIndex);
+				document.getElementById("accounts-deck").selectedIndex = 0;
 			}
 		}
 		
-		sizeToContent();
+		if (list.selectedIndex >= 0) {
+			TWITTERBAR_OPTIONS.showAccount(list.value);
+		}
+	},
+	
+	showAccount : function (username) {
+		var accounts = TWITTERBAR_COMMON.accounts;
+		var account = accounts[username];
+		
+		var oDate = new Date();
+		oDate.setTime(account.timestamp);
+		document.getElementById("accounts-authtime").setAttribute("value", oDate.toDateString());
 	},
 	
 	observe : function(subject, topic, data) {
@@ -132,9 +121,5 @@ var TWITTERBAR_OPTIONS = {
 		}
 		
 		return true;
-	},
-	
-	clearAuth : function () {
-		/* todo */
-    }
+	}
 };

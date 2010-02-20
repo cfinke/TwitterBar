@@ -9,7 +9,7 @@
 	ondialogaccept="return TWITTERBAR_OPTIONS.accept();"
 	type="prefwindow"
 	buttons="accept,cancel"
-	style="width: 450px;">
+	style="max-width: 450px;">
 	<script type="application/x-javascript" src="chrome://twitterbar/content/options.js" />
 	<script type="application/x-javascript" src="chrome://twitterbar/content/common.js" />
 	
@@ -35,11 +35,11 @@
 		<checkbox id="twitter-confirm" label="&twitter.confirm;" preference="pref-confirm" />
 		<checkbox id="twitter-show-trends" label="&twitter.showTrends;" preference="pref-show-trends" />
 		<groupbox>
-		    <description style="max-width: 400px;" control="twitter-web">&twitter.prefixExplanation;</description>
+		    <description control="twitter-web">&twitter.prefixExplanation;</description>
 		    <hbox align="center">
 			    <textbox flex="1" id="twitter-web" preference="pref-prefix" />
 			</hbox>
-			<description style="max-width: 400px;" control="twitter-web">&twitter.prefixDescription;</description>
+			<description control="twitter-web">&twitter.prefixDescription;</description>
 		</groupbox>
 		<groupbox orient="vertical">
 			<hbox align="center">
@@ -75,25 +75,35 @@
 			</vbox>
 		</groupbox>
 		<groupbox id="auth">
-			<grid flex="1">
-				<columns>
-					<column flex="1" />
-					<column flex="1" />
-					<column />
-				</columns>
-				<rows id="auth-rows">
-					<row style="font-weight: bold;">
-						<label>&twitter.account;</label>
-						<label>&twitter.authorizedOn;</label>
-						<label></label>
-					</row>
-				</rows>
-			</grid>
+			<deck id="accounts-deck">
+				<grid flex="1" id="accounts-grid">
+					<columns>
+						<column flex="1" />
+						<column flex="1" />
+						<column />
+					</columns>
+					<rows>
+						<row style="font-weight: bold;">
+							<label>&twitter.account;</label>
+							<label>&twitter.authorizedOn;</label>
+							<label></label>
+						</row>
+						<row align="center">
+							<menulist id="accounts-list" oncommand="TWITTERBAR_OPTIONS.showAccount(this.value);">
+								<menupopup />
+							</menulist>
+							<label id="accounts-authtime" value="" />
+							<button oncommand="TWITTERBAR_COMMON.unsetAccount(document.getElementById('accounts-list').value);" label="&twitter.remove;" />
+						</row>
+					</rows>
+				</grid>
+				<label>&twitter.noAccounts;</label>
+			</deck>
 			<button oncommand="window.opener.TWITTERBAR.addAccount(true); window.opener.focus();" label="&twitter.addAccount;" />
 			<description>
 				&twitter.multiAccountInstructions;
 			</description>
 		</groupbox>
-		<spacer style="height: 75px;" />
+		<spacer style="height: 90px;" />
 	</prefpane>
 </prefwindow>

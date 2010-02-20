@@ -696,7 +696,8 @@ var TWITTERBAR = {
 	},
 	
 	openOptions : function () {
-		openDialog('chrome://twitterbar/content/optionsDialog.xul', 'options', 'centerscreen,resizable');
+		var d = openDialog('chrome://twitterbar/content/optionsDialog.xul', 'options', 'chrome,dialog,dependent,centerscreen,resizable');
+		d.focus();
 	},
 	
 	followTwtrbar : function () {
