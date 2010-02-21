@@ -5,7 +5,6 @@
 	title="&twitter.chooseAccountTitle;"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	buttons="accept,cancel"
-	style="min-height: 200px;"
 	onload="sizeToContent(); TWITTERBAR_PROMPT.load();"
 	ondialogaccept="return TWITTERBAR_PROMPT.accept();">
 	<script type="application/x-javascript">
@@ -17,25 +16,22 @@
 				var re = window.arguments[1];
 				var selected = false;
 				
-				var container = document.getElementById("account-group");
+				var list = document.getElementById("accounts-list");
 				
 				for (var i in accounts) {
 					if (i != "_twitterbar" && accounts[i].token) {
-						var radio = document.createElement("radio");
-						radio.setAttribute("value", i);
-						radio.setAttribute("label", i);
-					
-						container.insertBefore(radio, container.firstChild);
+						list.insertItemAt(0, i, i);
 					}
 				}
 				
-				container.selectedIndex = 0;
+				list.selectedIndex = 0;
+				TWITTERBAR_PROMPT.accountChange();
 			},
 			
 			accept : function () {
 				var rv = window.arguments[1];
 			
-				var account = document.getElementById("account-group").value;
+				var account = document.getElementById("accounts-list").value;
 				
 				if (account == "") {
 					account = document.getElementById("new-account-name").value;
@@ -44,6 +40,15 @@
 				rv[0] = account;
 				
 				return true;
+			},
+			
+			accountChange : function () {
+				if (document.getElementById("accounts-list").value == "") {
+					document.getElementById("new-account-name").style.display = "";
+				}
+				else {
+					document.getElementById("new-account-name").style.display = "none";
+				}
 			}
 		};
 		
@@ -56,12 +61,16 @@
 		<vbox style="width: 300px;" align="center" pack="center">
 			<label>&twitter.chooseAccount;</label>
 			<spacer style="height: 10px;" />
-			<radiogroup id="account-group">
-				<hbox align="center">
-					<radio value="" label="&twitter.newAccount;" />
-					<textbox id="new-account-name" flex="1" />
-				</hbox>
-			</radiogroup>
+			
+			<hbox align="center">
+				<menulist id="accounts-list" oncommand="TWITTERBAR_PROMPT.accountChange();" flex="1" style="min-width: 125px;">
+					<menupopup>
+						<menuitem label="&twitter.newAccount;" value="" />
+					</menupopup>
+				</menulist>
+				
+				<textbox id="new-account-name" style="display: none;" />
+			</hbox>
 		</vbox>
 	</hbox>
 </dialog>
