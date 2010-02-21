@@ -8,7 +8,6 @@
 <!ENTITY twitter.prefixExplanation "Du kan dela en länk till en sida du läser genom att klicka på Twitter-ikonen i adressfältet. Följande text kommer automatiskt att läggas till före URLen:">
 <!ENTITY twitter.prefixDescription "(Du kan använda $$ som en platshållare för sidrubriken.)">
 <!ENTITY twitter.noShortener "Ingen (Låt Twitter hantera det)">
-<!ENTITY twitter.resetAuth "Återställ Behörighetsinställningarna">
 <!ENTITY twitter.searchSocial "Sök i den sociala webben efter den text du angivit.">
 <!ENTITY twitter.search.p1 "TwitterBar vill veta om du vill söka efter de senaste trenderna på Twitter, Digg och resten av den sociala webben från din sökrad.">
 <!ENTITY twitter.search.p2 "Klicka på OK för att aktivera OneRiot's Real-Time Social Web Search. Du kommer inte att förlora din nuvarande sökmotor, men du kommer att vinna en fantastisk realtidsvy på vad som är inne på Twitter.">

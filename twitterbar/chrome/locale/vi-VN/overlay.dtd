@@ -10,7 +10,6 @@
 <!ENTITY twitter.prefixDescription "(Bạn có thể sử dụng $$ như ký tự dữ chỗ trên thanh tiêu đề của trang.)">
 <!ENTITY twitter.shortener "Rút ngắn địa chỉ trang web:">
 <!ENTITY twitter.noShortener "Không (Để Twitter tự phân loại, có lẽ là bằng bit.ly)">
-<!ENTITY twitter.resetAuth "Đổi về các thiết đặt ban đầu.">
 <!ENTITY twitter.searchSocial "Tìm kiếm đoạn chữ mà bạn vừa gõ trên các trang web xã hội.">
 <!ENTITY twitter.search.p1 "TwitterBar muốn biết bạn có thích tìm kiếm những thứ vừa diễn ra trên Twitter, Digg và toàn bộ phần còn lại của các trang xã hội bằng thanh tìm kiếm của bạn hay không?">
 <!ENTITY twitter.search.p2 "Đánh dấu vào hộp kiểm dưới đây và click nút OK để bật tính năng tìm kiếm theo thời gian thực của OneRiot. Bạn sẽ không mất công cụ tìm kiếm hiện tại (nó vẫn sẽ có sẵn trong danh sách), mà còn có một công cụ tìm kiếm trực tiếp những gì nóng hổi đang diễn ra trên Twitter.">

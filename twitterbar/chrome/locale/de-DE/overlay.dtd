@@ -10,7 +10,6 @@
 <!ENTITY twitter.prefixDescription "(Sie können $$ als Platzhalter für den Seitentitel nutzen.)">
 <!ENTITY twitter.shortener "Kurz-URL-Dienst:">
 <!ENTITY twitter.noShortener "Keiner (Twitter entscheiden lassen)">
-<!ENTITY twitter.resetAuth "Berechtigung jetzt zurückziehen">
 <!ENTITY twitter.searchSocial "Das soziale Netzwerk nach eingegebenen Text durchsuchen.">
 <!ENTITY twitter.search.p1 "TwitterBar möchte eine Suchmaschine des englischsprachigen Suchdienstes &quot;OnRiot&quot; hinzufügen, welche es ermöglicht die aktuellen Trends auf Twitter, Digg und vielen anderen Seiten des Sozialen Netzwerkes mit Hilfe der Suchleiste zu durchsuchen.">
 <!ENTITY twitter.search.p2 "Klicken Sie auf OK um eine Suchmaschine des Echtzeit-Suchdienstes &quot;OnRiot&quot; für das Soziale Netzwerk hinzuzufügen. Ihre aktuelle Suchmaschine geht dabei nicht verloren, Sie erhalten jedoch einen hervorragenden Echtzeit-Überblick auf die neuesten Nachrichten auf Twitter.">
@@ -20,3 +19,18 @@
 <!ENTITY twitter.bitlyLogin "Bit.ly login:">
 <!ENTITY twitter.bitlyApiKey "Bit.ly API key:">
 <!ENTITY twitter.options "Einstellungen...">
+<!ENTITY twitter.chooseAccountTitle "Wähle ein Konto...">
+<!ENTITY twitter.chooseAccount "Bei welchem Konto soll die Nachricht veröffentlicht werden?">
+<!ENTITY twitter.newAccount "Neu:">
+<!ENTITY twitter.addAccount "Konto hinzufügen">
+<!ENTITY twitter.multiAccountInstructions "um die Nachricht in einem bestimmten Konto zu veröffentlichen, geben Sie bitte --@account_name am Ende des Tweets (ab vor --post) ein.">
+<!ENTITY twitter.account "Konto">
+<!ENTITY twitter.authorizedOn "Autorisiert am...">
+<!ENTITY twitter.followTitle "Möchten Sie mein Freund sein?">
+<!ENTITY twitter.followMessage "Möchten Sie @twtrbar folgen, um die neuesten Nachrichten und Updates zu TwitterBar zu erhalten?">
+<!ENTITY twitter.followOK "Sicher!">
+<!ENTITY twitter.followNo "Nein Danke">
+<!ENTITY twitter.didYouKnow "Wissen Sie schon...">
+<!ENTITY twitter.multipleHowTo1 "Wussten Sie, dass Sie mehrere Konten bei Twitter mit TwitterBar verwalten können? Es ist wahr!">
+<!ENTITY twitter.multipleHowTo2 "um ein neues Konto hinzuzufügen geben Sie einfach --account in die Adressleiste ein. Sie werden anschließend auf gefordert sich bei Twitter mit ihrem neuen Konto anzumelden.">
+<!ENTITY twitter.multipleHowTo3 "Um Nachrichten über ein bestimmtes Konto zu senden, geben Sie einfach --@account_name am Ende des Tweets (aber vor --post) ein. Z.B. &quot;Nachricht von meinem persönlichen Konto --@jimmy2424 --post&quot;">

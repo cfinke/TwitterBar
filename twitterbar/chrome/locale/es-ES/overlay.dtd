@@ -10,9 +10,20 @@
 <!ENTITY twitter.prefixDescription "(Puedes usar $$ como un marcador el título de la página.)">
 <!ENTITY twitter.shortener "Simplificador de URL:">
 <!ENTITY twitter.noShortener "Ninguno (Dejar a Twitter ordenarlo, probablemente con bit.ly)">
-<!ENTITY twitter.resetAuth "Resetear opciones de autorización">
 <!ENTITY twitter.searchSocial "Buscar la web social para el texto que has introducido.">
 <!ENTITY twitter.search.p1 "TwitterBar quiere saber si quieres buscar las últimas tendencias en Twitter, Digg, y el resto de redes sociales desde tu barra de búsqueda.">
 <!ENTITY twitter.search.p2 "Marcar el cuadro de selección a continuación y pulse OK para activar el buscador de OneRiot de redes sociales. No perderás tu actual motor de búsqueda (estará disponible en la lista desplegable), pero ganarás un increíble visión en tiempo real de lo más actual en Twitter">
 <!ENTITY twitter.search.checkbox "Si, queiro instalar el buscador de OneRiot y hacerlo mi motor de busqueda predeterminado.">
 <!ENTITY twitter.showTrends "Mostrar temas actuales adicionales en la barra lateral de Twitter.">
+<!ENTITY twitter.options "Opciones...">
+<!ENTITY twitter.chooseAccountTitle "Elige una cuenta...">
+<!ENTITY twitter.newAccount "Nueva:">
+<!ENTITY twitter.addAccount "Añadir Cuenta">
+<!ENTITY twitter.multiAccountInstructions "Para publicar en una cuenta específica, tan sólo escribe --@nombre_de_cuenta al final de tu tweet (pero antes de --post).">
+<!ENTITY twitter.account "Cuenta">
+<!ENTITY twitter.followTitle "¿Serás mi amigo?">
+<!ENTITY twitter.followOK "¡Seguro!">
+<!ENTITY twitter.followNo "No gracias">
+<!ENTITY twitter.didYouKnow "¿Sabías qué...">
+<!ENTITY twitter.multipleHowTo1 "¿Sabías que puedes gestionar multiples cuentas de Twitter con TwitterBar? ¡Es cierto!">
+<!ENTITY twitter.multipleHowTo2 "Para añadir una nueva cuenta, tan sólo escribe '--cuenta' en la barra URL. Se te pedirá que inicies sesión en Twitter con la nueva cuenta.">

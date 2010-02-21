@@ -10,7 +10,6 @@
 <!ENTITY twitter.prefixDescription "(Użycie zmiennej $$ spowoduje dodanie tytułu strony)">
 <!ENTITY twitter.shortener "Skraczacz adresów:">
 <!ENTITY twitter.noShortener "Brak (pozwól Twitterowi skracać)">
-<!ENTITY twitter.resetAuth "Resetuj ustawienia autoryzacji">
 <!ENTITY twitter.searchSocial "Przeszukaj sieć pod kątem wpisanego tekstu">
 <!ENTITY twitter.search.p1 "TwitterBar chce wiedzieć, czy chcesz przeszukiwać najnowsze tredny Twittera, Digga, oraz reszty społecznościowej sieci z poziomu paska wyszukiwania.">
 <!ENTITY twitter.search.p2 "Kliknij OK, aby włączyć wyszukiwarkę OneRiot. Nie stracisz aktualnie ustawionej wyszukiwarki, lecz zyskasz podgląd na żywo ciekawostek z Twittera.">
@@ -20,3 +19,18 @@
 <!ENTITY twitter.bitlyLogin "Login">
 <!ENTITY twitter.bitlyApiKey "Klucz API">
 <!ENTITY twitter.options "Opcje...">
+<!ENTITY twitter.chooseAccountTitle "Wybierz konto...">
+<!ENTITY twitter.chooseAccount "Z którego konta chcesz wysłać wiadomość?">
+<!ENTITY twitter.newAccount "Nowe:">
+<!ENTITY twitter.addAccount "Dodaj konto">
+<!ENTITY twitter.multiAccountInstructions "W celu napisania wiadomości do wybranego konta wpisz --@nazwa_konta na końcu wiadomości (lecz przed komendą --post).">
+<!ENTITY twitter.account "Konto">
+<!ENTITY twitter.authorizedOn "Autoryzacja włączona...">
+<!ENTITY twitter.followTitle "Zechcesz zostać moim znajomym?">
+<!ENTITY twitter.followMessage "Chcesz śledzić @twtrbar w celu uzyskania najnowszych wiadomości i aktualizacji o rozszerzeniu TwitterBar?">
+<!ENTITY twitter.followOK "Oczywiście">
+<!ENTITY twitter.followNo "Nie, dzięki">
+<!ENTITY twitter.didYouKnow "Czy wiesz, że...">
+<!ENTITY twitter.multipleHowTo1 "Czy wiesz, że możesz zarządzać wieloma kontami Twiiter dzięki rozszerzeniu TwitterBar? To prawda!">
+<!ENTITY twitter.multipleHowTo2 "W celu dodania nowego konta wpisz '--account' w pasku adresu. Zostaniesz poinformowany o potrzebie zalogowania się w Twitterze korzystając z nowego konta.">
+<!ENTITY twitter.multipleHowTo3 "W celu napisania wiadomości do wybranego konta wpisz --@nazwa_konta na końcu wiadomości (lecz przed komendą --post). Na przykład, &quot;Piszę na moim osobistym koncie. --@jimmy2424 --post&quot;.">

@@ -10,7 +10,6 @@
 <!ENTITY twitter.prefixDescription "Per aggiungere il titolo della relativa pagina web utilizzare la variabile $$">
 <!ENTITY twitter.shortener "Servizio abbreviazione URL:">
 <!ENTITY twitter.noShortener "(nessuno)">
-<!ENTITY twitter.resetAuth "Resetta le impostazioni d'accesso">
 <!ENTITY twitter.searchSocial "Cerca il testo inserito nelle reti sociali">
 <!ENTITY twitter.search.p1 "È possibile effettuare la ricerca delle ultime tendenze su Twitter, Digg ed il resto delle reti sociali tramite la barra di ricerca del browser">
 <!ENTITY twitter.search.p2 "Selezionare la casella qui sotto e fare clic su OK per aggiungere il motore di ricerca OneRiot Search, che permetterà di visualizzare cosa accade nelle reti sociali in tempo reale. Il motore di ricerca attuale non verrà disinstallato restando disponibile nell'elenco a discesa">

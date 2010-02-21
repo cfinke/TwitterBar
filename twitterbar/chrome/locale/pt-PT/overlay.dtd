@@ -8,7 +8,6 @@
 <!ENTITY twitter.prefixExplanation "Pode partilhar uma ligação de uma página que está a ler clicando no ícone do Twitter na barra de endereço. O seguinte texto será adicionado automaticamente antes do URL:">
 <!ENTITY twitter.prefixDescription "(Pode usar $$ como um local de localização do título de páginas.]">
 <!ENTITY twitter.noShortener "Nenhum (Deixar o Twitter ordenar)">
-<!ENTITY twitter.resetAuth "Reiniciar definições de autorização">
 <!ENTITY twitter.searchSocial "Pesquisar na web social o texto que escreveu">
 <!ENTITY twitter.search.p1 "TwitterBar wants to know if you&apos;d like to search the latest trends on Twitter, Digg, and the rest of the social Web from your search bar.">
 <!ENTITY twitter.search.p2 "Click OK to enable OneRiot&apos;s Real-Time Social Web Search. You won&apos;t lose your current search engine, but you will gain an awesome real-time view of what&apos;s hot on Twitter.">

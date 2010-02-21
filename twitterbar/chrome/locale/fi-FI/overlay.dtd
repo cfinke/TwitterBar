@@ -10,7 +10,6 @@
 <!ENTITY twitter.prefixDescription "(Voit kirjoittaa $$ joka korvataan sivun otsikolla.)">
 <!ENTITY twitter.shortener "URL-lyhentäjä:">
 <!ENTITY twitter.noShortener "Ei mitään (anna Twitterin hoitaa asia)">
-<!ENTITY twitter.resetAuth "Nollaa tunnistusasetukset">
 <!ENTITY twitter.searchSocial "Etsi sosiaalisesta verkosta antamallasi tekstillä.">
 <!ENTITY twitter.search.p1 "TwitterBar haluaa tietää, haluatko etsiä viimeisimpiä trendejä Twitteristä, Diggistä tai muista sosiaalisista verkkopalveluista hakupalkistasi.">
 <!ENTITY twitter.search.p2 "Valitse valintalaatikko ja paina OK ottaaksesi käyttöön OneRiotin reaaliaikaisen verkkohaun. Et menetä nykyisiä hakukoneitasi (voit valita ne alasvetovalikosta) ja saat käyttöösi mahtavan reaaliaikaisen näkymän Twitterin trendeistä.">
