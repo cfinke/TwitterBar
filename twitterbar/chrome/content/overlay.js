@@ -663,7 +663,7 @@ var TWITTERBAR = {
 			else {
 				var rv = [];
 				
-				window.openDialog('chrome://twitterbar/content/dialogs/accountPrompt.xul','twitterbar-prompt','chrome,modal', accounts, rv);
+				window.openDialog('chrome://twitterbar/content/dialogs/accountPrompt.xul','twitterbar-prompt','chrome,modal', accounts, rv, TWITTERBAR_COMMON.currentAccount);
 				
 				if (!rv[0]) {
 					urlbar.value = status;

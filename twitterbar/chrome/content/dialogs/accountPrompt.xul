@@ -5,7 +5,8 @@
 	title="&twitter.chooseAccountTitle;"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	buttons="accept,cancel"
-	onload="sizeToContent(); TWITTERBAR_PROMPT.load();"
+	style="min-height: 200px;"
+	onload="TWITTERBAR_PROMPT.load();"
 	ondialogaccept="return TWITTERBAR_PROMPT.accept();">
 	<script type="application/x-javascript">
 		<![CDATA[
@@ -13,25 +14,43 @@
 		var TWITTERBAR_PROMPT = {
 			load : function () {
 				var accounts = window.arguments[0];
+				var defaultAccount = window.arguments[2];
 				var re = window.arguments[1];
-				var selected = false;
 				
-				var list = document.getElementById("accounts-list");
+				var container = document.getElementById("account-group");
+				var sortedAccounts = [];
 				
 				for (var i in accounts) {
 					if (i != "_twitterbar" && accounts[i].token) {
-						list.insertItemAt(0, i, i);
+						sortedAccounts.push(i);
 					}
 				}
 				
-				list.selectedIndex = 0;
-				TWITTERBAR_PROMPT.accountChange();
+				sortedAccounts.sort();
+				
+				container.selectedIndex = 0;
+				
+				for (var i = 0; i < sortedAccounts.length; i++) {
+					var username = sortedAccounts[i];
+					
+					var radio = document.createElement("radio");
+					radio.setAttribute("value", username);
+					radio.setAttribute("label", username);
+				
+					container.insertBefore(radio, container.lastChild);
+					
+					if (username == defaultAccount) {
+						container.selectedIndex = i;
+					}
+				}
+				
+				sizeToContent();
 			},
 			
 			accept : function () {
 				var rv = window.arguments[1];
 			
-				var account = document.getElementById("accounts-list").value;
+				var account = document.getElementById("account-group").value;
 				
 				if (account == "") {
 					account = document.getElementById("new-account-name").value;
@@ -40,15 +59,6 @@
 				rv[0] = account;
 				
 				return true;
-			},
-			
-			accountChange : function () {
-				if (document.getElementById("accounts-list").value == "") {
-					document.getElementById("new-account-name").style.display = "";
-				}
-				else {
-					document.getElementById("new-account-name").style.display = "none";
-				}
 			}
 		};
 		
@@ -61,16 +71,12 @@
 		<vbox style="width: 300px;" align="center" pack="center">
 			<label>&twitter.chooseAccount;</label>
 			<spacer style="height: 10px;" />
-			
-			<hbox align="center">
-				<menulist id="accounts-list" oncommand="TWITTERBAR_PROMPT.accountChange();" flex="1" style="min-width: 125px;">
-					<menupopup>
-						<menuitem label="&twitter.newAccount;" value="" />
-					</menupopup>
-				</menulist>
-				
-				<textbox id="new-account-name" style="display: none;" />
-			</hbox>
+			<radiogroup id="account-group">
+				<hbox align="center">
+					<radio value="" label="&twitter.newAccount;" />
+					<textbox id="new-account-name" flex="1" />
+				</hbox>
+			</radiogroup>
 		</vbox>
 	</hbox>
 </dialog>
