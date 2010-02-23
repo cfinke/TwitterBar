@@ -23,11 +23,13 @@ var TWITTERBAR_OPTIONS = {
 	},
 	
 	showAccounts : function () {
-		document.getElementById("accounts-deck").selectedIndex = 1;
+		if (document.getElementById("accounts-deck")) {
+			document.getElementById("accounts-deck").selectedIndex = 1;
+		}
 		
 		TWITTERBAR_COMMON.setUpAccount();
 		
-		var list = document.getElementById("accounts-list");
+		var list = document.getElementById("twitter-accounts-list");
 		list.removeAllItems();
 		list.selectedIndex = -1;
 		
@@ -38,7 +40,10 @@ var TWITTERBAR_OPTIONS = {
 				list.appendItem(i, i);
 				
 				list.selectedIndex = Math.max(0, list.selectedIndex);
-				document.getElementById("accounts-deck").selectedIndex = 0;
+				
+				if (document.getElementById("accounts-deck")) {
+					document.getElementById("accounts-deck").selectedIndex = 0;
+				}
 			}
 		}
 		
@@ -48,12 +53,14 @@ var TWITTERBAR_OPTIONS = {
 	},
 	
 	showAccount : function (username) {
-		var accounts = TWITTERBAR_COMMON.accounts;
-		var account = accounts[username];
+		if (document.getElementById("accounts-authtime")) {
+			var accounts = TWITTERBAR_COMMON.accounts;
+			var account = accounts[username];
 		
-		var oDate = new Date();
-		oDate.setTime(account.timestamp);
-		document.getElementById("accounts-authtime").setAttribute("value", oDate.toDateString());
+			var oDate = new Date();
+			oDate.setTime(account.timestamp);
+			document.getElementById("accounts-authtime").setAttribute("value", oDate.toDateString());
+		}
 	},
 	
 	observe : function(subject, topic, data) {
@@ -73,6 +80,7 @@ var TWITTERBAR_OPTIONS = {
 			document.getElementById("twitterbar-shortener-menu").value = TWITTERBAR_OPTIONS.prefs.getCharPref("shortener");
 			
 			TWITTERBAR_OPTIONS.init();
+			TWITTERBAR_OPTIONS.showAccounts();
 		}
 	},
 

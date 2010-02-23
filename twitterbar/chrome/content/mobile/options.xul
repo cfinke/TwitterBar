@@ -25,4 +25,12 @@
 	
 	<setting id="twitter-bitly-login" title="&twitter.bitlyLogin;" type="string" pref="extensions.twitter.bitlyLogin" style="display: none;" />
 	<setting id="twitter-bitly-api-key" title="&twitter.bitlyApiKey;" type="string" pref="extensions.twitter.bitlyApiKey" style="display: none;" />
+	
+	<setting title="&twitter.account;" type="control">
+		<menulist id="twitter-accounts-list" oncommand="TWITTERBAR_OPTIONS.showAccount(this.value);">
+			<menupopup />
+		</menulist>
+		<button oncommand="TWITTERBAR_COMMON.unsetAccount(document.getElementById('twitter-accounts-list').value);" label="&twitter.remove;" />
+		<button oncommand="TWITTERBAR.addAccount(true);" label="&twitter.addAccount;" />
+	</setting>
 </vbox>

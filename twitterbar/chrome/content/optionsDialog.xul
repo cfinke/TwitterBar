@@ -89,11 +89,11 @@
 							<label></label>
 						</row>
 						<row align="center">
-							<menulist id="accounts-list" oncommand="TWITTERBAR_OPTIONS.showAccount(this.value);">
+							<menulist id="twitter-accounts-list" oncommand="TWITTERBAR_OPTIONS.showAccount(this.value);">
 								<menupopup />
 							</menulist>
 							<label id="accounts-authtime" value="" />
-							<button oncommand="TWITTERBAR_COMMON.unsetAccount(document.getElementById('accounts-list').value);" label="&twitter.remove;" />
+							<button oncommand="TWITTERBAR_COMMON.unsetAccount(document.getElementById('twitter-accounts-list').value);" label="&twitter.remove;" />
 						</row>
 					</rows>
 				</grid>

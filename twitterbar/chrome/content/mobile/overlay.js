@@ -215,6 +215,15 @@ var TWITTERBAR = {
 	},
 	
 	addAccount : function (hidePrompt) {
+		if (hidePrompt) {
+			try {
+				BrowserUI.activeDialog.close();
+			} catch (webView) {
+			}
+		}
+		
+		BrowserUI.hidePanel();
+		
 		var lastAccount = TWITTERBAR_COMMON.currentAccount;
 		
 		TWITTERBAR_COMMON.accounts["_twitterbar"] = {"token" : "", "token_secret" : ""};
@@ -246,7 +255,11 @@ var TWITTERBAR = {
 				
 					if (hidePrompt || (TWITTERBAR_COMMON.confirm(message))) {
 						Browser.addTab("http://twitter.com/oauth/authorize?oauth_token="+TWITTERBAR_COMMON.oauth.request_token.oauth_token, true);
-						BrowserUI.activeDialog.close();
+						
+						try {
+							BrowserUI.activeDialog.close();
+						} catch (webView) {
+						}
 					}
 					else if (!hidePrompt) {
 						TWITTERBAR.afterPost(true);
