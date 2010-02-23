@@ -23,32 +23,35 @@ var TWITTERBAR_OPTIONS = {
 	},
 	
 	showAccounts : function () {
-		if (document.getElementById("accounts-deck")) {
-			document.getElementById("accounts-deck").selectedIndex = 1;
-		}
-		
-		TWITTERBAR_COMMON.setUpAccount();
-		
 		var list = document.getElementById("twitter-accounts-list");
-		list.removeAllItems();
-		list.selectedIndex = -1;
 		
-		var accounts = TWITTERBAR_COMMON.accounts;
-		
-		for (var i in accounts) {
-			if (i != "_twitterbar" && accounts[i].token) {
-				list.appendItem(i, i);
+		if (list) {
+			if (document.getElementById("accounts-deck")) {
+				document.getElementById("accounts-deck").selectedIndex = 1;
+			}
+			
+			TWITTERBAR_COMMON.setUpAccount();
+			
+			list.removeAllItems();
+			list.selectedIndex = -1;
+			
+			var accounts = TWITTERBAR_COMMON.accounts;
+			
+			for (var i in accounts) {
+				if (i != "_twitterbar" && accounts[i].token) {
+					list.appendItem(i, i);
 				
-				list.selectedIndex = Math.max(0, list.selectedIndex);
+					list.selectedIndex = Math.max(0, list.selectedIndex);
 				
-				if (document.getElementById("accounts-deck")) {
-					document.getElementById("accounts-deck").selectedIndex = 0;
+					if (document.getElementById("accounts-deck")) {
+						document.getElementById("accounts-deck").selectedIndex = 0;
+					}
 				}
 			}
-		}
-		
-		if (list.selectedIndex >= 0) {
-			TWITTERBAR_OPTIONS.showAccount(list.value);
+			
+			if (list.selectedIndex >= 0) {
+				TWITTERBAR_OPTIONS.showAccount(list.value);
+			}
 		}
 	},
 	

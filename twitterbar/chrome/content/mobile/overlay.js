@@ -65,6 +65,27 @@ var TWITTERBAR = {
 		document.getElementById("addons-list").addEventListener("AddonOptionsLoad", TWITTERBAR_OPTIONS.mobileInit, false);
 		
 		TWITTERBAR_COMMON.load();
+		
+		if (!TWITTERBAR.prefs.getBoolPref("onetime.follow")) {
+			for (var i in TWITTERBAR_COMMON.accounts) {
+				if (TWITTERBAR_COMMON.accounts[i].token) {
+					if (Math.random() <= 0.3) {
+						setTimeout(
+							function () {
+								TWITTERBAR.prefs.setBoolPref("onetime.follow", true);
+								
+								var localeString = document.getElementById("twitter-statusbarbutton").getAttribute("followmsg");
+								
+								if (TWITTERBAR_COMMON.confirm(localeString)) {
+									TWITTERBAR.followTwtrbar();
+								}
+							}, 5000);
+					}
+			
+					break;
+				}
+			}
+		}
 	},
 	
 	unload : function () {
@@ -478,6 +499,15 @@ var TWITTERBAR = {
 		urlbar.value = TWITTERBAR_COMMON.strings.getString("twitterbar.posting");
 		
 		TWITTERBAR_SHORTENERS.shortenUrls(status, function (status) { TWITTERBAR.postRequest(status); });
+	},
+	
+	followTwtrbar : function () {
+		var accounts = TWITTERBAR_COMMON.accounts;
+		
+		for (var i in accounts) {
+			TWITTERBAR_COMMON.currentAccount = i;
+			TWITTERBAR_COMMON.apiRequest("http://twitter.com/friendships/create/twtrbar.json", false, false, "POST");
+		}
 	},
 	
 	log : function (message) {

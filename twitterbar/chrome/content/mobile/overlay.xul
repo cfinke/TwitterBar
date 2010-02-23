@@ -27,6 +27,7 @@
 		<hbox id="twitterBox">
 			<toolbarbutton
 				id="twitter-statusbarbutton"
+				followmsg="&twitter.followMessage;"
 				oncommand="TWITTERBAR.post(true);"
 				class="button-image"
 				/>
