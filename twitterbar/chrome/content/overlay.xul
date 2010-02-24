@@ -8,12 +8,14 @@
 	<script type="application/x-javascript" src="chrome://twitterbar/content/overlay.js"/>
 	<script type="application/x-javascript" src="chrome://twitterbar/content/shorteners.js" />
 	<script type="application/x-javascript" src="chrome://twitterbar/content/common.js" />
+	<script type="application/x-javascript" src="chrome://twitterbar/content/ui-firefox.js" />
 	<script type="application/x-javascript">
 		<![CDATA[
 		
-		addEventListener("load", function () { TWITTERBAR.load(); }, false);
-		addEventListener("unload", function () { TWITTERBAR.unload(); }, false);
-		
+		addEventListener("load", TWITTERBAR.load, false);
+		addEventListener("load", TWITTERBAR_UI.load, false);
+		addEventListener("load", TWITTERBAR_COMMON.load, false);
+
 		]]>
 	</script>
 
@@ -45,7 +47,7 @@
 		</toolbaritem>
 	</toolbarpalette>
 
-	<hbox id="twitterBox" insertbefore="urlbar-icons" onmouseover="TWITTERBAR.count();" onmouseout="TWITTERBAR.countClear();" class="textbox-input-box">
+	<hbox id="twitterBox" insertbefore="urlbar-icons" onmouseover="TWITTERBAR_UI.showCount();" onmouseout="TWITTERBAR.hideCount();" class="textbox-input-box">
 	    <hbox id="twitter-count-vbox">
 	        <vbox>
 		        <spacer flex="1"/>
@@ -66,7 +68,7 @@
 		<vbox flex="1">
 			<spacer flex="1" />
 			<image id="twitter-statusbarbutton"
-				onclick="TWITTERBAR.onButtonClick(event);"
+				onclick="TWITTERBAR_UI.onButtonClick(event);"
 				tooltiptext="&twitter.post;"
 				src="chrome://twitterbar/skin/bird-16-full.png"
 				context="twitterbarContextMenu"

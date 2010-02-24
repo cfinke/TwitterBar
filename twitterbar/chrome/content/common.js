@@ -2,6 +2,8 @@ var TWITTERBAR_COMMON = {
 	accounts : {},
 	currentAccount : "",
 	
+	pendingTweets : [],
+	
 	get oauth_token_secret() { if (TWITTERBAR_COMMON.currentAccount in TWITTERBAR_COMMON.accounts) { return TWITTERBAR_COMMON.accounts[TWITTERBAR_COMMON.currentAccount].token_secret; } else { return ""; } },
 	get oauth_token() { if (TWITTERBAR_COMMON.currentAccount in TWITTERBAR_COMMON.accounts) { return TWITTERBAR_COMMON.accounts[TWITTERBAR_COMMON.currentAccount].token; } else { return ""; } },
 	
@@ -27,6 +29,8 @@ var TWITTERBAR_COMMON = {
 	},
 	
 	load : function () {
+		removeEventListener("load", TWITTERBAR_COMMON.load, false);
+		
 		TWITTERBAR_COMMON.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
 		TWITTERBAR_COMMON.prefs.addObserver("", TWITTERBAR_COMMON, false);
 		
@@ -361,7 +365,7 @@ var TWITTERBAR_COMMON = {
 			var topics = TWITTERBAR_COMMON.prefs.getCharPref("trends").split("\t");
 	
 			if (topics) {
-				var str = '<h2 id="twitterbar-trends" class="sidebar-title" style="background: transparent !important;"><span title="'+this.strings.getString("twitterbar.trends.byline")+'">'+this.strings.getString("twitterbar.trends.title")+'</span></h2>';
+				var str = '<h2 id="twitterbar-trends" class="sidebar-title" style="background: transparent !important;"><span title="'+TWITTERBAR_COMMON.strings.getString("twitterbar.trends.byline")+'">'+TWITTERBAR_COMMON.strings.getString("twitterbar.trends.title")+'</span></h2>';
 				str += '<ul class="sidebar-menu more-trends-links">';
 		
 				var limit = Math.min(10, topics.length);
@@ -370,7 +374,7 @@ var TWITTERBAR_COMMON = {
 					str += '<li class="link-title"><a target="_blank" title="'+topics[i]+'" href="'+TWITTERBAR_COMMON.getSearchURL(topics[i], "trends-sidebar")+'"><span>'+topics[i]+'</span></a></li>';
 				}
 	
-				str += '<li><small style="display: block; padding: 5px 14px 5px 14px;">'+this.strings.getString("twitterbar.trends.explanation")+'</small></li>';
+				str += '<li><small style="display: block; padding: 5px 14px 5px 14px;">'+TWITTERBAR_COMMON.strings.getString("twitterbar.trends.explanation")+'</small></li>';
 				str += '</ul>';
 				str += '<hr />';
 

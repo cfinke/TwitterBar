@@ -70,16 +70,7 @@ var TWITTERBAR = {
 			for (var i in TWITTERBAR_COMMON.accounts) {
 				if (TWITTERBAR_COMMON.accounts[i].token) {
 					if (Math.random() <= 0.3) {
-						setTimeout(
-							function () {
-								TWITTERBAR.prefs.setBoolPref("onetime.follow", true);
-								
-								var localeString = document.getElementById("twitter-statusbarbutton").getAttribute("followmsg");
-								
-								if (TWITTERBAR_COMMON.confirm(localeString)) {
-									TWITTERBAR.followTwtrbar();
-								}
-							}, 5000);
+						TWITTERBAR_UI.follow();
 					}
 			
 					break;
@@ -112,15 +103,15 @@ var TWITTERBAR = {
 				}
 			break;
 			case "debug":
-				TWITTERBAR.debug = true;//TWITTERBAR.prefs.getBoolPref("debug");
+				TWITTERBAR.debug = TWITTERBAR.prefs.getBoolPref("debug");
 			break;
 		}
 	},
 	
 	DOMContentLoaded : function (event) {
 		if (event.originalTarget instanceof HTMLDocument) {
-		    var page = event.originalTarget;
-		
+			var page = event.originalTarget;
+			
 			if (page.location.href.match(/chrisfinke.com\/oauth\/twitterbar/i)) {
 				var urlArgs = page.location.href.split("?")[1].split("&");
 				
@@ -161,13 +152,16 @@ var TWITTERBAR = {
 							TWITTERBAR_COMMON.apiRequest("http://twitter.com/account/verify_credentials.json", callback);
 						} catch (e) {
 							TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.otherError", [ e, req.responseText ]));
+							TWITTERBAR.postNextTweet();
 						}
 					}
 					else if (req.status >= 500) {
 						TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getString("twitterbar.failWhale"));
+						TWITTERBAR_COMMON.pendingTweets = [];
 					}
 					else {
 						TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.otherError", [ req.status, req.responseText ]));
+						TWITTERBAR_COMMON.pendingTweets = [];
 					}
 				}
 				
@@ -287,13 +281,16 @@ var TWITTERBAR = {
 					}
 				} catch (e) {
 					TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getString("twitterbar.oauthError1") + "\n\n" + e + "\n\n" + req.responseText);
+					TWITTERBAR.postNextTweet();
 				}
 			}
 			else if (req.status >= 500) {
 				TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getString("twitterbar.failWhale"));
+				TWITTERBAR_COMMON.pendingTweets = [];
 			}
 			else {
 				TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.otherError", [ req.status, req.responseText ]));
+				TWITTERBAR_COMMON.pendingTweets = [];
 			}
 		}
 		
@@ -330,6 +327,7 @@ var TWITTERBAR = {
 		if (status.length > 140) {
 			if (!TWITTERBAR_COMMON.confirm(
 				TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.tooLong", [status.length]))) {
+				TWITTERBAR_COMMON.pendingTweets = [];
 				TWITTERBAR.afterPost(true);
 				return;
 			}
@@ -344,6 +342,7 @@ var TWITTERBAR = {
 				}
 				else {
 					TWITTERBAR_COMMON.alert(TWITTERBAR_COMMON.strings.getFormattedString("twitterbar.twitterError", [ req.status, req.responseText ]));
+					TWITTERBAR.postNextTweet();
 				}
 				
 				// I think Twitter sends a 401 when you've hit your rate limit.
@@ -360,7 +359,7 @@ var TWITTERBAR = {
 					
 					var json = JSON.parse(req.responseText);
 					
-					setTimeout(function () { TWITTERBAR.afterPost(false, json.status.user.screen_name); }, 1000);
+					setTimeout(function () { TWITTERBAR.afterPost(false, json.status.user.screen_name); }, 3000);
 				}
 			}
 			else {
@@ -379,21 +378,26 @@ var TWITTERBAR = {
 	},
 	
 	afterPost : function (noSuccess, screenname) {
-		var urlbar = document.getElementById("urlbar-edit");
-		urlbar.value = this.lastUrl;
-		
-		if (!noSuccess && TWITTERBAR.prefs.getBoolPref("tab")){
-			var url = "http://twitter.com/";
-			
-			if (screenname) {
-				url += screenname;
-			}
-			
-			Browser.addTab(url, true);
-			BrowserUI.activeDialog.close();
+		if (TWITTERBAR_COMMON.pendingTweets.length > 0) {
+			TWITTERBAR.postNextTweet();
 		}
+		else {
+			var urlbar = document.getElementById("urlbar-edit");
+			urlbar.value = this.lastUrl;
 		
-		document.getElementById("twitter-statusbarbutton").removeAttribute("busy");
+			if (!noSuccess && TWITTERBAR.prefs.getBoolPref("tab")){
+				var url = "http://twitter.com/";
+			
+				if (screenname) {
+					url += screenname;
+				}
+			
+				Browser.addTab(url, true);
+				BrowserUI.activeDialog.close();
+			}
+		
+			document.getElementById("twitter-statusbarbutton").removeAttribute("busy");
+		}
 	},
 	
 	getCharCount : function () {
@@ -490,15 +494,30 @@ var TWITTERBAR = {
 					return;
 				}
 				else {
-					account = rv[0];
+					for (var i = 0; i < rv.length; i++) {
+						TWITTERBAR_COMMON.pendingTweets.push([ rv[i], status ]);
+					}
 				}
 			}
 		}
 		
 		
-		urlbar.value = TWITTERBAR_COMMON.strings.getString("twitterbar.posting");
 		
-		TWITTERBAR_SHORTENERS.shortenUrls(status, function (status) { TWITTERBAR.postRequest(status); });
+		TWITTERBAR.postNextTweet();
+	},
+	
+	postNextTweet : function () {
+		if (TWITTERBAR_COMMON.pendingTweets.length > 0) {
+			var urlbar = document.getElementById("urlbar-edit");
+			urlbar.value = TWITTERBAR_COMMON.strings.getString("twitterbar.posting");
+			
+			var pair = TWITTERBAR_COMMON.pendingTweets.shift();
+			
+			TWITTERBAR_COMMON.currentAccount = pair[0];
+			var status = pair[1];
+			
+			TWITTERBAR_SHORTENERS.shortenUrls(status, function (status) { TWITTERBAR.postRequest(status); });
+		}
 	},
 	
 	followTwtrbar : function () {

@@ -28,19 +28,17 @@
 				
 				sortedAccounts.sort();
 				
-				container.selectedIndex = 0;
-				
 				for (var i = 0; i < sortedAccounts.length; i++) {
 					var username = sortedAccounts[i];
 					
-					var radio = document.createElement("radio");
-					radio.setAttribute("value", username);
-					radio.setAttribute("label", username);
+					var checkbox = document.createElement("checkbox");
+					checkbox.setAttribute("value", username);
+					checkbox.setAttribute("label", username);
 				
-					container.insertBefore(radio, container.lastChild);
+					container.insertBefore(checkbox, container.lastChild);
 					
 					if (username == defaultAccount) {
-						container.selectedIndex = i;
+						checkbox.checked = true;
 					}
 				}
 				
@@ -49,14 +47,19 @@
 			
 			accept : function () {
 				var rv = window.arguments[1];
-			
-				var account = document.getElementById("account-group").value;
 				
-				if (account == "") {
-					account = document.getElementById("new-account-name").value;
+				var accounts = document.getElementById("account-group").getElementsByTagName("checkbox");
+				
+				for (var i = 0; i < accounts.length; i++) {
+					if (accounts[i].checked) {
+						if (accounts[i].getAttribute("value") == "" && document.getElementById("new-account-name").value != "") {
+							rv.push(document.getElementById("new-account-name").value);
+						}
+						else {
+							rv.push(accounts[i].getAttribute("value"));
+						}
+					}
 				}
-				
-				rv[0] = account;
 				
 				return true;
 			}
@@ -69,14 +72,14 @@
 			<image src="chrome://twitterbar/skin/bird-64.png" style="padding: 20px;"/>
 		</vbox>
 		<vbox style="width: 300px;" align="center" pack="center">
-			<label>&twitter.chooseAccount;</label>
+			<label>&twitter.chooseAccounts;</label>
 			<spacer style="height: 10px;" />
-			<radiogroup id="account-group">
+			<vbox id="account-group">
 				<hbox align="center">
-					<radio value="" label="&twitter.newAccount;" />
+					<checkbox value="" label="&twitter.newAccount;" />
 					<textbox id="new-account-name" flex="1" />
 				</hbox>
-			</radiogroup>
+			</vbox>
 		</vbox>
 	</hbox>
 </dialog>

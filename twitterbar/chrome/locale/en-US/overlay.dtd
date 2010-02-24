@@ -27,7 +27,7 @@
 <!ENTITY twitter.options "Options...">
 
 <!ENTITY twitter.chooseAccountTitle "Choose an Account...">
-<!ENTITY twitter.chooseAccount "Which account do you want to post to?">
+<!ENTITY twitter.chooseAccounts "Which accounts do you want to post to?">
 <!ENTITY twitter.newAccount "New:">
 
 <!ENTITY twitter.addAccount "Add Account">

@@ -9,12 +9,13 @@
 	<script type="application/x-javascript" src="chrome://twitterbar/content/options.js" />
 	<script type="application/x-javascript" src="chrome://twitterbar/content/shorteners.js" />
 	<script type="application/x-javascript" src="chrome://twitterbar/content/common.js" />
+	<script type="application/x-javascript" src="chrome://twitterbar/content/ui-mobile.js" />
 	<script type="application/x-javascript">
 		<![CDATA[
 		
-		addEventListener("load", function () { TWITTERBAR_OPTIONS.init(); }, false);
-		addEventListener("load", function () { TWITTERBAR.load(); }, false);
-		addEventListener("unload", function () { TWITTERBAR.unload(); }, false);
+		addEventListener("load", TWITTERBAR.load, false);
+		addEventListener("load", TWITTERBAR_UI.load, false);
+		addEventListener("load", TWITTERBAR_COMMON.load, false);
 		
 		]]>
 	</script>
