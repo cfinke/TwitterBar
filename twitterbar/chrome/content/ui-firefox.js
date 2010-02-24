@@ -77,10 +77,10 @@ var TWITTERBAR_UI = {
 	},
 	
 	setBusy : function (busy) {
-		var imagest = document.getElementById('twitter-statusbarbutton');
+		var image = document.getElementById('twitter-statusbarbutton');
 		
 		if (busy) {
-			imagest.src = "chrome://twitterbar/skin/Throbber-small.gif";
+			image.src = "chrome://twitterbar/skin/Throbber-small.gif";
 		}
 		else {
 			image.src =  "chrome://twitterbar/skin/bird-16-full.png";
@@ -109,7 +109,7 @@ var TWITTERBAR_UI = {
 		var count = document.getElementById('twitter-count');
 		count.hidden = false;
 		
-		var length = this.getCharCount();
+		var length = TWITTERBAR.getCharCount();
 		count.value = (140 - length) + " Left";
 		
 		if (length > 140) {

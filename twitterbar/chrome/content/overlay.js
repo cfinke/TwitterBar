@@ -477,16 +477,23 @@ var TWITTERBAR = {
 			}
 		}
 		
-		TWITTERBAR_UI.onKeyDown();
+		TWITTERBAR_UI.keyDown();
 	},
 	
 	startPost : function (status) {
 		var account = "";
+		var accounts = [];
 		
 		if (status.indexOf(" --@") != -1) {
-			account = status.split(" --@")[1].replace(/^\s+|\s+$/g, "");
-			TWITTERBAR_COMMON.currentAccount = account;
-			status = status.split(" --@")[0];
+			parts = status.split(" --@");
+			
+			status = parts[0].replace(/^\s+|\s+$/g, "");
+			
+			for (var i = 1; i < parts.length; i++) {
+				accounts.push(parts[i].replace(/^\s+|\s+$/g, ""));
+			}
+			
+			TWITTERBAR_COMMON.currentAccount = accounts[0];
 		}
 		
 		if (status.match(/^https?:\/\//i)) {
@@ -524,6 +531,10 @@ var TWITTERBAR = {
 		
 		TWITTERBAR_UI.setStatusText(TWITTERBAR_COMMON.strings.getString("twitterbar.posting"));
 		
+		if (accounts.length > 0) {
+			account = accounts[0];
+		}
+		
 		if (!account) {
 			var accounts = TWITTERBAR_COMMON.accounts;
 			var lastAccount = "";
@@ -557,6 +568,11 @@ var TWITTERBAR = {
 						TWITTERBAR_COMMON.pendingTweets.push([ rv[i], status ]);
 					}
 				}
+			}
+		}
+		else {
+			for (var i = 0; i < accounts.length; i++) {
+				TWITTERBAR_COMMON.pendingTweets.push([ accounts[i], status ]);
 			}
 		}
 		
