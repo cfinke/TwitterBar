@@ -36,7 +36,7 @@ var TWITTERBAR_UI = {
 	},
 	
 	openOptions : function () {
-		var d = openDialog('chrome://twitterbar/content/optionsDialog.xul', 'options', 'chrome,dialog,dependent,centerscreen,resizable');
+		var d = openDialog('chrome://twitterbar/content/options.xul', 'options', 'chrome,dialog,dependent,centerscreen,resizable');
 		d.focus();
 	},
 	

@@ -1,8 +1,8 @@
 content     twitterbar                    jar:chrome/twitterbar.jar!/content/
 skin        twitterbar      classic       jar:chrome/twitterbar.jar!/skin/
 
-override    chrome://twitterbar/content/overlay.xul               chrome://twitterbar/content/mobile/overlay.xul   application={a23983c0-fd0e-11dc-95ff-0800200c9a66}
-override    chrome://twitterbar/content/optionsDialog.xul         chrome://twitterbar/content/mobile/options.xul   application={a23983c0-fd0e-11dc-95ff-0800200c9a66}
+override    chrome://twitterbar/content/overlay.xul         chrome://twitterbar/content/overlay-mobile.xul   application={a23983c0-fd0e-11dc-95ff-0800200c9a66}
+override    chrome://twitterbar/content/options.xul         chrome://twitterbar/content/options-mobile.xul   application={a23983c0-fd0e-11dc-95ff-0800200c9a66}
 
 override    chrome://twitterbar/skin/twitter.css         chrome://twitterbar/skin/twitter-mobile.css application={a23983c0-fd0e-11dc-95ff-0800200c9a66}
 
