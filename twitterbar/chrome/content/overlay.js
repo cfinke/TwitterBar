@@ -35,8 +35,14 @@ var TWITTERBAR = {
 		}
 	},
 	
-	load : function () {
-		removeEventListener("load", TWITTERBAR.load, false);
+	loadBasic : function () {
+		TWITTERBAR.load(true);
+		
+		removeEventListener("load", TWITTERBAR.loadBasic, false);
+	},
+	
+	load : function (basic) {
+		if (!basic) removeEventListener("load", TWITTERBAR.load, false);
 		
 		TWITTERBAR.version = Components.classes["@mozilla.org/extensions/manager;1"].getService(Components.interfaces.nsIExtensionManager).getItemForID("{1a0c9ebe-ddf9-4b76-b8a3-675c77874d37}").version;
 		
@@ -46,92 +52,97 @@ var TWITTERBAR = {
 		
 		TWITTERBAR.debug = TWITTERBAR.prefs.getBoolPref("debug");
 		
-		addEventListener("unload", TWITTERBAR.unload, false);
-		
-		var showFirstRun = false;
-		var oldVersion = TWITTERBAR.prefs.getCharPref("version");
-		var newVersion = TWITTERBAR.version;
-		
-		if (oldVersion != newVersion) {
-			TWITTERBAR.prefs.setCharPref("version", newVersion);
-		}
-		
-		if (!oldVersion) {
-			showFirstRun = true;
-		}
-		else {
-			var oldParts = oldVersion.split(".");
-			var newParts = newVersion.split(".");
-		
-			if (newParts[0] != oldParts[0] || newParts[1] != oldParts[1]) {
-				showFirstRun = true;
-			}
-		}
-		
-		if (showFirstRun) {
-			TWITTERBAR_UI.showFirstRun(TWITTERBAR.version);
-		}
-		
-		var engineLabel = TWITTERBAR.strings.getString("twitter.search.name");
-		
-		/**
-		 * @todo Is this OK in Fennec?
-		 */
-		
-		if (!TWITTERBAR.prefs.getBoolPref("search_request")) {
-			TWITTERBAR.prefs.setBoolPref("search_request", true);
-			
-			setTimeout(
-				function installSearch() {
-					var searchService = Components.classes["@mozilla.org/browser/search-service;1"];
-					
-					if (searchService) {
-						searchService = searchService.getService(Components.interfaces.nsIBrowserSearchService);
-						
-						var oneRiotSearch = searchService.getEngineByName(engineLabel);
-						
-						if (oneRiotSearch == null) {
-							window.openDialog("chrome://twitterbar/content/OneRiotSearchDialog-twitterbar-ff.xul", "search", "chrome,dialog,centerscreen,titlebar,alwaysraised");
-						}
-					}
-				}, 5000);
-		}
-		else {
-			var stillAChance = true;
-			
-			if (!TWITTERBAR.prefs.getBoolPref("onetime.multiple")) {
-				if (Math.random() <= 0.3) {
-					TWITTERBAR_UI.didYouKnow();
-					TWITTERBAR.prefs.setBoolPref("onetime.multiple", true);
-					
-					stillAChance = false;
-				}
-			}
-			
-			if (stillAChance && !TWITTERBAR.prefs.getBoolPref("onetime.follow")) {
-				for (var i in TWITTERBAR.accounts) {
-					if (TWITTERBAR.accounts[i].token) {
-						if (Math.random() <= 0.3) {
-							TWITTERBAR_UI.follow();
-							TWITTERBAR.prefs.setBoolPref("onetime.follow", true);
-						}
-				
-						break;
-					}
-				}
-			}
-		}
-		
-		// Get new trends every 2 hours.
-		TWITTERBAR.trendTimer = setInterval(TWITTERBAR.getTrends, 1000 * 60 * 60 * 2);
-		
-		setTimeout(TWITTERBAR.getTrends, 1000 * 10);
-		
-		var upgraded = TWITTERBAR.upgradeToAccounts();
-		
-		if (upgraded) {
+		if (basic) {
 			TWITTERBAR.setUpAccount();
 		}
+		else {
+			var upgraded = TWITTERBAR.upgradeToAccounts();
+
+			if (upgraded) {
+				TWITTERBAR.setUpAccount();
+			}
+
+			var showFirstRun = false;
+			var oldVersion = TWITTERBAR.prefs.getCharPref("version");
+			var newVersion = TWITTERBAR.version;
+		
+			if (oldVersion != newVersion) {
+				TWITTERBAR.prefs.setCharPref("version", newVersion);
+			}
+		
+			if (!oldVersion) {
+				showFirstRun = true;
+			}
+			else {
+				var oldParts = oldVersion.split(".");
+				var newParts = newVersion.split(".");
+		
+				if (newParts[0] != oldParts[0] || newParts[1] != oldParts[1]) {
+					showFirstRun = true;
+				}
+			}
+		
+			if (showFirstRun) {
+				TWITTERBAR_UI.showFirstRun(TWITTERBAR.version);
+			}
+		
+			var engineLabel = TWITTERBAR.strings.getString("twitter.search.name");
+		
+			/**
+			 * @todo Smaller dialog in Fennec.
+			 */
+		
+			if (!TWITTERBAR.prefs.getBoolPref("search_request")) {
+				TWITTERBAR.prefs.setBoolPref("search_request", true);
+			
+				setTimeout(
+					function installSearch() {
+						var searchService = Components.classes["@mozilla.org/browser/search-service;1"];
+					
+						if (searchService) {
+							searchService = searchService.getService(Components.interfaces.nsIBrowserSearchService);
+						
+							var oneRiotSearch = searchService.getEngineByName(engineLabel);
+						
+							if (oneRiotSearch == null) {
+								window.openDialog("chrome://twitterbar/content/OneRiotSearchDialog-twitterbar-ff.xul", "search", "chrome,dialog,centerscreen,titlebar,alwaysraised");
+							}
+						}
+					}, 5000);
+			}
+			else {
+				var stillAChance = true;
+			
+				if (!TWITTERBAR.prefs.getBoolPref("onetime.multiple")) {
+					if (Math.random() <= 0.3) {
+						TWITTERBAR_UI.didYouKnow();
+						TWITTERBAR.prefs.setBoolPref("onetime.multiple", true);
+					
+						stillAChance = false;
+					}
+				}
+			
+				if (stillAChance && !TWITTERBAR.prefs.getBoolPref("onetime.follow")) {
+					for (var i in TWITTERBAR.accounts) {
+						if (TWITTERBAR.accounts[i].token) {
+							if (Math.random() <= 0.3) {
+								TWITTERBAR_UI.follow();
+								TWITTERBAR.prefs.setBoolPref("onetime.follow", true);
+							}
+				
+							break;
+						}
+					}
+				}
+			}
+		
+			// Get new trends every 2 hours.
+			TWITTERBAR.trendTimer = setInterval(TWITTERBAR.getTrends, 1000 * 60 * 60 * 2);
+		
+			setTimeout(TWITTERBAR.getTrends, 1000 * 10);
+		}
+		
+		addEventListener("unload", TWITTERBAR.unload, false);
 	},
 	
 	unload : function () {
@@ -795,9 +806,13 @@ var TWITTERBAR = {
 			if (j == 0) {
 				account = "_twitterbar";
 				TWITTERBAR.accounts["_twitterbar"] = {"token" : "", "token_secret" : ""};
+				
+				TWITTERBAR.pendingTweets.push([ account, status ]);
 			}
 			else if (j == 1) {
 				account = lastAccount;
+				
+				TWITTERBAR.pendingTweets.push([ account, status ]);
 			}
 			else {
 				var rv = [];

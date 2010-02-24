@@ -1,9 +1,7 @@
 var TWITTERBAR_OPTIONS = {
 	prefs : null,
 	
-	get strings() { return document.getElementById("twitterbar-strings"); },
-	
-	init : function () {
+	load : function () {
 		removeEventListener("load", TWITTERBAR_OPTIONS.load, false);
 		
 		TWITTERBAR_OPTIONS.prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).QueryInterface(Components.interfaces.nsIPrefBranch).getBranch("extensions.twitter.");
@@ -77,12 +75,13 @@ var TWITTERBAR_OPTIONS = {
 			break;
 		}
 	},
-
-	mobileInit : function (e) {
+	
+	mobileLoad : function (e) {
 		if (document.getElementById("twitterbar-shortener-menu")) {
+			TWITTERBAR_OPTIONS.load();
+			
 			document.getElementById("twitterbar-shortener-menu").value = TWITTERBAR_OPTIONS.prefs.getCharPref("shortener");
 			
-			TWITTERBAR_OPTIONS.init();
 			TWITTERBAR_OPTIONS.showAccounts();
 		}
 	},

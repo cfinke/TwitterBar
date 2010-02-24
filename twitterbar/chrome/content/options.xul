@@ -5,13 +5,20 @@
     id="twitterbar-preference-window"
 	title="&twitter.options.dialog;"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
-	onload="TWITTERBAR_OPTIONS.init();"
 	ondialogaccept="return TWITTERBAR_OPTIONS.accept();"
 	type="prefwindow"
 	buttons="accept,cancel"
 	style="max-width: 450px;">
 	<script type="application/x-javascript" src="chrome://twitterbar/content/options.js" />
 	<script type="application/x-javascript" src="chrome://twitterbar/content/overlay.js" />
+	<script type="application/x-javascript">
+		<![CDATA[
+		
+		addEventListener("load", TWITTERBAR.loadBasic, false);
+		addEventListener("load", TWITTERBAR_OPTIONS.load, false);
+		
+		]]>
+	</script>
 	
 	<stringbundleset id="stringbundleset">
 		<stringbundle id="twitterbar-strings" src="chrome://twitterbar/locale/overlay.properties" />

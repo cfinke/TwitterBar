@@ -8,13 +8,13 @@ var TWITTERBAR_SHORTENERS = {
 			callback(status);
 		}
 		else if (shortener == "tinyurl") {
-			this.shortenUrlsTiny(status, callback);
+			TWITTERBAR_SHORTENERS.shortenUrlsTiny(status, callback);
 		}
 		else if (shortener == "bitly") {
-			this.shortenUrlsBitly(status, callback);
+			TWITTERBAR_SHORTENERS.shortenUrlsBitly(status, callback);
 		}
 		else {
-			this.shortenUrlsIsGd(status, callback);
+			TWITTERBAR_SHORTENERS.shortenUrlsIsGd(status, callback);
 		}
 	},
 	

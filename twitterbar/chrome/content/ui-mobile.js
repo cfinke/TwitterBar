@@ -12,7 +12,7 @@ var TWITTERBAR_UI = {
 		
 		document.getElementById("browsers").addEventListener("load", TWITTERBAR.DOMContentLoaded, true);
 		
-		document.getElementById("addons-list").addEventListener("AddonOptionsLoad", TWITTERBAR_OPTIONS.mobileInit, false);
+		document.getElementById("addons-list").addEventListener("AddonOptionsLoad", TWITTERBAR_OPTIONS.mobileLoad, false);
 		
 		TWITTERBAR_UI.buttonCheck();
 		
@@ -26,7 +26,7 @@ var TWITTERBAR_UI = {
 		document.getElementById("urlbar-edit").removeEventListener("blur", TWITTERBAR.blur, true);
 		document.getElementById("urlbar-edit").removeEventListener("focus", TWITTERBAR.focus, true);
 		
-		document.getElementById("addons-list").removeEventListener("AddonOptionsLoad", TWITTERBAR_OPTIONS.mobileInit, false);
+		document.getElementById("addons-list").removeEventListener("AddonOptionsLoad", TWITTERBAR_OPTIONS.mobileLoad, false);
 	},
 	
 	showFirstRun : function (version) {
@@ -42,7 +42,10 @@ var TWITTERBAR_UI = {
 	},
 	
 	openOptions : function () {
-		/* @todo */
+		TWITTERBAR_UI.showWeb();
+		
+		BrowserUI.showPanel();
+		BrowserUI.switchPane("addons-container");
 	},
 	
 	didYouKnow : function () {
