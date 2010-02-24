@@ -8,14 +8,12 @@
 	<script type="application/x-javascript" src="chrome://twitterbar/content/overlay.js"/>
 	<script type="application/x-javascript" src="chrome://twitterbar/content/options.js" />
 	<script type="application/x-javascript" src="chrome://twitterbar/content/shorteners.js" />
-	<script type="application/x-javascript" src="chrome://twitterbar/content/common.js" />
 	<script type="application/x-javascript" src="chrome://twitterbar/content/ui-mobile.js" />
 	<script type="application/x-javascript">
 		<![CDATA[
 		
 		addEventListener("load", TWITTERBAR.load, false);
 		addEventListener("load", TWITTERBAR_UI.load, false);
-		addEventListener("load", TWITTERBAR_COMMON.load, false);
 		
 		]]>
 	</script>

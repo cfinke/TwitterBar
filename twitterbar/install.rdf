@@ -3,7 +3,7 @@
 	<Description about="urn:mozilla:install-manifest">
 		<em:id>{1a0c9ebe-ddf9-4b76-b8a3-675c77874d37}</em:id>
 		<em:name>TwitterBar</em:name>
-		<em:version>2.9</em:version>
+		<em:version>2.9.1pre</em:version>
 		<em:description>Post to Twitter from your address bar.</em:description>
 		<em:creator>Christopher Finke</em:creator>
 		<em:iconURL>chrome://twitterbar/skin/bird-32.png</em:iconURL>

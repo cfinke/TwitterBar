@@ -30,12 +30,12 @@ var TWITTERBAR_OPTIONS = {
 				document.getElementById("accounts-deck").selectedIndex = 1;
 			}
 			
-			TWITTERBAR_COMMON.setUpAccount();
+			TWITTERBAR.setUpAccount();
 			
 			list.removeAllItems();
 			list.selectedIndex = -1;
 			
-			var accounts = TWITTERBAR_COMMON.accounts;
+			var accounts = TWITTERBAR.accounts;
 			
 			for (var i in accounts) {
 				if (i != "_twitterbar" && accounts[i].token) {
@@ -57,7 +57,7 @@ var TWITTERBAR_OPTIONS = {
 	
 	showAccount : function (username) {
 		if (document.getElementById("accounts-authtime")) {
-			var accounts = TWITTERBAR_COMMON.accounts;
+			var accounts = TWITTERBAR.accounts;
 			var account = accounts[username];
 		
 			var oDate = new Date();

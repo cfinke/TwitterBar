@@ -145,5 +145,9 @@ var TWITTERBAR_UI = {
 		if (button) {
 			button.setAttribute('value', 140 - TWITTERBAR.getCharCount());
 		}
+	},
+	
+	openUILink : function (url, evt, arg1, arg2) {
+		openUILink(url, evt, arg1, arg2);
 	}
 };

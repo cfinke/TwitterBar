@@ -59,7 +59,7 @@ var TWITTERBAR_UI = {
 				
 				var localeString = document.getElementById("twitter-statusbarbutton").getAttribute("followmsg");
 				
-				if (TWITTERBAR_COMMON.confirm(localeString)) {
+				if (TWITTERBAR.confirm(localeString)) {
 					TWITTERBAR.followTwtrbar();
 				}
 			}, 5000);
@@ -131,5 +131,9 @@ var TWITTERBAR_UI = {
 		document.getElementById("twitter-statusbarbutton").style.display = 'none';
 	},
 	
-	showToolbarCount : function () { }
+	showToolbarCount : function () { },
+	
+	openUILink : function (url, evt, arg1, arg2) {
+		TWITTERBAR_UI.addTab(url);
+	}
 };

@@ -30,7 +30,7 @@
 		<menulist id="twitter-accounts-list" oncommand="TWITTERBAR_OPTIONS.showAccount(this.value);">
 			<menupopup />
 		</menulist>
-		<button oncommand="TWITTERBAR_COMMON.unsetAccount(document.getElementById('twitter-accounts-list').value);" label="&twitter.remove;" />
+		<button oncommand="TWITTERBAR.unsetAccount(document.getElementById('twitter-accounts-list').value);" label="&twitter.remove;" />
 		<button oncommand="TWITTERBAR_UI.showWeb(); TWITTERBAR.addAccount(true);" label="&twitter.addAccount;" />
 	</setting>
 </vbox>

@@ -11,7 +11,7 @@
 	buttons="accept,cancel"
 	style="max-width: 450px;">
 	<script type="application/x-javascript" src="chrome://twitterbar/content/options.js" />
-	<script type="application/x-javascript" src="chrome://twitterbar/content/common.js" />
+	<script type="application/x-javascript" src="chrome://twitterbar/content/overlay.js" />
 	
 	<stringbundleset id="stringbundleset">
 		<stringbundle id="twitterbar-strings" src="chrome://twitterbar/locale/overlay.properties" />
@@ -93,7 +93,7 @@
 								<menupopup />
 							</menulist>
 							<label id="accounts-authtime" value="" />
-							<button oncommand="TWITTERBAR_COMMON.unsetAccount(document.getElementById('twitter-accounts-list').value);" label="&twitter.remove;" />
+							<button oncommand="TWITTERBAR.unsetAccount(document.getElementById('twitter-accounts-list').value);" label="&twitter.remove;" />
 						</row>
 					</rows>
 				</grid>
