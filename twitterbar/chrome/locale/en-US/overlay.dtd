@@ -14,11 +14,6 @@
 <!ENTITY twitter.noShortener "None">
 <!ENTITY twitter.searchSocial "Search the social web for the text you've entered.">
 
-<!ENTITY twitter.search.title "Social Web Search for TwitterBar">
-<!ENTITY twitter.search.p1 "TwitterBar wants to know if you'd like to search the latest trends on Twitter, Digg, and the rest of the social Web from your search bar.">
-<!ENTITY twitter.search.p2 "Check the checkbox below and click OK to enable OneRiot's Real-Time Social Web Search. You won't lose your current search engine (it will still be available from the drop-down list), but you will gain an awesome real-time view of what's hot on Twitter.">
-<!ENTITY twitter.search.checkbox "Yes, I want to install OneRiot Search and make it my default search engine.">
-
 <!ENTITY twitter.showTrends "Show additional trending topics in the Twitter sidebar.">
 
 <!ENTITY twitter.bitlyInstructions "Enter your bit.ly login and API key, if you have one.">
