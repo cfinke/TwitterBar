@@ -38,13 +38,3 @@
 <!ENTITY twitter.remove "Remove">
 
 <!ENTITY twitter.noAccounts "You haven't authorized any accounts yet.">
-
-<!ENTITY twitter.followTitle "Will you be my friend?">
-<!ENTITY twitter.followMessage "Would you like to follow @twtrbar to get the latest news and updates about TwitterBar?">
-<!ENTITY twitter.followOK "Sure!">
-<!ENTITY twitter.followNo "No Thanks">
-
-<!ENTITY twitter.didYouKnow "Did you know...">
-<!ENTITY twitter.multipleHowTo1 "Did you know that you can manage multiple Twitter accounts with TwitterBar? It's true!">
-<!ENTITY twitter.multipleHowTo2 "To add a new account, just type '--account' in the URL bar.  You'll be prompted to sign into Twitter with the new account.">
-<!ENTITY twitter.multipleHowTo3 "To post to a specific account, just type --@account_name at the end of your tweet (but before typing --post). e.g., 'Tweeting from my personal account. --@jimmy2424 --post'.">

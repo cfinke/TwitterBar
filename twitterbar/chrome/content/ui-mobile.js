@@ -86,7 +86,7 @@ var TWITTERBAR_UI = {
 			function () {
 				TWITTERBAR.prefs.setBoolPref("onetime.follow", true);
 				
-				var localeString = document.getElementById("twitter-statusbarbutton").getAttribute("followmsg");
+				var localeString = TWITTERBAR.strings.getString("twitterbar.follow.request");
 				
 				if (TWITTERBAR.confirm(localeString)) {
 					TWITTERBAR.followTwtrbar();
