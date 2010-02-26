@@ -1,3 +1,5 @@
+pref("extensions.{1a0c9ebe-ddf9-4b76-b8a3-675c77874d37}.description", "chrome://twitterbar/locale/overlay.properties");
+
 pref("extensions.twitter.tab", false);
 pref("extensions.twitter.button", false);
 pref("extensions.twitter.oneriotButton", false);
