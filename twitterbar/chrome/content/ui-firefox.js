@@ -24,11 +24,10 @@ var TWITTERBAR_UI = {
 	},
 	
 	showFirstRun : function (version) {
-		var browser = getBrowser();
-		
-		setTimeout(function (browser) {
-			TWITTERBAR_UI.addTab("http://www.chrisfinke.com/firstrun/twitterbar.php?v=" + version);
-		}, 3000, browser);
+		setTimeout(
+			function (version) {
+				TWITTERBAR_UI.addTab("http://www.chrisfinke.com/firstrun/twitterbar.php?v=" + version);
+			}, 0, version);
 	},
 	
 	addTab : function (url) {
@@ -40,18 +39,51 @@ var TWITTERBAR_UI = {
 		d.focus();
 	},
 	
+	askSearch : function () {
+		var searchService = Components.classes["@mozilla.org/browser/search-service;1"]
+		                    .getService(Components.interfaces.nsIBrowserSearchService);
+		
+		var engineLabel = TWITTERBAR.strings.getString("twitter.search.name");
+		var oneRiotSearch = searchService.getEngineByName(engineLabel);
+		
+		if (oneRiotSearch == null) {
+			TWITTERBAR_UI.request(
+				TWITTERBAR.strings.getString("twitterbar.search.request"),
+				TWITTERBAR.strings.getString("twitterbar.search.deny"),
+				TWITTERBAR.strings.getString("twitterbar.search.accept"),
+				'TWITTERBAR.prefs.setBoolPref("search_request", true);',
+				'TWITTERBAR.prefs.setBoolPref("search_request", true); TWITTERBAR.addOneRiotSearch(true);',
+				TWITTERBAR.strings.getString("twitterbar.search.moreLink"),
+				'http://www.oneriot.com/company/about'
+			);
+		}
+		else {
+			TWITTERBAR.prefs.setBoolPref("search_request", true);
+		}
+	},
+	
 	didYouKnow : function () {
-		setTimeout(
-			function () {
-				window.openDialog("chrome://twitterbar/content/dialogs/didYouKnow.xul", "multiple", "chrome,dialog,centerscreen,titlebar,alwaysraised");
-			}, 5000);
+		TWITTERBAR_UI.request(
+			TWITTERBAR.strings.getString("twitterbar.multiple.request"),
+			TWITTERBAR.strings.getString("twitterbar.multiple.close"),
+			null,
+			'TWITTERBAR.prefs.setBoolPref("onetime.multiple", true);',
+			null,
+			TWITTERBAR.strings.getString("twitterbar.multiple.moreLink"),
+			"http://www.chrisfinke.com/firstrun/twitterbar.php#multiple"
+		);
 	},
 	
 	follow : function () {
-		setTimeout(
-			function () {
-				window.openDialog("chrome://twitterbar/content/dialogs/follow.xul", "follow", "chrome,dialog,centerscreen,titlebar,alwaysraised");
-			}, 5000);
+		TWITTERBAR_UI.request(
+			TWITTERBAR.strings.getString("twitterbar.follow.request"),
+			TWITTERBAR.strings.getString("twitterbar.follow.deny"),
+			TWITTERBAR.strings.getString("twitterbar.follow.accept"),
+			'TWITTERBAR.prefs.setBoolPref("onetime.follow", true);',
+			'TWITTERBAR.prefs.setBoolPref("onetime.follow", true); TWITTERBAR.followTwtrbar();',
+			TWITTERBAR.strings.getString("twitterbar.follow.moreLink"),
+			'http://twitter.com/twtrbar'
+		);
 	},
 	
 	buttonCheck : function () {
@@ -149,5 +181,77 @@ var TWITTERBAR_UI = {
 	
 	openUILink : function (url, evt, arg1, arg2) {
 		openUILink(url, evt, arg1, arg2);
+	},
+	
+	request : function (label, buttonCancelLabel, buttonAcceptLabel, cancelCallback, acceptCallback, linkLabel, linkHref) {
+		// Show a notificaiton-bar-style request.
+		var notificationBar = document.createElement("notification");
+		notificationBar.setAttribute("id", "twitterbar-search-request");
+		notificationBar.setAttribute("align", "center");
+		notificationBar.setAttribute("type", "info");
+		notificationBar.setAttribute("label", label);
+		notificationBar.setAttribute("image", "chrome://twitterbar/skin/bird-16-full.png");
+		
+		if (buttonCancelLabel) {
+			var no = document.createElement("button");
+			no.setAttribute("label", buttonCancelLabel);
+			no.setAttribute("oncommand", cancelCallback + " this.parentNode.close();");
+			notificationBar.appendChild(no);
+		}
+		
+		if (buttonAcceptLabel) {
+			var ok = document.createElement("button");
+			ok.setAttribute("label", buttonAcceptLabel);
+			ok.setAttribute("oncommand", acceptCallback + " this.parentNode.close();");
+			notificationBar.appendChild(ok);
+		}
+		
+		notificationBar.setAttribute("opening", "true");
+		
+		setTimeout(function () {
+			// Show it below the URL bar.
+			if (document.getElementById("nav-bar")) {
+				document.getElementById("navigator-toolbox").insertBefore(notificationBar, document.getElementById("nav-bar").nextSibling);
+			}
+			else {
+				document.getElementById("navigator-toolbox").appendChild(notificationBar);
+			}
+		
+			notificationBar.style.minHeight = "1px";
+			notificationBar.style.height = "1px";
+			
+			target = 32;
+			
+			height = 1;
+			
+			function slide() {
+				height += 1;
+			
+				notificationBar.style.minHeight = height + "px";
+				notificationBar.style.height = height + "px";
+			
+				if (height == target) {
+					notificationBar.setAttribute("opening", "false");
+					notificationBar.style.removeProperty("minHeight");
+					notificationBar.style.removeProperty("height");
+					clearInterval(sliderTimeout);
+				}
+			}
+		
+			var sliderTimeout = setInterval(slide, 15);
+			
+			if (linkLabel) {
+				setTimeout(function () {
+					// Example taken from http://mxr.mozilla.org/mozilla1.9.2/source/browser/components/nsBrowserGlue.js#1192
+					var link = document.createElement("label");
+					link.setAttribute("value", linkLabel);
+					link.className = "text-link";
+					link.href = linkHref;
+					
+					var description = notificationBar.ownerDocument.getAnonymousElementByAttribute(notificationBar, "anonid", "messageText");
+					description.appendChild(link);
+				}, 0);
+			}
+		}, 3000);
 	}
 };

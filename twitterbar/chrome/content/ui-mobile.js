@@ -35,6 +35,28 @@ var TWITTERBAR_UI = {
 		}, 3000, browser);
 	},
 	
+	askSearch : function () {
+		setTimeout(
+			function installSearch() {
+				var searchService = Components.classes["@mozilla.org/browser/search-service;1"]
+				                    .getService(Components.interfaces.nsIBrowserSearchService);
+					
+				var engineLabel = TWITTERBAR.strings.getString("twitter.search.name");
+				var oneRiotSearch = searchService.getEngineByName(engineLabel);
+					
+				if (oneRiotSearch == null) {
+					var msg = TWITTERBAR.strings.getString("twitterbar.search.mobile");
+					var cb = TWITTERBAR.strings.getString("twitterbar.search.mobile.checkbox");
+					
+					var rv = TWITTERBAR.confirmCheck(msg, cb);
+					
+					if (rv[0] && rv[1]) {
+						TWITTERBAR.addOneRiotSearch();
+					}
+				}
+			}, 5000);
+	},
+	
 	addTab : function (url) {
 		Browser.addTab(url, true);
 		
@@ -51,7 +73,11 @@ var TWITTERBAR_UI = {
 	didYouKnow : function () {
 		setTimeout(
 			function () {
-				window.openDialog("chrome://twitterbar/content/dialogs/didYouKnow.xul", "multiple", "chrome,dialog,centerscreen,titlebar,alwaysraised");
+				TWITTERBAR.prefs.setBoolPref("onetime.multiple", true);
+				
+				var localeString = TWITTERBAR.strings.getString("twitterbar.multiple.request");
+				
+				TWITTERBAR.alert(localeString);
 			}, 5000);
 	},
 	

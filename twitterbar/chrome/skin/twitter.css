@@ -28,3 +28,11 @@ toolbar[iconsize="small"] #twitter-toolbar-button {
 	height: 16px;
 	width: 16px;
 }
+
+#twitterbar-search-request toolbarbutton {
+	display: none;
+}
+
+#twitterbar-search-request[opening="true"] * {
+	display: none;
+}

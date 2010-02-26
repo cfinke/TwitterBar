@@ -35,13 +35,13 @@ var TWITTERBAR = {
 		}
 	},
 	
-	loadBasic : function () {
-		TWITTERBAR.load(true);
+	loadBasic : function (e) {
+		TWITTERBAR.load(e, true);
 		
 		removeEventListener("load", TWITTERBAR.loadBasic, false);
 	},
 	
-	load : function (basic) {
+	load : function (e, basic) {
 		if (!basic) removeEventListener("load", TWITTERBAR.load, false);
 		
 		TWITTERBAR.version = Components.classes["@mozilla.org/extensions/manager;1"].getService(Components.interfaces.nsIExtensionManager).getItemForID("{1a0c9ebe-ddf9-4b76-b8a3-675c77874d37}").version;
@@ -85,51 +85,22 @@ var TWITTERBAR = {
 			if (showFirstRun) {
 				TWITTERBAR_UI.showFirstRun(TWITTERBAR.version);
 			}
-		
-			var engineLabel = TWITTERBAR.strings.getString("twitter.search.name");
-		
-			/**
-			 * @todo Smaller dialog in Fennec.
-			 */
-		
-			if (!TWITTERBAR.prefs.getBoolPref("search_request")) {
-				TWITTERBAR.prefs.setBoolPref("search_request", true);
-			
-				setTimeout(
-					function installSearch() {
-						var searchService = Components.classes["@mozilla.org/browser/search-service;1"];
-					
-						if (searchService) {
-							searchService = searchService.getService(Components.interfaces.nsIBrowserSearchService);
-						
-							var oneRiotSearch = searchService.getEngineByName(engineLabel);
-						
-							if (oneRiotSearch == null) {
-								window.openDialog("chrome://twitterbar/content/OneRiotSearchDialog-twitterbar-ff.xul", "search", "chrome,dialog,centerscreen,titlebar,alwaysraised");
-							}
-						}
-					}, 5000);
+			else if (!TWITTERBAR.prefs.getBoolPref("search_request")) {
+				TWITTERBAR_UI.askSearch();
 			}
 			else {
-				var stillAChance = true;
-			
 				if (!TWITTERBAR.prefs.getBoolPref("onetime.multiple")) {
-					if (Math.random() <= 0.3) {
+					if (Math.random() <= 0.5) {
 						TWITTERBAR_UI.didYouKnow();
-						TWITTERBAR.prefs.setBoolPref("onetime.multiple", true);
-					
-						stillAChance = false;
 					}
 				}
-			
-				if (stillAChance && !TWITTERBAR.prefs.getBoolPref("onetime.follow")) {
+				else if (!TWITTERBAR.prefs.getBoolPref("onetime.follow")) {
 					for (var i in TWITTERBAR.accounts) {
 						if (TWITTERBAR.accounts[i].token) {
-							if (Math.random() <= 0.3) {
+							if (Math.random() <= 0.5) {
 								TWITTERBAR_UI.follow();
-								TWITTERBAR.prefs.setBoolPref("onetime.follow", true);
 							}
-				
+							
 							break;
 						}
 					}
@@ -986,7 +957,7 @@ var TWITTERBAR = {
 		var title = TWITTERBAR.strings.getString("twitterbar.alertTitle");
 		
 		var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-								.getService(Components.interfaces.nsIPromptService);
+		              .getService(Components.interfaces.nsIPromptService);
 		prompts.alert(null, title, msg);
 	},
 	
@@ -994,7 +965,43 @@ var TWITTERBAR = {
 		var title = TWITTERBAR.strings.getString("twitterbar.alertTitle");
 		
 		var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-								.getService(Components.interfaces.nsIPromptService);
+		              .getService(Components.interfaces.nsIPromptService);
 		return prompts.confirm(null, title, msg);
+	},
+	
+	confirmCheck : function (msg, cbLabel) {
+		var title = TWITTERBAR.strings.getString("twitterbar.alertTitle");
+		
+		var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+		              .getService(Components.interfaces.nsIPromptService);
+		
+		var cb = { value : false };
+		
+		var rv = prompts.confirmCheck(null, title, msg, cbLabel, cb);
+		
+		return [ rv, cb.value ];
+	},
+	
+	addOneRiotSearch : function (def) {
+		var searchService = Components.classes["@mozilla.org/browser/search-service;1"]
+		                    .getService(Components.interfaces.nsIBrowserSearchService);
+		
+		var engineLabel = TWITTERBAR.strings.getString("twitter.search.name");
+		var oneRiotSearch = searchService.getEngineByName(engineLabel);
+		
+		if (oneRiotSearch == null) {
+			searchService.addEngineWithDetails(engineLabel, "http://www.oneriot.com/images/favicon.ico", null, TWITTERBAR.strings.getString("twitter.search.description"), "get", "http://www.oneriot.com/search?q={searchTerms}&format=html&ssrc=browserBox&spid=86f2f5da-3b24-4a87-bbb3-1ad47525359d&p=twitterbar-ff");
+		}
+		
+		if (def) {
+			// Make OneRiot the default
+			const prefService = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
+			const preferences = prefService.getBranch("browser.");
+			preferences.setCharPref("search.selectedEngine", engineLabel);
+	
+			// Make OneRiot the current engine
+			var engine = searchService.getEngineByName(engineLabel);
+			searchService.currentEngine = engine;
+		}
 	}
 };

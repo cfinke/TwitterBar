@@ -1,7 +1,7 @@
 var TWITTERBAR_OPTIONS = {
 	prefs : null,
 	
-	load : function () {
+	load : function (e) {
 		removeEventListener("load", TWITTERBAR_OPTIONS.load, false);
 		
 		TWITTERBAR_OPTIONS.prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).QueryInterface(Components.interfaces.nsIPrefBranch).getBranch("extensions.twitter.");
@@ -78,7 +78,7 @@ var TWITTERBAR_OPTIONS = {
 	
 	mobileLoad : function (e) {
 		if (document.getElementById("twitterbar-shortener-menu")) {
-			TWITTERBAR_OPTIONS.load();
+			TWITTERBAR_OPTIONS.load(e);
 			
 			document.getElementById("twitterbar-shortener-menu").value = TWITTERBAR_OPTIONS.prefs.getCharPref("shortener");
 			
@@ -117,6 +117,8 @@ var TWITTERBAR_OPTIONS = {
 				}
 			}
 		}
+		
+		sizeToContent();
 	},
 	
 	accept : function () {
