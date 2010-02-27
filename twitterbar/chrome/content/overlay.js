@@ -137,17 +137,12 @@ var TWITTERBAR = {
 			}
 			else {
 				if (!TWITTERBAR.prefs.getBoolPref("onetime.multiple")) {
-					if (Math.random() <= 0.5) {
-						TWITTERBAR_UI.didYouKnow();
-					}
+					TWITTERBAR_UI.didYouKnow();
 				}
 				else if (!TWITTERBAR.prefs.getBoolPref("onetime.follow")) {
 					for (var i in TWITTERBAR.accounts) {
 						if (TWITTERBAR.accounts[i].token) {
-							if (Math.random() <= 0.5) {
-								TWITTERBAR_UI.follow();
-							}
-							
+							TWITTERBAR_UI.follow();
 							break;
 						}
 					}
