@@ -8,22 +8,56 @@ var TWITTERBAR = {
 	 * A dict of all of the authorized accounts.  A shortcut to the stored data in the prefs system.
 	 */
 	accounts : {},
+	
+	/**
+	 * An array of pending messages to be sent to Twitter of the format:
+	 * [ ["screenname1", "Message 1"], ["screenname2", "Message 2"] ]
+	 */
 	pendingTweets : [],
 	
+	/**
+	 * A shortcut to the debug pref. Enable to get debugging information.
+	 */
 	debug : false,
 	
+	/**
+	 * Stores the last sent message in the case that the authorization workflow kicks in.
+	 */
 	lastTweet : null,
+	
+	/**
+	 * Whether to hide the fact that a message is being sent.  Used after authorization.
+	 */
 	covertMode : false,
 	
-	version : null,
+	/**
+	 * The current version of TwitterBar.
+	 */
+	get version() { return Components.classes["@mozilla.org/extensions/manager;1"].getService(Components.interfaces.nsIExtensionManager).getItemForID("{1a0c9ebe-ddf9-4b76-b8a3-675c77874d37}").version; },
 	
+	/**
+	 * Whatever the user replaced when they started typing their message.
+	 */
 	lastUrl : null,
 	
+	/**
+	 * Shortcut to the stringbundle.
+	 */
 	get strings() { return document.getElementById("twitterbar-strings"); },
 	
+	/**
+	 * Token secret for the currently selected account.
+	 */
 	get oauth_token_secret() { if (TWITTERBAR.currentAccount in TWITTERBAR.accounts) { return TWITTERBAR.accounts[TWITTERBAR.currentAccount].token_secret; } else { return ""; } },
+	
+	/**
+	 * Token for the currently selected account.
+	 */
 	get oauth_token() { if (TWITTERBAR.currentAccount in TWITTERBAR.accounts) { return TWITTERBAR.accounts[TWITTERBAR.currentAccount].token; } else { return ""; } },
 	
+	/**
+	 * OAuth data for Twitter.
+	 */
 	oauth : {
 		consumer_key : "lwVKpcTJM69MeYobWq3mg",
 		consumer_secret : "TVjchnocdkVUcFtNhzCzVwOql5meAgbShN621r6bueE", 
@@ -42,16 +76,22 @@ var TWITTERBAR = {
 		}
 	},
 	
+	/**
+	 * Sets up the object, but without any UI or prompts.
+	 */
+	
 	loadBasic : function (e) {
 		TWITTERBAR.load(e, true);
 		
 		removeEventListener("load", TWITTERBAR.loadBasic, false);
 	},
 	
+	/**
+	 * Initializes important aspects for functionality.
+	 */
+	
 	load : function (e, basic) {
 		if (!basic) removeEventListener("load", TWITTERBAR.load, false);
-		
-		TWITTERBAR.version = Components.classes["@mozilla.org/extensions/manager;1"].getService(Components.interfaces.nsIExtensionManager).getItemForID("{1a0c9ebe-ddf9-4b76-b8a3-675c77874d37}").version;
 		
 		TWITTERBAR.prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("extensions.twitter.");	
 		TWITTERBAR.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
@@ -123,6 +163,10 @@ var TWITTERBAR = {
 		addEventListener("unload", TWITTERBAR.unload, false);
 	},
 	
+	/**
+	 * Clears listeners and observers.
+	 */
+	
 	unload : function () {
 		removeEventListener("unload", TWITTERBAR.unload, false);
 		
@@ -131,6 +175,9 @@ var TWITTERBAR = {
 		clearInterval(TWITTERBAR.trendTimer);
 	},
 	
+	/**
+	 * Pref observer for instantly applied pref changes.
+	 */
 	observe : function(subject, topic, data) {
 		if (topic != "nsPref:changed") {
 			return;
