@@ -54,7 +54,7 @@ var TWITTERBAR_UI = {
 				'TWITTERBAR.prefs.setBoolPref("search_request", true);',
 				'TWITTERBAR.prefs.setBoolPref("search_request", true); TWITTERBAR.addOneRiotSearch(true);',
 				TWITTERBAR.strings.getString("twitterbar.search.moreLink"),
-				'http://www.oneriot.com/company/about'
+				'http://www.chrisfinke.com/firstrun/twitterbar-search.php'
 			);
 		}
 		else {
@@ -70,7 +70,7 @@ var TWITTERBAR_UI = {
 			'TWITTERBAR.prefs.setBoolPref("onetime.multiple", true);',
 			null,
 			TWITTERBAR.strings.getString("twitterbar.multiple.moreLink"),
-			"http://www.chrisfinke.com/firstrun/twitterbar.php#multiple"
+			"http://www.chrisfinke.com/firstrun/twitterbar-multiple.php"
 		);
 	},
 	
@@ -161,8 +161,12 @@ var TWITTERBAR_UI = {
 		document.getElementById("twitter-searchbutton").hidden = true;
 	},
 	
+	keyDownTimer : null,
+	
 	keyDown : function () {
-		TWITTERBAR_UI.showToolbarCount();
+		clearTimeout(TWITTERBAR_UI.keyDownTimer);
+		
+		TWITTERBAR_UI.keyDownTimer = setTimeout(TWITTERBAR_UI.showToolbarCount, 500);
 	},
 	
 	focus : function () {

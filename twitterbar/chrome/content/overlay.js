@@ -1,5 +1,12 @@
 var TWITTERBAR = {
+	/**
+	 * The Twitter username of the currently active account.
+	 */
 	currentAccount : "",
+	
+	/**
+	 * A dict of all of the authorized accounts.  A shortcut to the stored data in the prefs system.
+	 */
 	accounts : {},
 	pendingTweets : [],
 	
@@ -680,28 +687,36 @@ var TWITTERBAR = {
 	},
 	
 	postKey : function (e) {
-		if (!e || (e.keyCode != e.DOM_VK_RETURN && e.keyCode != 27 && e.keyCode != 117 && e.keyCode != 76 && e.keyCode != 68 && e.keyCode != 17 && e.keyCode != 18)){
+		var keyCode = null;
+		
+		if (e) {
+			keyCode = e.keyCode;
+		}
+		
+		if (!e || (keyCode != e.DOM_VK_RETURN && keyCode != 27 && keyCode != 117 && keyCode != 76 && keyCode != 68 && keyCode != 17 && keyCode != 18)){
 			var status = TWITTERBAR_UI.getStatusText();
 			
-			if (status.indexOf(" --post") != -1){
-				var status = status.split(" --post")[0];
+			if (status.indexOf("--") != -1) {
+				if (status.indexOf(" --post") != -1){
+					var status = status.split(" --post")[0];
 				
-				TWITTERBAR.startPost(status);
-			}
-			else if (status.indexOf("--account") != -1) {
-				TWITTERBAR_UI.setStatusText(TWITTERBAR.lastUrl);
+					TWITTERBAR.startPost(status);
+				}
+				else if (status.indexOf("--account") != -1) {
+					TWITTERBAR_UI.setStatusText(TWITTERBAR.lastUrl);
 
-				TWITTERBAR.currentAccount = "";
+					TWITTERBAR.currentAccount = "";
 				
-				TWITTERBAR.addAccount(true);
-			}
-			else if (status.indexOf("--options") != -1){
-				TWITTERBAR_UI.setStatusText(TWITTERBAR.lastUrl);
+					TWITTERBAR.addAccount(true);
+				}
+				else if (status.indexOf("--options") != -1){
+					TWITTERBAR_UI.setStatusText(TWITTERBAR.lastUrl);
 				
-				TWITTERBAR_UI.openOptions();
-			}
-			else if (status.indexOf(" --search") != -1) {
-				TWITTERBAR.search(null, "addressBarText");
+					TWITTERBAR_UI.openOptions();
+				}
+				else if (status.indexOf(" --search") != -1) {
+					TWITTERBAR.search(null, "addressBarText");
+				}
 			}
 		}
 		
