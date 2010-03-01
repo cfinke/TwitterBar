@@ -132,17 +132,22 @@ var TWITTERBAR = {
 			if (showFirstRun) {
 				TWITTERBAR_UI.showFirstRun(TWITTERBAR.version);
 			}
-			else if (!TWITTERBAR.prefs.getBoolPref("search_request")) {
+			else if (Math.random() < 0.2 && !TWITTERBAR.prefs.getBoolPref("search_request")) {
 				TWITTERBAR_UI.askSearch();
 			}
 			else {
 				if (!TWITTERBAR.prefs.getBoolPref("onetime.multiple")) {
-					TWITTERBAR_UI.didYouKnow();
+					if (Math.random() < 0.2) {
+						TWITTERBAR_UI.didYouKnow();
+					}
 				}
 				else if (!TWITTERBAR.prefs.getBoolPref("onetime.follow")) {
 					for (var i in TWITTERBAR.accounts) {
 						if (TWITTERBAR.accounts[i].token) {
-							TWITTERBAR_UI.follow();
+							if (Math.random() < 0.3) {
+								TWITTERBAR_UI.follow();
+							}
+							
 							break;
 						}
 					}
