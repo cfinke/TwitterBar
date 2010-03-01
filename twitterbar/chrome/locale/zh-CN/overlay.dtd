@@ -26,6 +26,8 @@
 <!ENTITY twitter.multiAccountInstructions "要发布到一个指定的帐号，只需要在要发送的消息末尾（--post 之前）输入  --@帐号。">
 <!ENTITY twitter.account "账户">
 <!ENTITY twitter.authorizedOn "授权为...">
+<!ENTITY twitter.remove "删除">
+<!ENTITY twitter.noAccounts "尚未授权任何帐户。">
 <!ENTITY twitter.followTitle "做我的朋友好吗？">
 <!ENTITY twitter.followMessage "是否订阅 @twtrbar 以获得 TwitterBar 的新闻和升级信息。">
 <!ENTITY twitter.followOK "当然！">

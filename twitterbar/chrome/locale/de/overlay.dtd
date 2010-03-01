@@ -1,0 +1,38 @@
+<!ENTITY twitter.post "An Twitter senden...">
+<!ENTITY twitter.tab "Meine Twitter-Seite nach senden des eintrags in einem neuen Tab öffnen">
+<!ENTITY twitter.web "Eintrag vor der Adresse:">
+<!ENTITY twitter.button "TwitterBar Symbol in der Adressleiste verstecken">
+<!ENTITY twitter.oneriotButton "Das OneRiot-Search Symbol in der Adressleiste verstecken">
+<!ENTITY twitter.options.dialog "TwitterBar Optionen">
+<!ENTITY twitter.generalTab "Allgemein">
+<!ENTITY twitter.confirm "Immer nach einer Bestätigung fragen bevor ein Post an Twitter gesendet wird.">
+<!ENTITY twitter.prefixExplanation "Sie können den Link der aktuell angezeigten Seite mit anderen teilen, indem Sie auf das Twitter-Symbol in der Adressleiste klicken. Dabei wird der folgende Text der Adresse vorangestellt:">
+<!ENTITY twitter.prefixDescription "(Sie können $$ als Platzhalter für den Seitentitel nutzen.)">
+<!ENTITY twitter.shortener "URL Kürzer-Dienst:">
+<!ENTITY twitter.noShortener "Keiner">
+<!ENTITY twitter.searchSocial "Das soziale Netzwerk nach eingegebenen Text durchsuchen.">
+<!ENTITY twitter.search.p1 "TwitterBar möchte eine Suchmaschine des Suchdienstes &quot;OnRiot&quot; hinzufügen, welche es möglich macht, die aktuellen Trends auf Twitter, Digg und vielen anderen Social-Communitys mit Hilfe der Suchleiste zu durchsuchen.">
+<!ENTITY twitter.search.p2 "Aktivieren Sie die Checkbox und klicken Sie auf OK um eine Suchmaschine des Echtzeit-Suchdienstes &quot;OnRiot&quot; für das Soziale Netzwerk hinzuzufügen. Ihre aktuelle Suchmaschine wird hierbei nicht gelöscht, sie erhalten jedoch einen hervorragenden Echtzeit-Überblick auf die neuesten Nachrichten auf Twitter">
+<!ENTITY twitter.search.checkbox "Ja, ich möchte die OneRiot  installieren und sie zu meiner Standardsuchmaschine machen.">
+<!ENTITY twitter.showTrends "Weitere Themen in der Twitter-Sidebar anzeigen.">
+<!ENTITY twitter.bitlyInstructions "Bitte geben Sie, wenn vorhanden, ihren bit.ly login und API Key ein.">
+<!ENTITY twitter.bitlyLogin "Bit.ly Login">
+<!ENTITY twitter.bitlyApiKey "Bit.ly API Key">
+<!ENTITY twitter.options "Optionen...">
+<!ENTITY twitter.chooseAccountTitle "Einen Account auswählen....">
+<!ENTITY twitter.chooseAccount "Mit welchem Account wollen sie die Nachricht veröffentlichen?">
+<!ENTITY twitter.newAccount "Neu:">
+<!ENTITY twitter.addAccount "Account Hinzufügen:">
+<!ENTITY twitter.multiAccountInstructions "um die Nachricht in einem bestimmten Konto zu veröffentlichen, geben Sie bitte --@account_name am Ende des Tweets (aber vor --post) ein.">
+<!ENTITY twitter.account "Account">
+<!ENTITY twitter.authorizedOn "Autorisiert am...">
+<!ENTITY twitter.remove "Entfernen">
+<!ENTITY twitter.noAccounts "Sie haben kein bestätigtes Konto.">
+<!ENTITY twitter.followTitle "Wollen sie mein Freund sein?">
+<!ENTITY twitter.followMessage "Wollen sie @twtrbar folgen um die neusten News und besten Updates für TwitterBar zu erhalten?">
+<!ENTITY twitter.followOK "Natürlich!">
+<!ENTITY twitter.followNo "Nein Danke">
+<!ENTITY twitter.didYouKnow "Wussten sie...">
+<!ENTITY twitter.multipleHowTo1 "Wussten sie, dass sie mehrere Twitteraccounts mit TwitterBar verwalten können? Es Stimmt!">
+<!ENTITY twitter.multipleHowTo2 "Um ein neues Konto hinzuzufügen geben Sie einfach --account in die Adressleiste ein. Sie werden anschließend aufgefordert sich bei Twitter mit ihrem neuen Konto anzumelden.">
+<!ENTITY twitter.multipleHowTo3 "Um Nachrichten über ein bestimmtes Konto zu senden, geben Sie einfach --@account_name am Ende der Nachricht (aber vor --post) ein. Z.B. &quot;Nachricht von meinem persönlichen Konto --@jimmy2424 --post&quot;">
