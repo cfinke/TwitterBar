@@ -9,7 +9,4 @@
 <!ENTITY twitter.prefixDescription "(Anda dapat menggunakan $$ sebagai tempat untuk judul halaman.)">
 <!ENTITY twitter.noShortener "Tidak ada (Biarkan Twitter yang Mensortir)">
 <!ENTITY twitter.searchSocial "Cari jaringan sosial untuk teks yang anda masukkan.">
-<!ENTITY twitter.search.p1 "TwitterBar ingin mengetahui jika anda suka mencari yang terpoler terakhir di Twitter, Digg,  dan sebagainya di jaringan sosial dari kotak pencarian anda.">
-<!ENTITY twitter.search.p2 "Cek kotak opsi di bawah dan klik Oke untuk mengaktifkan Pencarian Jaringan Sosial real-time OneRiot. Anda tidak akan kehilangan mesin pencarian anda yang aktif saat ini (ini akan tetap tersedia dari daftar),  tetapi anda akan memperoleh informasi mengagumkan secara real-time dari apa yang terpopuler di Twitter.">
-<!ENTITY twitter.search.checkbox "Ya, saya menginginkan untuk memasang Pencarian OneRiot dan menjadikannya sebagai mesin pencarian default saya.">
 <!ENTITY twitter.showTrends "Tunjukkan tambahan topik terpopuler di sebelah kotak Twitter.">

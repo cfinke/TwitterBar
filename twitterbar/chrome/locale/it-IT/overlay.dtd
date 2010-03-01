@@ -11,11 +11,17 @@
 <!ENTITY twitter.shortener "Servizio abbreviazione URL:">
 <!ENTITY twitter.noShortener "(nessuno)">
 <!ENTITY twitter.searchSocial "Cerca il testo inserito nelle reti sociali">
-<!ENTITY twitter.search.p1 "È possibile effettuare la ricerca delle ultime tendenze su Twitter, Digg ed il resto delle reti sociali tramite la barra di ricerca del browser">
-<!ENTITY twitter.search.p2 "Selezionare la casella qui sotto e fare clic su OK per aggiungere il motore di ricerca OneRiot Search, che permetterà di visualizzare cosa accade nelle reti sociali in tempo reale. Il motore di ricerca attuale non verrà disinstallato restando disponibile nell'elenco a discesa">
-<!ENTITY twitter.search.checkbox "Installa il motore di ricerca OneRiot Search impostandolo come predefinito">
 <!ENTITY twitter.showTrends "Mostra 'Ulteriori argomenti di tendenza' nella barra laterale di Twitter">
 <!ENTITY twitter.bitlyInstructions "Inserire il nome utente e la chiave API di Bit.ly se disponibile">
 <!ENTITY twitter.bitlyLogin "Nome utente:">
 <!ENTITY twitter.bitlyApiKey "Chiave API:">
-<!ENTITY twitter.options "Opzioni...">
+<!ENTITY twitter.options "Opzioni…">
+<!ENTITY twitter.chooseAccountTitle "Selezione dell'account">
+<!ENTITY twitter.chooseAccounts "Selezionare gli account da utilizzare">
+<!ENTITY twitter.newAccount "Nuovo:">
+<!ENTITY twitter.addAccount "Aggiungi account">
+<!ENTITY twitter.multiAccountInstructions "Per inviare un messaggio tramite un account specifico digitare --@nome_account alla fine del messaggio">
+<!ENTITY twitter.account "Account">
+<!ENTITY twitter.authorizedOn "Autorizzato il">
+<!ENTITY twitter.remove "Elimina">
+<!ENTITY twitter.noAccounts "Non è stato autorizzato alcun account">

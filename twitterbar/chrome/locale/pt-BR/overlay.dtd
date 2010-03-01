@@ -11,26 +11,14 @@
 <!ENTITY twitter.shortener "Encurtador de URL:">
 <!ENTITY twitter.noShortener "Nenhum (deixa o Twitter ordenar)">
 <!ENTITY twitter.searchSocial "Buscar na rede social o texto que você digitou.">
-<!ENTITY twitter.search.p1 "TwitterBar quer saber se você gostaria de buscar as últimas tendências no Twitter, Digg e o resto da rede social usando sua barra de buscas.">
-<!ENTITY twitter.search.p2 "Clique em OK para habilitar a Busca em Tempo-Real na Rede Social do OneRiot. Você não perderá seu mecanismo de busca atual, mas ganhará uma admirável vista em tempo-real do que está bombando no Twitter.">
-<!ENTITY twitter.search.checkbox "Sim, quero instalar o OneRiot e torná-lo meu mecanismo de busca padrão.">
 <!ENTITY twitter.showTrends "Exibir tópicos adicionais de tendências no painel Twitter.">
 <!ENTITY twitter.bitlyInstructions "Digite seu login do bit.ly e chave API, se tiver.">
 <!ENTITY twitter.bitlyLogin "Login do bit.ly:">
 <!ENTITY twitter.bitlyApiKey "Chave API do bit.ly:">
 <!ENTITY twitter.options "Opções...">
 <!ENTITY twitter.chooseAccountTitle "Escolha uma conta...">
-<!ENTITY twitter.chooseAccount "Para qual conta que você quer escrever?">
 <!ENTITY twitter.newAccount "Novo:">
 <!ENTITY twitter.addAccount "Adicionar conta">
 <!ENTITY twitter.multiAccountInstructions "Para enviar mensagens para uma conta específica, basta digitar --@nome_da_conta no final do seu tweet (mas antes de --post).">
 <!ENTITY twitter.account "Conta">
 <!ENTITY twitter.authorizedOn "Autorizado em...">
-<!ENTITY twitter.followTitle "Você será meu amigo?">
-<!ENTITY twitter.followMessage "Você gostaria de acompanhar @twtrbar para receber as últimas notícias e atualizações sobre o TwitterBar?">
-<!ENTITY twitter.followOK "Com certeza!">
-<!ENTITY twitter.followNo "Não, obrigado">
-<!ENTITY twitter.didYouKnow "Você sabia...">
-<!ENTITY twitter.multipleHowTo1 "Você sabia que pode gerenciar várias contas do Twitter com o TwitterBar? É verdade!">
-<!ENTITY twitter.multipleHowTo2 "Para adicionar uma nova conta, basta digitar '--conta' na barra de endereços. Você será solicitado a se registrar no Twitter com a nova conta.">
-<!ENTITY twitter.multipleHowTo3 "Para enviar mensagens para uma conta específica, basta digitar --@nome_da_conta no final do seu tweet (mas antes de digitar --post). Exemplo: 'Tweetando a partir da minha conta pessoal. --@jimmy2424 --post'.">

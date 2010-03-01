@@ -11,16 +11,12 @@
 <!ENTITY twitter.shortener "Сокращенный URL:">
 <!ENTITY twitter.noShortener "Нет (Пусть сортирует Twitter)">
 <!ENTITY twitter.searchSocial "Поиск введенного текста в социальных сетях.">
-<!ENTITY twitter.search.p1 "TwitterBar: хотите ли вы выполнить поиск по последним трендам в Twitter, Digg и остальных социальных сетях из строки поиска.">
-<!ENTITY twitter.search.p2 "Нажмите OK, для разрешения поиска в социальной сети OneRiot (в реальном времени). При этом вы не потеряете текущую поисковую систему, но получите возможность просмотра текущих событий в Twitter.">
-<!ENTITY twitter.search.checkbox "Да, я хочу инсталлировать Поиск в Oneriot и сделать его поиском по умолчанию.">
 <!ENTITY twitter.showTrends "Показать больше сходных тем в панели Twitter.">
 <!ENTITY twitter.bitlyInstructions "Введите свой bit.ly логин API ключ, если таковые имеются.">
 <!ENTITY twitter.bitlyLogin "Bit.ly логин:">
 <!ENTITY twitter.bitlyApiKey "Bit.ly API ключ:">
 <!ENTITY twitter.options "Настройки...">
 <!ENTITY twitter.chooseAccountTitle "Выберите аккаунт...">
-<!ENTITY twitter.chooseAccount "Какой аккаунт Вы хотите использовать для отправки?">
 <!ENTITY twitter.newAccount "Новый:">
 <!ENTITY twitter.addAccount "Добавить аккаунт">
 <!ENTITY twitter.multiAccountInstructions "Для отправки на конкретный аккаунт, напишите --@account_name в конце своего сообщения (но перед --post).">
@@ -28,11 +24,3 @@
 <!ENTITY twitter.authorizedOn "Авторизован...">
 <!ENTITY twitter.remove "Удалить">
 <!ENTITY twitter.noAccounts "У вас еще нет ни одного аккаунта.">
-<!ENTITY twitter.followTitle "Вы будете моим другом?">
-<!ENTITY twitter.followMessage "Вы согласны перейти на @twtrbar для получения свежих новостей и обновлений TwitterBar?">
-<!ENTITY twitter.followOK "Уверен!">
-<!ENTITY twitter.followNo "Нет, спасибо">
-<!ENTITY twitter.didYouKnow "Знаете ли Вы...">
-<!ENTITY twitter.multipleHowTo1 "Вы знаете, что можете управлять множеством Twitter-аккаунтов, посредством TwitterBar? Это так!">
-<!ENTITY twitter.multipleHowTo2 "Для добавления нового аккаунта, просто напишите '--account' в строке URL и далее следуйте подсказкам.">
-<!ENTITY twitter.multipleHowTo3 "Для отправки на конкретный аккаунт, напишите --@account_name в конце своего сообщения (но перед --post), т.е. 'Tweeting from my personal account. --@jimmy2424 --post'.">

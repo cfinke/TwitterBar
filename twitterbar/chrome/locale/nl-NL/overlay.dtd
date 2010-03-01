@@ -11,26 +11,17 @@
 <!ENTITY twitter.shortener "Webadres snelkoppeling:">
 <!ENTITY twitter.noShortener "geen (laat Twitter sorteren)">
 <!ENTITY twitter.searchSocial "Het sociale web doorzoeken op de ingevoerde tekst.">
-<!ENTITY twitter.search.p1 "De laatste trends op Twitter, Digg, en de overige sociale websites op de zoekwerkbalk doorzoeken?">
-<!ENTITY twitter.search.p2 "Klik op OK om OneRiot's Real-Time sociale websites zoeken in te schakelen. De huidige zoekmachine zal niet verloren gaan, maar er komt een geweldig real-time overzicht beschikbaar over wat actueel is op Twitter.">
-<!ENTITY twitter.search.checkbox "OneRiot Search installeren en als de standaard zoekmachine instellen.">
 <!ENTITY twitter.showTrends "Aanvullende trend onderwerpen in de Twitter zijbalk weergeven.">
 <!ENTITY twitter.bitlyInstructions "Voer de bit.ly aanmeldgegevens en API-sleutel in, indien beschikbaar.">
 <!ENTITY twitter.bitlyLogin "Bit.ly aanmelding:">
 <!ENTITY twitter.bitlyApiKey "Bit.ly API-sleutel:">
 <!ENTITY twitter.options "Opties...">
 <!ENTITY twitter.chooseAccountTitle "Selecteer een account...">
-<!ENTITY twitter.chooseAccount "Naar welk account moet worden verstuurd?">
+<!ENTITY twitter.chooseAccounts "Naar welke accounts dient verzonden te worden?">
 <!ENTITY twitter.newAccount "Nieuw:">
 <!ENTITY twitter.addAccount "Account toevoegen">
 <!ENTITY twitter.multiAccountInstructions "Om naar een specifiek account te verzenden, type --@accountnaam aan het einde van de tweet (maar voor --post).">
 <!ENTITY twitter.account "Account">
 <!ENTITY twitter.authorizedOn "Geautoriseerd op...">
-<!ENTITY twitter.followTitle "Vrienden worden?">
-<!ENTITY twitter.followMessage "@twtrbar volgen voor het laatste nieuws en updates over TwitterBar?">
-<!ENTITY twitter.followOK "Natuurlijk!">
-<!ENTITY twitter.followNo "Nee, bedankt">
-<!ENTITY twitter.didYouKnow "Wist je dat...">
-<!ENTITY twitter.multipleHowTo1 "Wist je dat meerdere Twitter accounts met de TwitterBar beheerd kunnen worden? Echt waar!">
-<!ENTITY twitter.multipleHowTo2 "Om een nieuw account toe te voegen, type '--account' in de adresbalk. Er zal om een aanmelding bij Twitter met een nieuw account gevraagd worden.">
-<!ENTITY twitter.multipleHowTo3 "Om naar een specifiek account te verzenden, type --@accountnaam aan het einde van de tweet (maar voor --post), bijv. 'Tweeting vanaf mijn persoonlijk account. --@jimmy2424 --post'.">
+<!ENTITY twitter.remove "Verwijderen">
+<!ENTITY twitter.noAccounts "Er zijn nog geen accounts geautoriseerd.">

@@ -11,16 +11,12 @@
 <!ENTITY twitter.shortener "地址简化：">
 <!ENTITY twitter.noShortener "无（让 Twitter 决定）">
 <!ENTITY twitter.searchSocial "在社会网络中查找输入的文字。">
-<!ENTITY twitter.search.p1 "TwitterBar 希望知道是否从搜索栏中查找 Twitter、Digg 以及其它社会网络中查找最新的动态。">
-<!ENTITY twitter.search.p2 "点击确定将会启用OneRiot社会网络搜索。当前搜索引擎依然存在，只是您将获得 Twitter 中发生事情的实时动态。">
-<!ENTITY twitter.search.checkbox "是，确定安装OneRiot搜索并将其设置为默认搜索引擎。">
 <!ENTITY twitter.showTrends "在 Twitter 侧边栏中显示附加热门话题。">
 <!ENTITY twitter.bitlyInstructions "如果已经申请，请输入 bit.ly 账户和 API 密码。">
 <!ENTITY twitter.bitlyLogin "Bit.ly 登录：">
 <!ENTITY twitter.bitlyApiKey "Bit.ly API 密码:">
 <!ENTITY twitter.options "选项...">
 <!ENTITY twitter.chooseAccountTitle "选择一个账户...">
-<!ENTITY twitter.chooseAccount "要用哪个账户发布？">
 <!ENTITY twitter.newAccount "新建：">
 <!ENTITY twitter.addAccount "添加账户">
 <!ENTITY twitter.multiAccountInstructions "要发布到一个指定的帐号，只需要在要发送的消息末尾（--post 之前）输入  --@帐号。">
@@ -28,11 +24,3 @@
 <!ENTITY twitter.authorizedOn "授权为...">
 <!ENTITY twitter.remove "删除">
 <!ENTITY twitter.noAccounts "尚未授权任何帐户。">
-<!ENTITY twitter.followTitle "做我的朋友好吗？">
-<!ENTITY twitter.followMessage "是否订阅 @twtrbar 以获得 TwitterBar 的新闻和升级信息。">
-<!ENTITY twitter.followOK "当然！">
-<!ENTITY twitter.followNo "不，谢谢。">
-<!ENTITY twitter.didYouKnow "您知道...">
-<!ENTITY twitter.multipleHowTo1 "您知道可以用 TwitterBar 同时管理多个账户么？这是真的！">
-<!ENTITY twitter.multipleHowTo2 "要添加一个账户，只需要在地址栏输入“--account”，您就可以按照提示登录到新的账户。">
-<!ENTITY twitter.multipleHowTo3 "要发布到一个指定的帐号，只需要在要发送的消息末尾（--post 之前）输入  --@帐号。例如，'从我的个人帐号发布. --@jimmy2424 --post'。">

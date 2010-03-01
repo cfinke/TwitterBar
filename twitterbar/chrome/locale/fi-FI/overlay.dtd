@@ -11,16 +11,13 @@
 <!ENTITY twitter.shortener "URL-lyhentäjä:">
 <!ENTITY twitter.noShortener "Ei mitään">
 <!ENTITY twitter.searchSocial "Etsi sosiaalisesta verkosta antamallasi tekstillä.">
-<!ENTITY twitter.search.p1 "TwitterBar haluaa tietää, etsitäänkö viimeisimpiä trendejä Twitteristä, Diggistä tai muista sosiaalisista verkkopalveluista hakupalkistasi.">
-<!ENTITY twitter.search.p2 "Valitse valintalaatikko ja paina OK ottaaksesi käyttöön OneRiotin reaaliaikaisen verkkohaun. Et menetä nykyisiä hakukoneitasi (voit valita ne alasvetovalikosta) ja saat käyttöösi mahtavan reaaliaikaisen näkymän Twitterin trendeistä.">
-<!ENTITY twitter.search.checkbox "Kyllä, haluan asentaa OneRiotin haun ja tehdä siitä oletushakukoneeni.">
 <!ENTITY twitter.showTrends "Näytä trendeissä olevat aiheet Twitter-sivupalkissa.">
 <!ENTITY twitter.bitlyInstructions "Anna bit.ly-käyttäjätunnus ja API-avain.">
 <!ENTITY twitter.bitlyLogin "Bit.ly-käyttäjätunnus:">
 <!ENTITY twitter.bitlyApiKey "Bit.ly-API-avain:">
 <!ENTITY twitter.options "Asetukset...">
 <!ENTITY twitter.chooseAccountTitle "Valitse tunnus...">
-<!ENTITY twitter.chooseAccount "Mille tunnukselle haluat lähettää?">
+<!ENTITY twitter.chooseAccounts "Mille tunnuksille haluat lähettää?">
 <!ENTITY twitter.newAccount "Uusi:">
 <!ENTITY twitter.addAccount "Lisää tunnus">
 <!ENTITY twitter.multiAccountInstructions "Lähettääksesi tietylle tunnukselle, kirjoita --@tunnus viestin loppuun (mutta ennen --post -tesktiä).">
@@ -28,11 +25,3 @@
 <!ENTITY twitter.authorizedOn "Valtuutettu...">
 <!ENTITY twitter.remove "Poista">
 <!ENTITY twitter.noAccounts "Et ole valtuuttanut yhtään tunnusta.">
-<!ENTITY twitter.followTitle "Olisitko ystäväni?">
-<!ENTITY twitter.followMessage "Haluaisitko seurata tunnusta @twtrbar saadaksesi viimeisimmät uutiset ja päivitykset TwitterBarista?">
-<!ENTITY twitter.followOK "Totta kai!">
-<!ENTITY twitter.followNo "Ei kiitos">
-<!ENTITY twitter.didYouKnow "Tiesitkö, että...">
-<!ENTITY twitter.multipleHowTo1 "Tiesitkö, että voit hallita useampia Twitter-tunnuksia TwitterBarilla? Se on totta!">
-<!ENTITY twitter.multipleHowTo2 "Voit lisätä uuden tunnuksen kirjoittamalla '--account' osoitepalkkiin. Sinua pyydetään kirjautumaan Twitteriin uudella tunnuksella.">
-<!ENTITY twitter.multipleHowTo3 "Lähettääksesi viestin tietyllä tunnuksella, kirjoita --@tunnus viestin loppuun (mutta ennen --post -tekstiä). Esim: 'Tweettaan omalta tunnukseltani. --@jimmy2424 --post'.">
