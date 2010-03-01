@@ -32,29 +32,28 @@ var TWITTERBAR_UI = {
 	showFirstRun : function (version) {
 		setTimeout(function (browser) {
 			TWITTERBAR_UI.addTab("http://www.chrisfinke.com/firstrun/twitterbar.php?v=" + version);
-		}, 3000, browser);
+		}, 0, browser);
 	},
 	
 	askSearch : function () {
-		setTimeout(
-			function installSearch() {
-				var searchService = Components.classes["@mozilla.org/browser/search-service;1"]
-				                    .getService(Components.interfaces.nsIBrowserSearchService);
-					
-				var engineLabel = TWITTERBAR.strings.getString("twitter.search.name");
-				var oneRiotSearch = searchService.getEngineByName(engineLabel);
-					
-				if (oneRiotSearch == null) {
-					var msg = TWITTERBAR.strings.getString("twitterbar.search.mobile");
-					var cb = TWITTERBAR.strings.getString("twitterbar.search.mobile.checkbox");
-					
-					var rv = TWITTERBAR.confirmCheck(msg, cb);
-					
-					if (rv[0] && rv[1]) {
-						TWITTERBAR.addOneRiotSearch();
-					}
-				}
-			}, 5000);
+		/*
+		var searchService = Components.classes["@mozilla.org/browser/search-service;1"]
+		                    .getService(Components.interfaces.nsIBrowserSearchService);
+		
+		var engineLabel = TWITTERBAR.strings.getString("twitter.search.name");
+		var oneRiotSearch = searchService.getEngineByName(engineLabel);
+			
+		if (oneRiotSearch == null) {
+			var msg = TWITTERBAR.strings.getString("twitterbar.search.mobile");
+			var cb = TWITTERBAR.strings.getString("twitterbar.search.mobile.checkbox");
+			
+			var rv = TWITTERBAR.confirmCheck(msg, cb);
+			
+			if (rv[0] && rv[1]) {
+				TWITTERBAR.addOneRiotSearch();
+			}
+		}
+		*/
 	},
 	
 	addTab : function (url) {
@@ -71,27 +70,21 @@ var TWITTERBAR_UI = {
 	},
 	
 	didYouKnow : function () {
-		setTimeout(
-			function () {
-				TWITTERBAR.prefs.setBoolPref("onetime.multiple", true);
-				
-				var localeString = TWITTERBAR.strings.getString("twitterbar.multiple.request");
-				
-				TWITTERBAR.alert(localeString);
-			}, 5000);
+		/*
+		var localeString = TWITTERBAR.strings.getString("twitterbar.multiple.request");
+		
+		TWITTERBAR.alert(localeString);
+		*/
 	},
 	
 	follow : function () {
-		setTimeout(
-			function () {
-				TWITTERBAR.prefs.setBoolPref("onetime.follow", true);
-				
-				var localeString = TWITTERBAR.strings.getString("twitterbar.follow.request");
-				
-				if (TWITTERBAR.confirm(localeString)) {
-					TWITTERBAR.followTwtrbar();
-				}
-			}, 5000);
+		/*
+		var localeString = TWITTERBAR.strings.getString("twitterbar.follow.request");
+		
+		if (TWITTERBAR.confirm(localeString)) {
+			TWITTERBAR.followTwtrbar();
+		}
+		*/
 	},
 	
 	buttonCheck : function () {
