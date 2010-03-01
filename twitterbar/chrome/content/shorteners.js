@@ -1,8 +1,6 @@
 var TWITTERBAR_SHORTENERS = {
-	prefs : Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch("extensions.twitter."),
-	
 	shortenUrls : function (status, callback) {
-		var shortener = TWITTERBAR_SHORTENERS.prefs.getCharPref("shortener");
+		var shortener = TWITTERBAR.prefs.getCharPref("shortener");
 		
 		if (shortener == "") {
 			callback(status);
@@ -19,7 +17,7 @@ var TWITTERBAR_SHORTENERS = {
 	},
 	
 	getUrlLength : function (url) {
-		var shortener = TWITTERBAR_SHORTENERS.prefs.getCharPref("shortener");
+		var shortener = TWITTERBAR.prefs.getCharPref("shortener");
 		
 		if (shortener == "tinyurl") {
 			return 25;
@@ -96,8 +94,8 @@ var TWITTERBAR_SHORTENERS = {
 
 				var req = new XMLHttpRequest();
 				
-				var apiKey = TWITTERBAR_SHORTENERS.prefs.getCharPref("bitlyApiKey");
-				var login = TWITTERBAR_SHORTENERS.prefs.getCharPref("bitlyLogin");
+				var apiKey = TWITTERBAR.prefs.getCharPref("bitlyApiKey");
+				var login = TWITTERBAR.prefs.getCharPref("bitlyLogin");
 				
 				if (!apiKey || !login) {
 					apiKey = "R_14789c4220ade2b5d8616d3bc5b955a7";
