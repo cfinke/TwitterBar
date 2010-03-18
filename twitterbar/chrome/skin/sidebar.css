@@ -1,0 +1,20 @@
+#nav-bar toolbarbutton[checked="true"] {
+	background-color: #ddd;
+	border-right: 1px solid #b9b9b9;
+	border-left: 1px solid #b9b9b9;
+}
+
+label.twitter-url {
+	text-decoration: none;
+	cursor: pointer;
+	color: #00f;
+}
+
+richlistitem[new="true"] {
+	background-color: #ffa;
+}
+
+richlistbox:focus richlistitem[selected="true"] label.twitter-url {
+	color: #fff;
+}
+

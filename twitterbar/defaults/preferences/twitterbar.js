@@ -23,9 +23,11 @@ pref("extensions.twitter.debug", false);
 
 pref("extensions.twitter.accounts", "{}");
 pref("extensions.twitter.account", "");
+pref("extensions.twitter.sidebarAccount", "");
 
 pref("extensions.twitter.onetime.follow", false);
-pref("extensions.twitter.onetime.multiple", false);
+
+pref("extensions.twitter.notifierHacks.new", false);
 
 /* Deprecated */
 pref("extensions.twitter.access_token.oauth_token", "");

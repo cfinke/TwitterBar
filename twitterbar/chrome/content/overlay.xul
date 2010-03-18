@@ -4,25 +4,31 @@
 <overlay
 	id="twitteroverlay"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-	<script type="application/x-javascript" src="chrome://twitterbar/content/oauth.js"/>
 	<script type="application/x-javascript" src="chrome://twitterbar/content/overlay.js"/>
 	<script type="application/x-javascript" src="chrome://twitterbar/content/shorteners.js" />
 	<script type="application/x-javascript" src="chrome://twitterbar/content/ui-firefox.js" />
+	<script type="application/x-javascript" src="chrome://twitterbar/content/tweet_getter.js" />
 	<script type="application/x-javascript">
 		<![CDATA[
 		
+		Components.utils.import("resource://twitterbar-modules/twitter-module.js");  
+		
+		addEventListener("load", gTwitterBar.load, false);
+		addEventListener("unload", gTwitterBar.unload, false);
+
 		addEventListener("load", TWITTERBAR.load, false);
 		addEventListener("load", TWITTERBAR_UI.load, false);
-
+		
 		]]>
 	</script>
-
+	
 	<stringbundleset id="stringbundleset">
 		<stringbundle id="twitterbar-strings" src="chrome://twitterbar/locale/overlay.properties" />
 	</stringbundleset>
 	
 	<popupset id="mainPopupSet">
 		<popup id="twitterbarContextMenu">
+			<menuitem label="Open Twitter Sidebar" oncommand="toggleSidebar('twitterbar');" />
 			<menuitem label="&twitter.addAccount;" oncommand="TWITTERBAR.addAccount(true);" />
 			<menuitem label="&twitter.options;" oncommand="TWITTERBAR_UI.openOptions();" />
 		</popup>
@@ -35,6 +41,7 @@
 			tooltiptext="&twitter.post;"
 			oncommand="TWITTERBAR.post()"
 			context="twitterbarContextMenu"
+			class="toolbarbutton-1 chromeclass-toolbar-additional"
 			/>
 		<toolbaritem id="twittercountcon">
 			<vbox>
@@ -43,8 +50,16 @@
 				<spacer flex="1"/>
 			</vbox>
 		</toolbaritem>
+		<toolbarbutton
+			id="twitter-sidebar-button"
+			label="Twitter"
+			tooltiptext="Twitter Sidebar"
+			observes="twitterbar"
+			context="twitterbarContextMenu"
+			class="toolbarbutton-1 chromeclass-toolbar-additional"
+			/>
 	</toolbarpalette>
-
+	
 	<hbox id="twitterBox" insertbefore="urlbar-icons" onmouseover="TWITTERBAR_UI.showCount();" onmouseout="TWITTERBAR_UI.hideCount();" class="textbox-input-box">
 	    <hbox id="twitter-count-vbox">
 	        <vbox>
@@ -82,4 +97,28 @@
 	<textbox id="urlbar-edit">
 		<hbox id="twitterBox" />
 	</textbox>
+	
+	<broadcasterset id="mainBroadcasterSet">
+		<broadcaster id="twitterbar"
+			autoCheck="false"
+			label="TwitterBar"
+			type="checkbox" 
+			group="sidebar"
+			sidebartitle="TwitterBar"
+			sidebarurl="chrome://twitterbar/content/sidebar.xul"
+			acceltext="Shift+T"
+			oncommand="toggleSidebar('twitterbar');"/>
+	</broadcasterset>
+	<menupopup id="viewSidebarMenu">
+		<menuitem
+			key="twitterbar_key"
+			accesskey="T"
+			observes="twitterbar"/>
+	</menupopup>
+	<keyset id="mainKeyset">
+		<key id="feedbar_key"
+			key="T"
+			command="twitterbar"
+			modifiers="shift" />			
+	</keyset>
 </overlay>

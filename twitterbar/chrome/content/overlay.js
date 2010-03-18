@@ -48,13 +48,23 @@ var TWITTERBAR = {
 	/**
 	 * Token secret for the currently selected account.
 	 */
-	get oauth_token_secret() { if (TWITTERBAR.currentAccount in TWITTERBAR.accounts) { return TWITTERBAR.accounts[TWITTERBAR.currentAccount].token_secret; } else { return ""; } },
+	get oauth_token_secret() { return TWITTERBAR.get_oauth_token_secret(TWITTERBAR.currentAccount); },
 	
 	/**
 	 * Token for the currently selected account.
 	 */
-	get oauth_token() { if (TWITTERBAR.currentAccount in TWITTERBAR.accounts) { return TWITTERBAR.accounts[TWITTERBAR.currentAccount].token; } else { return ""; } },
+	get oauth_token() { return TWITTERBAR.get_oauth_token(TWITTERBAR.currentAccount); },
 	
+	/**
+	 * Token secret for a given account.
+	 */
+	get_oauth_token_secret : function (username) { if (username in TWITTERBAR.accounts) { return TWITTERBAR.accounts[username].token_secret; } else { return ""; } },
+	
+	/**
+	 * Token for a given account.
+	 */
+	get_oauth_token : function (username) { if (username in TWITTERBAR.accounts) { return TWITTERBAR.accounts[username].token; } else { return ""; } },
+
 	/**
 	 * OAuth data for Twitter.
 	 */
@@ -136,12 +146,7 @@ var TWITTERBAR = {
 				TWITTERBAR_UI.askSearch();
 			}
 			else {
-				if (!TWITTERBAR.prefs.getBoolPref("onetime.multiple")) {
-					if (Math.random() < 0.2) {
-						TWITTERBAR_UI.didYouKnow();
-					}
-				}
-				else if (!TWITTERBAR.prefs.getBoolPref("onetime.follow")) {
+				if (!TWITTERBAR.prefs.getBoolPref("onetime.follow")) {
 					for (var i in TWITTERBAR.accounts) {
 						if (TWITTERBAR.accounts[i].token) {
 							if (Math.random() < 0.3) {
@@ -258,6 +263,43 @@ var TWITTERBAR = {
 		TWITTERBAR.prefs.setCharPref("accounts", accounts);
 	},
 	
+	getAccountField : function (username, field) {
+		var accounts = TWITTERBAR.prefs.getCharPref("accounts");
+		
+		if (!accounts) {
+			return false;
+		}
+		
+		accounts = JSON.parse(accounts);
+		
+		if (!(username in accounts)){ 
+			return false;
+		}
+		
+		if (!(field in accounts[username])) {
+			return false;
+		}
+		
+		return accounts[username][field];
+	},
+	
+	setAccountField : function (username, field, value) {
+		var accounts = TWITTERBAR.prefs.getCharPref("accounts");
+		
+		if (!accounts) accounts = "{}";
+		
+		accounts = JSON.parse(accounts);
+		
+		if (!(username in accounts)){ 
+			accounts[username] = {};
+		}
+		
+		accounts[username][field] = value;
+		
+		accounts = JSON.stringify(accounts);
+		TWITTERBAR.prefs.setCharPref("accounts", accounts);
+	},
+	
 	unsetAccount : function (username) {
 		var accounts = TWITTERBAR.prefs.getCharPref("accounts");
 		
@@ -278,86 +320,6 @@ var TWITTERBAR = {
 		TWITTERBAR.prefs.setCharPref("accounts", accounts);
 		
 		TWITTERBAR.setUpAccount();
-	},
-	
-	apiRequest : function (url, callback, args, method) {
-		if (TWITTERBAR.debug) {
-			TWITTERBAR.log("apiRequest: " + url);
-		}
-		
-		if (!method) {
-			method = "GET";
-		}
-		
-		var accessor = {
-			consumerSecret : TWITTERBAR.oauth.consumer_secret,
-			tokenSecret : TWITTERBAR.oauth_token_secret
-		};
-		
-		var message = {
-			action : url,
-			method : method,
-			parameters : [
-				["oauth_consumer_key",TWITTERBAR.oauth.consumer_key],
-				["oauth_signature_method",TWITTERBAR.oauth.serviceProvider.signatureMethod],
-				["oauth_version","1.0"]
-			]
-		};
-		
-		var token = TWITTERBAR.oauth_token;
-		
-		if (token) {
-			message.parameters.push(["oauth_token", token]);
-		}
-		
-		var argstring = "";
-		
-		if (args) {
-			for (var i = 0; i < args.length; i++) {
-				message.parameters.push(args[i]);
-				
-				if (argstring.length > 0) {
-					argstring += "&";
-				}
-				
-				argstring += encodeURIComponent(args[i][0]) + "=" + encodeURIComponent(args[i][1]);
-			}
-		}
-		
-		var OAuth = TWITTERBAR_OAUTH();
-		
-		OAuth.setTimestampAndNonce(message);
-		OAuth.SignatureMethod.sign(message, accessor);
-		
-		var oAuthArgs = OAuth.getParameterMap(message.parameters);
-		var authHeader = OAuth.getAuthorizationHeader("http://twitter.com/", oAuthArgs);
-		
-		var req = new XMLHttpRequest();
-		req.mozBackgroundRequest = true;
-		req.open(message.method, message.action, true);
-		req.setRequestHeader("Authorization", authHeader);
-		
-		if (argstring) {
-			req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-			req.setRequestHeader("Content-Length", argstring.length);
-		}
-		else {
-			argstring = null;
-		}
-		
-		req.onreadystatechange = function () {
-			if (req.readyState == 4) {
-				if (TWITTERBAR.debug) {
-					TWITTERBAR.log("apiRequest response: (" + req.status + ") " + req.responseText);
-				}
-				
-				if (callback) {
-					callback(req);
-				}
-			}
-		};
-		
-		req.send(argstring);
 	},
 	
 	upgradeToAccounts : function () {
@@ -388,7 +350,7 @@ var TWITTERBAR = {
 			TWITTERBAR.accounts["_twitterbar"] = {"token" : TWITTERBAR.prefs.getCharPref("access_token.oauth_token"), "token_secret" : TWITTERBAR.prefs.getCharPref("access_token.oauth_token_secret")};
 			TWITTERBAR.currentAccount = "_twitterbar";
 				
-			TWITTERBAR.apiRequest("http://twitter.com/account/verify_credentials.json", callback);
+			gTwitterBar.apiRequest("http://twitter.com/account/verify_credentials.json", callback);
 			
 			TWITTERBAR.prefs.setCharPref("access_token.oauth_token", "");
 			TWITTERBAR.prefs.setCharPref("access_token.oauth_token_secret", "");
@@ -461,7 +423,7 @@ var TWITTERBAR = {
 								}
 							}
 							
-							TWITTERBAR.apiRequest("http://twitter.com/account/verify_credentials.json", callback);
+							gTwitterBar.apiRequest("http://twitter.com/account/verify_credentials.json", callback);
 						} catch (e) {
 							TWITTERBAR.alert(TWITTERBAR.strings.getFormattedString("twitterbar.otherError", [ e, req.responseText ]));
 							TWITTERBAR.postNextTweet();
@@ -480,7 +442,7 @@ var TWITTERBAR = {
 				TWITTERBAR.accounts["_twitterbar"] = {"token" : token, "token_secret" : ""};
 				TWITTERBAR.currentAccount = "_twitterbar";
 				
-				TWITTERBAR.apiRequest(TWITTERBAR.oauth.serviceProvider.accessTokenURL, callback);
+				gTwitterBar.apiRequest(TWITTERBAR.oauth.serviceProvider.accessTokenURL, callback);
 			}
 			else if (TWITTERBAR.prefs.getBoolPref("showTrends")) {
 				try {
@@ -588,7 +550,7 @@ var TWITTERBAR = {
 			}
 		}
 		
-		TWITTERBAR.apiRequest(TWITTERBAR.oauth.serviceProvider.requestTokenURL, callback);
+		gTwitterBar.apiRequest(TWITTERBAR.oauth.serviceProvider.requestTokenURL, callback);
 	},
 	
 	post : function (clickedOnButton) {
@@ -676,7 +638,7 @@ var TWITTERBAR = {
 			TWITTERBAR.covertMode = false;
 		}
 		
-		TWITTERBAR.apiRequest("http://twitter.com/statuses/update.json", callback, args, "POST");
+		gTwitterBar.apiRequest("http://twitter.com/statuses/update.json", callback, args, "POST");
 	},
 	
 	afterPost : function (noSuccess, screenname) {
@@ -899,7 +861,7 @@ var TWITTERBAR = {
 		
 		for (var i in accounts) {
 			TWITTERBAR.currentAccount = i;
-			TWITTERBAR.apiRequest("http://twitter.com/friendships/create/twtrbar.json", false, false, "POST");
+			gTwitterBar.apiRequest("http://twitter.com/friendships/create/twtrbar.json", false, false, "POST");
 		}
 	},
 	
