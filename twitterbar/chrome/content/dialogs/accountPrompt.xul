@@ -74,7 +74,7 @@
 		<vbox style="width: 300px;" align="center" pack="center">
 			<label>&twitter.chooseAccounts;</label>
 			<spacer style="height: 10px;" />
-			<vbox id="account-group">
+			<vbox id="account-group" style="max-height: 600px; overflow: auto;">
 				<hbox align="center">
 					<checkbox value="" label="&twitter.newAccount;" />
 					<textbox id="new-account-name" flex="1" />
