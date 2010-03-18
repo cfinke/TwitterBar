@@ -62,18 +62,6 @@ var TWITTERBAR_UI = {
 		}
 	},
 	
-	didYouKnow : function () {
-		TWITTERBAR_UI.request(
-			TWITTERBAR.strings.getString("twitterbar.multiple.request"),
-			TWITTERBAR.strings.getString("twitterbar.multiple.close"),
-			null,
-			'TWITTERBAR.prefs.setBoolPref("onetime.multiple", true);',
-			null,
-			TWITTERBAR.strings.getString("twitterbar.multiple.moreLink"),
-			"http://www.chrisfinke.com/firstrun/twitterbar-multiple.php"
-		);
-	},
-	
 	follow : function () {
 		TWITTERBAR_UI.request(
 			TWITTERBAR.strings.getString("twitterbar.follow.request"),
