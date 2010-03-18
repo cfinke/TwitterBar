@@ -42,6 +42,11 @@
 					}
 				}
 				
+				if (sortedAccounts.length > 20) {
+					document.getElementById("account-group").style.height = document.getElementById("account-group").style.maxHeight;
+					document.getElementById("account-group").style.marginBottom = "10px";
+				}
+				
 				sizeToContent();
 			},
 			
@@ -68,13 +73,13 @@
 		]]>
 	</script>
 	<hbox>
-		<vbox align="center" pack="center">
+		<vbox align="center" pack="start">
 			<image src="chrome://twitterbar/skin/bird-64.png" style="padding: 20px;"/>
 		</vbox>
-		<vbox style="width: 300px;" align="center" pack="center">
+		<vbox style="width: 300px;" align="center" pack="start">
 			<label>&twitter.chooseAccounts;</label>
 			<spacer style="height: 10px;" />
-			<vbox id="account-group" style="max-height: 600px; overflow: auto;">
+			<vbox id="account-group" style="max-height: 500px; overflow: auto;">
 				<hbox align="center">
 					<checkbox value="" label="&twitter.newAccount;" />
 					<textbox id="new-account-name" flex="1" />
