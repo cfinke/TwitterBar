@@ -106,7 +106,7 @@
 				</grid>
 				<label>&twitter.noAccounts;</label>
 			</deck>
-			<button oncommand="window.opener.TWITTERBAR.addAccount(true); window.opener.focus();" label="&twitter.addAccount;" />
+			<button oncommand="TWITTERBAR_OPTIONS.addAccount();" label="&twitter.addAccount;" />
 			<description>
 				&twitter.multiAccountInstructions;
 			</description>

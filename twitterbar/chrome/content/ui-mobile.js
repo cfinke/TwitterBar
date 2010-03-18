@@ -59,6 +59,10 @@ var TWITTERBAR_UI = {
 		
 		TWITTERBAR_UI.showWeb();
 	},
+
+	closeTab : function () {
+		Browser.closeTab(Browser.selectedTab);
+	},
 	
 	openOptions : function () {
 		TWITTERBAR_UI.showWeb();

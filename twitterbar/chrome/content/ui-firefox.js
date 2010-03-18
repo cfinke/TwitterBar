@@ -34,6 +34,10 @@ var TWITTERBAR_UI = {
 		getBrowser().selectedTab = getBrowser().addTab(url);
 	},
 	
+	closeTab : function () {
+		getBrowser().removeCurrentTab();
+	},
+	
 	openOptions : function () {
 		var d = openDialog('chrome://twitterbar/content/options.xul', 'options', 'chrome,dialog,dependent,centerscreen,resizable');
 		d.focus();

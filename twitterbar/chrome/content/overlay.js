@@ -512,6 +512,10 @@ var TWITTERBAR = {
 	addAccount : function (hidePrompt) {
 		if (hidePrompt) {
 			TWITTERBAR_UI.showWeb();
+			
+			TWITTERBAR_UI.addTab("about:blank");
+			TWITTERBAR_UI.setBusy(true);
+			TWITTERBAR_UI.setStatusText(TWITTERBAR.strings.getString("twitterbar.addingAccount"));
 		}
 		
 		TWITTERBAR_UI.addingAccount();
@@ -576,10 +580,24 @@ var TWITTERBAR = {
 			else if (req.status >= 500) {
 				TWITTERBAR.alert(TWITTERBAR.strings.getString("twitterbar.failWhale"));
 				TWITTERBAR.pendingTweets = [];
+				
+				if (hidePrompt) {
+					TWITTERBAR_UI.setStatusText("");
+					TWITTERBAR_UI.closeTab();
+				}
+				
+				TWITTERBAR_UI.setBusy(false);
 			}
 			else {
 				TWITTERBAR.alert(TWITTERBAR.strings.getFormattedString("twitterbar.otherError", [ req.status, req.responseText ]));
 				TWITTERBAR.pendingTweets = [];
+				
+				if (hidePrompt) {
+					TWITTERBAR_UI.setStatusText("");
+					TWITTERBAR_UI.closeTab();
+				}
+				
+				TWITTERBAR_UI.setBusy(false);
 			}
 		}
 		
