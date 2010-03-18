@@ -4,13 +4,17 @@
 <overlay
 	id="twitteroverlay"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-	<script type="application/x-javascript" src="chrome://twitterbar/content/oauth.js"/>
 	<script type="application/x-javascript" src="chrome://twitterbar/content/overlay.js"/>
 	<script type="application/x-javascript" src="chrome://twitterbar/content/options.js" />
 	<script type="application/x-javascript" src="chrome://twitterbar/content/shorteners.js" />
 	<script type="application/x-javascript" src="chrome://twitterbar/content/ui-mobile.js" />
 	<script type="application/x-javascript">
 		<![CDATA[
+		
+		Components.utils.import("resource://twitterbar-modules/twitter-module.js");  
+		
+		addEventListener("load", gTwitterBar.load, false);
+		addEventListener("unload", gTwitterBar.unload, false);
 		
 		addEventListener("load", TWITTERBAR.load, false);
 		addEventListener("load", TWITTERBAR_UI.load, false);
