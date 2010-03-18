@@ -1,4 +1,3 @@
-
 /*
  * Copyright 2008 Netflix, Inc.
  *
@@ -662,5 +661,3 @@ function TWITTERBAR_OAUTH() {
         return OAuth;
 
 };
-
-var EXPORTED_SYMBOLS = ["TWITTERBAR_OAUTH"];

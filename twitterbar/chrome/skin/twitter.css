@@ -9,16 +9,8 @@
 	width: 16px;
 }
 
-#twitter-sidebar-button {
-	list-style-image: url("chrome://twitterbar/skin/bird-24-bw.png");
-}
-
-#twitter-sidebar-button[new="true"] {
-	list-style-image: url("chrome://twitterbar/skin/bird-24.png");
-}
-
 #twitter-toolbar-button {
-	list-style-image: url("chrome://twitterbar/skin/bird-24-add.png");
+	list-style-image: url("chrome://twitterbar/skin/bird-24.png");
 	cursor: pointer;
 }
 

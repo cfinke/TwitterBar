@@ -30,11 +30,9 @@ var TWITTERBAR_UI = {
 	},
 	
 	showFirstRun : function (version) {
-		setTimeout(
-			TWITTERBAR_UI.addTab,
-			0,
-			"http://www.chrisfinke.com/firstrun/twitterbar.php?v=" + version
-			);
+		setTimeout(function (browser) {
+			TWITTERBAR_UI.addTab("http://www.chrisfinke.com/firstrun/twitterbar.php?v=" + version);
+		}, 0, browser);
 	},
 	
 	askSearch : function () {
@@ -69,6 +67,14 @@ var TWITTERBAR_UI = {
 		
 		BrowserUI.showPanel();
 		BrowserUI.switchPane("addons-container");
+	},
+	
+	didYouKnow : function () {
+		/*
+		var localeString = TWITTERBAR.strings.getString("twitterbar.multiple.request");
+		
+		TWITTERBAR.alert(localeString);
+		*/
 	},
 	
 	follow : function () {
