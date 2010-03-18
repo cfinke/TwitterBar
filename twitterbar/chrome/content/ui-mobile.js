@@ -69,14 +69,6 @@ var TWITTERBAR_UI = {
 		BrowserUI.switchPane("addons-container");
 	},
 	
-	didYouKnow : function () {
-		/*
-		var localeString = TWITTERBAR.strings.getString("twitterbar.multiple.request");
-		
-		TWITTERBAR.alert(localeString);
-		*/
-	},
-	
 	follow : function () {
 		/*
 		var localeString = TWITTERBAR.strings.getString("twitterbar.follow.request");

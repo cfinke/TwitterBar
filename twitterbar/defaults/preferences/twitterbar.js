@@ -25,7 +25,6 @@ pref("extensions.twitter.accounts", "{}");
 pref("extensions.twitter.account", "");
 
 pref("extensions.twitter.onetime.follow", false);
-pref("extensions.twitter.onetime.multiple", false);
 
 /* Deprecated */
 pref("extensions.twitter.access_token.oauth_token", "");
