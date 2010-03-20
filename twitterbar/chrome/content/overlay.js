@@ -205,11 +205,19 @@ var TWITTERBAR = {
 	},
 	
 	setUpAccount : function () {
-		var account = TWITTERBAR.prefs.getCharPref("account");
+		var account = TWITTERBAR.prefs.getCharPref("account").toLowerCase();;
 		var accounts = TWITTERBAR.prefs.getCharPref("accounts");
 		
 		if (accounts) {
 			accounts = JSON.parse(accounts);
+			
+			var newAccounts = {};
+			
+			for (var i in accounts) {
+				newAccounts[i.toLowerCase()] = accounts[i];
+			}
+			
+			accounts = newAccounts;
 			
 			if (!(account in accounts)) {
 				account = "";
@@ -793,7 +801,7 @@ var TWITTERBAR = {
 			status = parts[0].replace(/^\s+|\s+$/g, "");
 			
 			for (var i = 1; i < parts.length; i++) {
-				accounts.push(parts[i].replace(/^\s+|\s+$/g, ""));
+				accounts.push(parts[i].replace(/^\s+|\s+$/g, "").toLowerCase());
 			}
 			
 			TWITTERBAR.currentAccount = accounts[0];

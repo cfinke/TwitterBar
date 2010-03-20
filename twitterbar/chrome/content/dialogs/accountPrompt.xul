@@ -58,10 +58,10 @@
 				for (var i = 0; i < accounts.length; i++) {
 					if (accounts[i].checked) {
 						if (accounts[i].getAttribute("value") == "" && document.getElementById("new-account-name").value != "") {
-							rv.push(document.getElementById("new-account-name").value);
+							rv.push(document.getElementById("new-account-name").value.toLowerCase());
 						}
 						else {
-							rv.push(accounts[i].getAttribute("value"));
+							rv.push(accounts[i].getAttribute("value").toLowerCase());
 						}
 					}
 				}
