@@ -1,0 +1,27 @@
+<!ENTITY twitter.post "Skelbti Twitter'yje">
+<!ENTITY twitter.tab "Kai paskelbsiu, atidaryti mano Twitter puslapį naujoje kortelėje">
+<!ENTITY twitter.web "prieš URL:">
+<!ENTITY twitter.button "Slėpti TwitterBar ikoną adresų juostoje">
+<!ENTITY twitter.oneriotButton "Slėpri OneRiot paieškos ikoną adresų juostoje">
+<!ENTITY twitter.options.dialog "TwitterBar nuostatos">
+<!ENTITY twitter.generalTab "Bendrai">
+<!ENTITY twitter.confirm "Visada prašyti sutikimo prieš skelbiant.">
+<!ENTITY twitter.prefixExplanation "Jūs galite dalintis puslapio, kurį dabar skaitot, nuorodą, paspaudę TwitterBar ikona adresų juostoje. Tekstas bus automatiškai pridėtas prieš URL:">
+<!ENTITY twitter.prefixDescription "(Jūs galite naudoti $$ kaip vietos rezarvatorių puslapio pavadinimui.)">
+<!ENTITY twitter.shortener "URL trumpintojas:">
+<!ENTITY twitter.noShortener "Tuščia">
+<!ENTITY twitter.searchSocial "Ieškoti teksto, kurį įvedėte, socialiniuose tinkluose.">
+<!ENTITY twitter.showTrends "Rodyti populiariausias temas Twitter šoninėje juostoje.">
+<!ENTITY twitter.bitlyInstructions "Įveskite savo bit.ly prisijungimo vardą ir API slaptažodį, jei tokį turite.">
+<!ENTITY twitter.bitlyLogin "Bit.ly prisijungimo vardas:">
+<!ENTITY twitter.bitlyApiKey "Bit.ly API slaptažodis:">
+<!ENTITY twitter.options "Nuostatos...">
+<!ENTITY twitter.chooseAccountTitle "Pasirinkite sąskaitą..">
+<!ENTITY twitter.chooseAccounts "Į kurias sąskaitas norite skelbti?">
+<!ENTITY twitter.newAccount "Nauja:">
+<!ENTITY twitter.addAccount "Pridėti sąskaitą">
+<!ENTITY twitter.multiAccountInstructions "Skelbti į specialią sąskaita, tiesiog įveskite --@saskaitos_pavadinimas prane6imo pabaigoje.">
+<!ENTITY twitter.account "Sąskaita">
+<!ENTITY twitter.authorizedOn "Autorizuojama...">
+<!ENTITY twitter.remove "Panaikinti">
+<!ENTITY twitter.noAccounts "Jūs neautorizavot jokios sąskaitos.">

@@ -17,6 +17,7 @@
 <!ENTITY twitter.bitlyApiKey "Bit.ly API ключ:">
 <!ENTITY twitter.options "Настройки...">
 <!ENTITY twitter.chooseAccountTitle "Выберите аккаунт...">
+<!ENTITY twitter.chooseAccounts "На какой аккаунт Вы хотите отправить сообщение?">
 <!ENTITY twitter.newAccount "Новый:">
 <!ENTITY twitter.addAccount "Добавить аккаунт">
 <!ENTITY twitter.multiAccountInstructions "Для отправки на конкретный аккаунт, напишите --@account_name в конце своего сообщения (но перед --post).">

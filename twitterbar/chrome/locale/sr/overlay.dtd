@@ -1,0 +1,27 @@
+<!ENTITY twitter.post "Објави на Твитеру">
+<!ENTITY twitter.tab "Након објављивања, отвори моју страницу на Твитеру у новом картици">
+<!ENTITY twitter.web "Пре адресе:">
+<!ENTITY twitter.button "Сакриј икону за TwitterBar са траке за адресу">
+<!ENTITY twitter.oneriotButton "Сакриј икону за OneRiot  са траке за адресу">
+<!ENTITY twitter.options.dialog "Опције TwitterBar-а">
+<!ENTITY twitter.generalTab "Основно">
+<!ENTITY twitter.confirm "Након клика на TwitterBar икону, увек ме питај за потврду пре него што објавим nešto">
+<!ENTITY twitter.prefixExplanation "Можете да поделите везу до странице коју тренутно читате, тако што ћете кликнути на TwitterBar икону у траци за адресу. Следећи текст ће аутоматски бити додан пре адресе:">
+<!ENTITY twitter.prefixDescription "(Можете да користите $$ оквир наслова странице)">
+<!ENTITY twitter.shortener "Скраћивање адресе:">
+<!ENTITY twitter.noShortener "ништа">
+<!ENTITY twitter.searchSocial "На социјалној мрежи потражите текст који сте унели">
+<!ENTITY twitter.showTrends "Прикажи додатне трендинг теме у бочној траци Твитера:">
+<!ENTITY twitter.bitlyInstructions "Унесите ваше податке за пријављивање на  bit.ly и API кључ, ако га имате.">
+<!ENTITY twitter.bitlyLogin "Подаци за пријављивање на Bit.ly:">
+<!ENTITY twitter.bitlyApiKey "API кључ за Bit.ly:">
+<!ENTITY twitter.options "Опције...">
+<!ENTITY twitter.chooseAccountTitle "Изаберите налог...">
+<!ENTITY twitter.chooseAccounts "На којем налогу желите да објавите?">
+<!ENTITY twitter.newAccount "Ново:">
+<!ENTITY twitter.addAccount "Додај налог">
+<!ENTITY twitter.multiAccountInstructions "Да бисте објавили у одређеном налогу, унесите --@назив_налога на крају вашег твита (али пре -post).">
+<!ENTITY twitter.account "Налог">
+<!ENTITY twitter.authorizedOn "Потврђен на...">
+<!ENTITY twitter.remove "Уклони">
+<!ENTITY twitter.noAccounts "Нисте потврдили ни један налог.">

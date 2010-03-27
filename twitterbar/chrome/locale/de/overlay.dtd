@@ -17,6 +17,7 @@
 <!ENTITY twitter.bitlyApiKey "Bit.ly API Key">
 <!ENTITY twitter.options "Optionen...">
 <!ENTITY twitter.chooseAccountTitle "Einen Account auswählen....">
+<!ENTITY twitter.chooseAccounts "Welche Benutzerkonten möchten sie zum veröffentlichen benutzen?">
 <!ENTITY twitter.newAccount "Neu:">
 <!ENTITY twitter.addAccount "Account Hinzufügen:">
 <!ENTITY twitter.multiAccountInstructions "um die Nachricht in einem bestimmten Konto zu veröffentlichen, geben Sie bitte --@account_name am Ende des Tweets (aber vor --post) ein.">

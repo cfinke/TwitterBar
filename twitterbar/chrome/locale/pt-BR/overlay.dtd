@@ -17,8 +17,11 @@
 <!ENTITY twitter.bitlyApiKey "Chave API do bit.ly:">
 <!ENTITY twitter.options "Opções...">
 <!ENTITY twitter.chooseAccountTitle "Escolha uma conta...">
+<!ENTITY twitter.chooseAccounts "Para que contas deseja enviar mensagem?">
 <!ENTITY twitter.newAccount "Novo:">
 <!ENTITY twitter.addAccount "Adicionar conta">
 <!ENTITY twitter.multiAccountInstructions "Para enviar mensagens para uma conta específica, basta digitar --@nome_da_conta no final do seu tweet (mas antes de --post).">
 <!ENTITY twitter.account "Conta">
 <!ENTITY twitter.authorizedOn "Autorizado em...">
+<!ENTITY twitter.remove "Remover">
+<!ENTITY twitter.noAccounts "Você ainda não autorizou nenhuma conta.">
