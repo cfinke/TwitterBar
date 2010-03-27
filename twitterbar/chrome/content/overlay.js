@@ -136,6 +136,7 @@ var TWITTERBAR = {
 				TWITTERBAR_UI.askSearch();
 			}
 			else {
+				/*
 				if (!TWITTERBAR.prefs.getBoolPref("onetime.follow")) {
 					for (var i in TWITTERBAR.accounts) {
 						if (TWITTERBAR.accounts[i].token) {
@@ -147,6 +148,7 @@ var TWITTERBAR = {
 						}
 					}
 				}
+				*/
 			}
 		
 			// Get new trends every 2 hours.
