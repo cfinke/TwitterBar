@@ -485,10 +485,14 @@ var TWITTERBAR = {
 					else if (req.status >= 500) {
 						TWITTERBAR.alert(TWITTERBAR.strings.getString("twitterbar.failWhale"));
 						TWITTERBAR.pendingTweets = [];
+						
+						TWITTERBAR_UI.setStatusText(TWITTERBAR.lastTweet);
 					}
 					else {
 						TWITTERBAR.alert(TWITTERBAR.strings.getFormattedString("twitterbar.otherError", [ req.status, req.responseText ]));
 						TWITTERBAR.pendingTweets = [];
+						
+						TWITTERBAR_UI.setStatusText(TWITTERBAR.lastTweet);
 					}
 				}
 				
@@ -605,6 +609,9 @@ var TWITTERBAR = {
 					TWITTERBAR_UI.setStatusText("");
 					TWITTERBAR_UI.closeTab();
 				}
+				else {
+					TWITTERBAR_UI.setStatusText(TWITTERBAR.lastTweet);
+				}
 				
 				TWITTERBAR_UI.setBusy(false);
 			}
@@ -615,6 +622,9 @@ var TWITTERBAR = {
 				if (hidePrompt) {
 					TWITTERBAR_UI.setStatusText("");
 					TWITTERBAR_UI.closeTab();
+				}
+				else {
+					TWITTERBAR_UI.setStatusText(TWITTERBAR.lastTweet);
 				}
 				
 				TWITTERBAR_UI.setBusy(false);
@@ -676,6 +686,8 @@ var TWITTERBAR = {
 				else {
 					TWITTERBAR.alert(TWITTERBAR.strings.getFormattedString("twitterbar.twitterError", [ req.status, req.responseText ]));
 					TWITTERBAR.pendingTweets = [];
+					
+					TWITTERBAR_UI.setStatusText(TWITTERBAR.lastTweet);
 				}
 				
 				// I think Twitter sends a 401 when you've hit your rate limit.
@@ -684,6 +696,8 @@ var TWITTERBAR = {
 			else if (req.status >= 500) {
 				TWITTERBAR.alert(TWITTERBAR.strings.getString("twitterbar.failWhale"));
 				TWITTERBAR.pendingTweets = [];
+				
+				TWITTERBAR_UI.setStatusText(TWITTERBAR.lastTweet);
 			}
 			else if (req.status == 200) {
 				TWITTERBAR.lastTweet = null;
@@ -704,6 +718,8 @@ var TWITTERBAR = {
 			else {
 				TWITTERBAR.alert(TWITTERBAR.strings.getFormattedString("twitterbar.otherError", [ req.status, req.responseText ]));
 				TWITTERBAR.pendingTweets = [];
+				
+				TWITTERBAR_UI.setStatusText(TWITTERBAR.lastTweet);
 			}
 			
 			TWITTERBAR.covertMode = false;
