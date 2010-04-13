@@ -829,8 +829,6 @@ var TWITTERBAR = {
 			
 			var pageTitle = content.document.title;
 			
-			currentLength += pageTitle.length;
-			
 			if (currentLength > 140 && pageTitle.indexOf(" ") != -1) {
 				// Truncate the page title to make it fit.
 				var charactersToLose = currentLength - 140;
