@@ -264,6 +264,8 @@ var TWITTERBAR = {
 	},
 	
 	unsetAccount : function (username) {
+		username = username.toLowerCase();
+		
 		var accounts = TWITTERBAR.prefs.getCharPref("accounts");
 		
 		if (!accounts) {
@@ -271,11 +273,19 @@ var TWITTERBAR = {
 		}
 		else {
 			accounts = JSON.parse(accounts);
-		
+			
+			var newAccounts = {};
+			
+			for (i in accounts) {
+				newAccounts[i.toLowerCase()] = accounts[i];
+			}
+			
+			accounts = newAccounts;
+			
 			if (username in accounts) {
 				delete accounts[username];
 			}
-		
+			
 			TWITTERBAR.accounts = accounts;
 			accounts = JSON.stringify(accounts);
 		}
