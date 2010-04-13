@@ -22,13 +22,16 @@
 		<stringbundle id="twitterbar-strings" src="chrome://twitterbar/locale/overlay.properties" />
 	</stringbundleset>
 	
-	<textbox id="urlbar-edit">
-		<hbox id="twitterBox">
+	<hbox id="urlbar-editarea">
+		<hbox id="twitterBox" align="middle">
 			<toolbarbutton
 				id="twitter-statusbarbutton"
 				oncommand="TWITTERBAR.post(true);"
 				class="button-image"
 				/>
+			<vbox id="twitterbar-status-container" pack="center" style="display: none;">
+				<label id="twitterbar-status-label" value="hi there" />
+			</vbox>
 		</hbox>
-	</textbox>
+	</hbox>
 </overlay>

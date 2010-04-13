@@ -109,6 +109,19 @@ var TWITTERBAR_UI = {
 		return document.getElementById("urlbar-edit").value;
 	},
 	
+	setStatusMessage : function (text) {
+		if (!text) text = "";
+		
+		if (!text) {
+			document.getElementById("twitterbar-status-container").style.display = 'none';
+			document.getElementById("twitterbar-status-label").value = text;
+		}
+		else {
+			document.getElementById("twitterbar-status-label").value = text;
+			document.getElementById("twitterbar-status-container").style.display = '';
+		}
+	},
+	
 	setStatusText : function (text) {
 		document.getElementById("urlbar-edit").value = text;
 	},

@@ -487,12 +487,14 @@ var TWITTERBAR = {
 						TWITTERBAR.pendingTweets = [];
 						
 						TWITTERBAR_UI.setStatusText(TWITTERBAR.lastTweet);
+						TWITTERBAR_UI.setStatusMessage();
 					}
 					else {
 						TWITTERBAR.alert(TWITTERBAR.strings.getFormattedString("twitterbar.otherError", [ req.status, req.responseText ]));
 						TWITTERBAR.pendingTweets = [];
 						
 						TWITTERBAR_UI.setStatusText(TWITTERBAR.lastTweet);
+						TWITTERBAR_UI.setStatusMessage();
 					}
 				}
 				
@@ -539,7 +541,7 @@ var TWITTERBAR = {
 			
 			TWITTERBAR_UI.addTab("about:blank");
 			TWITTERBAR_UI.setBusy(true);
-			TWITTERBAR_UI.setStatusText(TWITTERBAR.strings.getString("twitterbar.addingAccount"));
+			TWITTERBAR_UI.setStatusMessage(TWITTERBAR.strings.getString("twitterbar.addingAccount"));
 		}
 		
 		TWITTERBAR_UI.addingAccount();
@@ -576,7 +578,8 @@ var TWITTERBAR = {
 					TWITTERBAR.oauth.request_token.oauth_token = parts[0].split("=")[1];
 					TWITTERBAR.oauth.request_token.oauth_token_secret = parts[1].split("=")[1];
 					
-					TWITTERBAR_UI.setStatusText(TWITTERBAR.lastUrl);
+					// @here
+					//TWITTERBAR_UI.setStatusText(TWITTERBAR.lastUrl);
 					
 					var message = "";
 					
@@ -611,6 +614,7 @@ var TWITTERBAR = {
 				}
 				else {
 					TWITTERBAR_UI.setStatusText(TWITTERBAR.lastTweet);
+					TWITTERBAR_UI.setStatusMessage();
 				}
 				
 				TWITTERBAR_UI.setBusy(false);
@@ -625,6 +629,7 @@ var TWITTERBAR = {
 				}
 				else {
 					TWITTERBAR_UI.setStatusText(TWITTERBAR.lastTweet);
+					TWITTERBAR_UI.setStatusMessage();
 				}
 				
 				TWITTERBAR_UI.setBusy(false);
@@ -688,6 +693,7 @@ var TWITTERBAR = {
 					TWITTERBAR.pendingTweets = [];
 					
 					TWITTERBAR_UI.setStatusText(TWITTERBAR.lastTweet);
+					TWITTERBAR_UI.setStatusMessage();
 				}
 				
 				// I think Twitter sends a 401 when you've hit your rate limit.
@@ -698,20 +704,21 @@ var TWITTERBAR = {
 				TWITTERBAR.pendingTweets = [];
 				
 				TWITTERBAR_UI.setStatusText(TWITTERBAR.lastTweet);
+				TWITTERBAR_UI.setStatusMessage();
 			}
 			else if (req.status == 200) {
 				TWITTERBAR.lastTweet = null;
 				
-				if (!TWITTERBAR.covertMode) {
-					TWITTERBAR_UI.setStatusText(TWITTERBAR.strings.getString("twitterbar.success"));
-					
+				if (!TWITTERBAR.covertMode || TWITTERBAR.pendingTweets.length == 0) {
+					var json = JSON.parse(req.responseText);
+
 					TWITTERBAR_UI.setBusy(false);
 					
-					var json = JSON.parse(req.responseText);
-					
+					TWITTERBAR_UI.setStatusMessage(TWITTERBAR.strings.getString("twitterbar.success"));
+
 					setTimeout(function () { TWITTERBAR.afterPost(false, json.user.screen_name); }, 3000);
 				}
-				else {
+				else if (TWITTERBAR.pendingTweets.length > 0) {
 					TWITTERBAR.postNextTweet();
 				}
 			}
@@ -720,6 +727,7 @@ var TWITTERBAR = {
 				TWITTERBAR.pendingTweets = [];
 				
 				TWITTERBAR_UI.setStatusText(TWITTERBAR.lastTweet);
+				TWITTERBAR_UI.setStatusMessage();
 			}
 			
 			TWITTERBAR.covertMode = false;
@@ -733,8 +741,8 @@ var TWITTERBAR = {
 			TWITTERBAR.postNextTweet();
 		}
 		else {
-			TWITTERBAR_UI.setStatusText(TWITTERBAR.lastUrl);
-		
+			TWITTERBAR_UI.setStatusMessage();
+			
 			if (!noSuccess && TWITTERBAR.prefs.getBoolPref("tab")){
 				var url = "http://twitter.com/";
 			
@@ -820,6 +828,8 @@ var TWITTERBAR = {
 	},
 	
 	startPost : function (status) {
+		TWITTERBAR_UI.setStatusText(TWITTERBAR.lastUrl);
+		
 		var account = "";
 		var accounts = [];
 		
@@ -866,7 +876,7 @@ var TWITTERBAR = {
 			status = status.replace(/\$\$/g, pageTitle);
 		}
 		
-		TWITTERBAR_UI.setStatusText(TWITTERBAR.strings.getString("twitterbar.posting"));
+		TWITTERBAR_UI.setStatusMessage(TWITTERBAR.strings.getString("twitterbar.posting"));
 		
 		if (accounts.length > 0) {
 			account = accounts[0];
@@ -922,7 +932,7 @@ var TWITTERBAR = {
 	
 	postNextTweet : function () {
 		if (TWITTERBAR.pendingTweets.length > 0) {
-			TWITTERBAR_UI.setStatusText(TWITTERBAR.strings.getString("twitterbar.posting"));
+			TWITTERBAR_UI.setStatusMessage(TWITTERBAR.strings.getString("twitterbar.posting"));
 			
 			var pair = TWITTERBAR.pendingTweets.shift();
 			
@@ -932,7 +942,7 @@ var TWITTERBAR = {
 			var status = pair[1];
 			
 			if (account != "_twitterbar") {
-				TWITTERBAR_UI.setStatusText(TWITTERBAR.strings.getFormattedString("twitterbar.postingToAccount", [ account ]));
+				TWITTERBAR_UI.setStatusMessage(TWITTERBAR.strings.getFormattedString("twitterbar.postingToAccount", [ account ]));
 			}
 			
 			TWITTERBAR_UI.setBusy(true);

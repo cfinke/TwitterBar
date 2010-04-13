@@ -120,6 +120,19 @@ var TWITTERBAR_UI = {
 		gBrowser.selectedBrowser.userTypedValue = text;
 	},
 	
+	setStatusMessage : function (text) {
+		if (!text) text = "";
+		
+		if (!text) {
+			document.getElementById("twitterbar-status-container").style.display = 'none';
+			document.getElementById("twitterbar-status-label").value = text;
+		}
+		else {
+			document.getElementById("twitterbar-status-label").value = text;
+			document.getElementById("twitterbar-status-container").style.display = '';
+		}
+	},
+	
 	showWeb : function () { },
 	
 	addingAccount : function () { },

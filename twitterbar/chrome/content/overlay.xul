@@ -45,41 +45,32 @@
 		</toolbaritem>
 	</toolbarpalette>
 
-	<hbox id="twitterBox" insertbefore="urlbar-icons" onmouseover="TWITTERBAR_UI.showCount();" onmouseout="TWITTERBAR_UI.hideCount();" class="textbox-input-box">
-		<hbox id="twitter-count-vbox">
-			<vbox>
-				<spacer flex="1"/>
-				<label style="font-size: 10px; color: green;" id="twitter-count" value="" hidden="true"/>
-				<spacer flex="1"/>
-			</vbox>
-			<vbox id="twitter-oneriot-box">
-				<spacer flex="1" />
-				<image id="twitter-searchbutton"
-					hidden="true"
-					onclick="TWITTERBAR.search(event, 'addressBarIcon');"
-					tooltiptext="&twitter.searchSocial;"
-					src="chrome://twitterbar/skin/oneriot.ico"
+	<textbox id="urlbar">
+		<hbox id="twitterBox" insertbefore="urlbar-icons" onmouseover="TWITTERBAR_UI.showCount();" onmouseout="TWITTERBAR_UI.hideCount();" class="textbox-input-box">
+			<hbox id="twitter-count-vbox">
+				<vbox pack="center">
+					<label style="font-size: 10px; color: green;" id="twitter-count" value="" hidden="true"/>
+				</vbox>
+				<vbox id="twitter-oneriot-box" pack="center">
+					<image id="twitter-searchbutton"
+						hidden="true"
+						onclick="TWITTERBAR.search(event, 'addressBarIcon');"
+						tooltiptext="&twitter.searchSocial;"
+						src="chrome://twitterbar/skin/oneriot.ico"
+						/>
+				</vbox>
+			</hbox>
+			<vbox flex="1" pack="center">
+				<image id="twitter-statusbarbutton"
+					onclick="TWITTERBAR_UI.onButtonClick(event);"
+					tooltiptext="&twitter.post;"
+					src="chrome://twitterbar/skin/bird-16-full.png"
+					context="twitterbarContextMenu"
 					/>
-				<spacer flex="1" />
+			</vbox>
+			<vbox id="twitterbar-status-container" pack="center" style="display: none;">
+				<label id="twitterbar-status-label" value="" style="color: #999;" />
 			</vbox>
 		</hbox>
-		<vbox flex="1">
-			<spacer flex="1" />
-			<image id="twitter-statusbarbutton"
-				onclick="TWITTERBAR_UI.onButtonClick(event);"
-				tooltiptext="&twitter.post;"
-				src="chrome://twitterbar/skin/bird-16-full.png"
-				context="twitterbarContextMenu"
-				/>
-			<spacer flex="1" />
-		</vbox>
-	</hbox>
-
-	<textbox id="urlbar">
-		<hbox id="twitterBox" />
-	</textbox>
-
-	<textbox id="urlbar-edit">
-		<hbox id="twitterBox" />
 	</textbox>
 </overlay>
