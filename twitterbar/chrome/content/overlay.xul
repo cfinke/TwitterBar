@@ -46,20 +46,20 @@
 	</toolbarpalette>
 
 	<hbox id="twitterBox" insertbefore="urlbar-icons" onmouseover="TWITTERBAR_UI.showCount();" onmouseout="TWITTERBAR_UI.hideCount();" class="textbox-input-box">
-	    <hbox id="twitter-count-vbox">
-	        <vbox>
-		        <spacer flex="1"/>
-		        <label style="font-size: 10px; color: green;" id="twitter-count" value="" hidden="true"/>
-		        <spacer flex="1"/>
-		    </vbox>
-		    <vbox id="twitter-oneriot-box">
-		        <spacer flex="1" />
-		        <image id="twitter-searchbutton"
-			        hidden="true"
-				    onclick="TWITTERBAR.search(event, 'addressBarIcon');"
-				    tooltiptext="&twitter.searchSocial;"
-				    src="chrome://twitterbar/skin/oneriot.ico"
-				    />
+		<hbox id="twitter-count-vbox">
+			<vbox>
+				<spacer flex="1"/>
+				<label style="font-size: 10px; color: green;" id="twitter-count" value="" hidden="true"/>
+				<spacer flex="1"/>
+			</vbox>
+			<vbox id="twitter-oneriot-box">
+				<spacer flex="1" />
+				<image id="twitter-searchbutton"
+					hidden="true"
+					onclick="TWITTERBAR.search(event, 'addressBarIcon');"
+					tooltiptext="&twitter.searchSocial;"
+					src="chrome://twitterbar/skin/oneriot.ico"
+					/>
 				<spacer flex="1" />
 			</vbox>
 		</hbox>
