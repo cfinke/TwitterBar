@@ -12,6 +12,9 @@
 <!ENTITY twitter.noShortener "Ninguno (Dejar a Twitter ordenarlo, probablemente con bit.ly)">
 <!ENTITY twitter.searchSocial "Buscar la web social para el texto que has introducido.">
 <!ENTITY twitter.showTrends "Mostrar temas actuales adicionales en la barra lateral de Twitter.">
+<!ENTITY twitter.bitlyInstructions "Introduce tu usuario y tu contraseña, si dispones de una.">
+<!ENTITY twitter.bitlyLogin "Usuario Bit.ly:">
+<!ENTITY twitter.bitlyApiKey "Clave Bit.ly:">
 <!ENTITY twitter.options "Opciones...">
 <!ENTITY twitter.chooseAccountTitle "Elige una cuenta...">
 <!ENTITY twitter.chooseAccounts "¿En qué cuentas desea publicar?">
@@ -19,5 +22,6 @@
 <!ENTITY twitter.addAccount "Añadir Cuenta">
 <!ENTITY twitter.multiAccountInstructions "Para publicar en una cuenta específica, tan sólo escribe --@nombre_de_cuenta al final de tu tweet (pero antes de --post).">
 <!ENTITY twitter.account "Cuenta">
+<!ENTITY twitter.authorizedOn "Autorizado...">
 <!ENTITY twitter.remove "Eliminar">
 <!ENTITY twitter.noAccounts "Aún no ha autorizado ninguna cuenta.">

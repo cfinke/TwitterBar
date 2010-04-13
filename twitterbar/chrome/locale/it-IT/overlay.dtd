@@ -22,6 +22,6 @@
 <!ENTITY twitter.addAccount "Aggiungi ed autorizza account">
 <!ENTITY twitter.multiAccountInstructions "Per inviare un messaggio da un account specifico digitare --@nome_account al termine del messaggio seguito da --post">
 <!ENTITY twitter.account "Account">
-<!ENTITY twitter.authorizedOn "Autorizzato il">
+<!ENTITY twitter.authorizedOn "Autorizzato">
 <!ENTITY twitter.remove "Elimina">
 <!ENTITY twitter.noAccounts "Non è stato autorizzato alcun account">

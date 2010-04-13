@@ -14,6 +14,7 @@ locale      twitterbar    cs-CZ    jar:chrome/twitterbar.jar!/locale/cs-CZ/
 locale      twitterbar    en-US    jar:chrome/twitterbar.jar!/locale/en-US/
 locale      twitterbar    es-AR    jar:chrome/twitterbar.jar!/locale/es-AR/
 locale      twitterbar    es-ES    jar:chrome/twitterbar.jar!/locale/es-ES/
+locale      twitterbar    da       jar:chrome/twitterbar.jar!/locale/da/
 locale      twitterbar    de       jar:chrome/twitterbar.jar!/locale/de/
 locale      twitterbar    de-DE    jar:chrome/twitterbar.jar!/locale/de-DE/
 locale      twitterbar    fa-IR    jar:chrome/twitterbar.jar!/locale/fa-IR/
