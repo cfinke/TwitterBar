@@ -438,7 +438,7 @@ var TWITTERBAR = {
 		if (event.originalTarget instanceof HTMLDocument) {
 			var page = event.originalTarget;
 			
-			if (page.location.href.match(/chrisfinke.com\/oauth\/twitterbar/i)) {
+			if (page.location && page.location.href.match(/chrisfinke.com\/oauth\/twitterbar/i)) {
 				var urlArgs = page.location.href.split("?")[1].split("&");
 				
 				var token = "";
@@ -981,36 +981,113 @@ var TWITTERBAR = {
 		var trends = TWITTERBAR.prefs.getCharPref("trends");
 		
 		if (trends == "" || (new Date().getTime()) - lastUpdate > (1000 * 60 * 60 * 1.8)) {
-			var feedUrl = "http://www.oneriot.com/rss/trendingtopics";
+			var feedUrl = "http://api.ads.oneriot.com/search?appId=86f2f5da-3b24-4a87-bbb3-1ad47525359d&version=1.1&format=XML";
 			
 			var req = new XMLHttpRequest();
 			req.open("GET", feedUrl, true);
+			req.overrideMimeType("text/xml");
 			
 			req.onreadystatechange = function () {
 				if (req.readyState == 4) {
 					if (req.status == 200) {
-						var ioService = Components.classes["@mozilla.org/network/io-service;1"]
-						                .getService(Components.interfaces.nsIIOService);
-						var data = req.responseText;
-						var uri = ioService.newURI(feedUrl, null, null);
-						
-						if (data.length) {
-							var parser = Components.classes["@mozilla.org/feed-processor;1"]
-							             .createInstance(Components.interfaces.nsIFeedProcessor);
-							var listener = TWITTERBAR;
-							
-							try {
-								parser.listener = listener;
-								parser.parseFromString(data, uri);
-							} catch (e) {
-							}
-						}
+						TWITTERBAR.parseTrendingNews(req.responseXML, feedUrl);
 					}
 				}
 			};
 			
 			req.send(null);
 		}
+	},
+	
+	parseTrendingNews : function (xml, url) {
+		var result = {
+			bozo : false,
+			
+			doc : {
+				QueryInterface : function () { },
+				
+				link : {
+					resolve : function () {
+						return "http://www.oneriot.com/";
+					}
+				},
+				
+				title : {
+					plainText : function () {
+						return "Trending News";
+					}
+				},
+				
+				summary : {
+					text : "Trending news courtesy of TwitterBar"
+				},
+				
+				items : {
+					get length() { return this._items.length; },
+					
+					queryElementAt : function (index) {
+						return this._items[index];
+					},
+					
+					_items : []
+				}
+			},
+			
+			uri : {
+				_uri : url,
+				
+				resolve : function () {
+					return this._uri;
+				}
+			}
+		};
+		
+		var items = xml.getElementsByTagName("featured-result");
+		var updated = new Date();
+		updated.setTime( xml.getElementsByTagName("time")[0].textContent * 1000);
+		
+		for (var i = 0; i < items.length; i++) {
+			var itemUrl = items[i].getElementsByTagName("redirect-url")[0].textContent;
+			
+			var item = {
+				id : "http://" + items[i].getElementsByTagName("display-url")[0].textContent,
+				
+				uri : itemUrl,
+				
+				displayUri : items[i].getElementsByTagName("display-url")[0].textContent,
+				trackingUri : items[i].getElementsByTagName("tracking-url")[0].textContent,
+				
+				link : {
+					_link : items[i].getElementsByTagName("redirect-url")[0].textContent,
+				
+					resolve : function () {
+						return this._link;
+					}
+				},
+				
+				updated : updated,
+				
+				title : {
+					_title : items[i].getElementsByTagName("title")[0].textContent,
+				
+					plainText : function () {
+						return this._title.replace(/<[^>]+>/g, "");
+					}
+				},
+			
+				summary : {
+					_summary : items[i].getElementsByTagName("snippet")[0].textContent,
+				
+					get text() {
+						return this._summary.replace(/<[^>]+>/g, "");
+					} 
+				}
+			};
+			
+			result.doc.items._items.push(item);
+		}
+		
+		TWITTERBAR.handleResult(result);
 	},
 	
 	handleResult: function(result) {
@@ -1032,18 +1109,23 @@ var TWITTERBAR = {
 			return;
 		}
 
-		var numItems = Math.min(10, feed.items.length);
-
 		var trends = [];
 
-		for (var i = 0; i < numItems; i++) {
+		for (var i = 0; i < feed.items.length; i++) {
 			var item = feed.items.queryElementAt(i, Components.interfaces.nsIFeedEntry);
-			trends.push(item.title.plainText());
+			trends.push(
+				{
+					"title": item.title.plainText(),
+					"url": item.uri,
+					"displayUrl": item.displayUri,
+					"trackingUrl" : item.trackingUri
+				}
+			);
 		}
 
 		delete result;
 
-		TWITTERBAR.prefs.setCharPref("trends", trends.join("\t"));
+		TWITTERBAR.prefs.setCharPref("trends", JSON.stringify(trends));
 	},
 	
 	addTrends : function (page) {
@@ -1051,23 +1133,37 @@ var TWITTERBAR = {
 		var trends = page.getElementById("trends");
 
 		if (trends) {
-			var topics = TWITTERBAR.prefs.getCharPref("trends").split("\t");
-	
+			var topics = TWITTERBAR.prefs.getCharPref("trends");
+			
 			if (topics) {
+				try {
+					topics = JSON.parse(topics);
+				} catch (e) {
+					TWITTERBAR.prefs.setCharPref("trends", "");
+					TWITTERBAR.prefs.setCharPref("trends.update", 0);
+					
+					setTimeout(TWITTERBAR.getTrends, 1000 * 10);
+					return;
+				}
+
 				var str = '<h2 id="twitterbar-trends" class="sidebar-title" style="background: transparent !important;"><span title="'+TWITTERBAR.strings.getString("twitterbar.trends.byline")+'">'+TWITTERBAR.strings.getString("twitterbar.trends.title")+'</span></h2>';
 				str += '<ul class="sidebar-menu more-trends-links">';
 		
-				var limit = Math.min(10, topics.length);
+				var limit = Math.min(4, topics.length);
 		
-				for (var i = 0; i < topics.length; i++) {
-					str += '<li class="link-title"><a target="_blank" title="'+topics[i]+'" href="'+TWITTERBAR.getSearchURL(topics[i], "trends-sidebar")+'"><span>'+topics[i]+'</span></a></li>';
+				for (var i = 0; i < limit; i++) {
+					var idx = Math.floor(Math.random() * topics.length);
+					var topic = topics[idx];
+					topics.splice(idx, 1);
+					
+					str += '<li class="link-title" style="background: url('+topic.trackingUrl+') no-repeat;"><a target="_blank" title="'+topic.displayUrl+'" href="'+topic.url+'"><span>'+topic.title+'</span></a></li>';
 				}
 	
 				str += '<li><small style="display: block; padding: 5px 14px 5px 14px;">'+TWITTERBAR.strings.getString("twitterbar.trends.explanation")+'</small></li>';
 				str += '</ul>';
 				str += '<hr />';
 
-				trends.innerHTML += str;
+				trends.innerHTML = str + trends.innerHTML;
 			}
 		}
 	},

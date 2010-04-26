@@ -46,7 +46,7 @@
 	</toolbarpalette>
 
 	<textbox id="urlbar">
-		<hbox id="twitterBox" insertbefore="urlbar-icons" onmouseover="TWITTERBAR_UI.showCount();" onmouseout="TWITTERBAR_UI.hideCount();" class="textbox-input-box">
+		<hbox id="twitterBox" insertafter="urlbar-icons" onmouseover="TWITTERBAR_UI.showCount();" onmouseout="TWITTERBAR_UI.hideCount();" class="textbox-input-box">
 			<hbox id="twitter-count-vbox">
 				<vbox pack="center">
 					<label style="font-size: 10px; color: green;" id="twitter-count" value="" hidden="true"/>
