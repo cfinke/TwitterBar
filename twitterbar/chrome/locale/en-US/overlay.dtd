@@ -14,7 +14,7 @@
 <!ENTITY twitter.noShortener "None">
 <!ENTITY twitter.searchSocial "Search the social web for the text you've entered.">
 
-<!ENTITY twitter.showTrends "Show additional trending topics in the Twitter sidebar.">
+<!ENTITY twitter.showTrends "Show trending news in the Twitter sidebar.">
 
 <!ENTITY twitter.bitlyInstructions "Enter your bit.ly login and API key, if you have one.">
 <!ENTITY twitter.bitlyLogin "Bit.ly login:">
