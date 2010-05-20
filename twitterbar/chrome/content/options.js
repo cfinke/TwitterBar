@@ -118,7 +118,10 @@ var TWITTERBAR_OPTIONS = {
 			}
 		}
 		
-		sizeToContent();
+		if (document.location.href == "chrome://twitterbar/content/options.xul") {
+			// Kind of hacky way to avoid calling sizeToContent in Fennec.
+			sizeToContent();
+		}
 	},
 	
 	accept : function () {
