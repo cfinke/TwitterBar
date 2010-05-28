@@ -43,29 +43,6 @@ var TWITTERBAR_UI = {
 		d.focus();
 	},
 	
-	askSearch : function () {
-		var searchService = Components.classes["@mozilla.org/browser/search-service;1"]
-		                    .getService(Components.interfaces.nsIBrowserSearchService);
-		
-		var engineLabel = TWITTERBAR.strings.getString("twitter.search.name");
-		var oneRiotSearch = searchService.getEngineByName(engineLabel);
-		
-		if (oneRiotSearch == null) {
-			TWITTERBAR_UI.request(
-				TWITTERBAR.strings.getString("twitterbar.search.request"),
-				TWITTERBAR.strings.getString("twitterbar.search.deny"),
-				TWITTERBAR.strings.getString("twitterbar.search.accept"),
-				'TWITTERBAR.prefs.setBoolPref("search_request", true);',
-				'TWITTERBAR.prefs.setBoolPref("search_request", true); TWITTERBAR.addOneRiotSearch(true);',
-				TWITTERBAR.strings.getString("twitterbar.search.moreLink"),
-				'http://www.chrisfinke.com/firstrun/twitterbar-search.php'
-			);
-		}
-		else {
-			TWITTERBAR.prefs.setBoolPref("search_request", true);
-		}
-	},
-	
 	follow : function () {
 		TWITTERBAR_UI.request(
 			TWITTERBAR.strings.getString("twitterbar.follow.request"),

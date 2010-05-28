@@ -132,9 +132,6 @@ var TWITTERBAR = {
 			if (showFirstRun) {
 				TWITTERBAR_UI.showFirstRun(TWITTERBAR.version);
 			}
-			else if (Math.random() < 0.2 && !TWITTERBAR.prefs.getBoolPref("search_request")) {
-				TWITTERBAR_UI.askSearch();
-			}
 			else {
 				/*
 				if (!TWITTERBAR.prefs.getBoolPref("onetime.follow")) {
@@ -981,7 +978,7 @@ var TWITTERBAR = {
 		var trends = TWITTERBAR.prefs.getCharPref("trends");
 		
 		if (trends == "" || (new Date().getTime()) - lastUpdate > (1000 * 60 * 60 * 1.8)) {
-			var feedUrl = "http://api.ads.oneriot.com/search?appId=86f2f5da-3b24-4a87-bbb3-1ad47525359d&version=1.1&format=XML";
+			var feedUrl = "http://api.ads.oneriot.com/search?appId=twitterbar01&version=1.1&format=XML";
 			
 			var req = new XMLHttpRequest();
 			req.open("GET", feedUrl, true);
@@ -1195,28 +1192,5 @@ var TWITTERBAR = {
 		var rv = prompts.confirmCheck(null, title, msg, cbLabel, cb);
 		
 		return [ rv, cb.value ];
-	},
-	
-	addOneRiotSearch : function (def) {
-		var searchService = Components.classes["@mozilla.org/browser/search-service;1"]
-		                    .getService(Components.interfaces.nsIBrowserSearchService);
-		
-		var engineLabel = TWITTERBAR.strings.getString("twitter.search.name");
-		var oneRiotSearch = searchService.getEngineByName(engineLabel);
-		
-		if (oneRiotSearch == null) {
-			searchService.addEngineWithDetails(engineLabel, "http://www.oneriot.com/images/favicon.ico", null, TWITTERBAR.strings.getString("twitter.search.description"), "get", "http://www.oneriot.com/search?q={searchTerms}&format=html&ssrc=browserBox&spid=86f2f5da-3b24-4a87-bbb3-1ad47525359d&p=twitterbar-ff");
-		}
-		
-		if (def) {
-			// Make OneRiot the default
-			const prefService = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
-			const preferences = prefService.getBranch("browser.");
-			preferences.setCharPref("search.selectedEngine", engineLabel);
-	
-			// Make OneRiot the current engine
-			var engine = searchService.getEngineByName(engineLabel);
-			searchService.currentEngine = engine;
-		}
 	}
 };

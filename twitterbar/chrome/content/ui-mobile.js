@@ -33,27 +33,6 @@ var TWITTERBAR_UI = {
 		setTimeout(TWITTERBAR_UI.addTab, 0, "http://www.chrisfinke.com/firstrun/twitterbar.php?v=" + version);
 	},
 	
-	askSearch : function () {
-		/*
-		var searchService = Components.classes["@mozilla.org/browser/search-service;1"]
-		                    .getService(Components.interfaces.nsIBrowserSearchService);
-		
-		var engineLabel = TWITTERBAR.strings.getString("twitter.search.name");
-		var oneRiotSearch = searchService.getEngineByName(engineLabel);
-			
-		if (oneRiotSearch == null) {
-			var msg = TWITTERBAR.strings.getString("twitterbar.search.mobile");
-			var cb = TWITTERBAR.strings.getString("twitterbar.search.mobile.checkbox");
-			
-			var rv = TWITTERBAR.confirmCheck(msg, cb);
-			
-			if (rv[0] && rv[1]) {
-				TWITTERBAR.addOneRiotSearch();
-			}
-		}
-		*/
-	},
-	
 	addTab : function (url) {
 		Browser.addTab(url, true);
 		
