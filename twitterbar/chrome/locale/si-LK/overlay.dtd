@@ -5,8 +5,13 @@
 <!ENTITY twitter.oneriotButton "address bar එකෙන් OneRiot search අයිකනය සඟවන්න">
 <!ENTITY twitter.options.dialog "ට්විටර් බාර් වල අභිමත වින්ඩෝව">
 <!ENTITY twitter.generalTab "සාමාන්‍ය">
+<!ENTITY twitter.confirm "ට්විටර් කිරීමට සැමවිටම  පෙර තහවුරු කරන්න">
+<!ENTITY twitter.prefixExplanation "වෙබ් පිටුවල link එක ට්විටර් වල පොස්ට් කිරීමට අයිකනය මත ක්ලික් කරන්න.">
+<!ENTITY twitter.prefixDescription "( පිටුවේ මාතෘකාව ලෙස ඔබට $$ භාවිත කල හැකිය )">
 <!ENTITY twitter.shortener "URL කෙටි කරණය:">
 <!ENTITY twitter.noShortener "නැත">
+<!ENTITY twitter.searchSocial "භාවිතා කල වචන ගැන  අන්තර්ජාලයේ සොයන්න ...">
+<!ENTITY twitter.showTrends "වද්දත් නැඹුරු වූ ආරංචි පැත්තකින් පෙන්වන්න .">
 <!ENTITY twitter.bitlyInstructions "ඔබට bit.ly ගිණුමක් තිබේ නම් login and API key ලබා දෙන්න.">
 <!ENTITY twitter.bitlyLogin "Bit.ly ගිණුම:">
 <!ENTITY twitter.bitlyApiKey "Bit.ly API key:">
@@ -15,6 +20,7 @@
 <!ENTITY twitter.chooseAccounts "කුමන ගිණුමට මෙය පෝස්ට් කිරීමට අවශ්‍යද ?">
 <!ENTITY twitter.newAccount "නව:">
 <!ENTITY twitter.addAccount "ගිණුම එකතු කරන්න">
+<!ENTITY twitter.multiAccountInstructions "වෙනත් අයකුගේ ට්විටර් වලට පොස්ට් කිරීමට @account_name obage පොස්ට් එකේ අගට යොදන්න">
 <!ENTITY twitter.account "ගිණුම">
 <!ENTITY twitter.authorizedOn "දැනට සහතික කර ඇති...">
 <!ENTITY twitter.remove "ඉවත් කරන්න">
