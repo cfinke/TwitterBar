@@ -31,9 +31,9 @@ var TWITTERBAR = {
 	covertMode : false,
 	
 	/**
-	 * The current version of TwitterBar.
+	 * The current version of TwitterBar, cached after the initial async call.
 	 */
-	get version() { return Components.classes["@mozilla.org/extensions/manager;1"].getService(Components.interfaces.nsIExtensionManager).getItemForID("{1a0c9ebe-ddf9-4b76-b8a3-675c77874d37}").version; },
+	version : null,
 	
 	/**
 	 * Whatever the user replaced when they started typing their message.
@@ -108,50 +108,27 @@ var TWITTERBAR = {
 			if (upgraded) {
 				TWITTERBAR.setUpAccount();
 			}
-
-			var showFirstRun = false;
-			var oldVersion = TWITTERBAR.prefs.getCharPref("version");
-			var newVersion = TWITTERBAR.version;
-		
-			if (oldVersion != newVersion) {
-				TWITTERBAR.prefs.setCharPref("version", newVersion);
-			}
-		
-			if (!oldVersion) {
-				showFirstRun = true;
-			}
-			else {
-				var oldParts = oldVersion.split(".");
-				var newParts = newVersion.split(".");
-		
-				if (newParts[0] != oldParts[0] || newParts[1] != oldParts[1]) {
-					showFirstRun = true;
-				}
-			}
-		
-			if (showFirstRun) {
-				TWITTERBAR_UI.showFirstRun(TWITTERBAR.version);
-			}
-			else {
-				/*
-				if (!TWITTERBAR.prefs.getBoolPref("onetime.follow")) {
-					for (var i in TWITTERBAR.accounts) {
-						if (TWITTERBAR.accounts[i].token) {
-							if (Math.random() < 0.3) {
-								TWITTERBAR_UI.follow();
-							}
-							
-							break;
-						}
-					}
-				}
-				*/
-			}
-		
+			
 			// Get new trends every 2 hours.
 			TWITTERBAR.trendTimer = setInterval(TWITTERBAR.getTrends, 1000 * 60 * 60 * 2);
 		
 			setTimeout(TWITTERBAR.getTrends, 1000 * 10);
+			
+			TWITTERBAR.showFirstRun();
+			
+			/*
+			if (!TWITTERBAR.prefs.getBoolPref("onetime.follow")) {
+				for (var i in TWITTERBAR.accounts) {
+					if (TWITTERBAR.accounts[i].token) {
+						if (Math.random() < 0.3) {
+							TWITTERBAR_UI.follow();
+						}
+						
+						break;
+					}
+				}
+			}
+			*/
 		}
 		
 		addEventListener("unload", TWITTERBAR.unload, false);
@@ -201,6 +178,57 @@ var TWITTERBAR = {
 				TWITTERBAR.setUpAccount();
 			break;
 		}
+	},
+	
+	getVersion : function (callback) {
+		var addonId = "{1a0c9ebe-ddf9-4b76-b8a3-675c77874d37}";
+		
+		if ("@mozilla.org/extensions/manager;1" in Components.classes) {
+			// < Firefox 4
+			var version = Components.classes["@mozilla.org/extensions/manager;1"]
+				.getService(Components.interfaces.nsIExtensionManager).getItemForID(addonId).version;
+			
+			TWITTERBAR.version = version;
+			callback(version);
+		}
+		else {
+			// Firefox 4.
+			Components.utils.import("resource://gre/modules/AddonManager.jsm");  
+			
+			AddonManager.getAddonByID(addonId, function (addon) {
+				TWITTERBAR.version = addon.version;
+				
+				callback(addon.version);
+			});
+		}
+	},
+	
+	showFirstRun : function () {
+		function isMajorUpdate(version1, version2) {
+			if (!version1) {
+				return true;
+			}
+			else {
+				var oldParts = version1.split(".");
+				var newParts = version2.split(".");
+		
+				if (newParts[0] != oldParts[0] || newParts[1] != oldParts[1]) {
+					return true;
+				}
+			}
+			
+			return false;
+		}
+		
+		function doShowFirstRun(version) {
+			if (isMajorUpdate(TWITTERBAR.prefs.getCharPref("version"), version)) {
+				TWITTERBAR_UI.showFirstRun(version);
+			}
+			
+			TWITTERBAR.prefs.setCharPref("version", version);
+		}
+		
+		TWITTERBAR.getVersion(doShowFirstRun);
 	},
 	
 	setUpAccount : function () {
