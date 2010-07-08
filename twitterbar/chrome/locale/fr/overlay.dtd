@@ -1,0 +1,27 @@
+<!ENTITY twitter.post "Publication sur Twitter">
+<!ENTITY twitter.tab "Ouvrir ma page Twitter dans un nouvel onglet après publication">
+<!ENTITY twitter.web "Avant l'URL :">
+<!ENTITY twitter.button "Masquer le bouton de la barre d'adresse">
+<!ENTITY twitter.oneriotButton "Masquer l'icône de recherche OneRiot dans la barre d'adresse">
+<!ENTITY twitter.options.dialog "Boîte de dialogue des options Twitter">
+<!ENTITY twitter.generalTab "Générales">
+<!ENTITY twitter.confirm "Toujours demander confirmation avant de publier en cliquant sur l'icône TwitterBar.">
+<!ENTITY twitter.prefixExplanation "Vous pouvez partager un lien pointant vers une page que vous lisez en cliquant sur l'icône Twitter dans la barre d'adresse. Le texte suivant sera automatiquement ajouté avant l'URL :">
+<!ENTITY twitter.prefixDescription "(Vous pouvez utiliser $$ comme chaîne de substitution pour le titre de la page.)">
+<!ENTITY twitter.shortener "Réducteur d'URL :">
+<!ENTITY twitter.noShortener "Aucun">
+<!ENTITY twitter.searchSocial "Rechercher le texte que vous avez saisi sur le Web social.">
+<!ENTITY twitter.showTrends "Afficher des sujets tendances dans le panneau latéral de Twitter">
+<!ENTITY twitter.bitlyInstructions "Indiquez votre identifiant bit.ly et la clé d'API, si vous en possédez.">
+<!ENTITY twitter.bitlyLogin "Identifiant Bit.ly :">
+<!ENTITY twitter.bitlyApiKey "Clé d'API Bit.ly :">
+<!ENTITY twitter.options "Options…">
+<!ENTITY twitter.chooseAccountTitle "Choisir un compte…">
+<!ENTITY twitter.chooseAccounts "Sur quel compte souhaitez-vous publier ?">
+<!ENTITY twitter.newAccount "Nouveau :">
+<!ENTITY twitter.addAccount "Ajouter un compte">
+<!ENTITY twitter.multiAccountInstructions "Pour publier sur un compte spécifique, veuillez saisir --@nom_de_compte à la fin de votre tweet (mais avant --post)">
+<!ENTITY twitter.account "Compte">
+<!ENTITY twitter.authorizedOn "Autorisé sur…">
+<!ENTITY twitter.remove "Supprimer">
+<!ENTITY twitter.noAccounts "Vous n'avez pour l'instant accordé d'autorisations à aucun compte.">

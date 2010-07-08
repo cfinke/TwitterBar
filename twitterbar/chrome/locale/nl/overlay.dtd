@@ -6,22 +6,22 @@
 <!ENTITY twitter.options.dialog "Twitter opties">
 <!ENTITY twitter.generalTab "Algemeen">
 <!ENTITY twitter.confirm "Altijd om een bevestiging vragen voor het versturen van een webadres naar Twitter.">
-<!ENTITY twitter.prefixExplanation "Een koppeling naar een pagina die gelezen wordt, kan gedeeld worden door op het Twitter pictogram in de locatiewerkbalk te klikken. De volgende tekst zal automatisch voorafgaand aan het webadres toegevoegd worden:">
+<!ENTITY twitter.prefixExplanation "Een koppeling naar een pagina die gelezen wordt, kan gedeeld worden door op het Twitter-pictogram in de locatiewerkbalk te klikken. De volgende tekst zal automatisch voorafgaand aan het webadres toegevoegd worden:">
 <!ENTITY twitter.prefixDescription "($$ kan gebruikt worden om de plaat te bepalen voor de paginatitel.)">
 <!ENTITY twitter.shortener "Webadres snelkoppeling:">
 <!ENTITY twitter.noShortener "geen (laat Twitter sorteren)">
 <!ENTITY twitter.searchSocial "Het sociale web doorzoeken op de ingevoerde tekst.">
-<!ENTITY twitter.showTrends "Aanvullende trend onderwerpen in de Twitter zijbalk weergeven.">
+<!ENTITY twitter.showTrends "Aanvullende trendonderwerpen in de Twitter zijbalk weergeven.">
 <!ENTITY twitter.bitlyInstructions "Voer de bit.ly aanmeldgegevens en API-sleutel in, indien beschikbaar.">
 <!ENTITY twitter.bitlyLogin "Bit.ly aanmelding:">
 <!ENTITY twitter.bitlyApiKey "Bit.ly API-sleutel:">
 <!ENTITY twitter.options "Opties...">
-<!ENTITY twitter.chooseAccountTitle "Selecteer een account...">
+<!ENTITY twitter.chooseAccountTitle "Selecteer een account…">
 <!ENTITY twitter.chooseAccounts "Naar welke accounts dient verzonden te worden?">
 <!ENTITY twitter.newAccount "Nieuw:">
 <!ENTITY twitter.addAccount "Account toevoegen">
 <!ENTITY twitter.multiAccountInstructions "Om naar een specifiek account te verzenden, type --@accountnaam aan het einde van de tweet (maar voor --post).">
 <!ENTITY twitter.account "Account">
-<!ENTITY twitter.authorizedOn "Geautoriseerd op...">
+<!ENTITY twitter.authorizedOn "Geautoriseerd op…">
 <!ENTITY twitter.remove "Verwijderen">
 <!ENTITY twitter.noAccounts "Er zijn nog geen accounts geautoriseerd.">

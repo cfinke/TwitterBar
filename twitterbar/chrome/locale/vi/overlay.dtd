@@ -15,3 +15,13 @@
 <!ENTITY twitter.bitlyInstructions "Hãy điền thông tin đăng nhập trang bit.ly và khóa API (nếu có).">
 <!ENTITY twitter.bitlyLogin "Đăng nhập bit.ly:">
 <!ENTITY twitter.bitlyApiKey "Khóa API tại Bit.ly:">
+<!ENTITY twitter.options "Tùy chọn...">
+<!ENTITY twitter.chooseAccountTitle "Chọn tài khoản...">
+<!ENTITY twitter.chooseAccounts "Bạn muốn đăng tin lên tài khoản nào?">
+<!ENTITY twitter.newAccount "Mới:">
+<!ENTITY twitter.addAccount "Thêm tài khoản">
+<!ENTITY twitter.multiAccountInstructions "Để đăng bằng một tài khoản cụ thể, chỉ cần gõ --@tên_tài_khoản ở cuối mỗi nội dung mà bạn vừa gõ (nhưng đứng trước --post).">
+<!ENTITY twitter.account "Tài khoản">
+<!ENTITY twitter.authorizedOn "Được cấp phép cho...">
+<!ENTITY twitter.remove "Gỡ bỏ">
+<!ENTITY twitter.noAccounts "Bạn chưa được cấp phép cho bất kỳ tài khoản nào.">

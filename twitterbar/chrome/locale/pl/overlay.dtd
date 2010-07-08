@@ -9,7 +9,7 @@
 <!ENTITY twitter.prefixExplanation "Poniższy tekst zostanie dodany przed odnośnikiem do strony aktualnie przeglądanej">
 <!ENTITY twitter.prefixDescription "(Użycie zmiennej $$ spowoduje dodanie tytułu strony)">
 <!ENTITY twitter.shortener "Skraczacz adresów:">
-<!ENTITY twitter.noShortener "Brak (pozwól Twitterowi skracać)">
+<!ENTITY twitter.noShortener "Brak">
 <!ENTITY twitter.searchSocial "Przeszukaj sieć pod kątem wpisanego tekstu">
 <!ENTITY twitter.showTrends "Wyświetl popularne tematy w panelu bocznym Twittera">
 <!ENTITY twitter.bitlyInstructions "Wprowadź login oraz klucz API do serwisu bit.ly">
