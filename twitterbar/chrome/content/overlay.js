@@ -1154,10 +1154,9 @@ var TWITTERBAR = {
 	},
 	
 	addTrends : function (page) {
-		// Check for the trending topics.
-		var trends = page.getElementById("trends");
+		var sidebar = page.getElementById("side");
 
-		if (trends) {
+		if (sidebar) {
 			var topics = TWITTERBAR.prefs.getCharPref("trends");
 			
 			if (topics) {
@@ -1170,25 +1169,101 @@ var TWITTERBAR = {
 					setTimeout(TWITTERBAR.getTrends, 1000 * 10);
 					return;
 				}
-
-				var str = '<h2 id="twitterbar-trends" class="sidebar-title" style="background: transparent !important;"><span title="'+TWITTERBAR.strings.getString("twitterbar.trends.byline")+'">'+TWITTERBAR.strings.getString("twitterbar.trends.title")+'</span></h2>';
-				str += '<ul class="sidebar-menu more-trends-links">';
-		
-				var limit = Math.min(4, topics.length);
-		
-				for (var i = 0; i < limit; i++) {
+				
+				var links = [];
+				
+				var limit = 4;
+				
+				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+				
+				for (var i = 0; i < Math.min(limit, topics.length); i++) {
 					var idx = Math.floor(Math.random() * topics.length);
 					var topic = topics[idx];
 					topics.splice(idx, 1);
 					
-					str += '<li class="link-title" style="background: url('+topic.trackingUrl+') no-repeat;"><a target="_blank" title="'+topic.displayUrl+'" href="'+topic.url+'"><span>'+topic.title+'</span></a></li>';
+					try {
+						var trackingUrl = ios.newURI(topic.trackingUrl, null, null);
+						if (!trackingUrl.schemeIs("http") && !trackingUrl.schemeIs('https')) {
+							throw "InvalidScheme";
+						}
+						
+						var url = ios.newURI(topic.url, null, null);
+						if (url.scheme != 'http' && url.scheme != 'https') {
+							throw "InvalidScheme";
+						}
+						
+						links.push( { "bug" : trackingUrl.spec, "targetUrl" : topic.displayUrl, "url" : url.spec, "label" : topic.title } );
+					} catch (e) {
+						limit++;
+						TWITTERBAR.log(e);
+					}
 				}
-	
-				str += '<li><small style="display: block; padding: 5px 14px 5px 14px;">'+TWITTERBAR.strings.getString("twitterbar.trends.explanation")+'</small></li>';
-				str += '</ul>';
-				str += '<hr />';
-
-				trends.innerHTML = str + trends.innerHTML;
+				
+				if (links.length > 0) {
+					var container = page.createElement("div");
+					container.setAttribute("id", "twitterbar-trends");
+					
+					var header = page.createElement("h2");
+					header.setAttribute("class", "sidebar-title")
+					header.style.backgroundColor = "transparent !important";
+					
+					var title = page.createElement("span");
+					title.setAttribute("title", TWITTERBAR.strings.getString("twitterbar.trends.byline"));
+					title.appendChild(page.createTextNode(TWITTERBAR.strings.getString("twitterbar.trends.title")));
+					
+					header.appendChild(title);
+					
+					container.appendChild(header);
+					
+					var list = page.createElement("ul");
+					list.setAttribute("class", "sidebar-menu more-trends-links");
+					
+					for (var i = 0; i < links.length; i++) {
+						var item = page.createElement("li");
+						item.setAttribute("class", "link-title");
+						item.style.background = 'url("' + links[i].bug + '") no-repeat';
+						
+						var a = page.createElement("a");
+						a.setAttribute("target", "_blank");
+						a.setAttribute("title", links[i].targetUrl);
+						a.setAttribute("href", links[i].url);
+						
+						var span = page.createElement("span");
+						span.appendChild(page.createTextNode(links[i].label));
+						
+						a.appendChild(span);
+						item.appendChild(a);
+						list.appendChild(item);
+					}
+					
+					var notice = page.createElement("li");
+					
+					var text = page.createElement("small");
+					text.style.display = 'block';
+					text.style.padding = '5px 14px';
+					text.appendChild(page.createTextNode(TWITTERBAR.strings.getString("twitterbar.trends.explanation")));
+					
+					notice.appendChild(text);
+					list.appendChild(notice);
+					
+					container.appendChild(list);
+					container.appendChild(page.createElement("hr"));
+					
+					var possibleSiblings = ["side_lists", "custom_search", "trends"];
+					
+					var sibling = null;
+					
+					for (var i = 0; i < possibleSiblings.length; i++) {
+						var possibleSibling = page.getElementById(possibleSiblings[i]);
+						
+						if (possibleSibling) {
+							possibleSibling.parentNode.insertBefore(container, possibleSibling);
+							return;
+						}
+					}
+					
+					sidebar.appendChild(container);
+				}
 			}
 		}
 	},
