@@ -3,7 +3,7 @@
 	list-style-image: url('chrome://twitterbar/skin/twitter-bird-44.png');
 	background: transparent !important;
 	-moz-box-orient: vertical;
-	margin-right: 5px;
+	margin-left: 10px;
 }
 
 #twitter-statusbarbutton[toolong="true"] {

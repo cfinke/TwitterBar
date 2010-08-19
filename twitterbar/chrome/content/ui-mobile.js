@@ -10,8 +10,6 @@ var TWITTERBAR_UI = {
 		document.getElementById("urlbar-edit").addEventListener("blur", TWITTERBAR.blur, true);
 		document.getElementById("urlbar-edit").addEventListener("focus", TWITTERBAR.focus, true);
 		
-		document.getElementById("browsers").addEventListener("load", TWITTERBAR.DOMContentLoaded, true);
-		
 		document.getElementById("addons-list").addEventListener("AddonOptionsLoad", TWITTERBAR_OPTIONS.mobileLoad, false);
 		
 		TWITTERBAR_UI.buttonCheck();
@@ -22,7 +20,6 @@ var TWITTERBAR_UI = {
 	unload : function () {
 		removeEventListener("unload", TWITTERBAR_UI.unload, false);
 		
-		document.getElementById("browsers").removeEventListener("load", TWITTERBAR.DOMContentLoaded, true);
 		document.getElementById("urlbar-edit").removeEventListener("blur", TWITTERBAR.blur, true);
 		document.getElementById("urlbar-edit").removeEventListener("focus", TWITTERBAR.focus, true);
 		
@@ -89,6 +86,8 @@ var TWITTERBAR_UI = {
 	},
 	
 	setStatusMessage : function (text) {
+		return;
+		
 		if (!text) text = "";
 		
 		if (!text) {
