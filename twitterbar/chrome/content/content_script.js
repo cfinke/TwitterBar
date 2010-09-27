@@ -4,7 +4,7 @@ var TWITTERBAR_CONTENT = {
 	domContentLoaded : function (event) {
 		var page = event.originalTarget;
 	
-		if (page.location && page.location.href.match(/chrisfinke.com\/oauth\/twitterbar/i)) {
+		if (page.location && page.location.href.match(/chrisfinke.com\/oauth\/twitterbar.*oauth_token/i)) {
 			var urlArgs = page.location.href.split("?")[1].split("&");
 		
 			var token = "";
@@ -41,7 +41,7 @@ var TWITTERBAR_CONTENT = {
 	
 	injectTrends : function(message) {
 		var page = TWITTERBAR_CONTENT.trendPage;
-	
+		
 		var links = message.json.links;
 
 		if (links.length) {
@@ -77,7 +77,8 @@ var TWITTERBAR_CONTENT = {
 				a.setAttribute("href", links[i].url);
 
 				var span = page.createElement("span");
-				span.appendChild(page.createTextNode(links[i].label));
+				
+				span.appendChild(page.createTextNode(links[i].label.replace(/&amp;/g, '&').replace(/&#(\d+);/g, function(wholematch, parenmatch) { return String.fromCharCode(+parenmatch); })));
 
 				a.appendChild(span);
 				item.appendChild(a);

@@ -480,8 +480,17 @@ var TWITTERBAR = {
 		return false;
 	},
 	
+	used_tokens : {},
+	
 	newToken : function (message) {
 		var token = message.json.token;
+		
+		if (token in TWITTERBAR.used_tokens) {
+			// For some reason, the frame script calls this function twice when the oauth confirmation page loads.
+			return;
+		}
+		
+		TWITTERBAR.used_tokens[token] = 1;
 		
 		function callback(req) {
 			if (req.status == 200) {
@@ -505,6 +514,10 @@ var TWITTERBAR = {
 						if (TWITTERBAR.lastTweet) {
 							TWITTERBAR.covertMode = true;
 							TWITTERBAR.postRequest(TWITTERBAR.lastTweet);
+						}
+						else {
+							TWITTERBAR_UI.setBusy(false);
+							TWITTERBAR_UI.setStatusMessage("");
 						}
 					}
 					
@@ -1081,11 +1094,11 @@ var TWITTERBAR = {
 	},
 	
 	getTrends : function () {
-		var lastUpdate = TWITTERBAR.prefs.getCharPref("trends.update");
+		var lastUpdate = parseInt(TWITTERBAR.prefs.getCharPref("trends.update"), 10);
 		var trends = TWITTERBAR.prefs.getCharPref("trends");
 		
-		if (trends == "" || (new Date().getTime()) - lastUpdate > (1000 * 60 * 60 * 1.8)) {
-			var feedUrl = "http://api.ads.oneriot.com/search?appId=twitterbar01&version=1.1&format=XML";
+		if (!trends || (((new Date().getTime()) - lastUpdate) > (1000 * 60 * 119))) {
+			var feedUrl = "http://api.ads.oneriot.com/search?appId=twitterbar01&version=1.1&format=XML&limit=5";
 			
 			var req = new XMLHttpRequest();
 			req.open("GET", feedUrl, true);
@@ -1094,6 +1107,7 @@ var TWITTERBAR = {
 			req.onreadystatechange = function () {
 				if (req.readyState == 4) {
 					if (req.status == 200) {
+						TWITTERBAR.prefs.setCharPref("trends", "");
 						TWITTERBAR.parseTrendingNews(req.responseXML, feedUrl);
 					}
 				}
@@ -1196,25 +1210,25 @@ var TWITTERBAR = {
 	
 	handleResult: function(result) {
 		TWITTERBAR.prefs.setCharPref("trends.update", new Date().getTime());
-
+		
 		if (result.bozo) {
 			return;
 		}
-
+		
 		var feed = result.doc;
-
+		
 		if (!feed) {
 			return;
 		}
-
+		
 		try {
 			feed.QueryInterface(Components.interfaces.nsIFeed);
 		} catch (e) {
 			return;
 		}
-
+		
 		var trends = [];
-
+		
 		for (var i = 0; i < feed.items.length; i++) {
 			var item = feed.items.queryElementAt(i, Components.interfaces.nsIFeedEntry);
 			trends.push(
@@ -1226,9 +1240,9 @@ var TWITTERBAR = {
 				}
 			);
 		}
-
+		
 		delete result;
-
+		
 		TWITTERBAR.prefs.setCharPref("trends", JSON.stringify(trends));
 	},
 	
@@ -1247,7 +1261,6 @@ var TWITTERBAR = {
 				try {
 					topics = JSON.parse(topics);
 				} catch (e) {
-					alert(e);
 					TWITTERBAR.prefs.setCharPref("trends", "");
 					TWITTERBAR.prefs.setCharPref("trends.update", 0);
 				
@@ -1364,7 +1377,7 @@ var TWITTERBAR = {
 						a.setAttribute("href", links[i].url);
 						
 						var span = page.createElement("span");
-						span.appendChild(page.createTextNode(links[i].label));
+						span.appendChild(page.createTextNode(links[i].label.replace(/&amp;/g, '&').replace(/&#(\d+);/g, function(wholematch, parenmatch) { return String.fromCharCode(+parenmatch); })));
 						
 						a.appendChild(span);
 						item.appendChild(a);

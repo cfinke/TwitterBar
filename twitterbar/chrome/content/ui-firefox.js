@@ -5,8 +5,10 @@ var TWITTERBAR_UI = {
 		document.getElementById("urlbar").addEventListener("keyup", TWITTERBAR.postKey, false);
 		document.getElementById("urlbar").addEventListener("focus", TWITTERBAR.focus, false);
 		
-		var appcontent = document.getElementById("content");
-		appcontent.addEventListener("DOMContentLoaded", TWITTERBAR.DOMContentLoaded, true);
+		if (typeof messageManager == 'undefined') {
+			var appcontent = document.getElementById("content");
+			appcontent.addEventListener("DOMContentLoaded", TWITTERBAR.DOMContentLoaded, true);
+		}
 		
 		TWITTERBAR_UI.buttonCheck();
 		
@@ -19,8 +21,10 @@ var TWITTERBAR_UI = {
 		document.getElementById("urlbar").removeEventListener("keyup", TWITTERBAR.postKey, false);
 		document.getElementById("urlbar").removeEventListener("focus", TWITTERBAR.focus, false);
 		
-		var appcontent = document.getElementById("content");
-		appcontent.removeEventListener("DOMContentLoaded", TWITTERBAR.DOMContentLoaded, true);
+		if (typeof messageManager == 'undefined') {
+			var appcontent = document.getElementById("content");
+			appcontent.removeEventListener("DOMContentLoaded", TWITTERBAR.DOMContentLoaded, true);
+		}
 	},
 	
 	showFirstRun : function (version) {
