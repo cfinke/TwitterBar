@@ -8,13 +8,13 @@
 <!ENTITY twitter.confirm "Confirmar sempre antes de postar um URL no Twitter">
 <!ENTITY twitter.prefixExplanation "Pode partilhar uma ligação de uma página que está a ler clicando no ícone do Twitter na barra de endereço. O seguinte texto será adicionado automaticamente antes do URL:">
 <!ENTITY twitter.prefixDescription "(Pode usar $$ como um local de localização do título de páginas.]">
-<!ENTITY twitter.shortener "URL Shortener:">
+<!ENTITY twitter.shortener "Diminuidor de URL:">
 <!ENTITY twitter.noShortener "Nenhum (Deixar o Twitter ordenar)">
 <!ENTITY twitter.searchSocial "Pesquisar na web social o texto que escreveu">
 <!ENTITY twitter.showTrends "Mostrar mais tópicos interessantes na barra lateral do Twitter.">
 <!ENTITY twitter.bitlyInstructions "Introduza o seu início de sessão bit.ly e a chave API, caso tenha uma.">
 <!ENTITY twitter.bitlyLogin "Início de sessão Bit.ly:">
-<!ENTITY twitter.bitlyApiKey "Bit.ly API key:">
+<!ENTITY twitter.bitlyApiKey "Chave API Bit.ly:">
 <!ENTITY twitter.options "Opções...">
 <!ENTITY twitter.chooseAccountTitle "Escolha uma conta...">
 <!ENTITY twitter.chooseAccounts "Em que contas deseja publicar?">

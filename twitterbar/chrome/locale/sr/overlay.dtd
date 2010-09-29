@@ -1,20 +1,20 @@
 <!ENTITY twitter.post "Објави на Твитеру">
-<!ENTITY twitter.tab "Након објављивања, отвори моју страницу на Твитеру у новом картици">
+<!ENTITY twitter.tab "Након објављивања, отвори моју страницу Твитера у новом језичку">
 <!ENTITY twitter.web "Пре адресе:">
 <!ENTITY twitter.button "Сакриј икону за TwitterBar са траке за адресу">
-<!ENTITY twitter.oneriotButton "Сакриј икону за OneRiot  са траке за адресу">
-<!ENTITY twitter.options.dialog "Опције TwitterBar-а">
-<!ENTITY twitter.generalTab "Основно">
-<!ENTITY twitter.confirm "Након клика на TwitterBar икону, увек ме питај за потврду пре него што објавим nešto">
-<!ENTITY twitter.prefixExplanation "Можете да поделите везу до странице коју тренутно читате, тако што ћете кликнути на TwitterBar икону у траци за адресу. Следећи текст ће аутоматски бити додан пре адресе:">
-<!ENTITY twitter.prefixDescription "(Можете да користите $$ оквир наслова странице)">
+<!ENTITY twitter.oneriotButton "Сакриј икону за OneRiot са траке за адресу">
+<!ENTITY twitter.options.dialog "TwitterBar - опције">
+<!ENTITY twitter.generalTab "Опште">
+<!ENTITY twitter.confirm "Након клика на икону TwitterBar-а, увек ме питај за потврду пре него што објавим нешто">
+<!ENTITY twitter.prefixExplanation "Можете да поделите везу до странице коју тренутно читате, тако што ћете кликнути на икону TwitterBar-а у траци за адресу. Следећи текст ће аутоматски бити додат пре адресе:">
+<!ENTITY twitter.prefixDescription "(Можете да користите $$ ако оквир наслова странице)">
 <!ENTITY twitter.shortener "Скраћивање адресе:">
 <!ENTITY twitter.noShortener "ништа">
 <!ENTITY twitter.searchSocial "На социјалној мрежи потражите текст који сте унели">
-<!ENTITY twitter.showTrends "Прикажи додатне трендинг теме у бочној траци Твитера:">
-<!ENTITY twitter.bitlyInstructions "Унесите ваше податке за пријављивање на  bit.ly и API кључ, ако га имате.">
-<!ENTITY twitter.bitlyLogin "Подаци за пријављивање на Bit.ly:">
-<!ENTITY twitter.bitlyApiKey "API кључ за Bit.ly:">
+<!ENTITY twitter.showTrends "Прикажи додатне вести о трендовима бочној траци Твитера:">
+<!ENTITY twitter.bitlyInstructions "Унесите своје податке за пријављивање на bit.ly и API кључ, ако га имате.">
+<!ENTITY twitter.bitlyLogin "Подаци за пријављивање на bit.ly:">
+<!ENTITY twitter.bitlyApiKey "API кључ за bit.ly:">
 <!ENTITY twitter.options "Опције...">
 <!ENTITY twitter.chooseAccountTitle "Изаберите налог...">
 <!ENTITY twitter.chooseAccounts "На којем налогу желите да објавите?">

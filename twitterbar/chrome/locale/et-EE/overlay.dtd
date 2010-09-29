@@ -1,27 +1,27 @@
 <!ENTITY twitter.post "Postita Twitterisse">
-<!ENTITY twitter.tab "Avage mu Twitteri leht uuel kaardil pärast mu postitust">
-<!ENTITY twitter.web "Enne URL:-li">
+<!ENTITY twitter.tab "Avage mu Twitteri leht uuel kaardil pÃ¤rast mu postitust">
+<!ENTITY twitter.web "Enne URL'li:">
 <!ENTITY twitter.button "Peida TwitterBar'i ikoon aadressiribas">
 <!ENTITY twitter.oneriotButton "Peida OneRiot'i otsingu ikoon aadressiribas">
 <!ENTITY twitter.options.dialog "TwitterBar'i Redigeerimis Dialoog">
-<!ENTITY twitter.generalTab "General">
-<!ENTITY twitter.confirm "Alati küsige minult üle enne postitamist kui ma klõpsan TwitterBar'i ikoonil.">
-<!ENTITY twitter.prefixExplanation "Te saate postitada lehe mida te praegu loete klõpsates TwitterBar'i ikooni aadressiribal.  Järgnev tekst lisatakse automaatselt enne URL:-i">
+<!ENTITY twitter.generalTab "Ãœldine">
+<!ENTITY twitter.confirm "Alati kÃ¼sige minult Ã¼le enne postitamist kui ma klÃµpsan TwitterBar'i ikoonil.">
+<!ENTITY twitter.prefixExplanation "Te saate postitada lehe mida te praegu loete klÃµpsates TwitterBar'i ikooni aadressiribal.  JÃ¤rgnev tekst lisatakse automaatselt enne URL'i:">
 <!ENTITY twitter.prefixDescription "(Te saate kasutada $$ kohahoidjana selle lehe tiitlile.)">
-<!ENTITY twitter.shortener "URL'i lühendaja:">
-<!ENTITY twitter.noShortener "Tühi">
-<!ENTITY twitter.searchSocial "Otsige sotsiaalvõrgust teksti mille te just sisestasite.">
-<!ENTITY twitter.showTrends "Näidake trendikaid uudiseid Twitteri külgribas.">
-<!ENTITY twitter.bitlyInstructions "Sisestage oma bit.ly login ja API võti, kui teil on üks.">
-<!ENTITY twitter.bitlyLogin "Bit.ly login:">
-<!ENTITY twitter.bitlyApiKey "Bit.ly API võti:">
+<!ENTITY twitter.shortener "URL'i lÃ¼hendaja:">
+<!ENTITY twitter.noShortener "TÃ¼hi">
+<!ENTITY twitter.searchSocial "Otsige sotsiaalvÃµrgust teksti mille te just sisestasite.">
+<!ENTITY twitter.showTrends "NÃ¤idake trendikaid uudiseid Twitteri kÃ¼lgribas.">
+<!ENTITY twitter.bitlyInstructions "Sisestage oma bit.ly login ja API vÃµti, kui teil on Ã¼ks.">
+<!ENTITY twitter.bitlyLogin "Bit.ly kasutajanimi:">
+<!ENTITY twitter.bitlyApiKey "Bit.ly API vÃµti:">
 <!ENTITY twitter.options "Redigeerimine...">
 <!ENTITY twitter.chooseAccountTitle "Valige kasutaja...">
 <!ENTITY twitter.chooseAccounts "Millisesse kasutajasse soovite te postitada?">
 <!ENTITY twitter.newAccount "Uus:">
 <!ENTITY twitter.addAccount "Lisa kasutaja">
-<!ENTITY twitter.multiAccountInstructions "Kui te soovite postitada spetsiifilise kasutajana siis lihtsalt kirjutage --@account_name postituse lõppu (enne --post-i).">
+<!ENTITY twitter.multiAccountInstructions "Kui te soovite postitada spetsiifilise kasutajana siis lihtsalt kirjutage --@account_name postituse lÃµppu (enne --post-i).">
 <!ENTITY twitter.account "Kasutaja">
 <!ENTITY twitter.authorizedOn "Autoriseeritud...">
 <!ENTITY twitter.remove "Eemalda">
-<!ENTITY twitter.noAccounts "Te pole autoriseerind ühtegi kasutajat veel.">
+<!ENTITY twitter.noAccounts "Te pole autoriseerind Ã¼htegi kasutajat veel.">

@@ -2,11 +2,26 @@
 <!ENTITY twitter.tab "Po odeslání otevřít moji Twitter stránku v novém okně">
 <!ENTITY twitter.web "Před URL">
 <!ENTITY twitter.button "Skrýt ikonu Twitteru na liště">
+<!ENTITY twitter.oneriotButton "Skrýt OneRiot ikonu na liště">
 <!ENTITY twitter.options.dialog "Nastavení">
 <!ENTITY twitter.generalTab "Hlavní">
 <!ENTITY twitter.confirm "Vždy se zeptat na potvrzení před odesláním URL na Twitter">
 <!ENTITY twitter.prefixExplanation "Sdílej link na stránky kterou čteš kliknutím na ikonku Twitteru v liště.  Následující text bude automaticky přidán před URL:">
 <!ENTITY twitter.prefixDescription "(Můžeš použít $$ jako náhradu názvu stránky)">
+<!ENTITY twitter.shortener "URL zkratka">
 <!ENTITY twitter.noShortener "Nic (Nechej Twitter to setřídit)">
 <!ENTITY twitter.searchSocial "Hledej zadaný text na social webech.">
 <!ENTITY twitter.showTrends "Zobrazit další trendy témata v postraní liště Twitteru.">
+<!ENTITY twitter.bitlyInstructions "Zadejte své přihlašovací jméno a bit.ly API klíč, pokud nějaký máte.">
+<!ENTITY twitter.bitlyLogin "Bit.ly přihlašovací jméno:">
+<!ENTITY twitter.bitlyApiKey "Bit.ly API klíč:">
+<!ENTITY twitter.options "Možnosti...">
+<!ENTITY twitter.chooseAccountTitle "Vyber účet...">
+<!ENTITY twitter.chooseAccounts "Na který účet si přejete zaslat?">
+<!ENTITY twitter.newAccount "Nový:">
+<!ENTITY twitter.addAccount "Přidat účet">
+<!ENTITY twitter.multiAccountInstructions "Chcete-li poslat na zvláštní účet, stačí napsat  --@jméno_účtu na konci vašeho tweetu (ale před --post).">
+<!ENTITY twitter.account "Účet">
+<!ENTITY twitter.authorizedOn "Povoleno na...">
+<!ENTITY twitter.remove "Vyjmout">
+<!ENTITY twitter.noAccounts "Zatím nemáte povoleny žádné účty.">
