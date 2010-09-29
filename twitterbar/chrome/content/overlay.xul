@@ -4,6 +4,13 @@
 <overlay
 	id="twitteroverlay"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="application/x-javascript">
+		<![CDATA[
+		
+		var TWITTERBAR_APPLICATION = "FIREFOX";
+
+		]]>
+	</script>
 	<script type="application/x-javascript" src="chrome://twitterbar/content/oauth.js"/>
 	<script type="application/x-javascript" src="chrome://twitterbar/content/overlay.js"/>
 	<script type="application/x-javascript" src="chrome://twitterbar/content/shorteners.js" />

@@ -89,8 +89,8 @@ var TWITTERBAR = {
 	_currentTitle : null,
 	_currentURL : null,
 	
-	get currentTitle() { if (typeof messageManager != 'undefined') { return TWITTERBAR._currentTitle; } else { return content.document.title; } },
-	get currentURL() { if (typeof messageManager != 'undefined') { return TWITTERBAR._currentURL; } else { return content.document.location.href; } },
+	get currentTitle() { if (typeof messageManager != 'undefined' && TWITTERBAR_APPLICATION == 'FENNEC') { return TWITTERBAR._currentTitle; } else { return content.document.title; } },
+	get currentURL() { if (typeof messageManager != 'undefined' && TWITTERBAR_APPLICATION == 'FENNEC') { return TWITTERBAR._currentURL; } else { return content.document.location.href; } },
 	set currentTitle(val) { TWITTERBAR._currentTitle = val; },
 	set currentURL(val) { TWITTERBAR._currentURL = val; },
 	
@@ -101,10 +101,11 @@ var TWITTERBAR = {
 	load : function (e, basic) {
 		if (!basic) removeEventListener("load", TWITTERBAR.load, false);
 		
-		if (typeof messageManager != 'undefined') {
+		if (typeof messageManager != 'undefined' && TWITTERBAR_APPLICATION == 'FENNEC') {
 			messageManager.addMessageListener("TwitterBar:PageChange", TWITTERBAR.pageChange);
 			messageManager.addMessageListener("TwitterBar:NewToken", TWITTERBAR.newToken);
 			messageManager.addMessageListener("TwitterBar:TrendRequest", TWITTERBAR.returnTrends);
+			messageManager.addMessageListener("TwitterBar:alert", TWITTERBAR.messageAlert);
 			
 			messageManager.loadFrameScript("chrome://twitterbar/content/content_script.js", true);
 		}
@@ -565,6 +566,13 @@ var TWITTERBAR = {
 						token = argParts[1];
 					}
 				}
+				
+				if (token in TWITTERBAR.used_tokens) {
+					// For some reason, DOMContentLoaded is being called twice.
+					return;
+				}
+
+				TWITTERBAR.used_tokens[token] = 1;
 				
 				function callback(req) {
 					if (req.status == 200) {
@@ -1246,9 +1254,17 @@ var TWITTERBAR = {
 		TWITTERBAR.prefs.setCharPref("trends", JSON.stringify(trends));
 	},
 	
-	returnTrends : function () {
+	messageAlert : function (x) {
+		// alert(x.toSource());
+	},
+	
+	returnTrends : function (message) {
+		var flo = message.target.QueryInterface(Components.interfaces.nsIFrameLoaderOwner);
+		var returnMessageManager = flo.frameLoader.messageManager;
+		
 		var rv = {
 			"links" : [],
+			"windowId" : message.target.contentWindowId,
 			"title" : TWITTERBAR.strings.getString("twitterbar.trends.title"),
 			"byline" : TWITTERBAR.strings.getString("twitterbar.trends.byline"),
 			"explanation" : TWITTERBAR.strings.getString("twitterbar.trends.explanation")
@@ -1265,15 +1281,18 @@ var TWITTERBAR = {
 					TWITTERBAR.prefs.setCharPref("trends.update", 0);
 				
 					setTimeout(TWITTERBAR.getTrends, 1000 * 10);
-					messageManager.sendAsyncMessage("TwitterBar:Trends", rv);
+					
+					returnMessageManager.sendAsyncMessage("TwitterBar:Trends", rv);
+					
 					return;
 				}
 				
 				var limit = 4;
-			
+				var _len = Math.min(limit, topics.length);
+				
 				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
 			
-				for (var i = 0; i < Math.min(limit, topics.length); i++) {
+				for (var i = 0; i < _len; i++) {
 					var idx = Math.floor(Math.random() * topics.length);
 					var topic = topics[idx];
 					topics.splice(idx, 1);
@@ -1298,120 +1317,248 @@ var TWITTERBAR = {
 			}
 		}
 		
-		messageManager.sendAsyncMessage("TwitterBar:Trends", rv);
+		returnMessageManager.sendAsyncMessage("TwitterBar:Trends", rv);
 	},
 	
 	addTrends : function (page) {
+		if (page.getElementById("twitterbar-trends")) {
+			return;
+		}
+		
+		if (page.getElementById("side")) {
+			TWITTERBAR.addTrendsSidebar(page);
+		}
+		else {
+			setTimeout(function (p) {
+				if (p.getElementsByClassName("dashboard").length > 0) {
+					TWITTERBAR.addTrendsDashboard(p);
+				}
+			}, 3000, page);
+		}
+	},
+	
+	addTrendsSidebar : function (page) {
 		var sidebar = page.getElementById("side");
 
-		if (sidebar) {
-			var topics = TWITTERBAR.prefs.getCharPref("trends");
+		var topics = TWITTERBAR.prefs.getCharPref("trends");
+		
+		if (topics) {
+			try {
+				topics = JSON.parse(topics);
+			} catch (e) {
+				TWITTERBAR.prefs.setCharPref("trends", "");
+				TWITTERBAR.prefs.setCharPref("trends.update", 0);
+				
+				setTimeout(TWITTERBAR.getTrends, 1000 * 10);
+				return;
+			}
 			
-			if (topics) {
+			var links = [];
+			
+			var limit = 4;
+			var _len = Math.min(limit, topics.length);
+			
+			var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+			
+			for (var i = 0; i < _len; i++) {
+				var idx = Math.floor(Math.random() * topics.length);
+				var topic = topics[idx];
+				topics.splice(idx, 1);
+				
 				try {
-					topics = JSON.parse(topics);
+					var trackingUrl = ios.newURI(topic.trackingUrl, null, null);
+					if (!trackingUrl.schemeIs("http") && !trackingUrl.schemeIs('https')) {
+						throw "InvalidScheme";
+					}
+					
+					var url = ios.newURI(topic.url, null, null);
+					if (url.scheme != 'http' && url.scheme != 'https') {
+						throw "InvalidScheme";
+					}
+					
+					links.push( { "bug" : trackingUrl.spec, "targetUrl" : topic.displayUrl, "url" : url.spec, "label" : topic.title } );
 				} catch (e) {
-					TWITTERBAR.prefs.setCharPref("trends", "");
-					TWITTERBAR.prefs.setCharPref("trends.update", 0);
+					limit++;
+					TWITTERBAR.log(e);
+				}
+			}
+			
+			if (links.length > 0) {
+				var container = page.createElement("div");
+				container.setAttribute("id", "twitterbar-trends");
+				
+				var header = page.createElement("h2");
+				header.setAttribute("class", "sidebar-title")
+				header.style.backgroundColor = "transparent !important";
+				
+				var title = page.createElement("span");
+				title.setAttribute("title", TWITTERBAR.strings.getString("twitterbar.trends.byline"));
+				title.appendChild(page.createTextNode(TWITTERBAR.strings.getString("twitterbar.trends.title")));
+				
+				header.appendChild(title);
+				
+				container.appendChild(header);
+				
+				var list = page.createElement("ul");
+				list.setAttribute("class", "sidebar-menu more-trends-links");
+				
+				for (var i = 0; i < links.length; i++) {
+					var item = page.createElement("li");
+					item.style.height = "auto !important";
+					item.setAttribute("class", "link-title");
+					item.style.background = 'url("' + links[i].bug + '") no-repeat';
 					
-					setTimeout(TWITTERBAR.getTrends, 1000 * 10);
-					return;
+					var a = page.createElement("a");
+					a.setAttribute("target", "_blank");
+					a.setAttribute("title", links[i].targetUrl);
+					a.setAttribute("href", links[i].url);
+					
+					var span = page.createElement("span");
+					span.appendChild(page.createTextNode(links[i].label.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#(\d+);/g, function(wholematch, parenmatch) { return String.fromCharCode(+parenmatch); })));
+					
+					a.appendChild(span);
+					item.appendChild(a);
+					list.appendChild(item);
 				}
 				
-				var links = [];
+				var notice = page.createElement("li");
 				
-				var limit = 4;
+				var text = page.createElement("small");
+				text.style.display = 'block';
+				text.style.padding = '5px 14px';
+				text.appendChild(page.createTextNode(TWITTERBAR.strings.getString("twitterbar.trends.explanation")));
 				
-				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+				notice.appendChild(text);
+				list.appendChild(notice);
 				
-				for (var i = 0; i < Math.min(limit, topics.length); i++) {
-					var idx = Math.floor(Math.random() * topics.length);
-					var topic = topics[idx];
-					topics.splice(idx, 1);
+				container.appendChild(list);
+				container.appendChild(page.createElement("hr"));
+				
+				var possibleSiblings = ["side_lists", "custom_search", "trends"];
+				
+				var sibling = null;
+				
+				for (var i = 0; i < possibleSiblings.length; i++) {
+					var possibleSibling = page.getElementById(possibleSiblings[i]);
 					
-					try {
-						var trackingUrl = ios.newURI(topic.trackingUrl, null, null);
-						if (!trackingUrl.schemeIs("http") && !trackingUrl.schemeIs('https')) {
-							throw "InvalidScheme";
-						}
-						
-						var url = ios.newURI(topic.url, null, null);
-						if (url.scheme != 'http' && url.scheme != 'https') {
-							throw "InvalidScheme";
-						}
-						
-						links.push( { "bug" : trackingUrl.spec, "targetUrl" : topic.displayUrl, "url" : url.spec, "label" : topic.title } );
-					} catch (e) {
-						limit++;
-						TWITTERBAR.log(e);
+					if (possibleSibling) {
+						possibleSibling.parentNode.insertBefore(container, possibleSibling);
+						return;
 					}
 				}
 				
-				if (links.length > 0) {
-					var container = page.createElement("div");
-					container.setAttribute("id", "twitterbar-trends");
+				sidebar.appendChild(container);
+			}
+		}
+	},
+
+	addTrendsDashboard : function (page) {
+		var topics = TWITTERBAR.prefs.getCharPref("trends");
+		
+		if (topics) {
+			try {
+				topics = JSON.parse(topics);
+			} catch (e) {
+				TWITTERBAR.prefs.setCharPref("trends", "");
+				TWITTERBAR.prefs.setCharPref("trends.update", 0);
+				
+				setTimeout(TWITTERBAR.getTrends, 1000 * 10);
+				return;
+			}
+			
+			var links = [];
+			
+			var limit = 4;
+			var _len = Math.min(limit, topics.length);
+			
+			var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+			
+			for (var i = 0; i < _len; i++) {
+				var idx = Math.floor(Math.random() * topics.length);
+				var topic = topics[idx];
+				topics.splice(idx, 1);
+				
+				try {
+					var trackingUrl = ios.newURI(topic.trackingUrl, null, null);
 					
-					var header = page.createElement("h2");
-					header.setAttribute("class", "sidebar-title")
-					header.style.backgroundColor = "transparent !important";
-					
-					var title = page.createElement("span");
-					title.setAttribute("title", TWITTERBAR.strings.getString("twitterbar.trends.byline"));
-					title.appendChild(page.createTextNode(TWITTERBAR.strings.getString("twitterbar.trends.title")));
-					
-					header.appendChild(title);
-					
-					container.appendChild(header);
-					
-					var list = page.createElement("ul");
-					list.setAttribute("class", "sidebar-menu more-trends-links");
-					
-					for (var i = 0; i < links.length; i++) {
-						var item = page.createElement("li");
-						item.setAttribute("class", "link-title");
-						item.style.background = 'url("' + links[i].bug + '") no-repeat';
-						
-						var a = page.createElement("a");
-						a.setAttribute("target", "_blank");
-						a.setAttribute("title", links[i].targetUrl);
-						a.setAttribute("href", links[i].url);
-						
-						var span = page.createElement("span");
-						span.appendChild(page.createTextNode(links[i].label.replace(/&amp;/g, '&').replace(/&#(\d+);/g, function(wholematch, parenmatch) { return String.fromCharCode(+parenmatch); })));
-						
-						a.appendChild(span);
-						item.appendChild(a);
-						list.appendChild(item);
+					if (!trackingUrl.schemeIs("http") && !trackingUrl.schemeIs('https')) {
+						throw "InvalidScheme";
 					}
 					
-					var notice = page.createElement("li");
-					
-					var text = page.createElement("small");
-					text.style.display = 'block';
-					text.style.padding = '5px 14px';
-					text.appendChild(page.createTextNode(TWITTERBAR.strings.getString("twitterbar.trends.explanation")));
-					
-					notice.appendChild(text);
-					list.appendChild(notice);
-					
-					container.appendChild(list);
-					container.appendChild(page.createElement("hr"));
-					
-					var possibleSiblings = ["side_lists", "custom_search", "trends"];
-					
-					var sibling = null;
-					
-					for (var i = 0; i < possibleSiblings.length; i++) {
-						var possibleSibling = page.getElementById(possibleSiblings[i]);
-						
-						if (possibleSibling) {
-							possibleSibling.parentNode.insertBefore(container, possibleSibling);
-							return;
-						}
+					var url = ios.newURI(topic.url, null, null);
+					if (url.scheme != 'http' && url.scheme != 'https') {
+						throw "InvalidScheme";
 					}
 					
-					sidebar.appendChild(container);
+					links.push( { "bug" : trackingUrl.spec, "targetUrl" : topic.displayUrl, "url" : url.spec, "label" : topic.title } );
+				} catch (e) {
+					limit++;
+					TWITTERBAR.log(e);
 				}
+			}
+			
+			if (links.length > 0) {
+				var container = page.createElement("div");
+				container.setAttribute("id", "twitterbar-trends");
+				container.setAttribute("class", "component");
+				
+				var subcontainer = page.createElement("div");
+				subcontainer.setAttribute("class", "trends-inner wide-trends");
+				
+				container.appendChild(subcontainer);
+				
+				var header = page.createElement("h2");
+				header.setAttribute("title", TWITTERBAR.strings.getString("twitterbar.trends.byline"));
+				header.appendChild(page.createTextNode(TWITTERBAR.strings.getString("twitterbar.trends.title")));
+				
+				subcontainer.appendChild(header);
+				
+				var table = page.createElement("table");
+				table.style.width = "100%";
+				
+				for (var i = 0; i < links.length; i++) {
+					var item = page.createElement("td");
+					
+					if (i % 2 == 0) {
+						var row = page.createElement("tr");
+						table.appendChild(row);
+						
+						item.style.paddingRight = "10px";
+					}
+					
+					item.style.verticalAlign = "top";
+					item.style.width = "50%";
+					item.style.paddingBottom = "10px";
+					item.style.background = 'url("' + links[i].bug + '") no-repeat';
+					
+					var a = page.createElement("a");
+					a.setAttribute("class", "trend-link");
+					a.setAttribute("target", "_blank");
+					a.setAttribute("title", links[i].targetUrl);
+					a.setAttribute("href", links[i].url);
+					a.appendChild(page.createTextNode(links[i].label.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#(\d+);/g, function(wholematch, parenmatch) { return String.fromCharCode(+parenmatch); })));
+					
+					item.appendChild(a);
+					row.appendChild(item);
+				}
+				
+				subcontainer.appendChild(table);
+				
+				var notice = page.createElement("p");
+				
+				var text = page.createElement("small");
+				text.appendChild(page.createTextNode(TWITTERBAR.strings.getString("twitterbar.trends.explanation")));
+				
+				notice.appendChild(text);
+				subcontainer.appendChild(notice);
+				
+				var spacer = page.createElement("hr");
+				spacer.setAttribute("class", "component-spacer");
+				container.appendChild(spacer);
+				
+				var dashboard = page.getElementsByClassName("dashboard").item(0);
+				
+				dashboard.insertBefore(container, dashboard.childNodes[3]);
 			}
 		}
 	},

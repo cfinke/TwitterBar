@@ -9,6 +9,13 @@
 	type="prefwindow"
 	buttons="accept,cancel"
 	style="max-width: 450px;">
+	<script type="application/x-javascript">
+		<![CDATA[
+		
+		var TWITTERBAR_APPLICATION = "FIREFOX";
+
+		]]>
+	</script>
 	<script type="application/x-javascript" src="chrome://twitterbar/content/options.js" />
 	<script type="application/x-javascript" src="chrome://twitterbar/content/overlay.js" />
 	<script type="application/x-javascript">

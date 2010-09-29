@@ -1,6 +1,4 @@
 var TWITTERBAR_CONTENT = {
-	trendPage : null,
-
 	domContentLoaded : function (event) {
 		var page = event.originalTarget;
 	
@@ -27,20 +25,30 @@ var TWITTERBAR_CONTENT = {
 			} catch (e) {
 				return;
 			}
-		
-			var sidebar = page.getElementById("side");
-		
-			if (sidebar) {
-				TWITTERBAR_CONTENT.trendPage = page;
-				sendAsyncMessage("TwitterBar:TrendRequest", { });
-			}
+			
+			sendAsyncMessage("TwitterBar:TrendRequest", { });
 		}
-	
+		
 		sendAsyncMessage("TwitterBar:PageChange", { "title" : content.document.title, "url" : content.document.location.href });
 	},
 	
 	injectTrends : function(message) {
-		var page = TWITTERBAR_CONTENT.trendPage;
+		var page = content.document;
+		
+		if (page.getElementById("side")) {
+			TWITTERBAR_CONTENT.injectTrendsSidebar(message);
+		}
+		else {
+			if (page.getElementsByClassName("dashboard").length > 0) {
+				TWITTERBAR_CONTENT.injectTrendsDashboard(message);
+			}
+		}
+	},
+	
+	injectTrendsSidebar : function (message) {
+		var page = content;
+		
+		var sidebar = page.getElementById("side");
 		
 		var links = message.json.links;
 
@@ -78,7 +86,7 @@ var TWITTERBAR_CONTENT = {
 
 				var span = page.createElement("span");
 				
-				span.appendChild(page.createTextNode(links[i].label.replace(/&amp;/g, '&').replace(/&#(\d+);/g, function(wholematch, parenmatch) { return String.fromCharCode(+parenmatch); })));
+				span.appendChild(page.createTextNode(links[i].label.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#(\d+);/g, function(wholematch, parenmatch) { return String.fromCharCode(+parenmatch); })));
 
 				a.appendChild(span);
 				item.appendChild(a);
@@ -113,8 +121,79 @@ var TWITTERBAR_CONTENT = {
 		
 			sidebar.appendChild(container);
 		}
+	},
 	
-		TWITTERBAR_CONTENT.trendPage = null;
+	injectTrendsDashboard : function (message) {
+		var page = content.document;
+		
+		if (page.getElementById("twitterbar-trends")) {
+			return;
+		}
+		
+		var dashboard = page.getElementsByTagName("dashboard").item(0);
+		
+		var links = message.json.links;
+		
+		if (links.length) {
+			var byline = message.json.byline;
+			var explanation = message.json.explanation;
+
+			var container = page.createElement("div");
+			container.setAttribute("id", "twitterbar-trends");
+			container.setAttribute("class", "component");
+			
+			var subcontainer = page.createElement("div");
+			subcontainer.setAttribute("class", "trends-inner wide-trends");
+
+			container.appendChild(subcontainer);
+
+			var header = page.createElement("h2");
+			header.setAttribute("title", byline);
+			header.appendChild(page.createTextNode(message.json.title));
+
+			subcontainer.appendChild(header);
+			
+			var table = page.createElement("table");
+			table.style.width = "100%";
+
+			for (var i = 0; i < links.length; i++) {
+				if (i % 2 == 0) {
+					var row = page.createElement("tr");
+					table.appendChild(row);
+				}
+
+				var item = page.createElement("td");
+				item.style.width = "50%";
+				item.style.paddingBottom = "10px";
+				item.style.background = 'url("' + links[i].bug + '") no-repeat';
+
+				var a = page.createElement("a");
+				a.setAttribute("class", "trend-link");
+				a.setAttribute("target", "_blank");
+				a.setAttribute("title", links[i].targetUrl);
+				a.setAttribute("href", links[i].url);
+				a.appendChild(page.createTextNode(links[i].label.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#(\d+);/g, function(wholematch, parenmatch) { return String.fromCharCode(+parenmatch); })));
+
+				item.appendChild(a);
+				row.appendChild(item);
+			}
+			
+			subcontainer.appendChild(table);
+
+			var notice = page.createElement("p");
+
+			var text = page.createElement("small");
+			text.appendChild(page.createTextNode(explanation));
+
+			notice.appendChild(text);
+			subcontainer.appendChild(notice);
+			
+			var spacer = page.createElement("hr");
+			spacer.setAttribute("class", "component-spacer");
+			container.appendChild(spacer);
+
+			dashboard.appendChild(container);//, dashboard.childNodes[3]);
+		}
 	}
 };
 
