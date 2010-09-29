@@ -3,7 +3,7 @@
 	<Description about="urn:mozilla:install-manifest">
 		<em:id>{1a0c9ebe-ddf9-4b76-b8a3-675c77874d37}</em:id>
 		<em:name>TwitterBar</em:name>
-		<em:version>2.9.9pre</em:version>
+		<em:version>2.9.9</em:version>
 		
 		<em:description>Post to Twitter from your address bar.</em:description>
 		<em:creator>Christopher Finke</em:creator>
@@ -27,7 +27,7 @@
 			<Description>
 				<em:id>{a23983c0-fd0e-11dc-95ff-0800200c9a66}</em:id>
 				<em:minVersion>2.0a1pre</em:minVersion>
-				<em:maxVersion>2.0a1</em:maxVersion>
+				<em:maxVersion>4.0b1</em:maxVersion>
 			</Description>
 		</em:targetApplication>
 		
