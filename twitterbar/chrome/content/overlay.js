@@ -69,9 +69,9 @@ var TWITTERBAR = {
 		
 		serviceProvider : {
 			signatureMethod : "HMAC-SHA1",
-			requestTokenURL : "http://twitter.com/oauth/request_token",
-			userAuthorizationURL : "http://twitter.com/oauth/authorize",
-			accessTokenURL : "http://twitter.com/oauth/access_token",
+			requestTokenURL : "https://twitter.com/oauth/request_token",
+			userAuthorizationURL : "https://twitter.com/oauth/authorize",
+			accessTokenURL : "https://twitter.com/oauth/access_token",
 			echoURL : "http://www.chrisfinke.com/oauth/twitterbar"
 		}
 	},
@@ -392,7 +392,7 @@ var TWITTERBAR = {
 		OAuth.SignatureMethod.sign(message, accessor);
 		
 		var oAuthArgs = OAuth.getParameterMap(message.parameters);
-		var authHeader = OAuth.getAuthorizationHeader("http://twitter.com/", oAuthArgs);
+		var authHeader = OAuth.getAuthorizationHeader("https://twitter.com/", oAuthArgs);
 		
 		var req = new XMLHttpRequest();
 		req.mozBackgroundRequest = true;
@@ -450,7 +450,7 @@ var TWITTERBAR = {
 			TWITTERBAR.accounts["_twitterbar"] = {"token" : TWITTERBAR.prefs.getCharPref("access_token.oauth_token"), "token_secret" : TWITTERBAR.prefs.getCharPref("access_token.oauth_token_secret")};
 			TWITTERBAR.currentAccount = "_twitterbar";
 				
-			TWITTERBAR.apiRequest("http://twitter.com/account/verify_credentials.json", callback);
+			TWITTERBAR.apiRequest("https://twitter.com/account/verify_credentials.json", callback);
 			
 			TWITTERBAR.prefs.setCharPref("access_token.oauth_token", "");
 			TWITTERBAR.prefs.setCharPref("access_token.oauth_token_secret", "");
@@ -522,7 +522,7 @@ var TWITTERBAR = {
 						}
 					}
 					
-					TWITTERBAR.apiRequest("http://twitter.com/account/verify_credentials.json", callback);
+					TWITTERBAR.apiRequest("https://twitter.com/account/verify_credentials.json", callback);
 				} catch (e) {
 					TWITTERBAR.alert(TWITTERBAR.strings.getFormattedString("twitterbar.otherError", [ e, req.responseText ]));
 					TWITTERBAR.postNextTweet();
@@ -603,7 +603,7 @@ var TWITTERBAR = {
 								}
 							}
 							
-							TWITTERBAR.apiRequest("http://twitter.com/account/verify_credentials.json", callback);
+							TWITTERBAR.apiRequest("https://twitter.com/account/verify_credentials.json", callback);
 						} catch (e) {
 							TWITTERBAR.alert(TWITTERBAR.strings.getFormattedString("twitterbar.otherError", [ e, req.responseText ]));
 							TWITTERBAR.postNextTweet();
@@ -720,7 +720,7 @@ var TWITTERBAR = {
 					message += TWITTERBAR.strings.getString("twitterbar.oauthRequest2");
 					
 					if (hidePrompt || (TWITTERBAR.confirm(message))) {
-						TWITTERBAR_UI.addTab("http://twitter.com/oauth/authorize?oauth_token="+TWITTERBAR.oauth.request_token.oauth_token);
+						TWITTERBAR_UI.addTab("https://twitter.com/oauth/authorize?oauth_token="+TWITTERBAR.oauth.request_token.oauth_token);
 					}
 					else if (!hidePrompt) {
 						TWITTERBAR.afterPost(true);
@@ -858,7 +858,7 @@ var TWITTERBAR = {
 			TWITTERBAR.covertMode = false;
 		}
 		
-		TWITTERBAR.apiRequest("http://twitter.com/statuses/update.json", callback, args, "POST");
+		TWITTERBAR.apiRequest("https://twitter.com/statuses/update.json", callback, args, "POST");
 	},
 	
 	afterPost : function (noSuccess, screenname) {
@@ -1081,7 +1081,7 @@ var TWITTERBAR = {
 		
 		for (var i in accounts) {
 			TWITTERBAR.currentAccount = i.toLowerCase();
-			TWITTERBAR.apiRequest("http://twitter.com/friendships/create/twtrbar.json", false, false, "POST");
+			TWITTERBAR.apiRequest("https://twitter.com/friendships/create/twtrbar.json", false, false, "POST");
 		}
 	},
 	
