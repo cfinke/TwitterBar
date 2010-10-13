@@ -57,17 +57,15 @@ var TWITTERBAR_UI = {
 		);
 	},
 	
-	buttonCheck : function () {
+	buttonCheck : function (forceShow) {
 		try {
 			var mode = TWITTERBAR.prefs.getBoolPref("button");
-			var button = document.getElementById("twitterBox");
 			
-			button.setAttribute("hidden", mode.toString());
-		} catch (e) { }
-		
-		try {
-			var mode = TWITTERBAR.prefs.getBoolPref("oneriotButton");
-			var button = document.getElementById("twitter-oneriot-box");
+			if (forceShow) {
+				mode = "false";
+			}
+			
+			var button = document.getElementById("twitterBox");
 			
 			button.setAttribute("hidden", mode.toString());
 		} catch (e) { }
@@ -83,9 +81,13 @@ var TWITTERBAR_UI = {
 		var image = document.getElementById('twitter-statusbarbutton');
 		
 		if (busy) {
+			TWITTERBAR_UI.buttonCheck(true);
+			
 			image.src = "chrome://twitterbar/skin/Throbber-small.gif";
 		}
 		else {
+			TWITTERBAR_UI.buttonCheck();
+			
 			image.src =  "chrome://twitterbar/skin/bird-16-full.png";
 		}
 	},
@@ -103,10 +105,14 @@ var TWITTERBAR_UI = {
 		if (!text) text = "";
 		
 		if (!text) {
+			TWITTERBAR_UI.buttonCheck();
+			
 			document.getElementById("twitterbar-status-container").style.display = 'none';
 			document.getElementById("twitterbar-status-label").value = text;
 		}
 		else {
+			TWITTERBAR_UI.buttonCheck(true);
+			
 			document.getElementById("twitterbar-status-label").value = text;
 			document.getElementById("twitterbar-status-container").style.display = '';
 		}
@@ -117,8 +123,6 @@ var TWITTERBAR_UI = {
 	addingAccount : function () { },
 	
 	showCount : function () {
-		document.getElementById("twitter-searchbutton").hidden = false;
-		
 		var imagest = document.getElementById('twitter-statusbarbutton');
 		imagest.src = "chrome://twitterbar/skin/add.png";
 		
@@ -141,8 +145,6 @@ var TWITTERBAR_UI = {
 		
 		var count = document.getElementById('twitter-count');
 		count.hidden = true;
-		
-		document.getElementById("twitter-searchbutton").hidden = true;
 	},
 	
 	keyDownTimer : null,

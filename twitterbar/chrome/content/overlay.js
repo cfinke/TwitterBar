@@ -178,13 +178,11 @@ var TWITTERBAR = {
 		
 		switch(data) {
 			case "button":
-			case "oneriotButton":
 				// Iterate over all the windows and show/hide the button based on pref-hide-button
-				var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-				                   .getService(Components.interfaces.nsIWindowMediator);
+				var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
 				var enumerator = wm.getEnumerator(null);
 				
-				while(enumerator.hasMoreElements()) {
+				while (enumerator.hasMoreElements()) {
 					var win = enumerator.getNext();
 					
 					try {
@@ -192,6 +190,8 @@ var TWITTERBAR = {
 					} catch (e) {
 					}
 				}
+				
+				TWITTERBAR_UI.buttonCheck();
 			break;
 			case "debug":
 				TWITTERBAR.debug = TWITTERBAR.prefs.getBoolPref("debug");
@@ -680,21 +680,6 @@ var TWITTERBAR = {
 		TWITTERBAR.oAuthorize(hidePrompt, lastAccount);
 	},
 	
-	search : function (event, source) {
-		var status = TWITTERBAR_UI.getStatusText();
-		
-		if (status.match(/^(https?:\/\/[^\s]+)$/ig)) {
-			var search_terms = status;
-		}
-		else {
-			var search_terms = status.replace(/https?:\/\/[^\s]+/ig, "");
-		}
-
-		search_terms = search_terms.replace(" --search", "");
-		
-		TWITTERBAR_UI.openUILink(TWITTERBAR.getSearchURL(search_terms, source), event, false, true);
-	},
-	
 	oAuthorize : function (hidePrompt, lastAccount) {
 		function callback(req) {
 			if (req.status == 200) {
@@ -943,9 +928,6 @@ var TWITTERBAR = {
 				
 					TWITTERBAR_UI.openOptions();
 				}
-				else if (status.indexOf(" --search") != -1) {
-					TWITTERBAR.search(null, "addressBarText");
-				}
 			}
 		}
 		
@@ -1088,17 +1070,6 @@ var TWITTERBAR = {
 	log : function (message) {
 		var consoleService = Components.classes["@mozilla.org/consoleservice;1"].getService(Components.interfaces.nsIConsoleService);
 		consoleService.logStringMessage("TWITTERBAR: " + message);
-	},
-	
-	getSearchURL : function (search_terms, source) {
-		search_terms = encodeURIComponent(search_terms);
-		search_terms = search_terms.replace(/%20/g, "+");
-		
-		if (!source) { 
-			source = "browserBox";
-		}
-		
-		return "http://www.oneriot.com/search?q=" + search_terms + "&format=html&ssrc="+source+"&spid=86f2f5da-3b24-4a87-bbb3-1ad47525359d&p=twitterbar-ff/"+TWITTERBAR.version;
 	},
 	
 	getTrends : function () {

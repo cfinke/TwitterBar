@@ -2,7 +2,6 @@
 <!ENTITY twitter.tab "Open my Twitter page in a new tab after I post">
 <!ENTITY twitter.web "Before URL:">
 <!ENTITY twitter.button "Hide the TwitterBar icon in the address bar">
-<!ENTITY twitter.oneriotButton "Hide the OneRiot search icon in the address bar">
 <!ENTITY twitter.options.dialog "TwitterBar Options Dialog">
 <!ENTITY twitter.generalTab "General">
 <!ENTITY twitter.confirm "Always confirm with me before posting when I click the TwitterBar icon.">
@@ -12,7 +11,6 @@
 
 <!ENTITY twitter.shortener "URL Shortener:">
 <!ENTITY twitter.noShortener "None">
-<!ENTITY twitter.searchSocial "Search the social web for the text you've entered.">
 
 <!ENTITY twitter.showTrends "Show trending news in the Twitter sidebar.">
 

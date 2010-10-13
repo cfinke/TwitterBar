@@ -58,14 +58,6 @@
 				<vbox pack="center">
 					<label style="font-size: 10px; color: green;" id="twitter-count" value="" hidden="true"/>
 				</vbox>
-				<vbox id="twitter-oneriot-box" pack="center">
-					<image id="twitter-searchbutton"
-						hidden="true"
-						onclick="TWITTERBAR.search(event, 'addressBarIcon');"
-						tooltiptext="&twitter.searchSocial;"
-						src="chrome://twitterbar/skin/oneriot.ico"
-						/>
-				</vbox>
 			</hbox>
 			<vbox flex="1" pack="center">
 				<image id="twitter-statusbarbutton"
