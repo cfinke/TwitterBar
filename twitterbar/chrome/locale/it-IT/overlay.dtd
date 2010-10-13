@@ -1,12 +1,12 @@
 <!ENTITY twitter.post "Invia il messaggio a Twitter">
-<!ENTITY twitter.tab "Apri il sito web di Twitter in una nuova scheda dopo l'inserimento del messaggio">
-<!ENTITY twitter.web "Descrizione dell'URL visitato attualmente:">
-<!ENTITY twitter.button "Nascondi l'icona di TwitterBar nella barra degli indirizzi">
+<!ENTITY twitter.tab "Apri il sito web di Twitter in una nuova scheda dopo l&apos;inserimento del messaggio">
+<!ENTITY twitter.web "Descrizione dell&apos;URL visitato attualmente:">
+<!ENTITY twitter.button "Nascondi l&apos;icona di TwitterBar nella barra degli indirizzi">
 <!ENTITY twitter.oneriotButton "Nascondi l'icona del motore di ricerca OneRiot nella barra degli indirizzi">
 <!ENTITY twitter.options.dialog "Opzioni di TwitterBar">
 <!ENTITY twitter.generalTab "Generali">
 <!ENTITY twitter.confirm "Chiedi prima di inviare un messaggio a Twitter">
-<!ENTITY twitter.prefixExplanation "Inserire la descrizione da visualizzare prima dell'URL visitato attualmente, condiviso facendo clic sull'icona di TwitterBar nella barra degli indirizzi">
+<!ENTITY twitter.prefixExplanation "Inserire la descrizione da visualizzare prima dell&apos;URL visitato attualmente, condiviso facendo clic sull&apos;icona di TwitterBar nella barra degli indirizzi">
 <!ENTITY twitter.prefixDescription "Per aggiungere il titolo della relativa pagina web utilizzare la variabile $$">
 <!ENTITY twitter.shortener "Servizio abbreviazione URL:">
 <!ENTITY twitter.noShortener "(nessuno)">
