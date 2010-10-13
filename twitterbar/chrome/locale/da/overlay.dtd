@@ -2,7 +2,6 @@
 <!ENTITY twitter.tab "Åben min Twitter side i et nyt faneblad, efter jeg har skrevet.">
 <!ENTITY twitter.web "Før URL:">
 <!ENTITY twitter.button "Skjul TwitterBar ikonet i adresselinjen">
-<!ENTITY twitter.oneriotButton "Skjul OneRiot søge ikonet i adresselinjen">
 <!ENTITY twitter.options.dialog "TwitterBar indstillinger">
 <!ENTITY twitter.generalTab "Generelt">
 <!ENTITY twitter.confirm "Lad mig altid acceptere, før min tekst bliver sendt til Twitter, når jeg trykker på TwitterBar ikonet">
@@ -10,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "Du kan bruge $$ som pladsholder for sidens titel.">
 <!ENTITY twitter.shortener "URL forkorter">
 <!ENTITY twitter.noShortener "Ingen">
-<!ENTITY twitter.searchSocial "Søg det sociale web til den tekst, du har angivet.">
 <!ENTITY twitter.showTrends "Vis yderligere trends-emner i Twitter sidebar">
 <!ENTITY twitter.bitlyInstructions "Indtast dit bit.ly login og API nøgle, hvis du har en.">
 <!ENTITY twitter.bitlyLogin "Bit.ly login:">

@@ -2,7 +2,6 @@
 <!ENTITY twitter.tab "Avaa Twitter uuteen välilehteen lähettämisen jälkeen">
 <!ENTITY twitter.web "Ennen osoitetta:">
 <!ENTITY twitter.button "Piilota TwitterBar-kuvake osoitepalkissa">
-<!ENTITY twitter.oneriotButton "Piilota OneRiot-hakukuvake osoitepalkista">
 <!ENTITY twitter.options.dialog "TwitterBar-asetukset">
 <!ENTITY twitter.generalTab "Yleiset">
 <!ENTITY twitter.confirm "Varmista aina ennen lähettämistä, kun napsautan TwitterBar-kuvaketta.">
@@ -10,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "(Voit kirjoittaa $$ joka korvataan sivun otsikolla.)">
 <!ENTITY twitter.shortener "URL-lyhentäjä:">
 <!ENTITY twitter.noShortener "Ei mitään">
-<!ENTITY twitter.searchSocial "Etsi sosiaalisesta verkosta antamallasi tekstillä.">
 <!ENTITY twitter.showTrends "Näytä trendeissä olevat aiheet Twitter-sivupalkissa.">
 <!ENTITY twitter.bitlyInstructions "Anna bit.ly-käyttäjätunnus ja API-avain.">
 <!ENTITY twitter.bitlyLogin "Bit.ly-käyttäjätunnus:">

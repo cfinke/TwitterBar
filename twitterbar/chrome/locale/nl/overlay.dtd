@@ -2,7 +2,6 @@
 <!ENTITY twitter.tab "Twitter na verzending in een nieuw tabblad openen">
 <!ENTITY twitter.web "Voor webadres:">
 <!ENTITY twitter.button "Knop op adresbalk verbergen">
-<!ENTITY twitter.oneriotButton "De OneRiot zoekknop in de adresbalk verbergen">
 <!ENTITY twitter.options.dialog "Twitter opties">
 <!ENTITY twitter.generalTab "Algemeen">
 <!ENTITY twitter.confirm "Altijd om een bevestiging vragen voor het versturen van een webadres naar Twitter.">
@@ -10,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "($$ kan gebruikt worden om de plaat te bepalen voor de paginatitel.)">
 <!ENTITY twitter.shortener "Webadres snelkoppeling:">
 <!ENTITY twitter.noShortener "geen (laat Twitter sorteren)">
-<!ENTITY twitter.searchSocial "Het sociale web doorzoeken op de ingevoerde tekst.">
 <!ENTITY twitter.showTrends "Aanvullende trendonderwerpen in de Twitter zijbalk weergeven.">
 <!ENTITY twitter.bitlyInstructions "Voer de bit.ly aanmeldgegevens en API-sleutel in, indien beschikbaar.">
 <!ENTITY twitter.bitlyLogin "Bit.ly aanmelding:">

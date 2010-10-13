@@ -2,7 +2,6 @@
 <!ENTITY twitter.tab "Након објављивања, отвори моју страницу Твитера у новом језичку">
 <!ENTITY twitter.web "Пре адресе:">
 <!ENTITY twitter.button "Сакриј икону за TwitterBar са траке за адресу">
-<!ENTITY twitter.oneriotButton "Сакриј икону за OneRiot са траке за адресу">
 <!ENTITY twitter.options.dialog "TwitterBar - опције">
 <!ENTITY twitter.generalTab "Опште">
 <!ENTITY twitter.confirm "Након клика на икону TwitterBar-а, увек ме питај за потврду пре него што објавим нешто">
@@ -10,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "(Можете да користите $$ ако оквир наслова странице)">
 <!ENTITY twitter.shortener "Скраћивање адресе:">
 <!ENTITY twitter.noShortener "ништа">
-<!ENTITY twitter.searchSocial "На социјалној мрежи потражите текст који сте унели">
 <!ENTITY twitter.showTrends "Прикажи додатне вести о трендовима бочној траци Твитера:">
 <!ENTITY twitter.bitlyInstructions "Унесите своје податке за пријављивање на bit.ly и API кључ, ако га имате.">
 <!ENTITY twitter.bitlyLogin "Подаци за пријављивање на bit.ly:">

@@ -2,7 +2,6 @@
 <!ENTITY twitter.tab "Avage mu Twitteri leht uuel kaardil pärast mu postitust">
 <!ENTITY twitter.web "Enne URL'li:">
 <!ENTITY twitter.button "Peida TwitterBar'i ikoon aadressiribas">
-<!ENTITY twitter.oneriotButton "Peida OneRiot'i otsingu ikoon aadressiribas">
 <!ENTITY twitter.options.dialog "TwitterBar'i Redigeerimis Dialoog">
 <!ENTITY twitter.generalTab "Üldine">
 <!ENTITY twitter.confirm "Alati küsige minult üle enne postitamist kui ma klõpsan TwitterBar'i ikoonil.">
@@ -10,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "(Te saate kasutada $$ kohahoidjana selle lehe tiitlile.)">
 <!ENTITY twitter.shortener "URL'i lühendaja:">
 <!ENTITY twitter.noShortener "Tühi">
-<!ENTITY twitter.searchSocial "Otsige sotsiaalvõrgust teksti mille te just sisestasite.">
 <!ENTITY twitter.showTrends "Näidake trendikaid uudiseid Twitteri külgribas.">
 <!ENTITY twitter.bitlyInstructions "Sisestage oma bit.ly login ja API võti, kui teil on üks.">
 <!ENTITY twitter.bitlyLogin "Bit.ly kasutajanimi:">

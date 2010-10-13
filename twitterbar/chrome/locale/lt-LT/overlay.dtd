@@ -2,7 +2,6 @@
 <!ENTITY twitter.tab "Kai paskelbsiu, atidaryti mano Twitter puslapį naujoje kortelėje">
 <!ENTITY twitter.web "prieš URL:">
 <!ENTITY twitter.button "Slėpti TwitterBar ikoną adresų juostoje">
-<!ENTITY twitter.oneriotButton "Slėpri OneRiot paieškos ikoną adresų juostoje">
 <!ENTITY twitter.options.dialog "TwitterBar nuostatos">
 <!ENTITY twitter.generalTab "Bendrai">
 <!ENTITY twitter.confirm "Visada prašyti sutikimo prieš skelbiant.">
@@ -10,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "(Jūs galite naudoti $$ kaip vietos rezarvatorių puslapio pavadinimui.)">
 <!ENTITY twitter.shortener "URL trumpintojas:">
 <!ENTITY twitter.noShortener "Tuščia">
-<!ENTITY twitter.searchSocial "Ieškoti teksto, kurį įvedėte, socialiniuose tinkluose.">
 <!ENTITY twitter.showTrends "Rodyti populiariausias temas Twitter šoninėje juostoje.">
 <!ENTITY twitter.bitlyInstructions "Įveskite savo bit.ly prisijungimo vardą ir API slaptažodį, jei tokį turite.">
 <!ENTITY twitter.bitlyLogin "Bit.ly prisijungimo vardas:">

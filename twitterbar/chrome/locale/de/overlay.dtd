@@ -2,7 +2,6 @@
 <!ENTITY twitter.tab "Twitter nach dem Senden in neuem Tab öffnen">
 <!ENTITY twitter.web "Eintrag vor der Adresse:">
 <!ENTITY twitter.button "Twitter-Symbol in der Adressleiste ausblenden">
-<!ENTITY twitter.oneriotButton "OneRiot Icon in der Adressleiste verstecken">
 <!ENTITY twitter.options.dialog "TwitterBar - Einstellungen">
 <!ENTITY twitter.generalTab "Allgemein">
 <!ENTITY twitter.confirm "Immer nach einer Bestätigung fragen, bevor eine URL an Twitter gesendet wird.">
@@ -10,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "(Sie können $$ als Platzhalter für den Seitentitel nutzen.)">
 <!ENTITY twitter.shortener "Kurz-URL-Dienst:">
 <!ENTITY twitter.noShortener "Keiner">
-<!ENTITY twitter.searchSocial "Das soziale Netzwerk nach eingegebenen Text durchsuchen.">
 <!ENTITY twitter.showTrends "Laufend weitere Themen in der Twitter-Sidebar anzeigen">
 <!ENTITY twitter.bitlyInstructions "Bitte geben Sie ihr bit.ly login und API key ein, falls Sie einen besitzen.">
 <!ENTITY twitter.bitlyLogin "Bit.ly login:">

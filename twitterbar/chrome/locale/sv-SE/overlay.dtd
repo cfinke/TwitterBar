@@ -8,5 +8,4 @@
 <!ENTITY twitter.prefixExplanation "Du kan dela en länk till en sida du läser genom att klicka på Twitter-ikonen i adressfältet. Följande text kommer automatiskt att läggas till före URLen:">
 <!ENTITY twitter.prefixDescription "(Du kan använda $$ som en platshållare för sidrubriken.)">
 <!ENTITY twitter.noShortener "Ingen (Låt Twitter hantera det)">
-<!ENTITY twitter.searchSocial "Sök i den sociala webben efter den text du angivit.">
 <!ENTITY twitter.showTrends "Visa ytterligare trendiga ämnen i Twittersidramen.">

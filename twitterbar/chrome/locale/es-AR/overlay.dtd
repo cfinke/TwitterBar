@@ -2,7 +2,6 @@
 <!ENTITY twitter.tab "Abrir mi pagina de Twitter en una nueva pestana luego de postear">
 <!ENTITY twitter.web "Antes de la URL:">
 <!ENTITY twitter.button "Esconder el icono de Twitter de la barra de direcciones">
-<!ENTITY twitter.oneriotButton "Esconder el icono de busqueda de OneRiot en la barra de direcciones">
 <!ENTITY twitter.options.dialog "Opciones de Twitter">
 <!ENTITY twitter.generalTab "General">
 <!ENTITY twitter.confirm "Siempre confirmar antes enviar una URL a Twitter.">
@@ -10,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "(Puedes usar $$ como un marcador para el titulo de la pagina.)">
 <!ENTITY twitter.shortener "Acortador de URL:">
 <!ENTITY twitter.noShortener "Ninguno">
-<!ENTITY twitter.searchSocial "Buscar en la web social para el texto que ha introducido">
 <!ENTITY twitter.showTrends "Mostrar tendencias de prensa en la barra lateral de Twitter.">
 <!ENTITY twitter.bitlyInstructions "Introduzca su nombre de usuario y la clave de API bit.ly, si usted tiene uno">
 <!ENTITY twitter.bitlyLogin "Bit.ly usuario:">
