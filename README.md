@@ -1,0 +1,3 @@
+TwitterBar allows you to post to Twitter from Firefox's address bar. A small unobtrusive grey icon sits to the right of your address bar; clicking on it will post your tweet, and you can hover your mouse over it to see how many characters you have left.
+
+You can also post by typing "--post" at the end of your tweet. Clicking the grey icon when visiting a webpage will send a tweet with the URL of the webpage you are currently viewing.
