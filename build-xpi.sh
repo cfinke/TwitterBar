@@ -6,7 +6,7 @@ mkdir .xpi_work_dir
 cp -r twitterbar/* .xpi_work_dir/
 cd .xpi_work_dir/
 
-rm -rf `find . -name ".svn"`
+rm -rf `find . -name ".git"`
 rm -rf `find . -name ".DS_Store"`
 rm -rf `find . -name "Thumbs.db"`
 
