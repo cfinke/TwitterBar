@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE dialog SYSTEM "chrome://twitterbar/locale/overlay.dtd" >
+<vbox xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<stringbundleset id="stringbundleset">
+		<stringbundle id="firefound-bundle" src="chrome://twitterbar/locale/overlay.properties" />
+	</stringbundleset>
+	
+	<setting id="pref-prefix" pref="extensions.twitter.web" type="string" title="&twitter.prefixExplanation; &twitter.prefixDescription;" />
+
+    <setting id="pref-show-trends" pref="extensions.twitter.showTrends" type="bool" title="&twitter.showTrends;" />
+
+    <setting id="pref-open-after" pref="extensions.twitter.tab" type="bool" title="&twitter.tab;" />
+    <setting id="pref-confirm" pref="extensions.twitter.confirm" type="bool" title="&twitter.confirm;" />
+
+	<setting title="&twitter.shortener;" type="control" id="twitterbar-shortener-setting">
+		<menulist oncommand="TWITTERBAR_OPTIONS.setShortener();" id="twitterbar-shortener-menu">
+			<menupopup>
+				<menuitem value="is.gd" label="is.gd" />
+				<menuitem value="bitly" label="bit.ly" />
+				<menuitem value="tinyurl" label="TinyURL" />
+				<menuitem value="" label="&twitter.noShortener;" />
+			</menupopup>
+		</menulist>
+	</setting>
+	
+	<setting id="twitter-bitly-login" title="&twitter.bitlyLogin;" type="string" pref="extensions.twitter.bitlyLogin" style="display: none;" />
+	<setting id="twitter-bitly-api-key" title="&twitter.bitlyApiKey;" type="string" pref="extensions.twitter.bitlyApiKey" style="display: none;" />
+	
+	<setting title="&twitter.account;" type="control">
+		<menulist id="twitter-accounts-list" oncommand="TWITTERBAR_OPTIONS.showAccount(this.value);">
+			<menupopup />
+		</menulist>
+		<button oncommand="TWITTERBAR.unsetAccount(document.getElementById('twitter-accounts-list').value);" label="&twitter.remove;" />
+		<button oncommand="TWITTERBAR_UI.showWeb(); TWITTERBAR.addAccount(true);" label="&twitter.addAccount;" />
+	</setting>
+</vbox>

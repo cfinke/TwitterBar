@@ -1,0 +1,34 @@
+content     twitterbar                    jar:chrome/twitterbar.jar!/content/
+skin        twitterbar      classic       jar:chrome/twitterbar.jar!/skin/
+resource    twitterbar-modules             modules/
+
+override    chrome://twitterbar/content/overlay.xul         chrome://twitterbar/content/overlay-mobile.xul   application={a23983c0-fd0e-11dc-95ff-0800200c9a66}
+override    chrome://twitterbar/content/options.xul         chrome://twitterbar/content/options-mobile.xul   application={a23983c0-fd0e-11dc-95ff-0800200c9a66}
+
+override    chrome://twitterbar/skin/twitter.css         chrome://twitterbar/skin/twitter-mobile.css application={a23983c0-fd0e-11dc-95ff-0800200c9a66}
+
+overlay     chrome://browser/content/browser.xul           chrome://twitterbar/content/overlay.xul
+
+style       chrome://global/content/customizeToolbar.xul   chrome://twitterbar/skin/twitter.css
+
+locale      twitterbar    cs-CZ    jar:chrome/twitterbar.jar!/locale/cs-CZ/
+locale      twitterbar    en-US    jar:chrome/twitterbar.jar!/locale/en-US/
+locale      twitterbar    es-AR    jar:chrome/twitterbar.jar!/locale/es-AR/
+locale      twitterbar    es-ES    jar:chrome/twitterbar.jar!/locale/es-ES/
+locale      twitterbar    de       jar:chrome/twitterbar.jar!/locale/de/
+locale      twitterbar    de-DE    jar:chrome/twitterbar.jar!/locale/de-DE/
+locale      twitterbar    fa-IR    jar:chrome/twitterbar.jar!/locale/fa-IR/
+locale      twitterbar    fi-FI    jar:chrome/twitterbar.jar!/locale/fi-FI/
+locale      twitterbar    fr-FR    jar:chrome/twitterbar.jar!/locale/fr-FR/
+locale      twitterbar    id-ID    jar:chrome/twitterbar.jar!/locale/id-ID/
+locale      twitterbar    it-IT    jar:chrome/twitterbar.jar!/locale/it-IT/
+locale      twitterbar    ko-KR    jar:chrome/twitterbar.jar!/locale/ko-KR/
+locale      twitterbar    nl-NL    jar:chrome/twitterbar.jar!/locale/nl-NL/
+locale      twitterbar    pl-PL    jar:chrome/twitterbar.jar!/locale/pl-PL/
+locale      twitterbar    pt-BR    jar:chrome/twitterbar.jar!/locale/pt-BR/
+locale      twitterbar    pt-PT    jar:chrome/twitterbar.jar!/locale/pt-PT/
+locale      twitterbar    ru-RU    jar:chrome/twitterbar.jar!/locale/ru-RU/
+locale      twitterbar    sk-SK    jar:chrome/twitterbar.jar!/locale/sk-SK/
+locale      twitterbar    sv-SE    jar:chrome/twitterbar.jar!/locale/sv-SE/
+locale      twitterbar    vi-VN    jar:chrome/twitterbar.jar!/locale/vi-VN/
+locale      twitterbar    zh-CN    jar:chrome/twitterbar.jar!/locale/zh-CN/

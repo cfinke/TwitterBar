@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://twitterbar/locale/overlay.dtd">
+<dialog id="twitterbar-prompt" 
+	title="&twitter.chooseAccountTitle;"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	buttons="accept,cancel"
+	style="min-height: 200px;"
+	onload="TWITTERBAR_PROMPT.load();"
+	ondialogaccept="return TWITTERBAR_PROMPT.accept();">
+	<script type="application/x-javascript">
+		<![CDATA[
+		
+		var TWITTERBAR_PROMPT = {
+			load : function () {
+				var accounts = window.arguments[0];
+				var defaultAccount = window.arguments[2];
+				var re = window.arguments[1];
+				
+				var container = document.getElementById("account-group");
+				var sortedAccounts = [];
+				
+				for (var i in accounts) {
+					if (i != "_twitterbar" && accounts[i].token) {
+						sortedAccounts.push(i);
+					}
+				}
+				
+				sortedAccounts.sort();
+				
+				for (var i = 0; i < sortedAccounts.length; i++) {
+					var username = sortedAccounts[i];
+					
+					var checkbox = document.createElement("checkbox");
+					checkbox.setAttribute("value", username);
+					checkbox.setAttribute("label", username);
+				
+					container.insertBefore(checkbox, container.lastChild);
+					
+					if (username == defaultAccount) {
+						checkbox.checked = true;
+					}
+				}
+				
+				sizeToContent();
+			},
+			
+			accept : function () {
+				var rv = window.arguments[1];
+				
+				var accounts = document.getElementById("account-group").getElementsByTagName("checkbox");
+				
+				for (var i = 0; i < accounts.length; i++) {
+					if (accounts[i].checked) {
+						if (accounts[i].getAttribute("value") == "" && document.getElementById("new-account-name").value != "") {
+							rv.push(document.getElementById("new-account-name").value);
+						}
+						else {
+							rv.push(accounts[i].getAttribute("value"));
+						}
+					}
+				}
+				
+				return true;
+			}
+		};
+		
+		]]>
+	</script>
+	<hbox>
+		<vbox align="center" pack="center">
+			<image src="chrome://twitterbar/skin/bird-64.png" style="padding: 20px;"/>
+		</vbox>
+		<vbox style="width: 300px;" align="center" pack="center">
+			<label>&twitter.chooseAccounts;</label>
+			<spacer style="height: 10px;" />
+			<vbox id="account-group" style="max-height: 600px; overflow: auto;">
+				<hbox align="center">
+					<checkbox value="" label="&twitter.newAccount;" />
+					<textbox id="new-account-name" flex="1" />
+				</hbox>
+			</vbox>
+		</vbox>
+	</hbox>
+</dialog>

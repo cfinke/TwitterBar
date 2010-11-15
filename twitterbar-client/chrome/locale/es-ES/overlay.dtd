@@ -1,0 +1,23 @@
+<!ENTITY twitter.post "Publicar en Twitter">
+<!ENTITY twitter.tab "Abrir mi página de Twitter en una nueva pestaña después de publicar">
+<!ENTITY twitter.web "Antes de la URL:">
+<!ENTITY twitter.button "Ocultar el icono de Twitter en la barra de direcciones">
+<!ENTITY twitter.oneriotButton "Ocultar el icono de búsqueda de OneRiot en la barra de direcciones">
+<!ENTITY twitter.options.dialog "Dialogo de opciones de Twitter">
+<!ENTITY twitter.generalTab "General">
+<!ENTITY twitter.confirm "Confirmar siempre antes de publicar una URL en Twitter">
+<!ENTITY twitter.prefixExplanation "Puedes compartir un enlace a una página que estás leyendo pulsando sobre el icono de Twitter en la barra de direcciones. El texto siguiente será automáticamente añadido antes de la URL:">
+<!ENTITY twitter.prefixDescription "(Puedes usar $$ como un marcador el título de la página.)">
+<!ENTITY twitter.shortener "Simplificador de URL:">
+<!ENTITY twitter.noShortener "Ninguno (Dejar a Twitter ordenarlo, probablemente con bit.ly)">
+<!ENTITY twitter.searchSocial "Buscar la web social para el texto que has introducido.">
+<!ENTITY twitter.showTrends "Mostrar temas actuales adicionales en la barra lateral de Twitter.">
+<!ENTITY twitter.options "Opciones...">
+<!ENTITY twitter.chooseAccountTitle "Elige una cuenta...">
+<!ENTITY twitter.chooseAccounts "¿En qué cuentas desea publicar?">
+<!ENTITY twitter.newAccount "Nueva:">
+<!ENTITY twitter.addAccount "Añadir Cuenta">
+<!ENTITY twitter.multiAccountInstructions "Para publicar en una cuenta específica, tan sólo escribe --@nombre_de_cuenta al final de tu tweet (pero antes de --post).">
+<!ENTITY twitter.account "Cuenta">
+<!ENTITY twitter.remove "Eliminar">
+<!ENTITY twitter.noAccounts "Aún no ha autorizado ninguna cuenta.">

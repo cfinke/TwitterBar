@@ -1,0 +1,27 @@
+<!ENTITY twitter.post "Lähetä Twitteriin">
+<!ENTITY twitter.tab "Avaa Twitter uuteen välilehteen lähettämisen jälkeen">
+<!ENTITY twitter.web "Ennen osoitetta:">
+<!ENTITY twitter.button "Piilota TwitterBar-kuvake osoitepalkissa">
+<!ENTITY twitter.oneriotButton "Piilota OneRiot-hakukuvake osoitepalkista">
+<!ENTITY twitter.options.dialog "TwitterBar-asetukset">
+<!ENTITY twitter.generalTab "Yleiset">
+<!ENTITY twitter.confirm "Varmista aina ennen lähettämistä, kun napsautan TwitterBar-kuvaketta.">
+<!ENTITY twitter.prefixExplanation "Voit jakaa linkin sivulle, jota luet, napsauttamalla TwitterBar-kuvaketta osoitepalkissa. Seuraava teksti lisätään automaattisesti linkin eteen:">
+<!ENTITY twitter.prefixDescription "(Voit kirjoittaa $$ joka korvataan sivun otsikolla.)">
+<!ENTITY twitter.shortener "URL-lyhentäjä:">
+<!ENTITY twitter.noShortener "Ei mitään">
+<!ENTITY twitter.searchSocial "Etsi sosiaalisesta verkosta antamallasi tekstillä.">
+<!ENTITY twitter.showTrends "Näytä trendeissä olevat aiheet Twitter-sivupalkissa.">
+<!ENTITY twitter.bitlyInstructions "Anna bit.ly-käyttäjätunnus ja API-avain.">
+<!ENTITY twitter.bitlyLogin "Bit.ly-käyttäjätunnus:">
+<!ENTITY twitter.bitlyApiKey "Bit.ly-API-avain:">
+<!ENTITY twitter.options "Asetukset...">
+<!ENTITY twitter.chooseAccountTitle "Valitse tunnus...">
+<!ENTITY twitter.chooseAccounts "Mille tunnuksille haluat lähettää?">
+<!ENTITY twitter.newAccount "Uusi:">
+<!ENTITY twitter.addAccount "Lisää tunnus">
+<!ENTITY twitter.multiAccountInstructions "Lähettääksesi tietylle tunnukselle, kirjoita --@tunnus viestin loppuun (mutta ennen --post -tesktiä).">
+<!ENTITY twitter.account "Tunnus">
+<!ENTITY twitter.authorizedOn "Valtuutettu...">
+<!ENTITY twitter.remove "Poista">
+<!ENTITY twitter.noAccounts "Et ole valtuuttanut yhtään tunnusta.">

@@ -1,0 +1,17 @@
+<!ENTITY twitter.post "Đăng lên Twitter">
+<!ENTITY twitter.tab "Mở trang Twitter của tôi ở một thẻ mới sau khi tôi đăng">
+<!ENTITY twitter.web "Trước URL:">
+<!ENTITY twitter.button "Ẩn biểu tượng Twitter trên thanh địa chỉ">
+<!ENTITY twitter.oneriotButton "Ẩn biểu tượng tìm kiếm của OneRiot trên thanh địa chỉ">
+<!ENTITY twitter.options.dialog "Hộp thoại Tùy chọn">
+<!ENTITY twitter.generalTab "Tổng quan">
+<!ENTITY twitter.confirm "Luôn hỏi xác nhận của tôi trước khi đăng một địa chỉ trang web lên Twitter.">
+<!ENTITY twitter.prefixExplanation "Bạn có thể chia sẻ liên kết tới một trang mà bạn đang đọc bằng cách click chuột vào biểu tượng Twitter trên thanh địa chỉ. Dòng chữ sau đây sẽ tự động được thêm vào trước địa chỉ trang web đó:">
+<!ENTITY twitter.prefixDescription "(Bạn có thể sử dụng $$ như ký tự dữ chỗ trên thanh tiêu đề của trang.)">
+<!ENTITY twitter.shortener "Rút ngắn địa chỉ trang web:">
+<!ENTITY twitter.noShortener "Không (Để Twitter tự phân loại, có lẽ là bằng bit.ly)">
+<!ENTITY twitter.searchSocial "Tìm kiếm đoạn chữ mà bạn vừa gõ trên các trang web xã hội.">
+<!ENTITY twitter.showTrends "Hiển thị các chủ đề đang diễn ra trên thanh Twitter bên cạnh.">
+<!ENTITY twitter.bitlyInstructions "Hãy điền thông tin đăng nhập trang bit.ly và khóa API (nếu có).">
+<!ENTITY twitter.bitlyLogin "Đăng nhập bit.ly:">
+<!ENTITY twitter.bitlyApiKey "Khóa API tại Bit.ly:">

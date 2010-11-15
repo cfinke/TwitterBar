@@ -1,0 +1,46 @@
+#twitter-statusbarbutton {
+	-moz-appearance: none;
+	padding: 1px !important;
+	margin: 2px 3px 2px 0px;
+	background-color: transparent;
+	-moz-user-focus: none;
+	cursor: pointer;
+	height: 16px;
+	width: 16px;
+}
+
+#twitter-sidebar-button {
+	list-style-image: url("chrome://twitterbar/skin/bird-24-bw.png");
+}
+
+#twitter-sidebar-button[new="true"] {
+	list-style-image: url("chrome://twitterbar/skin/bird-24.png");
+}
+
+#twitter-toolbar-button {
+	list-style-image: url("chrome://twitterbar/skin/bird-24-add.png");
+	cursor: pointer;
+}
+
+toolbar[iconsize="small"] #twitter-toolbar-button {
+	list-style-image: url("chrome://twitterbar/skin/bird-16-full.png");
+}
+
+#twitter-searchbutton {
+    -moz-appearance: none;
+	padding: 1px !important;
+	margin: 2px 3px 2px 0px;
+	background-color: transparent;
+	-moz-user-focus: none;
+	cursor: pointer;
+	height: 16px;
+	width: 16px;
+}
+
+#twitterbar-search-request toolbarbutton {
+	display: none;
+}
+
+#twitterbar-search-request[opening="true"] * {
+	display: none;
+}

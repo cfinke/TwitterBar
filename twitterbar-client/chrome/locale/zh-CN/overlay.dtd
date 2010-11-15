@@ -1,0 +1,26 @@
+<!ENTITY twitter.post "发送到 Twitter">
+<!ENTITY twitter.tab "发送后在新标签页中打开 Twitter">
+<!ENTITY twitter.web "在地址前：">
+<!ENTITY twitter.button "隐藏地址栏按钮">
+<!ENTITY twitter.oneriotButton "在地址栏隐藏 OneRiot 搜索图标">
+<!ENTITY twitter.options.dialog "Twitter 选项对话框">
+<!ENTITY twitter.generalTab "一般">
+<!ENTITY twitter.confirm "每次发送到 Twitter 都需要确认。">
+<!ENTITY twitter.prefixExplanation "可以通过地址栏里的 Twitter 按钮分享正在阅读的链接。以下文字将会自动添加到地址前面：">
+<!ENTITY twitter.prefixDescription "（可以使用 $$ 作为页面标题的占位符。）">
+<!ENTITY twitter.shortener "地址简化：">
+<!ENTITY twitter.noShortener "无（让 Twitter 决定）">
+<!ENTITY twitter.searchSocial "在社会网络中查找输入的文字。">
+<!ENTITY twitter.showTrends "在 Twitter 侧边栏中显示附加热门话题。">
+<!ENTITY twitter.bitlyInstructions "如果已经申请，请输入 bit.ly 账户和 API 密码。">
+<!ENTITY twitter.bitlyLogin "Bit.ly 登录：">
+<!ENTITY twitter.bitlyApiKey "Bit.ly API 密码:">
+<!ENTITY twitter.options "选项...">
+<!ENTITY twitter.chooseAccountTitle "选择一个账户...">
+<!ENTITY twitter.newAccount "新建：">
+<!ENTITY twitter.addAccount "添加账户">
+<!ENTITY twitter.multiAccountInstructions "要发布到一个指定的帐号，只需要在要发送的消息末尾（--post 之前）输入  --@帐号。">
+<!ENTITY twitter.account "账户">
+<!ENTITY twitter.authorizedOn "授权为...">
+<!ENTITY twitter.remove "删除">
+<!ENTITY twitter.noAccounts "尚未授权任何帐户。">

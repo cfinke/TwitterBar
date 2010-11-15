@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://twitterbar/locale/overlay.dtd" >
+<prefwindow
+    id="twitterbar-preference-window"
+	title="&twitter.options.dialog;"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+	ondialogaccept="return TWITTERBAR_OPTIONS.accept();"
+	type="prefwindow"
+	buttons="accept,cancel"
+	style="max-width: 450px;">
+	<script type="application/x-javascript" src="chrome://twitterbar/content/options.js" />
+	<script type="application/x-javascript" src="chrome://twitterbar/content/overlay.js" />
+	<script type="application/x-javascript">
+		<![CDATA[
+		
+		addEventListener("load", TWITTERBAR.loadBasic, false);
+		addEventListener("load", TWITTERBAR_OPTIONS.load, false);
+		
+		]]>
+	</script>
+	
+	<stringbundleset id="stringbundleset">
+		<stringbundle id="twitterbar-strings" src="chrome://twitterbar/locale/overlay.properties" />
+	</stringbundleset>
+	
+	<prefpane flex="1" label="&twitter.generalTab;">
+    	<preferences>
+    	    <preference id="pref-prefix" name="extensions.twitter.web" type="string" />
+    	    <preference id="pref-open-after" name="extensions.twitter.tab" type="bool" />
+    	    <preference id="pref-hide-button" name="extensions.twitter.button" type="bool" />
+    	    <preference id="pref-confirm" name="extensions.twitter.confirm" type="bool" />
+    	    <preference id="pref-show-trends" name="extensions.twitter.showTrends" type="bool" />
+    	    <preference id="pref-shortener" name="extensions.twitter.shortener" type="string" />
+    	    <preference id="pref-hide-oneriot" name="extensions.twitter.oneriotButton" type="bool" />
+    	    <preference id="pref-bitly-login" name="extensions.twitter.bitlyLogin" type="string" />
+    	    <preference id="pref-bitly-api-key" name="extensions.twitter.bitlyApiKey" type="string" />
+    	</preferences>
+		<checkbox id="twitter-tab" label="&twitter.tab;" preference="pref-open-after" />
+		<checkbox id="twitter-button" label="&twitter.button;" preference="pref-hide-button"/>
+		<checkbox id="oneriot-button" label="&twitter.oneriotButton;" preference="pref-hide-oneriot"/>
+		<checkbox id="twitter-confirm" label="&twitter.confirm;" preference="pref-confirm" />
+		<checkbox id="twitter-show-trends" label="&twitter.showTrends;" preference="pref-show-trends" />
+		<groupbox>
+		    <description control="twitter-web">&twitter.prefixExplanation;</description>
+		    <hbox align="center">
+			    <textbox flex="1" id="twitter-web" preference="pref-prefix" />
+			</hbox>
+			<description control="twitter-web">&twitter.prefixDescription;</description>
+		</groupbox>
+		<groupbox orient="vertical">
+			<hbox align="center">
+			    <label control="shortener">&twitter.shortener;</label>
+			    <menulist preference="pref-shortener" flex="1" oncommand="TWITTERBAR_OPTIONS.shortenerChange();" id="twitterbar-shortener-menu">
+			        <menupopup>
+	    		        <menuitem value="is.gd" label="is.gd" />
+	    		        <menuitem value="bitly" label="bit.ly" />
+	                    <menuitem value="tinyurl" label="TinyURL" />
+	                    <menuitem value="" label="&twitter.noShortener;" />
+	                </menupopup>
+	            </menulist>
+			</hbox>
+			
+			<vbox id="bitly-options" style="display: none;">
+				<description>&twitter.bitlyInstructions;</description>
+				<grid>
+					<columns>
+						<column/>
+						<column flex="1"/>
+					</columns>
+					<rows>
+						<row align="center">
+							<label control="bitly-login">&twitter.bitlyLogin;</label>
+							<textbox preference="pref-bitly-login" flex="1" />
+						</row>
+						<row align="center">
+							<label control="bitly-api-key">&twitter.bitlyApiKey;</label>
+							<textbox preference="pref-bitly-api-key" flex="1" />
+						</row>
+					</rows>
+				</grid>
+			</vbox>
+		</groupbox>
+		<groupbox id="auth">
+			<deck id="accounts-deck">
+				<grid flex="1" id="accounts-grid">
+					<columns>
+						<column flex="1" />
+						<column flex="1" />
+						<column />
+					</columns>
+					<rows>
+						<row style="font-weight: bold;">
+							<label>&twitter.account;</label>
+							<label>&twitter.authorizedOn;</label>
+							<label></label>
+						</row>
+						<row align="center">
+							<menulist id="twitter-accounts-list" oncommand="TWITTERBAR_OPTIONS.showAccount(this.value);">
+								<menupopup />
+							</menulist>
+							<label id="accounts-authtime" value="" />
+							<button oncommand="TWITTERBAR.unsetAccount(document.getElementById('twitter-accounts-list').value);" label="&twitter.remove;" />
+						</row>
+					</rows>
+				</grid>
+				<label>&twitter.noAccounts;</label>
+			</deck>
+			<button oncommand="window.opener.TWITTERBAR.addAccount(true); window.opener.focus();" label="&twitter.addAccount;" />
+			<description>
+				&twitter.multiAccountInstructions;
+			</description>
+		</groupbox>
+		<spacer style="height: 90px;" />
+	</prefpane>
+</prefwindow>

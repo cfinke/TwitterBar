@@ -1,0 +1,35 @@
+<!ENTITY twitter.post "Post to Twitter">
+<!ENTITY twitter.tab "Open my Twitter page in a new tab after I post">
+<!ENTITY twitter.web "Before URL:">
+<!ENTITY twitter.button "Hide the TwitterBar icon in the address bar">
+<!ENTITY twitter.oneriotButton "Hide the OneRiot search icon in the address bar">
+<!ENTITY twitter.options.dialog "TwitterBar Options Dialog">
+<!ENTITY twitter.generalTab "General">
+<!ENTITY twitter.confirm "Always confirm with me before posting when I click the TwitterBar icon.">
+
+<!ENTITY twitter.prefixExplanation "You can share a link to a page you're reading by clicking the TwitterBar icon in the address bar.  The following text will automatically be added before the URL:">
+<!ENTITY twitter.prefixDescription "(You can use $$ as a placeholder for the page's title.)">
+
+<!ENTITY twitter.shortener "URL Shortener:">
+<!ENTITY twitter.noShortener "None">
+<!ENTITY twitter.searchSocial "Search the social web for the text you've entered.">
+
+<!ENTITY twitter.showTrends "Show additional trending topics in the Twitter sidebar.">
+
+<!ENTITY twitter.bitlyInstructions "Enter your bit.ly login and API key, if you have one.">
+<!ENTITY twitter.bitlyLogin "Bit.ly login:">
+<!ENTITY twitter.bitlyApiKey "Bit.ly API key:">
+
+<!ENTITY twitter.options "Options...">
+
+<!ENTITY twitter.chooseAccountTitle "Choose an Account...">
+<!ENTITY twitter.chooseAccounts "Which accounts do you want to post to?">
+<!ENTITY twitter.newAccount "New:">
+
+<!ENTITY twitter.addAccount "Add Account">
+<!ENTITY twitter.multiAccountInstructions "To post to a specific account, just type --@account_name at the end of your tweet (but before --post).">
+<!ENTITY twitter.account "Account">
+<!ENTITY twitter.authorizedOn "Authorized On...">
+<!ENTITY twitter.remove "Remove">
+
+<!ENTITY twitter.noAccounts "You haven't authorized any accounts yet.">

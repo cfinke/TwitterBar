@@ -1,0 +1,12 @@
+<!ENTITY twitter.post "Kirim ke Twitter">
+<!ENTITY twitter.tab "Buka halaman Twitter saya di tab baru setelah saya kirim">
+<!ENTITY twitter.web "Sebelum URL:">
+<!ENTITY twitter.button "Sembunyikan ikon Twitter di kotak alamat">
+<!ENTITY twitter.options.dialog "Dialog Pengaturan Twitter">
+<!ENTITY twitter.generalTab "Umum">
+<!ENTITY twitter.confirm "Selalu minta izin saya sebelum mengirim alamat web ke Twitter.">
+<!ENTITY twitter.prefixExplanation "Anda dapat berbagi link halaman yang sedang anda baca dengan mengklik ikon Twitter di kotak alamat. Berikut adalah teks yang akan secara otomatis ditambahkan sebelum alamat web:">
+<!ENTITY twitter.prefixDescription "(Anda dapat menggunakan $$ sebagai tempat untuk judul halaman.)">
+<!ENTITY twitter.noShortener "Tidak ada (Biarkan Twitter yang Mensortir)">
+<!ENTITY twitter.searchSocial "Cari jaringan sosial untuk teks yang anda masukkan.">
+<!ENTITY twitter.showTrends "Tunjukkan tambahan topik terpopuler di sebelah kotak Twitter.">

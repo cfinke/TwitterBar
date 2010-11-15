@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+	<Description about="urn:mozilla:install-manifest">
+		<em:id>{1a0c9ebe-ddf9-4b76-b8a3-675c77874d37}</em:id>
+		<em:name>TwitterBar</em:name>
+		<em:version>2.9.1</em:version>
+		<em:description>Post to Twitter from your address bar.</em:description>
+		<em:creator>Christopher Finke</em:creator>
+		<em:iconURL>chrome://twitterbar/skin/bird-32.png</em:iconURL>
+		<em:homepageURL>http://www.chrisfinke.com/addons/twitterbar/</em:homepageURL>
+		<em:optionsURL>chrome://twitterbar/content/options.xul</em:optionsURL>    
+		
+		<!-- Firefox -->
+		
+		<em:targetApplication>
+			<Description>
+				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+				<em:minVersion>3.5</em:minVersion>
+				<em:maxVersion>3.6.*</em:maxVersion>
+			</Description>
+		</em:targetApplication>
+		
+		<!-- Fennec -->
+		
+		<em:targetApplication>
+			<Description>
+				<em:id>{a23983c0-fd0e-11dc-95ff-0800200c9a66}</em:id>
+				<em:minVersion>1.0a1</em:minVersion>
+				<em:maxVersion>1.1a2pre</em:maxVersion>
+			</Description>
+		</em:targetApplication>
+		
+	</Description>   
+</RDF>

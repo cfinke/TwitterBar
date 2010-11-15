@@ -1,0 +1,26 @@
+<!ENTITY twitter.post "An Twitter senden...">
+<!ENTITY twitter.tab "Meine Twitter-Seite nach senden des eintrags in einem neuen Tab öffnen">
+<!ENTITY twitter.web "Eintrag vor der Adresse:">
+<!ENTITY twitter.button "TwitterBar Symbol in der Adressleiste verstecken">
+<!ENTITY twitter.oneriotButton "Das OneRiot-Search Symbol in der Adressleiste verstecken">
+<!ENTITY twitter.options.dialog "TwitterBar Optionen">
+<!ENTITY twitter.generalTab "Allgemein">
+<!ENTITY twitter.confirm "Immer nach einer Bestätigung fragen bevor ein Post an Twitter gesendet wird.">
+<!ENTITY twitter.prefixExplanation "Sie können den Link der aktuell angezeigten Seite mit anderen teilen, indem Sie auf das Twitter-Symbol in der Adressleiste klicken. Dabei wird der folgende Text der Adresse vorangestellt:">
+<!ENTITY twitter.prefixDescription "(Sie können $$ als Platzhalter für den Seitentitel nutzen.)">
+<!ENTITY twitter.shortener "URL Kürzer-Dienst:">
+<!ENTITY twitter.noShortener "Keiner">
+<!ENTITY twitter.searchSocial "Das soziale Netzwerk nach eingegebenen Text durchsuchen.">
+<!ENTITY twitter.showTrends "Weitere Themen in der Twitter-Sidebar anzeigen.">
+<!ENTITY twitter.bitlyInstructions "Bitte geben Sie, wenn vorhanden, ihren bit.ly login und API Key ein.">
+<!ENTITY twitter.bitlyLogin "Bit.ly Login">
+<!ENTITY twitter.bitlyApiKey "Bit.ly API Key">
+<!ENTITY twitter.options "Optionen...">
+<!ENTITY twitter.chooseAccountTitle "Einen Account auswählen....">
+<!ENTITY twitter.newAccount "Neu:">
+<!ENTITY twitter.addAccount "Account Hinzufügen:">
+<!ENTITY twitter.multiAccountInstructions "um die Nachricht in einem bestimmten Konto zu veröffentlichen, geben Sie bitte --@account_name am Ende des Tweets (aber vor --post) ein.">
+<!ENTITY twitter.account "Account">
+<!ENTITY twitter.authorizedOn "Autorisiert am...">
+<!ENTITY twitter.remove "Entfernen">
+<!ENTITY twitter.noAccounts "Sie haben kein bestätigtes Konto.">
