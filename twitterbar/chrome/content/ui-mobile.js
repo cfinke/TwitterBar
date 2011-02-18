@@ -105,13 +105,8 @@ var TWITTERBAR_UI = {
 	},
 	
 	showWeb : function () {
-		try {
-			BrowserUI.activeDialog.close();
-		} catch (webView) {
-		}
-		
-		if (BrowserUI.isPanelVisible()) {
-			BrowserUI.hidePanel();
+		if (BrowserUI.activePanel || BrowserUI.activeDialog) {
+			CommandUpdater.doCommand("cmd_close");
 		}
 	},
 	
