@@ -9,11 +9,6 @@ pref("extensions.twitter.confirm", true);
 
 pref("extensions.twitter.shortener", "is.gd");
 
-pref("extensions.twitter.trends", "");
-pref("extensions.twitter.trends.update", "");
-
-pref("extensions.twitter.showTrends", true);
-
 pref("extensions.twitter.bitlyLogin", "");
 pref("extensions.twitter.bitlyApiKey", "");
 

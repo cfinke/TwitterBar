@@ -7,8 +7,6 @@
 	
 	<setting id="pref-prefix" pref="extensions.twitter.web" type="string" title="&twitter.prefixExplanation; &twitter.prefixDescription;" />
 
-    <setting id="pref-show-trends" pref="extensions.twitter.showTrends" type="bool" title="&twitter.showTrends;" />
-
     <setting id="pref-open-after" pref="extensions.twitter.tab" type="bool" title="&twitter.tab;" />
     <setting id="pref-confirm" pref="extensions.twitter.confirm" type="bool" title="&twitter.confirm;" />
 

@@ -131,7 +131,6 @@ var TWITTERBAR_OPTIONS = {
 		    TWITTERBAR_OPTIONS.prefs.setBoolPref("tab", document.getElementById("pref-open-after").value);
 		    TWITTERBAR_OPTIONS.prefs.setBoolPref("button", document.getElementById("pref-hide-button").value);
 		    TWITTERBAR_OPTIONS.prefs.setCharPref("shortener", document.getElementById("pref-shortener").value);
-		    TWITTERBAR_OPTIONS.prefs.setBoolPref("showTrends", document.getElementById("pref-show-trends").value);
 		}
 		
 		return true;

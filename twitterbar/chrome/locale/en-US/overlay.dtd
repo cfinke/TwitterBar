@@ -12,8 +12,6 @@
 <!ENTITY twitter.shortener "URL Shortener:">
 <!ENTITY twitter.noShortener "None">
 
-<!ENTITY twitter.showTrends "Show trending news in the Twitter sidebar.">
-
 <!ENTITY twitter.bitlyInstructions "Enter your bit.ly login and API key, if you have one.">
 <!ENTITY twitter.bitlyLogin "Bit.ly login:">
 <!ENTITY twitter.bitlyApiKey "Bit.ly API key:">
