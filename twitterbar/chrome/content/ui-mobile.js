@@ -109,6 +109,10 @@ var TWITTERBAR_UI = {
 			BrowserUI.activeDialog.close();
 		} catch (webView) {
 		}
+		
+		try {
+			CommandUpdater.doCommand("cmd_close");
+		} catch (e) { }
 	},
 	
 	addingAccount : function () {

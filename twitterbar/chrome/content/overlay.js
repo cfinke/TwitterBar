@@ -757,6 +757,8 @@ var TWITTERBAR = {
 			}
 		}
 		
+		TWITTERBAR_UI.setBusy(true);
+		
 		var status = TWITTERBAR_UI.getStatusText();
 		
 		TWITTERBAR.startPost(status);
@@ -1309,52 +1311,10 @@ var TWITTERBAR = {
 	},
 	
 	addTrendsSidebar : function (page) {
-		var sidebar = page.getElementById("side");
-
-		var topics = TWITTERBAR.prefs.getCharPref("trends");
-		
-		if (topics) {
-			try {
-				topics = JSON.parse(topics);
-			} catch (e) {
-				TWITTERBAR.prefs.setCharPref("trends", "");
-				TWITTERBAR.prefs.setCharPref("trends.update", 0);
-				
-				setTimeout(TWITTERBAR.getTrends, 1000 * 10);
-				return;
-			}
+		if (!page.getElementById("twitterbar-trends")) {
+			var username = TWITTERBAR.getTwitterUsername(page);
 			
-			var links = [];
-			
-			var limit = 4;
-			var _len = Math.min(limit, topics.length);
-			
-			var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-			
-			for (var i = 0; i < _len; i++) {
-				var idx = Math.floor(Math.random() * topics.length);
-				var topic = topics[idx];
-				topics.splice(idx, 1);
-				
-				try {
-					var trackingUrl = ios.newURI(topic.trackingUrl, null, null);
-					if (!trackingUrl.schemeIs("http") && !trackingUrl.schemeIs('https')) {
-						throw "InvalidScheme";
-					}
-					
-					var url = ios.newURI(topic.url, null, null);
-					if (url.scheme != 'http' && url.scheme != 'https') {
-						throw "InvalidScheme";
-					}
-					
-					links.push( { "bug" : trackingUrl.spec, "targetUrl" : topic.displayUrl, "url" : url.spec, "label" : topic.title } );
-				} catch (e) {
-					limit++;
-					TWITTERBAR.log(e);
-				}
-			}
-			
-			if (links.length > 0) {
+			if (username) {
 				var container = page.createElement("div");
 				container.setAttribute("id", "twitterbar-trends");
 				
@@ -1370,27 +1330,10 @@ var TWITTERBAR = {
 				
 				container.appendChild(header);
 				
+				container.innerHTML += '<script type="text/javascript" src="http://ad.oneriotads.com/ad.js#appId=twitterbar01&adtype=120x240&context=user/twitter.com/' + username + '"></script>';
+				
 				var list = page.createElement("ul");
 				list.setAttribute("class", "sidebar-menu more-trends-links");
-				
-				for (var i = 0; i < links.length; i++) {
-					var item = page.createElement("li");
-					item.style.height = "auto !important";
-					item.setAttribute("class", "link-title");
-					item.style.background = 'url("' + links[i].bug + '") no-repeat';
-					
-					var a = page.createElement("a");
-					a.setAttribute("target", "_blank");
-					a.setAttribute("title", links[i].targetUrl);
-					a.setAttribute("href", links[i].url);
-					
-					var span = page.createElement("span");
-					span.appendChild(page.createTextNode(links[i].label.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#(\d+);/g, function(wholematch, parenmatch) { return String.fromCharCode(+parenmatch); })));
-					
-					a.appendChild(span);
-					item.appendChild(a);
-					list.appendChild(item);
-				}
 				
 				var notice = page.createElement("li");
 				
@@ -1422,113 +1365,38 @@ var TWITTERBAR = {
 			}
 		}
 	},
-
-	addTrendsDashboard : function (page) {
-		var topics = TWITTERBAR.prefs.getCharPref("trends");
+	
+	getTwitterUsername : function (page) {
+		var username = "";
+	
+		try {
+			username = page.wrappedJSObject.defaultView.twttr.currentUserScreenName;
+		} catch (e) { }
 		
-		if (topics) {
-			try {
-				topics = JSON.parse(topics);
-			} catch (e) {
-				TWITTERBAR.prefs.setCharPref("trends", "");
-				TWITTERBAR.prefs.setCharPref("trends.update", 0);
-				
-				setTimeout(TWITTERBAR.getTrends, 1000 * 10);
-				return;
-			}
+		if (!username) {
+			var meta_tags = page.getElementsByTagName("meta");
 			
-			var links = [];
-			
-			var limit = 4;
-			var _len = Math.min(limit, topics.length);
-			
-			var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-			
-			for (var i = 0; i < _len; i++) {
-				var idx = Math.floor(Math.random() * topics.length);
-				var topic = topics[idx];
-				topics.splice(idx, 1);
-				
-				try {
-					var trackingUrl = ios.newURI(topic.trackingUrl, null, null);
-					
-					if (!trackingUrl.schemeIs("http") && !trackingUrl.schemeIs('https')) {
-						throw "InvalidScheme";
-					}
-					
-					var url = ios.newURI(topic.url, null, null);
-					if (url.scheme != 'http' && url.scheme != 'https') {
-						throw "InvalidScheme";
-					}
-					
-					links.push( { "bug" : trackingUrl.spec, "targetUrl" : topic.displayUrl, "url" : url.spec, "label" : topic.title } );
-				} catch (e) {
-					limit++;
-					TWITTERBAR.log(e);
+			for (var i = 0, _len = meta_tags.length; i < _len; i++) {
+				if (meta_tags[i].getAttribute("name") == "session-user-screen_name") {
+					username = meta_tags[i].getAttribute("content");
+					break;
 				}
 			}
-			
-			if (links.length > 0) {
+		}
+		
+		return username;
+	},
+	
+	addTrendsDashboard : function (page) {
+		if (!page.getElementById("twitterbar-trends")) {
+			var username = TWITTERBAR.getTwitterUsername(page);
+				
+			if (username) {
 				var container = page.createElement("div");
 				container.setAttribute("id", "twitterbar-trends");
 				container.setAttribute("class", "component");
-				
-				var subcontainer = page.createElement("div");
-				subcontainer.setAttribute("class", "trends-inner wide-trends");
-				
-				container.appendChild(subcontainer);
-				
-				var header = page.createElement("h2");
-				header.setAttribute("title", TWITTERBAR.strings.getString("twitterbar.trends.byline"));
-				header.appendChild(page.createTextNode(TWITTERBAR.strings.getString("twitterbar.trends.title")));
-				
-				subcontainer.appendChild(header);
-				
-				var table = page.createElement("table");
-				table.style.width = "100%";
-				
-				for (var i = 0; i < links.length; i++) {
-					var item = page.createElement("td");
-					
-					if (i % 2 == 0) {
-						var row = page.createElement("tr");
-						table.appendChild(row);
-						
-						item.style.paddingRight = "10px";
-					}
-					
-					item.style.verticalAlign = "top";
-					item.style.width = "50%";
-					item.style.paddingBottom = "10px";
-					item.style.background = 'url("' + links[i].bug + '") no-repeat';
-					
-					var a = page.createElement("a");
-					a.setAttribute("class", "trend-link");
-					a.setAttribute("target", "_blank");
-					a.setAttribute("title", links[i].targetUrl);
-					a.setAttribute("href", links[i].url);
-					a.appendChild(page.createTextNode(links[i].label.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#(\d+);/g, function(wholematch, parenmatch) { return String.fromCharCode(+parenmatch); })));
-					
-					item.appendChild(a);
-					row.appendChild(item);
-				}
-				
-				subcontainer.appendChild(table);
-				
-				var notice = page.createElement("p");
-				
-				var text = page.createElement("small");
-				text.appendChild(page.createTextNode(TWITTERBAR.strings.getString("twitterbar.trends.explanation")));
-				
-				notice.appendChild(text);
-				subcontainer.appendChild(notice);
-				
-				var spacer = page.createElement("hr");
-				spacer.setAttribute("class", "component-spacer");
-				container.appendChild(spacer);
-				
-				var dashboard = page.getElementsByClassName("dashboard").item(0);
-				
+				container.innerHTML = '<script type="text/javascript" src="http://ad.oneriotads.com/ad.js#appId=twitterbar01&adtype=468x60&context=user/twitter.com/' + username + '"></script>';
+			
 				dashboard.insertBefore(container, dashboard.childNodes[3]);
 			}
 		}

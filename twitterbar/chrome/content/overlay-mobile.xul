@@ -25,9 +25,11 @@
 		]]>
 	</script>
 
-	<stringbundleset id="stringbundleset">
-		<stringbundle id="twitterbar-strings" src="chrome://twitterbar/locale/overlay.properties" />
-	</stringbundleset>
+	<window id="main-window">
+		<stringbundleset id="twitterbar-stringbundle">
+			<stringbundle id="twitterbar-strings" src="chrome://twitterbar/locale/overlay.properties" />
+		</stringbundleset>
+	</window>
 	
 	<hbox id="urlbar-container">
 		<hbox id="twitterBox" align="middle">

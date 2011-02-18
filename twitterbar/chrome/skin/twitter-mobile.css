@@ -11,6 +11,5 @@
 }
 
 #twitter-statusbarbutton[busy="true"] {
-	list-style-image: url('chrome://browser/skin/images/throbber.png');
-	margin: 6px;
+	list-style-image: url('chrome://twitterbar/skin/twitter-bird-44-throbber.png');
 }

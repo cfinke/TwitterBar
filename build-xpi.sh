@@ -1,6 +1,5 @@
 rm -rf .xpi_work_dir/
 
-chmod -R 0777 twitterbar/
 rm -f twitterbar.xpi
 mkdir .xpi_work_dir
 cp -r twitterbar/* .xpi_work_dir/
