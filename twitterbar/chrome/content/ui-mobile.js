@@ -110,9 +110,9 @@ var TWITTERBAR_UI = {
 		} catch (webView) {
 		}
 		
-		try {
-			CommandUpdater.doCommand("cmd_close");
-		} catch (e) { }
+		if (BrowserUI.isPanelVisible()) {
+			BrowserUI.hidePanel();
+		}
 	},
 	
 	addingAccount : function () {
