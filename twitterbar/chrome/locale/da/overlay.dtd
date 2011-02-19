@@ -9,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "Du kan bruge $$ som pladsholder for sidens titel.">
 <!ENTITY twitter.shortener "URL forkorter">
 <!ENTITY twitter.noShortener "Ingen">
-<!ENTITY twitter.showTrends "Vis yderligere trends-emner i Twitter sidebar">
 <!ENTITY twitter.bitlyInstructions "Indtast dit bit.ly login og API nøgle, hvis du har en.">
 <!ENTITY twitter.bitlyLogin "Bit.ly login:">
 <!ENTITY twitter.bitlyApiKey "Bit.ly API nøgle">

@@ -9,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "(Pode usar $$ como um local de localização do título de páginas.]">
 <!ENTITY twitter.shortener "Diminuidor de URL:">
 <!ENTITY twitter.noShortener "Nenhum (Deixar o Twitter ordenar)">
-<!ENTITY twitter.showTrends "Mostrar mais tópicos interessantes na barra lateral do Twitter.">
 <!ENTITY twitter.bitlyInstructions "Introduza o seu início de sessão bit.ly e a chave API, caso tenha uma.">
 <!ENTITY twitter.bitlyLogin "Início de sessão Bit.ly:">
 <!ENTITY twitter.bitlyApiKey "Chave API Bit.ly:">

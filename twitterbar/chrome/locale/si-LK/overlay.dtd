@@ -9,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "( පිටුවේ මාතෘකාව ලෙස ඔබට $$ භාවිත කල හැකිය )">
 <!ENTITY twitter.shortener "URL කෙටි කරණය:">
 <!ENTITY twitter.noShortener "නැත">
-<!ENTITY twitter.showTrends "වද්දත් නැඹුරු වූ ආරංචි පැත්තකින් පෙන්වන්න .">
 <!ENTITY twitter.bitlyInstructions "ඔබට bit.ly ගිණුමක් තිබේ නම් login and API key ලබා දෙන්න.">
 <!ENTITY twitter.bitlyLogin "Bit.ly ගිණුම:">
 <!ENTITY twitter.bitlyApiKey "Bit.ly API key:">

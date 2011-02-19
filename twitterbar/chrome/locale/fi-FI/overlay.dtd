@@ -9,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "(Voit kirjoittaa $$ joka korvataan sivun otsikolla.)">
 <!ENTITY twitter.shortener "URL-lyhentäjä:">
 <!ENTITY twitter.noShortener "Ei mitään">
-<!ENTITY twitter.showTrends "Näytä trendeissä olevat aiheet Twitter-sivupalkissa.">
 <!ENTITY twitter.bitlyInstructions "Anna bit.ly-käyttäjätunnus ja API-avain.">
 <!ENTITY twitter.bitlyLogin "Bit.ly-käyttäjätunnus:">
 <!ENTITY twitter.bitlyApiKey "Bit.ly-API-avain:">

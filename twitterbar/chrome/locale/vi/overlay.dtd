@@ -9,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "(Bạn có thể sử dụng $$ như ký tự dữ chỗ trên thanh tiêu đề của trang.)">
 <!ENTITY twitter.shortener "Rút ngắn địa chỉ trang web:">
 <!ENTITY twitter.noShortener "Không (Để Twitter tự phân loại, có lẽ là bằng bit.ly)">
-<!ENTITY twitter.showTrends "Hiển thị các chủ đề đang diễn ra trên thanh Twitter bên cạnh.">
 <!ENTITY twitter.bitlyInstructions "Hãy điền thông tin đăng nhập trang bit.ly và khóa API (nếu có).">
 <!ENTITY twitter.bitlyLogin "Đăng nhập bit.ly:">
 <!ENTITY twitter.bitlyApiKey "Khóa API tại Bit.ly:">

@@ -9,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "(Sie können $$ als Platzhalter für den Seitentitel nutzen.)">
 <!ENTITY twitter.shortener "Kurz-URL-Dienst:">
 <!ENTITY twitter.noShortener "Keiner">
-<!ENTITY twitter.showTrends "Laufend weitere Themen in der Twitter-Sidebar anzeigen">
 <!ENTITY twitter.bitlyInstructions "Bitte geben Sie ihr bit.ly login und API key ein, falls Sie einen besitzen.">
 <!ENTITY twitter.bitlyLogin "Bit.ly login:">
 <!ENTITY twitter.bitlyApiKey "Bit.ly API key:">

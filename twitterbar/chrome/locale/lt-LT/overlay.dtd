@@ -9,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "(Jūs galite naudoti $$ kaip vietos rezarvatorių puslapio pavadinimui.)">
 <!ENTITY twitter.shortener "URL trumpintojas:">
 <!ENTITY twitter.noShortener "Tuščia">
-<!ENTITY twitter.showTrends "Rodyti populiariausias temas Twitter šoninėje juostoje.">
 <!ENTITY twitter.bitlyInstructions "Įveskite savo bit.ly prisijungimo vardą ir API slaptažodį, jei tokį turite.">
 <!ENTITY twitter.bitlyLogin "Bit.ly prisijungimo vardas:">
 <!ENTITY twitter.bitlyApiKey "Bit.ly API slaptažodis:">

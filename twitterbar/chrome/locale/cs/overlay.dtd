@@ -9,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "(Můžeš použít $$ jako náhradu názvu stránky)">
 <!ENTITY twitter.shortener "URL zkratka">
 <!ENTITY twitter.noShortener "Nic (Nechej Twitter to setřídit)">
-<!ENTITY twitter.showTrends "Zobrazit další trendy témata v postraní liště Twitteru.">
 <!ENTITY twitter.bitlyInstructions "Zadejte své přihlašovací jméno a bit.ly API klíč, pokud nějaký máte.">
 <!ENTITY twitter.bitlyLogin "Bit.ly přihlašovací jméno:">
 <!ENTITY twitter.bitlyApiKey "Bit.ly API klíč:">

@@ -9,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "(você pode usar $$ para inserir o título da página)">
 <!ENTITY twitter.shortener "Encurtador de URLs:">
 <!ENTITY twitter.noShortener "Nenhum">
-<!ENTITY twitter.showTrends "Exibir notícias de tendências no painel do Twitter">
 <!ENTITY twitter.bitlyInstructions "Digite seu login do bit.ly e chave API, se tiver">
 <!ENTITY twitter.bitlyLogin "Login do bit.ly:">
 <!ENTITY twitter.bitlyApiKey "Chave API do bit.ly:">

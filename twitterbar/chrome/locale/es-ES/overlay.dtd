@@ -9,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "(Puedes usar $$ como un marcador el título de la página.)">
 <!ENTITY twitter.shortener "Simplificador de URL:">
 <!ENTITY twitter.noShortener "Ninguno (Dejar a Twitter ordenarlo, probablemente con bit.ly)">
-<!ENTITY twitter.showTrends "Mostrar temas actuales adicionales en la barra lateral de Twitter.">
 <!ENTITY twitter.bitlyInstructions "Introduce tu usuario y tu contraseña, si dispones de una.">
 <!ENTITY twitter.bitlyLogin "Usuario Bit.ly:">
 <!ENTITY twitter.bitlyApiKey "Clave Bit.ly:">

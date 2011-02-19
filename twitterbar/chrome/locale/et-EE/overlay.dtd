@@ -9,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "(Te saate kasutada $$ kohahoidjana selle lehe tiitlile.)">
 <!ENTITY twitter.shortener "URL'i lühendaja:">
 <!ENTITY twitter.noShortener "Tühi">
-<!ENTITY twitter.showTrends "Näidake trendikaid uudiseid Twitteri külgribas.">
 <!ENTITY twitter.bitlyInstructions "Sisestage oma bit.ly login ja API võti, kui teil on üks.">
 <!ENTITY twitter.bitlyLogin "Bit.ly kasutajanimi:">
 <!ENTITY twitter.bitlyApiKey "Bit.ly API võti:">

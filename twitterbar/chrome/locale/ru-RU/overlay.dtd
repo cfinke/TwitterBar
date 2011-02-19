@@ -9,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "(Вы можете использовать $$ как заполнитель для заголовка страницы.)">
 <!ENTITY twitter.shortener "Сокращенный URL:">
 <!ENTITY twitter.noShortener "Нет (Пусть сортирует Twitter)">
-<!ENTITY twitter.showTrends "Показать больше сходных тем в панели Twitter.">
 <!ENTITY twitter.bitlyInstructions "Введите свой bit.ly логин API ключ, если таковые имеются.">
 <!ENTITY twitter.bitlyLogin "Bit.ly логин:">
 <!ENTITY twitter.bitlyApiKey "Bit.ly API ключ:">

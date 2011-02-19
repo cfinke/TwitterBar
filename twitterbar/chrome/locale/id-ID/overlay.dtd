@@ -8,4 +8,3 @@
 <!ENTITY twitter.prefixExplanation "Anda dapat berbagi link halaman yang sedang anda baca dengan mengklik ikon Twitter di kotak alamat. Berikut adalah teks yang akan secara otomatis ditambahkan sebelum alamat web:">
 <!ENTITY twitter.prefixDescription "(Anda dapat menggunakan $$ sebagai tempat untuk judul halaman.)">
 <!ENTITY twitter.noShortener "Tidak ada (Biarkan Twitter yang Mensortir)">
-<!ENTITY twitter.showTrends "Tunjukkan tambahan topik terpopuler di sebelah kotak Twitter.">

@@ -9,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "Per aggiungere il titolo della relativa pagina web utilizzare la variabile $$">
 <!ENTITY twitter.shortener "Servizio abbreviazione URL:">
 <!ENTITY twitter.noShortener "(nessuno)">
-<!ENTITY twitter.showTrends "Mostra 'Argomenti di tendenza' nella barra laterale di Twitter">
 <!ENTITY twitter.bitlyInstructions "Inserire il nome utente e la chiave API di Bit.ly se disponibile">
 <!ENTITY twitter.bitlyLogin "Nome utente:">
 <!ENTITY twitter.bitlyApiKey "Chiave API:">

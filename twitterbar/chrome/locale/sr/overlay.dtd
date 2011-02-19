@@ -9,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "(Можете да користите $$ ако оквир наслова странице)">
 <!ENTITY twitter.shortener "Скраћивање адресе:">
 <!ENTITY twitter.noShortener "ништа">
-<!ENTITY twitter.showTrends "Прикажи додатне вести о трендовима бочној траци Твитера:">
 <!ENTITY twitter.bitlyInstructions "Унесите своје податке за пријављивање на bit.ly и API кључ, ако га имате.">
 <!ENTITY twitter.bitlyLogin "Подаци за пријављивање на bit.ly:">
 <!ENTITY twitter.bitlyApiKey "API кључ за bit.ly:">

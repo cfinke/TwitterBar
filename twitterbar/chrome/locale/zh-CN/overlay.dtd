@@ -9,7 +9,6 @@
 <!ENTITY twitter.prefixDescription "（可以使用 $$ 作为页面标题的占位符。）">
 <!ENTITY twitter.shortener "地址简化：">
 <!ENTITY twitter.noShortener "无（让 Twitter 决定）">
-<!ENTITY twitter.showTrends "在 Twitter 侧边栏中显示附加热门话题。">
 <!ENTITY twitter.bitlyInstructions "如果已经申请，请输入 bit.ly 账户和 API 密码。">
 <!ENTITY twitter.bitlyLogin "Bit.ly 登录：">
 <!ENTITY twitter.bitlyApiKey "Bit.ly API 密码:">
