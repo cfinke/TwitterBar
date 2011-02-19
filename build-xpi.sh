@@ -9,11 +9,6 @@ rm -rf `find . -name ".git"`
 rm -rf `find . -name ".DS_Store"`
 rm -rf `find . -name "Thumbs.db"`
 
-cd chrome/
-zip -rq ../twitterbar.jar *
-rm -rf *
-mv ../twitterbar.jar ./
-cd ../
 zip -rq ~/Desktop/twitterbar.xpi *
 cd ..
 
