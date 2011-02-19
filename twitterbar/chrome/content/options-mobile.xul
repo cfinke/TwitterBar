@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
-<!DOCTYPE dialog SYSTEM "chrome://twitterbar/locale/overlay.dtd" >
+<!DOCTYPE dialog [
+	<!ENTITY % localLocale SYSTEM "chrome://twitterbar/locale/overlay.dtd">
+	%localLocale;
+	<!ENTITY % backupLocale SYSTEM "chrome://twitterbar-default-locale/content/overlay.dtd">
+	%backupLocale;
+]>
 <vbox xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-	<stringbundleset id="stringbundleset">
-		<stringbundle id="firefound-bundle" src="chrome://twitterbar/locale/overlay.properties" />
-	</stringbundleset>
-	
 	<setting id="pref-prefix" pref="extensions.twitter.web" type="string" title="&twitter.prefixExplanation; &twitter.prefixDescription;" />
 
     <setting id="pref-open-after" pref="extensions.twitter.tab" type="bool" title="&twitter.tab;" />

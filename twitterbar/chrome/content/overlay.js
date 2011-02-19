@@ -40,10 +40,55 @@ var TWITTERBAR = {
 	 */
 	lastUrl : null,
 	
-	/**
-	 * Shortcut to the stringbundle.
-	 */
-	get strings() { return document.getElementById("twitterbar-strings"); },
+	strings : {
+		_backup : null,
+		_main : null,
+
+		initStrings : function () {
+			if (!this._backup) { this._backup = Components.classes["@mozilla.org/intl/stringbundle;1"].getService(Components.interfaces.nsIStringBundleService).createBundle("chrome://twitterbar-default-locale/content/overlay.properties"); }
+			if (!this._main) { this._main = Components.classes["@mozilla.org/intl/stringbundle;1"].getService(Components.interfaces.nsIStringBundleService).createBundle("chrome://twitterbar/locale/overlay.properties"); }
+		},
+
+		getString : function (key) {
+			this.initStrings();
+
+			var rv = "";
+
+			try {
+				rv = this._main.GetStringFromName(key);
+			} catch (e) {
+			}
+
+			if (!rv) {
+				try {
+					rv = this._backup.GetStringFromName(key);
+				} catch (e) {
+				}
+			}
+
+			return rv;
+		},
+
+		getFormattedString : function (key, args) {
+			this.initStrings();
+
+			var rv = "";
+
+			try {
+				rv = this._main.formatStringFromName(key, args, args.length);
+			} catch (e) {
+			}
+
+			if (!rv) {
+				try {
+					rv = this._backup.formatStringFromName(key, args, args.length);
+				} catch (e) {
+				}
+			}
+			
+			return rv;
+		}
+	},
 	
 	/**
 	 * Token secret for the currently selected account.

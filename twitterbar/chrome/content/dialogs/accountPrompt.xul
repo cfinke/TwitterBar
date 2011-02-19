@@ -1,6 +1,11 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
-<!DOCTYPE overlay SYSTEM "chrome://twitterbar/locale/overlay.dtd">
+<!DOCTYPE dialog [
+	<!ENTITY % localLocale SYSTEM "chrome://twitterbar/locale/overlay.dtd">
+	%localLocale;
+	<!ENTITY % backupLocale SYSTEM "chrome://twitterbar-default-locale/content/overlay.dtd">
+	%backupLocale;
+]>
 <dialog id="twitterbar-prompt" 
 	title="&twitter.chooseAccountTitle;"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"

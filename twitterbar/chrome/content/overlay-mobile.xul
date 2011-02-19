@@ -1,6 +1,11 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://twitterbar/skin/twitter-mobile.css" type="text/css"?>
-<!DOCTYPE overlay SYSTEM "chrome://twitterbar/locale/overlay.dtd">
+<!DOCTYPE overlay [
+	<!ENTITY % localLocale SYSTEM "chrome://twitterbar/locale/overlay.dtd">
+	%localLocale;
+	<!ENTITY % backupLocale SYSTEM "chrome://twitterbar-default-locale/content/overlay.dtd">
+	%backupLocale;
+]>
 <overlay
 	id="twitteroverlay"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
@@ -25,12 +30,6 @@
 		]]>
 	</script>
 
-	<window id="main-window">
-		<stringbundleset id="twitterbar-stringbundle">
-			<stringbundle id="twitterbar-strings" src="chrome://twitterbar/locale/overlay.properties" />
-		</stringbundleset>
-	</window>
-	
 	<hbox id="urlbar-container">
 		<hbox id="twitterBox" align="middle">
 			<toolbarbutton
