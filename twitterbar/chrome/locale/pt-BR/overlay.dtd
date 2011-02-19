@@ -2,15 +2,15 @@
 <!ENTITY twitter.tab "Abrir minha página do Twitter em nova aba após enviar">
 <!ENTITY twitter.web "Antes da URL:">
 <!ENTITY twitter.button "Ocultar ícone do TwitterBar da barra de endereços">
-<!ENTITY twitter.options.dialog "Diálogo de opções do TwitterBar">
+<!ENTITY twitter.options.dialog "Opções do TwitterBar">
 <!ENTITY twitter.generalTab "Geral">
-<!ENTITY twitter.confirm "Sempre pedir confirmação antes de enviar quando eu clicar no ícone do TwitterBar.">
-<!ENTITY twitter.prefixExplanation "Você pode compartilhar um link para a página que está lendo, clicando no ícone do TwitterBar na barra de endereços. O seguinte texto será adicionado automaticamente antes da URL:">
-<!ENTITY twitter.prefixDescription "(Você pode usar $$ como variável a ser substituída pelo título da página)">
-<!ENTITY twitter.shortener "Encurtador de URL:">
+<!ENTITY twitter.confirm "Pedir confirmação antes de enviar quando eu clicar no ícone do TwitterBar">
+<!ENTITY twitter.prefixExplanation "Compartilhe um link para a página que está lendo, clicando no ícone do TwitterBar na barra de endereços. O texto abaixo será adicionado automaticamente antes do endereço:">
+<!ENTITY twitter.prefixDescription "(você pode usar $$ para inserir o título da página)">
+<!ENTITY twitter.shortener "Encurtador de URLs:">
 <!ENTITY twitter.noShortener "Nenhum">
-<!ENTITY twitter.showTrends "Exibir notícias de tendências no painel do Twitter.">
-<!ENTITY twitter.bitlyInstructions "Digite seu login do bit.ly e chave API, se tiver.">
+<!ENTITY twitter.showTrends "Exibir notícias de tendências no painel do Twitter">
+<!ENTITY twitter.bitlyInstructions "Digite seu login do bit.ly e chave API, se tiver">
 <!ENTITY twitter.bitlyLogin "Login do bit.ly:">
 <!ENTITY twitter.bitlyApiKey "Chave API do bit.ly:">
 <!ENTITY twitter.options "Opções...">
@@ -18,8 +18,8 @@
 <!ENTITY twitter.chooseAccounts "Para que contas deseja enviar mensagem?">
 <!ENTITY twitter.newAccount "Novo:">
 <!ENTITY twitter.addAccount "Adicionar conta">
-<!ENTITY twitter.multiAccountInstructions "Para enviar para uma conta específica, basta digitar --@nome_da_conta no final do seu tweet (mas antes de --post).">
+<!ENTITY twitter.multiAccountInstructions "Para enviar para uma conta específica, basta digitar --@nome_da_conta no final do seu tweet (mas antes de --post)">
 <!ENTITY twitter.account "Conta">
 <!ENTITY twitter.authorizedOn "Autorizado em...">
 <!ENTITY twitter.remove "Remover">
-<!ENTITY twitter.noAccounts "Você ainda não autorizou nenhuma conta.">
+<!ENTITY twitter.noAccounts "Você ainda não autorizou nenhuma conta">
