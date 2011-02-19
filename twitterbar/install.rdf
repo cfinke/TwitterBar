@@ -3,11 +3,11 @@
 	<Description about="urn:mozilla:install-manifest">
 		<em:id>{1a0c9ebe-ddf9-4b76-b8a3-675c77874d37}</em:id>
 		<em:name>TwitterBar</em:name>
-		<em:version>3.0pre</em:version>
+		<em:version>3.0</em:version>
 		
 		<em:description>Post to Twitter from your address bar.</em:description>
 		<em:creator>Christopher Finke</em:creator>
-		<em:iconURL>chrome://twitterbar/skin/bird-32.png</em:iconURL>
+		<em:iconURL>chrome://twitterbar/skin/bird-48.png</em:iconURL>
 		<em:homepageURL>http://www.chrisfinke.com/addons/twitterbar/</em:homepageURL>
 		<em:optionsURL>chrome://twitterbar/content/options.xul</em:optionsURL>    
 		
