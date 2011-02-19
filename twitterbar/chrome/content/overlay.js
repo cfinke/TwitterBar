@@ -807,6 +807,7 @@ var TWITTERBAR = {
 				TWITTERBAR.strings.getFormattedString("twitterbar.tooLong", [status.length]))) {
 				TWITTERBAR.pendingTweets = [];
 				TWITTERBAR.afterPost(true);
+				TWITTERBAR_UI.setStatusText(status);
 				return;
 			}
 		}
